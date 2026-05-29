@@ -4,14 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>HUB EOV — Selante Adesivo DW240 | Drylevis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+<!-- ================= BLOCO ÚNICO — copie este <div> inteiro p/ o Wake ================= -->
+<div id="dw240-root">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Barlow+Condensed:wght@600;700;800&display=swap');
   /* ============================================================
-     Reset / base
+     Reset / base — escopado em #dw240-root para não afetar a
+     página hospedeira (CMS Wake). body{margin:0} é o único
+     ajuste global (inofensivo).
   ============================================================ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body{ margin:0; }
+  #dw240-root, #dw240-root *, #dw240-root *::before, #dw240-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root{
     --ink-900:#0c0c0c;
@@ -30,15 +35,15 @@
     --white:#ffffff;
   }
 
-  html,body{ background:#f4f4f4; }
-  body{
+  #dw240-root{
+    background:#f4f4f4;
     font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     color:var(--ink-700);
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  p{ word-break:break-word; }
-  img{ display:block; }
+  #dw240-root p{ word-break:break-word; }
+  #dw240-root img{ display:block; }
 
   /* ============================================================
      Page frame — vertical flow of centered sections.
@@ -388,17 +393,16 @@
     .navtabs__divider{ width:100%; height:1px; align-self:auto; }
   }
 </style>
-</head>
-<body>
-  <main class="page-frame">
+
+  <div class="page-frame">
 
     <!-- ============ HERO (scales as one unit) ============ -->
     <section class="hero-scaler" aria-label="Selante Adesivo DW240">
       <div class="hero">
-        <img class="hero__bg" src="assets/hero-bg.png" alt="Selante Adesivo DW240" />
+        <img class="hero__bg" src="Assets/hero-bg.png" alt="Selante Adesivo DW240" />
 
         <div class="hero__badge">
-          <img src="assets/hero-badge.svg" alt="Drylevis" />
+          <img src="Assets/hero-badge.svg" alt="Drylevis" />
           <span>INOVAÇÃO EM CONCEITO</span>
         </div>
 
@@ -414,8 +418,8 @@
           <span>Conhecer mais do produto</span>
         </button>
 
-        <div class="hero__arrow hero__arrow--left"><img src="assets/arrow-left.svg" alt="Anterior" /></div>
-        <div class="hero__arrow hero__arrow--right"><img src="assets/arrow-left.svg" alt="Próximo" /></div>
+        <div class="hero__arrow hero__arrow--left"><img src="Assets/arrow-left.svg" alt="Anterior" /></div>
+        <div class="hero__arrow hero__arrow--right"><img src="Assets/arrow-left.svg" alt="Próximo" /></div>
       </div>
     </section>
 
@@ -423,8 +427,8 @@
     <section class="what" aria-label="O que é o DW240">
       <div class="what__bg">
         <video class="what__video"
-               src="assets/magnific_o-produto-rotacionando-18_jS8ll6DLD0.mp4"
-               poster="assets/product-tube.png"
+               src="Assets/magnific_o-produto-rotacionando-18_jS8ll6DLD0.mp4"
+               poster="Assets/product-tube.png"
                autoplay loop muted playsinline></video>
       </div>
       <div class="what__col">
@@ -435,14 +439,14 @@
         <div class="attr-grid">
           <div class="attr-col">
             <article class="attr-card">
-              <div class="attr-card__icon"><img src="assets/attr-icon-1.svg" alt="" /></div>
+              <div class="attr-card__icon"><img src="Assets/attr-icon-1.svg" alt="" /></div>
               <div class="attr-card__txt">
                 <p class="t">Elástico e sem rachaduras</p>
                 <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
               </div>
             </article>
             <article class="attr-card">
-              <div class="attr-card__icon"><img src="assets/attr-icon-2.svg" alt="" /></div>
+              <div class="attr-card__icon"><img src="Assets/attr-icon-2.svg" alt="" /></div>
               <div class="attr-card__txt">
                 <p class="t">Elástico e sem rachaduras</p>
                 <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
@@ -451,14 +455,14 @@
           </div>
           <div class="attr-col">
             <article class="attr-card">
-              <div class="attr-card__icon"><img src="assets/attr-icon-3.svg" alt="" /></div>
+              <div class="attr-card__icon"><img src="Assets/attr-icon-3.svg" alt="" /></div>
               <div class="attr-card__txt">
                 <p class="t">Elástico e sem rachaduras</p>
                 <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
               </div>
             </article>
             <article class="attr-card">
-              <div class="attr-card__icon"><img src="assets/attr-icon-3.svg" alt="" /></div>
+              <div class="attr-card__icon"><img src="Assets/attr-icon-3.svg" alt="" /></div>
               <div class="attr-card__txt">
                 <p class="t">Elástico e sem rachaduras</p>
                 <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
@@ -478,21 +482,21 @@
     <!-- ============ CARDS ============ -->
     <section class="cards" aria-label="Aplicações">
       <article class="card">
-        <div class="card__img"><img src="assets/card-telhas.png" alt="Telhas" /></div>
+        <div class="card__img"><img src="Assets/card-telhas.png" alt="Telhas" /></div>
         <div class="card__body">
           <h3>Telhas</h3>
           <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
         </div>
       </article>
       <article class="card">
-        <div class="card__img"><img src="assets/card-tanques.png" alt="Tanques" /></div>
+        <div class="card__img"><img src="Assets/card-tanques.png" alt="Tanques" /></div>
         <div class="card__body">
           <h3>Tanques</h3>
           <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
         </div>
       </article>
       <article class="card">
-        <div class="card__img"><img src="assets/card-trincas.png" alt="Trincas" /></div>
+        <div class="card__img"><img src="Assets/card-trincas.png" alt="Trincas" /></div>
         <div class="card__body">
           <h3>Trincas</h3>
           <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
@@ -527,15 +531,15 @@
     <section class="vcont" aria-label="Compre o kit">
       <div class="vcont__top">
         <div class="pgrid">
-          <img src="assets/product-tube.png" alt="" />
-          <img src="assets/grid-2.jpg" alt="" />
-          <img src="assets/grid-3.png" alt="" />
-          <img src="assets/grid-4.png" alt="" />
+          <img src="Assets/product-tube.png" alt="" />
+          <img src="Assets/grid-2.jpg" alt="" />
+          <img src="Assets/grid-3.png" alt="" />
+          <img src="Assets/grid-4.png" alt="" />
         </div>
 
         <div class="pinfo">
           <div class="pinfo__badge">
-            <img src="assets/pinfo-badge.svg" alt="Drylevis" />
+            <img src="Assets/pinfo-badge.svg" alt="Drylevis" />
             <span>INOVAÇÃO EM CONCEITO</span>
           </div>
           <p class="pinfo__name">Selante Adesivo <span class="accent">DW240</span></p>
@@ -562,10 +566,10 @@
       <!-- compre junto -->
       <div class="kit-scaler">
         <div class="kit">
-          <img class="kit__art" src="assets/kit-art.png" alt="" />
-          <div class="kit__tube"><img src="assets/kit-tube.png" alt="" /></div>
-          <div class="kit__prod kit-tubes"><div class="rot"><div class="clip"><img src="assets/kit-prod-a.png" alt="" /></div></div></div>
-          <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="assets/kit-prod-b.png" alt="" /></div></div></div>
+          <img class="kit__art" src="Assets/kit-art.png" alt="" />
+          <div class="kit__tube"><img src="Assets/kit-tube.png" alt="" /></div>
+          <div class="kit__prod kit-tubes"><div class="rot"><div class="clip"><img src="Assets/kit-prod-a.png" alt="" /></div></div></div>
+          <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="Assets/kit-prod-b.png" alt="" /></div></div></div>
           <div class="kit__badge"><span>Compre junto</span></div>
           <p class="kit__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
           <p class="kit__desc">Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
@@ -576,7 +580,7 @@
       <!-- compre junto — versão MOBILE (frame 243:4339), exibida abaixo de 640px -->
       <div class="kit-mobile-scaler">
         <div class="kit-mobile">
-          <img class="kit-mobile__art" src="assets/kit-m-art.png" alt="" />
+          <img class="kit-mobile__art" src="Assets/kit-m-art.png" alt="" />
           <div class="kit-mobile__badge"><span>Compre junto</span></div>
           <div class="kit-mobile__content">
             <div class="kit-mobile__text">
@@ -585,14 +589,14 @@
             </div>
             <button class="kit-mobile__btn" type="button">Aproveitar</button>
           </div>
-          <div class="kit-mobile__prod km-gun"><div class="rot"><div class="clip"><img src="assets/kit-m-gun.png" alt="" /></div></div></div>
-          <div class="kit-mobile__prod km-tubes"><div class="rot"><div class="clip"><img src="assets/kit-m-tubes.png" alt="" /></div></div></div>
-          <div class="kit-mobile__prod km-tube"><div class="clip"><img src="assets/kit-m-tube.png" alt="" /></div></div>
+          <div class="kit-mobile__prod km-gun"><div class="rot"><div class="clip"><img src="Assets/kit-m-gun.png" alt="" /></div></div></div>
+          <div class="kit-mobile__prod km-tubes"><div class="rot"><div class="clip"><img src="Assets/kit-m-tubes.png" alt="" /></div></div></div>
+          <div class="kit-mobile__prod km-tube"><div class="clip"><img src="Assets/kit-m-tube.png" alt="" /></div></div>
         </div>
       </div>
     </section>
 
-  </main>
+  </div>
 
 <script>
   // ---------- Nav tabs ----------
@@ -660,5 +664,7 @@
     setTimeout(function(){ b.textContent = prev; }, 1500);
   });
 </script>
+</div>
+<!-- ================= /BLOCO ÚNICO ================= -->
 </body>
 </html>
