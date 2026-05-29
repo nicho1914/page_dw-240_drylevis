@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero Banner — Wave</title>
+  <link rel="stylesheet" href="../../Assets/CSS/output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Barlow+Condensed:ital,wght@0,800;1,900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --outer:  #c4d87c;
+      --card:   #8aaf32;
+      --black:  #141400;
+      --white:  #f4f8e8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--outer);
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    /* ── wrapper ─────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 24px 52px;          /* outer green visível em todos os lados */
+    }
+
+    /* ── side arrows (sobre o outer green) ──────── */
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: rgba(20,20,0,0.45);
+      font-size: 1.8rem;
+      line-height: 1;
+      padding: 8px 14px;
+      transition: color 0.15s;
+      z-index: 10;
+    }
+    .hero-arrow:hover { color: var(--black); }
+    .hero-arrow-prev { left: 8px; }
+    .hero-arrow-next { right: 8px; }
+
+    /* ── green card ──────────────────────────────── */
+    .hero-card {
+      background: var(--card);
+      border-radius: 2.2rem;       /* curvas em todos os 4 cantos */
+      padding: 24px 48px 56px;
+      position: relative;
+      overflow: hidden;
+      min-height: 440px;
+    }
+
+    /* subtle noise texture on card */
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* ── logo ────────────────────────────────────── */
+    .hero-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      text-align: center;
+      display: block;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── grid ────────────────────────────────────── */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      align-items: center;
+      gap: 0;
+      min-height: 340px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── left content ────────────────────────────── */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-right: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(3.8rem, 8.5vw, 7rem);
+      line-height: 0.88;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      line-height: 1.2;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      max-width: 260px;
+    }
+
+    .hero-body {
+      font-size: 0.78rem;
+      color: rgba(244,248,232,0.8);
+      line-height: 1.55;
+      max-width: 220px;
+    }
+
+    /* CTA — outline only, no fill */
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      border: 1.5px solid var(--black);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      width: fit-content;
+    }
+    .hero-btn:hover {
+      background: var(--black);
+      color: var(--card);
+    }
+
+    .hero-footnote {
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(20,20,0,0.4);
+    }
+
+    /* ── right: can column ───────────────────────── */
+    .hero-right {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    /* CSS can */
+    .can {
+      position: relative;
+      width: 148px;
+      height: 300px;
+    }
+
+    .can-cap {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 22px;
+      background: linear-gradient(180deg, #d8c648 0%, #b8a030 100%);
+      border-radius: 50%;
+      z-index: 3;
+    }
+
+    .can-body {
+      position: absolute;
+      top: 10px; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        100deg,
+        #f0e07a 0%,
+        #d4c050 20%,
+        #c0a838 40%,
+        #d0b848 55%,
+        #b89c28 72%,
+        #cdb03e 88%,
+        #e8d068 100%
+      );
+      border-radius: 14px / 8px;
+      box-shadow:
+        inset -10px 0 20px rgba(0,0,0,0.22),
+        inset  8px 0 14px rgba(255,255,255,0.28),
+        0 16px 48px rgba(0,0,0,0.28);
+    }
+
+    /* condensation */
+    .can-body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-image:
+        radial-gradient(ellipse 2.5px 7px at 18% 28%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(ellipse 2px   5px at 32% 52%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(ellipse 2px   6px at 55% 22%, rgba(255,255,255,0.5)  0%, transparent 100%),
+        radial-gradient(ellipse 2.5px 8px at 72% 42%, rgba(255,255,255,0.4)  0%, transparent 100%),
+        radial-gradient(circle  2px      at 26% 68%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(circle  1.5px    at 64% 74%, rgba(255,255,255,0.5)  0%, transparent 100%),
+        radial-gradient(circle  2px      at 84% 28%, rgba(255,255,255,0.42) 0%, transparent 100%),
+        radial-gradient(ellipse 2px 5px  at 46% 80%, rgba(255,255,255,0.35) 0%, transparent 100%);
+    }
+
+    .can-label {
+      position: absolute;
+      inset: 32px 14px 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      z-index: 2;
+    }
+
+    .can-brand-name {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      transform: rotate(-1deg);
+    }
+
+    .can-fresh {
+      font-size: 0.44rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(26,24,0,0.6);
+    }
+
+    .can-protein-block {
+      background: rgba(26,24,0,0.1);
+      border-radius: 5px;
+      padding: 5px 10px;
+      text-align: center;
+      margin-top: 6px;
+    }
+    .can-protein-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #1a1800;
+      line-height: 1;
+    }
+    .can-protein-text {
+      font-size: 0.44rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(26,24,0,0.75);
+      display: block;
+    }
+    .can-zero {
+      font-size: 0.4rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(26,24,0,0.42);
+      margin-top: 3px;
+    }
+
+    /* ── floating info card ──────────────────────── */
+    .chip {
+      position: absolute;
+      background: rgba(244,248,232,0.94);
+      border-radius: 10px;
+      padding: 9px 32px 9px 12px;
+      font-size: 0.67rem;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.4;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+      max-width: 165px;
+      z-index: 4;
+    }
+    .chip-close {
+      position: absolute;
+      top: 7px; right: 10px;
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      color: rgba(20,20,0,0.3);
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+    }
+    .chip-close:hover { color: var(--black); }
+
+    /* bottom right label */
+    .hero-tagline {
+      position: absolute;
+      bottom: -36px;
+      right: 0;
+      text-align: right;
+      font-size: 0.67rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.45;
+      opacity: 0.9;
+      z-index: 4;
+    }
+    .hero-tagline span { font-weight: 400; opacity: 0.75; }
+
+    /* ── scroll chevron ──────────────────────────── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.4;
+      animation: bob 1.7s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes bob {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(5px); }
+    }
+
+    /* ── entrance animations ─────────────────────── */
+    @keyframes up {
+      from { opacity:0; transform: translateY(18px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .a1 { animation: up .5s ease both .05s; }
+    .a2 { animation: up .5s ease both .16s; }
+    .a3 { animation: up .5s ease both .26s; }
+    .a4 { animation: up .5s ease both .38s; }
+    .a5 { animation: up .5s ease both .50s; }
+  </style>
+</head>
+
+<body>
+
+<div class="hero">
+
+  <!-- prev arrow -->
+  <button class="hero-arrow hero-arrow-prev" aria-label="Anterior">&#8249;</button>
+
+  <!-- green card -->
+  <div class="hero-card">
+
+    <!-- logo -->
+    <span class="hero-logo a1">wave</span>
+
+    <!-- grid -->
+    <div class="hero-grid">
+
+      <!-- left -->
+      <div class="hero-left">
+        <h1 class="hero-title a2">BEBA<br>WAVE</h1>
+        <p class="hero-sub a3">A proteína em lata que vive<br>no mesmo ritmo que você</p>
+        <p class="hero-body a3">25g de proteína, zero lactose, zero açúcar<br>e sabores refrescantes.</p>
+        <div class="a4">
+          <button class="hero-btn">Encontrar minha wave ideal</button>
+        </div>
+        <p class="hero-footnote a5">Primeiro lote · Condições especiais de lançamento</p>
+      </div>
+
+      <!-- right -->
+      <div class="hero-right">
+
+        <!-- can -->
+        <div class="can a2">
+          <div class="can-cap"></div>
+          <div class="can-body">
+            <div class="can-label">
+              <span class="can-brand-name">wave</span>
+              <span class="can-fresh">Fresh Protein Drink</span>
+              <div class="can-protein-block">
+                <div class="can-protein-num">25g</div>
+                <span class="can-protein-text">Proteína</span>
+              </div>
+              <span class="can-zero">Zero Açúcar</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- floating chip -->
+        <div class="chip a4" style="top: 52px; right: -152px;">
+          <button class="chip-close" aria-label="Fechar">×</button>
+          3g de creatina + blend de<br>vitaminas e minerais
+        </div>
+
+        <!-- bottom tagline -->
+        <div class="hero-tagline a5">
+          + Mais que uma bebida<br>
+          <span>Sua vitalidade em forma de lata.</span>
+        </div>
+
+      </div>
+      <!-- /right -->
+
+    </div>
+    <!-- /grid -->
+
+    <!-- scroll cue -->
+    <div class="scroll-cue" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="var(--white)" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+
+  </div>
+  <!-- /card -->
+
+  <!-- next arrow -->
+  <button class="hero-arrow hero-arrow-next" aria-label="Próximo">&#8250;</button>
+
+</div>
+
+</body>
+</html>

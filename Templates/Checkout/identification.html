@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Identificação — Escuta o Véio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Assets/CSS/output.css" />
+  <style>
+    .bg-hero {
+      background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.25)), url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-surface-alt min-h-screen flex flex-col">
+
+  <!-- HEADER simplificado: só logo centralizada -->
+  <header class="bg-surface relative z-10">
+    <div class="container-checkout flex justify-center py-6">
+      <a href="/" class="font-display text-3xl tracking-widest text-ink">ESCUTA O VÉIO</a>
+    </div>
+  </header>
+
+  <!-- HERO com fundo decorativo + card centrado -->
+  <main class="bg-hero flex-1 flex items-start justify-center pt-12 pb-20 px-4">
+    <div class="w-full max-w-md">
+
+      <!-- tabs (só CLIENTE, sem Prescritor) -->
+      <div role="tablist" class="flex justify-center gap-8 mb-6 text-white">
+        <button role="tab" aria-selected="true" class="flex items-center gap-2 pb-1 border-b-2 border-brand-400 font-semibold uppercase tracking-wider text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+          Cliente
+        </button>
+      </div>
+
+      <!-- card branco -->
+      <div class="bg-surface rounded-lg shadow-card p-8">
+        <h1 class="font-display text-2xl text-center mb-6">Informe seu CPF para continuar</h1>
+
+        <form id="form-identification" class="space-y-4" novalidate>
+          <div>
+            <label class="field-label" for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" inputmode="numeric" required class="field-input" placeholder="000.000.000-00" autocomplete="off" />
+            <p class="field-error" id="cpf-error" hidden>CPF inválido.</p>
+          </div>
+
+          <button type="submit" class="btn-primary w-full rounded-full uppercase tracking-wider">
+            Prosseguir
+          </button>
+        </form>
+
+        <div class="my-6 flex items-center gap-3 text-xs text-ink-muted">
+          <hr class="flex-1 border-surface-line" />
+          <span>Entre com suas redes sociais</span>
+          <hr class="flex-1 border-surface-line" />
+        </div>
+
+        <div class="flex justify-center gap-3">
+          <button type="button" aria-label="Entrar com Google" class="w-10 h-10 rounded-full border border-surface-line flex items-center justify-center hover:border-brand-400 hover:text-brand-500">
+            <span class="font-bold">G</span>
+          </button>
+          <button type="button" aria-label="Entrar com Facebook" class="w-10 h-10 rounded-full border border-surface-line flex items-center justify-center hover:border-brand-400 hover:text-brand-500">
+            <span class="font-bold">f</span>
+          </button>
+        </div>
+
+        <p class="mt-6 text-xs text-center text-ink-muted">
+          <a href="./cart.html" class="underline">Voltar ao resumo do pedido</a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-white/80">
+    <div class="container-checkout py-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-xs uppercase tracking-wider mb-2">Pague em até 6x no cartão</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge bg-white/10 text-white border-white/20">VISA</span>
+            <span class="badge bg-white/10 text-white border-white/20">MASTER</span>
+            <span class="badge bg-white/10 text-white border-white/20">DINERS</span>
+            <span class="badge bg-white/10 text-white border-white/20">BOLETO</span>
+            <span class="badge bg-white/10 text-white border-white/20">PIX</span>
+            <span class="badge bg-white/10 text-white border-white/20">ELO</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end items-center">
+          <span class="badge bg-white/10 text-white border-white/20">SSL 256 BITS</span>
+          <span class="badge bg-white/10 text-white border-white/20">Safe Browsing</span>
+          <span class="badge bg-white/10 text-white border-white/20">Reclame Aqui</span>
+        </div>
+      </div>
+      <hr class="border-white/10 my-6" />
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <span class="font-display text-xl tracking-widest">ESCUTA O VÉIO</span>
+        <span class="text-[11px] text-white/50">CNPJ: 00.000.000/0000-00 — Escuta o Véio Comércio LTDA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../Assets/JS/checkout.js"></script>
+</body>
+</html>

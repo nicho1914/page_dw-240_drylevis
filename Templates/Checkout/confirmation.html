@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedido confirmado — Escuta o Véio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Assets/CSS/output.css" />
+</head>
+<body>
+
+  <header class="bg-surface border-b border-surface-line">
+    <div class="container-checkout flex items-center justify-between py-4">
+      <a href="/" class="font-display text-2xl tracking-widest text-ink">ESCUTA O VÉIO</a>
+      <span class="text-sm text-ink-muted">Pedido confirmado</span>
+    </div>
+  </header>
+
+  <main class="container-checkout py-8 md:py-12">
+
+    <section class="card text-center mb-6">
+      <div class="card-body">
+        <div class="w-14 h-14 rounded-full bg-success/10 text-success mx-auto flex items-center justify-center text-3xl mb-3">✓</div>
+        <h1 class="font-display text-3xl mb-1">Pedido recebido!</h1>
+        <p class="text-ink-muted">Obrigado pela compra. Enviamos a confirmação para o seu e-mail.</p>
+        <p class="mt-3 text-sm">Número do pedido: <strong class="font-mono" id="order-number">#1024781</strong></p>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6">
+
+      <!-- INSTRUÇÕES POR MÉTODO -->
+      <section class="space-y-4">
+
+        <!-- PIX -->
+        <article class="card" data-method="pix" hidden>
+          <header class="step-header"><h2 class="step-title">Pague com PIX</h2></header>
+          <div class="card-body text-center">
+            <div class="w-48 h-48 mx-auto bg-surface-alt border border-surface-line rounded mb-3 flex items-center justify-center text-ink-subtle text-xs">QR Code PIX</div>
+            <button type="button" class="btn-outline mb-2">Copiar código copia-e-cola</button>
+            <p class="text-xs text-ink-muted">O pagamento expira em 30 minutos. Após confirmado, você recebe um e-mail.</p>
+          </div>
+        </article>
+
+        <!-- Pagaleve -->
+        <article class="card" data-method="pagaleve" hidden>
+          <header class="step-header"><h2 class="step-title">Pix Parcelado — Pagaleve</h2></header>
+          <div class="card-body">
+            <p class="mb-3">Você foi redirecionado para a Pagaleve para escolher as parcelas e gerar o PIX da primeira parcela.</p>
+            <a href="#" class="btn-primary">Abrir Pagaleve</a>
+          </div>
+        </article>
+
+        <!-- Boleto -->
+        <article class="card" data-method="boleto" hidden>
+          <header class="step-header"><h2 class="step-title">Boleto bancário</h2></header>
+          <div class="card-body space-y-3">
+            <p class="text-sm">Vencimento: <strong>amanhã</strong>. A compensação pode levar até 2 dias úteis.</p>
+            <div class="flex flex-col md:flex-row gap-2">
+              <a href="#" class="btn-primary">Baixar boleto (PDF)</a>
+              <button type="button" class="btn-outline">Copiar linha digitável</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cartão -->
+        <article class="card" data-method="credit">
+          <header class="step-header"><h2 class="step-title">Pagamento por cartão</h2></header>
+          <div class="card-body">
+            <p>Pagamento autorizado. Você receberá uma cobrança da operadora <strong>Escuta o Véio</strong>.</p>
+          </div>
+        </article>
+
+        <!-- CADASTRO OPCIONAL -->
+        <article class="card">
+          <header class="step-header"><h2 class="step-title">Criar uma conta (opcional)</h2></header>
+          <div class="card-body grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end">
+            <div>
+              <label class="field-label" for="signup-password">Defina uma senha</label>
+              <input id="signup-password" type="password" class="field-input" placeholder="Mínimo 8 caracteres" />
+              <p class="field-hint">Crie uma conta para acompanhar pedidos e comprar mais rápido.</p>
+            </div>
+            <button type="button" class="btn-outline">Criar conta</button>
+          </div>
+        </article>
+      </section>
+
+      <!-- RESUMO -->
+      <aside class="self-start">
+        <div class="card">
+          <header class="px-4 md:px-6 py-4 border-b border-surface-line">
+            <h2 class="text-base font-semibold">Resumo do pedido</h2>
+          </header>
+          <div class="card-body">
+            <ul class="divide-y divide-surface-line">
+              <li class="flex gap-3 py-3">
+                <div class="w-16 h-16 rounded bg-surface-alt flex-shrink-0"></div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium truncate">Nome do produto exemplo</p>
+                  <p class="text-xs text-ink-muted">Qtd: 1</p>
+                </div>
+                <span class="text-sm font-semibold">R$ 199,90</span>
+              </li>
+            </ul>
+
+            <div class="mt-5">
+              <div class="summary-row"><span>Subtotal</span><span>R$ 199,90</span></div>
+              <div class="summary-row"><span>Frete</span><span>R$ 19,90</span></div>
+              <div class="summary-row"><span>Desconto</span><span class="text-success">- R$ 0,00</span></div>
+              <div class="summary-total">
+                <span class="text-sm uppercase tracking-wider">Total</span>
+                <span class="font-display text-2xl">R$ 219,80</span>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h3 class="text-xs uppercase tracking-wider text-ink-muted mb-1">Entrega</h3>
+              <p class="text-sm">Rua Exemplo, 123 — Bairro<br/>Cidade/UF — CEP 00000-000</p>
+              <p class="text-xs text-ink-muted mt-1">Previsão: 5 a 8 dias úteis</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="/" class="btn-ghost w-full mt-3">Voltar para a loja</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="bg-surface border-t border-surface-line mt-10">
+    <div class="container-checkout py-6 text-xs text-ink-muted">© Escuta o Véio</div>
+  </footer>
+
+</body>
+</html>

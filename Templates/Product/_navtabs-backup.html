@@ -1,0 +1,261 @@
+<!--
+  navTabs — Backup gerado a partir das interactions do Figma
+  Componente: https://www.figma.com/design/tkN8hcjI132lc7qc1bmcZ7/HUB-EOV?node-id=98-869
+
+  Figma reactions mapeadas:
+  - ON_CLICK "O que são"   → Nav_one=Default         | SMART_ANIMATE | EASE_OUT | 300ms
+  - ON_CLICK "Benefícios"  → Nav_one=Benefícios      | SMART_ANIMATE | EASE_OUT | 500ms (default→benef)
+  - ON_CLICK "Modo de Uso" → Nav_one=Modo de Uso     | SMART_ANIMATE | EASE_OUT | 300ms
+  - ON_CLICK "Composição"  → Nav_one=Composição      | SMART_ANIMATE | EASE_OUT | 300ms
+
+  NÃO INTEGRADO — aguardando rebranding da página de produto.
+-->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>navTabs — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f5f5f5; display: grid; place-items: center; min-height: 100vh; padding: 2rem; }
+
+    /* === Wrapper === */
+    .nav-tabs {
+      background: #fff5b1;
+      border-radius: 24px;
+      display: grid;
+      grid-template-columns: 220px 1px 1fr;
+      gap: 0 48px;
+      padding: 56px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* === Left nav === */
+    .nav-tabs__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .nav-tabs__tab {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 700;
+      color: #3b1c00;
+      text-align: left;
+      padding: 0;
+      opacity: 0.5;
+      border-radius: 100px;
+      /* SMART_ANIMATE → transitions on all visual properties */
+      transition:
+        opacity 300ms cubic-bezier(0, 0, 0.58, 1),
+        background 300ms cubic-bezier(0, 0, 0.58, 1),
+        padding 300ms cubic-bezier(0, 0, 0.58, 1),
+        color 300ms cubic-bezier(0, 0, 0.58, 1);
+    }
+
+    .nav-tabs__tab[aria-selected="true"] {
+      background: #f5a520;
+      color: #3b1c00;
+      opacity: 1;
+      padding: 12px 20px;
+    }
+
+    /* === Divider === */
+    .nav-tabs__divider {
+      width: 1px;
+      background: #c8b27f;
+      align-self: stretch;
+    }
+
+    /* === Content panels === */
+    .nav-tabs__content {
+      position: relative;
+      min-height: 200px;
+    }
+
+    .nav-tabs__panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      /* SMART_ANIMATE → fade + subtle slide */
+      transform: translateY(6px);
+      transition:
+        opacity 300ms cubic-bezier(0, 0, 0.58, 1),
+        transform 300ms cubic-bezier(0, 0, 0.58, 1);
+    }
+
+    .nav-tabs__panel[aria-hidden="false"] {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      position: relative; /* volta ao fluxo quando ativo, empurra altura */
+    }
+
+    /* Benefícios tem duration 500ms conforme Figma */
+    .nav-tabs__panel[data-tab="info02"] {
+      transition-duration: 500ms;
+    }
+
+    /* === Typography === */
+    .nav-tabs__title {
+      font-size: 52px;
+      font-weight: 900;
+      color: #3b1c00;
+      line-height: 1.1;
+    }
+
+    .nav-tabs__label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3b1c00;
+    }
+
+    .nav-tabs__body {
+      font-size: 14px;
+      font-weight: 400;
+      color: #3b1c00;
+      line-height: 1.6;
+    }
+
+    /* === Check list === */
+    .nav-tabs__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav-tabs__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: #3b1c00;
+      line-height: 1.6;
+    }
+
+    .nav-tabs__check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #ef6868;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-tabs" role="tablist">
+
+    <!-- NAV -->
+    <nav class="nav-tabs__nav">
+      <button class="nav-tabs__tab" role="tab" aria-selected="true"  aria-controls="info01" data-target="info01">O que são</button>
+      <button class="nav-tabs__tab" role="tab" aria-selected="false" aria-controls="info02" data-target="info02">Benefícios</button>
+      <button class="nav-tabs__tab" role="tab" aria-selected="false" aria-controls="info03" data-target="info03">Modo de Uso</button>
+      <button class="nav-tabs__tab" role="tab" aria-selected="false" aria-controls="info04" data-target="info04">Composição</button>
+    </nav>
+
+    <!-- DIVIDER -->
+    <div class="nav-tabs__divider" aria-hidden="true"></div>
+
+    <!-- PANELS -->
+    <div class="nav-tabs__content">
+
+      <!-- O que são -->
+      <div class="nav-tabs__panel" id="info01" role="tabpanel" aria-hidden="false" data-tab="info01">
+        <h2 class="nav-tabs__title">Informações</h2>
+        <p class="nav-tabs__label">Reishi:</p>
+        <p class="nav-tabs__body">Popularmente chamado de "cogumelo da imortalidade" o Ganoderma lucidum é reconhecido por fortalecer o sistema imunológico, melhorar o sono, proteger o fígado e beneficiar a saúde cardiovascular. Suas propriedades antioxidantes combatem danos celulares e promovem uma pele saudável, enquanto as hetero-beta-glucanas têm atividade antitumoral.</p>
+        <p class="nav-tabs__label">Cordyceps:</p>
+        <p class="nav-tabs__body">Conhecido por seus efeitos positivos na energia, resistência física e sistema imunológico, possui compostos ativos como cordicepina e adenosina, melhorando a captação de oxigênio em até 40%. Além disso, suas propriedades antioxidantes e anti-inflamatórias, graças ao composto Cordycepin, protegem as células e combatem a inflamação. Também possui um papel benéfico no aumento da libido, podendo aumentar os níveis de testosterona e influenciar a saúde da próstata.</p>
+      </div>
+
+      <!-- Benefícios -->
+      <div class="nav-tabs__panel" id="info02" role="tabpanel" aria-hidden="true" data-tab="info02">
+        <h2 class="nav-tabs__title">Benefícios</h2>
+        <p class="nav-tabs__label">Reishi:</p>
+        <ul class="nav-tabs__list">
+          <li><span class="nav-tabs__check">✓</span>Melhora os ciclos de sono: regula a liberação de ácido GABA-aminobutirico, promovendo um sono mais tranquilo, profundo e reparador;</li>
+          <li><span class="nav-tabs__check">✓</span>Anti Stress: Os polissacarídeos do Reishi podem ser usados como prevenção a hipertensão, controlando ansiedades e stress.</li>
+          <li><span class="nav-tabs__check">✓</span>Valorizado por suas propriedades imunomoduladores, o Reishi ajuda a fortalecer o sistema imunológico e a proteger o corpo contra infecções.</li>
+        </ul>
+        <p class="nav-tabs__label">Cordyceps:</p>
+        <ul class="nav-tabs__list">
+          <li><span class="nav-tabs__check">✓</span>Ótimo pré-treino: O Cordyceps é conhecido por seus efeitos positivos na energia, resistência física e sistema imunológico por conta de seus compostos ativos como cordicepina e adenosina, melhorando a captação de oxigênio em até 40%;</li>
+          <li><span class="nav-tabs__check">✓</span>Possui propriedades antioxidantes e anti-inflamatórias: Graças ao composto cordycepin que protegem as células e combatem a inflamação.</li>
+          <li><span class="nav-tabs__check">✓</span>Reduz os efeitos da diabetes e proporciona aumento dos níveis de testosterona, influenciando a saúde da próstata e ocasionando resultados positivos na libido, servindo também como tônico sexual.</li>
+        </ul>
+      </div>
+
+      <!-- Modo de Uso -->
+      <div class="nav-tabs__panel" id="info03" role="tabpanel" aria-hidden="true" data-tab="info03">
+        <h2 class="nav-tabs__title">Modo de uso</h2>
+        <ul class="nav-tabs__list">
+          <li><span class="nav-tabs__check">✓</span>Ingerir 20 gotas (1 ml), de 02 até 03 vezes ao dia.</li>
+          <li><span class="nav-tabs__check">✓</span>Pode ser consumido adicionado a bebidas ou mesmo puro.</li>
+          <li><span class="nav-tabs__check">✓</span>Para melhor adaptação, consumir diariamente sempre nos mesmos horários, exemplo: após café da manhã, almoço e jantar. Uma dose (20 gotas) dos nossos extratos equivale a 1 ml = 500mg de cogumelo em pó.</li>
+        </ul>
+      </div>
+
+      <!-- Composição -->
+      <div class="nav-tabs__panel" id="info04" role="tabpanel" aria-hidden="true" data-tab="info04">
+        <h2 class="nav-tabs__title">Composição</h2>
+        <p class="nav-tabs__label">Reishi:</p>
+        <p class="nav-tabs__body">Extrato de cogumelo <em>Ganoderma lucidum</em> (corpo frutífero em solução hidro alcoólica - 25% a 30% de álcool de cereais).</p>
+        <p class="nav-tabs__label">Cordyceps:</p>
+        <p class="nav-tabs__body">Extrato de cogumelo <em>Cordyceps militaris</em> (corpo frutífero em solução hidro alcoólica - 25% a 30% de álcool de cereais).</p>
+      </div>
+
+    </div><!-- /.nav-tabs__content -->
+  </div><!-- /.nav-tabs -->
+
+  <script>
+    // navTabs — gerado das Figma reactions (ON_CLICK → CHANGE_TO → SMART_ANIMATE → EASE_OUT)
+    // Durations mapeadas do Figma:
+    const TAB_DURATIONS = { info01: 300, info02: 500, info03: 300, info04: 300 };
+
+    const tabs    = document.querySelectorAll('.nav-tabs__tab');
+    const panels  = document.querySelectorAll('.nav-tabs__panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        const duration = TAB_DURATIONS[target] ?? 300;
+
+        // Update tab CSS duration to match Figma's per-tab duration
+        panels.forEach(p => {
+          p.style.transitionDuration = `${duration}ms`;
+        });
+
+        // Deactivate all
+        tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+        panels.forEach(p => p.setAttribute('aria-hidden', 'true'));
+
+        // Activate target
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(target).setAttribute('aria-hidden', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

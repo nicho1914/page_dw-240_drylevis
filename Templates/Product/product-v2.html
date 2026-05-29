@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Selante Adesivo DW240 — Escuta o Véio</title>
+  <meta name="description" content="Selante Adesivo DW240: cola, veda e impermeabiliza juntas de uma vez. Poliuretano extra forte — mais resistente e elástico que silicone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Assets/CSS/output.css" />
+  <style>
+    /* ===== Tokens locais do rebranding ===== */
+    :root {
+      --coral: #f07070;
+      --coral-deep: #e35f5f;
+      --tab-bg: #ef6f6f;
+      --tab-active: #2d2d2d;
+      --tab-active-text: #ffffff;
+      --tab-text: #2d2d2d;
+      --check-pink: #ef6868;
+    }
+
+    /* ===== navTabs (extraído das reactions Figma: ON_CLICK → CHANGE_TO → SMART_ANIMATE → EASE_OUT) ===== */
+    .nav-tabs {
+      background: var(--tab-bg);
+      border-radius: 24px;
+      display: grid;
+      grid-template-columns: 220px 1px 1fr;
+      gap: 0 48px;
+      padding: 56px;
+    }
+    .nav-tabs__nav { display: flex; flex-direction: column; gap: 28px; }
+    .nav-tabs__tab {
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      font-size: 18px; font-weight: 700; color: var(--tab-text); text-align: left;
+      padding: 0; opacity: 0.55; border-radius: 100px; color: #1a1a1a;
+      transition:
+        opacity 300ms cubic-bezier(0, 0, 0.58, 1),
+        background 300ms cubic-bezier(0, 0, 0.58, 1),
+        padding 300ms cubic-bezier(0, 0, 0.58, 1),
+        color 300ms cubic-bezier(0, 0, 0.58, 1);
+    }
+    .nav-tabs__tab[aria-selected="true"] {
+      background: var(--tab-active); color: var(--tab-active-text); opacity: 1; padding: 12px 20px;
+    }
+    .nav-tabs__divider { width: 1px; background: rgba(0,0,0,0.2); align-self: stretch; }
+    .nav-tabs__content { position: relative; min-height: 200px; }
+    .nav-tabs__panel {
+      position: absolute; inset: 0; display: flex; flex-direction: column; gap: 16px;
+      opacity: 0; pointer-events: none; transform: translateY(6px);
+      transition:
+        opacity 300ms cubic-bezier(0, 0, 0.58, 1),
+        transform 300ms cubic-bezier(0, 0, 0.58, 1);
+    }
+    .nav-tabs__panel[aria-hidden="false"] {
+      opacity: 1; pointer-events: auto; transform: translateY(0); position: relative;
+    }
+    .nav-tabs__panel[data-tab="info02"] { transition-duration: 500ms; }
+    .nav-tabs__title { font-size: 52px; font-weight: 900; color: #1a1a1a; line-height: 1.1; }
+    .nav-tabs__label { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+    .nav-tabs__body { font-size: 14px; color: #1a1a1a; line-height: 1.6; }
+    .nav-tabs__list { list-style: none; display: flex; flex-direction: column; gap: 12px; padding: 0; margin: 0; }
+    .nav-tabs__list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #1a1a1a; line-height: 1.6; }
+    .nav-tabs__check {
+      flex-shrink: 0; width: 20px; height: 20px; background: var(--check-pink);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 10px; font-weight: 700; margin-top: 2px;
+    }
+
+    /* ===== Hero diagonal — formas angulares atrás do produto ===== */
+    .hero-product {
+      position: relative;
+      background: #1a1a1a;
+      overflow: hidden;
+    }
+    .hero-product::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60%;
+      height: 140%;
+      background: linear-gradient(135deg, rgba(245,165,32,0.08) 0%, transparent 70%);
+      transform: skewX(-15deg);
+      pointer-events: none;
+    }
+
+    /* ===== Tags de imagem (Telhas, Tanques, etc) ===== */
+    .image-tag {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: var(--tab-active);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.1em;
+      padding: 6px 16px;
+      border-radius: 4px;
+    }
+
+    /* ===== Tag de problema (INFILTRAÇÃO, TRINCA, VAZAMENTO) ===== */
+    .problem-tag {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: var(--tab-active);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.15em;
+      padding: 4px 14px;
+      border-radius: 2px;
+    }
+
+    /* ===== Círculo grande do produto na seção "O que é" ===== */
+    .product-circle {
+      width: 540px;
+      height: 540px;
+      border-radius: 50%;
+      border: 8px solid var(--coral);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .product-circle::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      box-shadow: 0 30px 60px -20px rgba(244, 138, 126, 0.3);
+      pointer-events: none;
+    }
+
+    /* ===== Bloco escuro com vídeos: textura/decoração ===== */
+    .video-section {
+      background: #2d2d2d;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-section::before,
+    .video-section::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border: 30px solid var(--tab-active);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    .video-section::before { top: -300px; left: -150px; }
+    .video-section::after  { bottom: -350px; right: 30%; }
+
+    .video-thumb {
+      position: relative;
+      background: #1a1a1a;
+      border-radius: 12px;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 200ms ease-out;
+    }
+    .video-thumb:hover { transform: scale(1.02); }
+    .video-thumb__play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-thumb__play span {
+      width: 48px; height: 48px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    /* ===== Risco amarelo decorativo ===== */
+    .brush-stroke {
+      display: inline-block;
+      width: 220px;
+      height: 8px;
+      background: var(--tab-active);
+      border-radius: 100px;
+      transform: rotate(-1deg);
+      box-shadow: 0 0 0 0 transparent;
+    }
+
+    /* ===== CTA Coral "Montamos seu kit" ===== */
+    .kit-cta {
+      position: relative;
+      background: var(--coral);
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 380px;
+    }
+    .kit-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(110deg, transparent 0%, transparent 30%, var(--tab-active) 30%, var(--tab-active) 100%);
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+      opacity: 0.85;
+    }
+    .kit-cta__inner { position: relative; z-index: 1; }
+    .kit-cta__badge {
+      display: inline-block;
+      background: #fff;
+      color: var(--coral-deep);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ===== Icon round (seção "O que é") ===== */
+    .icon-round {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body class="bg-surface">
+
+  <!-- ===== TOPO PROMO ===== -->
+  <div class="bg-brand-500 text-white text-xs md:text-sm">
+    <div class="container-shop flex items-center justify-center gap-2 py-2 text-center">
+      <span class="font-semibold uppercase tracking-wider">Ganhe 10% de desconto</span>
+      <span class="opacity-80">·</span>
+      <span>Seja bem-vindo(a) à Escuta o Véio — novas soluções para velhos problemas</span>
+      <span class="opacity-80">·</span>
+      <span class="font-semibold">Na primeira compra</span>
+    </div>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="border-b border-surface-line bg-surface">
+    <div class="container-shop py-4 grid grid-cols-1 md:grid-cols-[180px_1fr_auto] items-center gap-4">
+      <a href="/" class="font-bold text-xl tracking-widest text-ink">ESCUTA O VÉIO</a>
+      <form role="search" class="relative">
+        <label class="sr-only" for="site-search">Buscar produto</label>
+        <input id="site-search" type="search" class="field-input pr-10" placeholder="Qual produto você está precisando?" />
+        <button type="submit" aria-label="Buscar" class="absolute right-2 top-1/2 -translate-y-1/2 text-ink-muted hover:text-brand-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </form>
+      <div class="flex items-center gap-5 text-sm">
+        <a href="#" class="flex items-center gap-2 text-ink hover:text-brand-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="hidden sm:block">
+            <span class="block text-xs text-ink-muted">Bem-vindo(a)!</span>
+            <span class="block font-semibold">Entre ou cadastre-se</span>
+          </span>
+        </a>
+        <a href="../Checkout/cart.html" class="flex items-center gap-2 text-ink hover:text-brand-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          <span class="hidden sm:block">
+            <span class="block text-xs text-ink-muted">(0) itens</span>
+            <span class="block font-semibold">Meu carrinho</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-surface-line bg-surface-alt">
+      <div class="container-shop flex items-center justify-between py-2 text-xs text-ink-muted">
+        <nav class="flex flex-wrap gap-x-5 gap-y-1">
+          <a href="#" class="hover:text-brand-500">Nossa Loja</a>
+          <a href="#" class="hover:text-brand-500">Retire na loja</a>
+          <a href="#" class="hover:text-brand-500">Atendimento Técnico</a>
+          <a href="#" class="hover:text-brand-500">Blog</a>
+        </nav>
+        <a href="#" class="hover:text-brand-500">Rastreio de pedido</a>
+      </div>
+    </div>
+    <nav aria-label="Categorias" class="border-t border-surface-line">
+      <div class="container-shop flex flex-wrap items-center gap-x-5 gap-y-2 py-3 text-xs uppercase tracking-wider text-ink-muted">
+        <span class="font-semibold text-ink">Todos os departamentos</span>
+        <a href="#" class="hover:text-brand-500">Alvenaria</a>
+        <a href="#" class="hover:text-brand-500">Construção a seco</a>
+        <a href="#" class="hover:text-brand-500">Impermeabilização</a>
+        <a href="#" class="hover:text-brand-500">Revestimento</a>
+        <a href="#" class="hover:text-brand-500">Acabamento</a>
+        <a href="#" class="hover:text-brand-500">Marcenaria</a>
+        <a href="#" class="hover:text-brand-500">Limpeza</a>
+        <a href="#" class="ml-auto font-semibold text-brand-500">% Ofertas do dia</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO PRODUTO — grid 2x2 + painel direito ===== -->
+    <section class="hero-product text-white">
+      <div class="container-shop py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-[1fr_460px] gap-10 lg:gap-16 items-start relative">
+
+        <!-- Grid 2x2 de imagens -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="aspect-square rounded-xl bg-white/5 overflow-hidden">
+            <img src="../../Assets/img/products/dw240/hero-1.png" alt="DW240 — aplicação 1" class="w-full h-full object-cover" />
+          </div>
+          <div class="aspect-square rounded-xl bg-white/5 overflow-hidden">
+            <img src="../../Assets/img/products/dw240/hero-2.png" alt="DW240 — aplicação 2" class="w-full h-full object-cover" />
+          </div>
+          <div class="aspect-square rounded-xl bg-white/5 overflow-hidden">
+            <img src="../../Assets/img/products/dw240/hero-3.png" alt="DW240 — aplicação 3" class="w-full h-full object-cover" />
+          </div>
+          <div class="aspect-square rounded-xl bg-white/5 overflow-hidden">
+            <img src="../../Assets/img/products/dw240/tanques.png" alt="DW240 — aplicação 4" class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <!-- Painel de compra -->
+        <aside class="space-y-5 lg:py-2">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-brand-400">Inovação em conceito</p>
+          <h1 class="font-bold text-6xl leading-[0.95] text-white">
+            Selante<br/>Adesivo<br/><span class="text-brand-500">DW240</span>
+          </h1>
+          <p class="text-sm text-white/60 leading-relaxed">
+            Cola, veda e impermeabiliza juntas de uma vez. Poliuretano extra forte — mais resistente e elástico que silicone.
+          </p>
+
+          <div class="space-y-1">
+            <p class="text-sm line-through text-white/30">R$ 75,24</p>
+            <p class="text-4xl font-bold text-white">R$ 71,48 <span class="text-sm font-normal text-white/50">cada</span></p>
+          </div>
+
+          <fieldset>
+            <legend class="text-sm font-semibold text-white/80 mb-2">Cores</legend>
+            <div class="flex gap-4">
+              <label class="swatch">
+                <input type="radio" name="color" value="branco" class="sr-only" checked />
+                <span class="swatch-dot bg-white ring-offset-ink"></span>
+                <span class="text-xs text-white/70">Branco</span>
+              </label>
+              <label class="swatch">
+                <input type="radio" name="color" value="cinza" class="sr-only" />
+                <span class="swatch-dot bg-neutral-400 ring-offset-ink"></span>
+                <span class="text-xs text-white/70">Cinza</span>
+              </label>
+              <label class="swatch">
+                <input type="radio" name="color" value="preto" class="sr-only" />
+                <span class="swatch-dot bg-neutral-900 ring-offset-ink"></span>
+                <span class="text-xs text-white/70">Preto</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-1" for="cep">Simule seu frete</label>
+            <div class="flex gap-2">
+              <input id="cep" inputmode="numeric" maxlength="9" placeholder="00000-000"
+                     class="block w-full rounded border border-white/20 bg-white/10 text-white placeholder:text-white/30 focus:border-brand-400 focus:ring-brand-400 focus:bg-white/15 px-3 py-2" />
+              <button type="button" class="btn border border-brand-500 text-brand-400 hover:bg-brand-500 hover:text-white px-4 py-2">OK</button>
+            </div>
+          </div>
+
+          <div class="flex items-stretch gap-3">
+            <div class="qty-input border-white/20 [&_button]:text-white [&_button]:hover:bg-white/10 [&_input]:bg-transparent [&_input]:text-white">
+              <button type="button" aria-label="Diminuir">−</button>
+              <input type="number" min="1" value="1" aria-label="Quantidade" />
+              <button type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button type="button" class="btn-primary flex-1 text-base py-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              Adicionar ao carrinho
+            </button>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ===== VOCÊ JÁ TENTOU DE TUDO ===== -->
+    <section class="bg-surface py-16 md:py-20">
+      <div class="container-shop">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 items-start">
+          <!-- Texto -->
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-ink-muted mb-3">Antes de qualquer produto</p>
+            <h2 class="font-bold text-5xl md:text-6xl leading-[1.05] text-ink">
+              Você já tentou<br/>de tudo.<br/>O problema voltou.
+            </h2>
+            <p class="mt-5 text-ink-muted leading-relaxed max-w-md">
+              Isso não é falta de esforço. É falta do produto certo para o problema certo.
+            </p>
+          </div>
+
+          <!-- Grid imagens com tags -->
+          <div class="grid grid-cols-2 grid-rows-2 gap-3 aspect-[2/1.4]">
+            <div class="relative rounded-xl overflow-hidden bg-ink/10 row-span-2">
+              <img src="../../Assets/img/products/dw240/trincas.png" alt="Trinca em parede" class="w-full h-full object-cover" />
+              <span class="problem-tag">TRINCA</span>
+            </div>
+            <div class="relative rounded-xl overflow-hidden bg-ink/10">
+              <img src="../../Assets/img/products/dw240/tanques.png" alt="Infiltração em parede" class="w-full h-full object-cover" />
+              <span class="problem-tag">INFILTRAÇÃO</span>
+            </div>
+            <div class="relative rounded-xl overflow-hidden bg-ink/10">
+              <img src="../../Assets/img/products/dw240/telhas.png" alt="Vazamento" class="w-full h-full object-cover" />
+              <span class="problem-tag">VAZAMENTO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== O QUE É O DW240? ===== -->
+    <section class="bg-surface-alt py-16 md:py-20">
+      <div class="container-shop grid grid-cols-1 lg:grid-cols-[1fr_540px] gap-12 items-center">
+
+        <!-- Esquerda: título + 4 ícones 2x2 -->
+        <div>
+          <h2 class="font-bold text-5xl md:text-6xl text-ink mb-4 leading-tight">
+            O que é o <span class="text-coral" style="color:var(--coral-deep)">DW240</span>?
+          </h2>
+          <p class="text-ink-muted leading-relaxed mb-10 max-w-md">
+            Cola, veda e impermeabiliza juntas de uma vez. Poliuretano extra forte, mais resistente e elástico que silicone.
+          </p>
+
+          <div class="grid grid-cols-2 gap-x-10 gap-y-8">
+            <div>
+              <div class="icon-round">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </div>
+              <h3 class="font-bold text-ink mb-1">Mais forte que silicone</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">Poliuretano com maior aderência e resistência a movimentações.</p>
+            </div>
+            <div>
+              <div class="icon-round">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2c4 6 7 10 7 13a7 7 0 0 1-14 0c0-3 3-7 7-13z"/></svg>
+              </div>
+              <h3 class="font-bold text-ink mb-1">Resistente à água e UV</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">Para uso interno e externo, sem degradar com sol ou chuva.</p>
+            </div>
+            <div>
+              <div class="icon-round">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <h3 class="font-bold text-ink mb-1">Cola pronta para uso</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">Sem mistura. Aplica direto com pistola. Aceita pintura após cura.</p>
+            </div>
+            <div>
+              <div class="icon-round">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12c3-6 9-6 12 0"/><path d="M3 18c3-6 9-6 12 0"/></svg>
+              </div>
+              <h3 class="font-bold text-ink mb-1">Elástico e sem rachaduras</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">Acompanha movimentações da estrutura sem perder a vedação.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direita: círculo do produto -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="product-circle">
+            <img src="../../Assets/img/products/dw240/dw240-circle.png" alt="Selante DW240" class="w-[88%] h-[88%] object-cover rounded-full" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OBRA BEM-FEITA NÃO INFILTRA ===== -->
+    <section class="bg-ink text-white py-16 md:py-20">
+      <div class="container-shop">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <h2 class="font-bold text-5xl md:text-6xl leading-tight">
+            Obra bem-feita <span class="text-brand-500">não infiltra.</span>
+          </h2>
+          <p class="mt-5 text-white/60 leading-relaxed">
+            Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 DryLevis resolve na junta, veda, cola e impermeabiliza de uma vez, com elasticidade e aderência que o silicone convencional não entrega.
+          </p>
+        </div>
+
+        <!-- 3 tiles: Telhas, Tanques, Trincas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="#" class="relative rounded-xl overflow-hidden aspect-[4/3] block group">
+            <img src="../../Assets/img/products/dw240/telhas.png" alt="Aplicação em telhas" class="w-full h-full object-cover transition group-hover:scale-105" />
+            <span class="image-tag">TELHAS</span>
+          </a>
+          <a href="#" class="relative rounded-xl overflow-hidden aspect-[4/3] block group">
+            <img src="../../Assets/img/products/dw240/tanques.png" alt="Aplicação em tanques" class="w-full h-full object-cover transition group-hover:scale-105" />
+            <span class="image-tag">TANQUES</span>
+          </a>
+          <a href="#" class="relative rounded-xl overflow-hidden aspect-[4/3] block group">
+            <img src="../../Assets/img/products/dw240/trincas.png" alt="Reparo de trincas" class="w-full h-full object-cover transition group-hover:scale-105" />
+            <span class="image-tag">TRINCAS</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VEJA O PODER DO DW240 EM AÇÃO ===== -->
+    <section class="video-section py-16 md:py-20 text-white">
+      <div class="container-shop relative grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 items-center">
+
+        <!-- 3 vídeos -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="video-thumb">
+            <video preload="metadata" class="w-full h-full object-cover" poster="">
+              <source src="TODO_VIDEO_1" type="video/mp4" />
+            </video>
+            <div class="video-thumb__play">
+              <span><svg class="w-5 h-5 ml-0.5 text-ink" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span>
+            </div>
+          </div>
+          <div class="video-thumb">
+            <video preload="metadata" class="w-full h-full object-cover" poster="">
+              <source src="TODO_VIDEO_2" type="video/mp4" />
+            </video>
+            <div class="video-thumb__play">
+              <span><svg class="w-5 h-5 ml-0.5 text-ink" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span>
+            </div>
+          </div>
+          <div class="video-thumb">
+            <video preload="metadata" class="w-full h-full object-cover" poster="">
+              <source src="TODO_VIDEO_3" type="video/mp4" />
+            </video>
+            <div class="video-thumb__play">
+              <span><svg class="w-5 h-5 ml-0.5 text-ink" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div>
+          <h2 class="font-bold text-5xl md:text-6xl leading-[0.95] text-white">
+            Veja o poder<br/>do DW240<br/>em ação!
+          </h2>
+          <span class="brush-stroke mt-6"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== navTabs — INFORMAÇÕES (do componente Figma) ===== -->
+    <section class="bg-surface py-16">
+      <div class="container-shop">
+
+        <div class="nav-tabs" role="tablist">
+
+          <nav class="nav-tabs__nav">
+            <button class="nav-tabs__tab" role="tab" aria-selected="true"  aria-controls="info01" data-target="info01">O que é</button>
+            <button class="nav-tabs__tab" role="tab" aria-selected="false" aria-controls="info02" data-target="info02">Benefícios</button>
+            <button class="nav-tabs__tab" role="tab" aria-selected="false" aria-controls="info03" data-target="info03">Modo de Uso</button>
+            <button class="nav-tabs__tab" role="tab" aria-selected="false" aria-controls="info04" data-target="info04">Composição</button>
+          </nav>
+
+          <div class="nav-tabs__divider" aria-hidden="true"></div>
+
+          <div class="nav-tabs__content">
+
+            <!-- O que é -->
+            <div class="nav-tabs__panel" id="info01" role="tabpanel" aria-hidden="false" data-tab="info01">
+              <h3 class="nav-tabs__title">Informações</h3>
+              <p class="nav-tabs__label">Selante Adesivo DW240</p>
+              <p class="nav-tabs__body">Selante adesivo monocomponente à base de poliuretano modificado de alta performance. Cura por reação à umidade do ar, formando uma película elástica, durável e altamente resistente. Substitui silicone, MS Polímero e selantes acrílicos em aplicações que exigem aderência forte, vedação e resistência a intempéries.</p>
+              <p class="nav-tabs__label">Recomendado para:</p>
+              <p class="nav-tabs__body">Juntas de dilatação, telhados, calhas, esquadrias, sanitários, tanques, fachadas, fixação estrutural e vedação de superfícies submetidas a movimentação e umidade.</p>
+            </div>
+
+            <!-- Benefícios -->
+            <div class="nav-tabs__panel" id="info02" role="tabpanel" aria-hidden="true" data-tab="info02">
+              <h3 class="nav-tabs__title">Benefícios</h3>
+              <ul class="nav-tabs__list">
+                <li><span class="nav-tabs__check">✓</span>Aderência superior em vidro, metal, madeira, alvenaria, alumínio e plásticos rígidos — sem necessidade de primer na maioria dos substratos.</li>
+                <li><span class="nav-tabs__check">✓</span>Elasticidade que acompanha movimentações da estrutura sem perder a vedação ou abrir trincas.</li>
+                <li><span class="nav-tabs__check">✓</span>Resistente a UV, água, salinidade e variações de temperatura (–40°C a +90°C após cura).</li>
+                <li><span class="nav-tabs__check">✓</span>Aceita pintura após cura completa, sem necessidade de removedores ou tratamentos especiais.</li>
+                <li><span class="nav-tabs__check">✓</span>Cola e veda em uma única aplicação — substitui múltiplos produtos em uma só obra.</li>
+              </ul>
+            </div>
+
+            <!-- Modo de Uso -->
+            <div class="nav-tabs__panel" id="info03" role="tabpanel" aria-hidden="true" data-tab="info03">
+              <h3 class="nav-tabs__title">Modo de uso</h3>
+              <ul class="nav-tabs__list">
+                <li><span class="nav-tabs__check">✓</span>Limpe a superfície removendo poeira, gordura e resíduos soltos. A área precisa estar seca.</li>
+                <li><span class="nav-tabs__check">✓</span>Corte o bico em ângulo de 45° no diâmetro desejado e encaixe na pistola calafetadora.</li>
+                <li><span class="nav-tabs__check">✓</span>Aplique em cordão contínuo sobre a junta. Alise com espátula úmida em até 10 minutos.</li>
+                <li><span class="nav-tabs__check">✓</span>Cura superficial em ~30 minutos. Cura total em 24h (23°C / 50% UR). Pode pintar após cura completa.</li>
+              </ul>
+            </div>
+
+            <!-- Composição -->
+            <div class="nav-tabs__panel" id="info04" role="tabpanel" aria-hidden="true" data-tab="info04">
+              <h3 class="nav-tabs__title">Composição</h3>
+              <p class="nav-tabs__label">Base:</p>
+              <p class="nav-tabs__body">Polímero de poliuretano monocomponente, cargas minerais selecionadas, plastificantes não migrantes, agentes de cura e estabilizadores UV.</p>
+              <p class="nav-tabs__label">Especificações técnicas:</p>
+              <p class="nav-tabs__body">Densidade: 1,30 g/cm³ &nbsp;·&nbsp; Conteúdo sólido: 100% &nbsp;·&nbsp; Temperatura de aplicação: -5°C a +50°C &nbsp;·&nbsp; Resistência à tração: 2,0 MPa &nbsp;·&nbsp; Alongamento na ruptura: 600% &nbsp;·&nbsp; Dureza Shore A: 35 ± 5.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== KIT DE DESEMPENHO — 100% fiel ao Figma node 221:4312 ===== -->
+    <section class="container-shop py-16">
+      <div style="position:relative;aspect-ratio:1352/527;border-radius:25px;overflow:hidden;background:#636564;container-type:inline-size;">
+
+        <!-- Onda coral+amarela (Vector 1) — left=505/1352, top=-1/527, w=889/1352, h=528/527 -->
+        <img src="../../Assets/img/products/dw240/kit-wave.png" alt="" aria-hidden="true"
+             style="position:absolute;left:37.35%;top:-0.19%;width:65.76%;height:100.38%;object-fit:fill;pointer-events:none;" />
+
+        <!-- DW240 tube — node 221:4303, left=537px→39.72%, top=91px→17.27%, rendered 325×436 -->
+        <img src="../../Assets/img/products/dw240/dw240-tube.png"
+             alt="Selante Adesivo DW240"
+             style="position:absolute;left:39.72%;top:17.27%;width:24.04%;height:auto;pointer-events:none;" />
+
+        <!-- PR10 — node 221:4305, left=800px→59.17%, top=175px→33.21%, rendered 312×352 -->
+        <img src="../../Assets/img/products/dw240/pr10.png"
+             alt="Fundo Adesivo PR10"
+             style="position:absolute;left:59.17%;top:33.21%;width:23.08%;height:auto;pointer-events:none;" />
+
+        <!-- Pistola — node 221:4304, left=939px→69.45%, top=175px→33.21%, rendered 413×352 -->
+        <img src="../../Assets/img/products/dw240/aplicador.png"
+             alt="Pistola calafetadora"
+             style="position:absolute;left:69.45%;top:33.21%;width:30.55%;height:auto;pointer-events:none;" />
+
+        <!-- Badge "Compre junto" — left=0, top=71px=13.47%, bg=#fe736f, rounded right -->
+        <div style="position:absolute;left:0;top:13.47%;background:#fe736f;border-radius:0 15px 15px 0;padding:10px 20px;display:flex;align-items:center;">
+          <span style="font-family:Inter,sans-serif;font-size:1.48cqi;font-weight:700;color:#fff;white-space:nowrap;line-height:1;">Compre junto</span>
+        </div>
+
+        <!-- Título — left=34px=2.51%, top=155px=29.41%, w=471px=34.84%, 48px Inter Medium/Bold -->
+        <p style="position:absolute;left:2.51%;top:29.41%;width:34.84%;color:#fff;font-family:Inter,sans-serif;font-size:3.55cqi;font-weight:500;line-height:1.1;margin:0;">
+          Montamos seu <strong style="font-weight:700;">kit</strong> de <strong style="font-weight:700;">desempenho</strong>
+        </p>
+
+        <!-- Descrição — left=34px, top=267px=50.66%, w=516px=38.17%, 24px Regular -->
+        <p style="position:absolute;left:2.51%;top:50.66%;width:38.17%;color:#fff;font-family:Inter,sans-serif;font-size:1.50cqi;font-weight:400;line-height:1.35;margin:0;">
+          Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!
+        </p>
+
+        <!-- Botão "Aproveitar" — left=34px, top=398px=75.52%, bg=#f9b600, rounded 8px, text=#636564 -->
+        <a href="#" style="position:absolute;left:2.51%;top:75.52%;background:#f9b600;border-radius:8px;padding:10px 24px;font-family:Inter,sans-serif;font-size:1.48cqi;font-weight:700;color:#636564;text-decoration:none;display:inline-block;line-height:1;white-space:nowrap;">
+          Aproveitar
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== BRAND STORY ===== -->
+    <section class="bg-surface-alt py-10">
+      <div class="container-shop grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-center gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-20 h-20 rounded-full bg-brand-500 flex items-center justify-center text-white font-bold text-xl">EOV</div>
+          <p class="font-bold text-xl tracking-widest text-ink">ESCUTA O VÉIO</p>
+        </div>
+        <p class="text-sm text-ink-muted leading-relaxed">
+          O Escuta o Véio é um e-commerce de materiais de construção que nasceu para ajudar os brasileiros
+          a resolverem problemas comuns da construção civil em suas casas — de forma personalizada, com
+          produtos de qualidade e que realmente funcionam.
+        </p>
+        <a href="#" class="btn-outline whitespace-nowrap">
+          Conheça a nossa história
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-ink text-surface">
+    <div class="container-shop py-10 grid grid-cols-2 md:grid-cols-5 gap-8 text-sm">
+      <div>
+        <h4 class="font-sans font-semibold mb-3 text-white">Atendimento</h4>
+        <ul class="space-y-1 text-surface-line">
+          <li>(11) 4067-8086</li>
+          <li>(11) 91590-2455</li>
+          <li>comercial@escutaoveio.com</li>
+          <li class="text-xs mt-2">Seg-Sex: 08:00–17:30</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-sans font-semibold mb-3 text-white">Institucional</h4>
+        <ul class="space-y-1 text-surface-line">
+          <li><a href="#">Quem somos</a></li>
+          <li><a href="#">Política de pagamentos</a></li>
+          <li><a href="#">Envio, trocas e devoluções</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-sans font-semibold mb-3 text-white">Ajuda e suporte</h4>
+        <ul class="space-y-1 text-surface-line">
+          <li><a href="#">Como comprar</a></li>
+          <li><a href="#">Minha conta</a></li>
+          <li><a href="#">Meus pedidos</a></li>
+          <li><a href="#">Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-sans font-semibold mb-3 text-white">Redes sociais</h4>
+        <div class="flex gap-2 text-surface-line">
+          <a href="#" aria-label="Instagram" class="hover:text-brand-300">IG</a>
+          <a href="#" aria-label="Facebook" class="hover:text-brand-300">FB</a>
+          <a href="#" aria-label="YouTube" class="hover:text-brand-300">YT</a>
+          <a href="#" aria-label="TikTok" class="hover:text-brand-300">TK</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-sans font-semibold mb-3 text-white">Formas de pagamento</h4>
+        <p class="text-xs text-surface-line">Pix · Boleto · Cartão · Pagaleve</p>
+      </div>
+    </div>
+    <div class="border-t border-ink-muted/40">
+      <p class="container-shop py-4 text-xs text-surface-line leading-relaxed">
+        Vip Collection Comércio e Distribuidora LTDA · CNPJ: 17.507.426/0001-39 · IE: 286.544.121.113 ·
+        Av. Piraporinha, 1839 — Vila Nogueira, Diadema/SP, 09950-000. Ofertas válidas até o término dos estoques.
+        Imagens meramente ilustrativas. ©Copyright Escuta o Véio. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Qty steppers =====
+    document.querySelectorAll('.qty-input').forEach(group => {
+      const input = group.querySelector('input');
+      const [minus, plus] = group.querySelectorAll('button');
+      minus.addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value, 10) || 1) - 1); });
+      plus.addEventListener('click',  () => { input.value = Math.max(1, (parseInt(input.value, 10) || 1) + 1); });
+    });
+
+    // ===== navTabs — comportamento extraído das reactions do Figma =====
+    // SMART_ANIMATE + EASE_OUT + duração por aba (Benefícios = 500ms, demais = 300ms)
+    const TAB_DURATIONS = { info01: 300, info02: 500, info03: 300, info04: 300 };
+    const tabs   = document.querySelectorAll('.nav-tabs__tab');
+    const panels = document.querySelectorAll('.nav-tabs__panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        const duration = TAB_DURATIONS[target] ?? 300;
+        panels.forEach(p => { p.style.transitionDuration = `${duration}ms`; });
+        tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+        panels.forEach(p => p.setAttribute('aria-hidden', 'true'));
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(target).setAttribute('aria-hidden', 'false');
+      });
+    });
+  </script>
+</body>
+</html>

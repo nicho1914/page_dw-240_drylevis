@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagamento e finalização — Escuta o Véio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Assets/CSS/output.css" />
+</head>
+<body class="bg-surface-alt">
+
+  <!-- HEADER COM STEPPER (2 etapas: usuário já está identificado) -->
+  <header class="bg-surface">
+    <div class="container-checkout grid grid-cols-1 md:grid-cols-[200px_1fr] items-center gap-6 py-6">
+      <a href="/" class="font-display text-2xl tracking-widest text-ink justify-self-start">ESCUTA O VÉIO</a>
+
+      <nav aria-label="Etapas do checkout">
+        <ol class="grid grid-cols-2 text-xs md:text-sm">
+          <li>
+            <a href="./cart.html" class="flex items-center justify-center gap-2 py-4 border-b-2 border-transparent text-ink-muted hover:text-ink">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              <span class="uppercase tracking-wider">Resumo do pedido</span>
+            </a>
+          </li>
+          <li>
+            <a href="./checkout.html" class="flex items-center justify-center gap-2 py-4 border-b-2 border-brand-500 text-ink font-semibold" aria-current="step">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span class="uppercase tracking-wider">Pagamento e finalização</span>
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container-checkout py-6">
+    <form id="checkout-form" class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6" novalidate>
+
+      <!-- COLUNA ESQUERDA -->
+      <section class="space-y-4" aria-label="Finalização">
+
+        <!-- SEUS DADOS -->
+        <article class="card">
+          <header class="flex items-center gap-3 px-4 md:px-6 py-4 border-b border-surface-line">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <h2 class="text-base font-semibold uppercase tracking-wider">Seus dados</h2>
+          </header>
+          <div class="card-body">
+            <p class="text-sm mb-3"><span class="font-semibold uppercase">Olá,</span> <span class="font-semibold uppercase" id="customer-name">Nicholas Emanuel de Lima Santos!</span></p>
+            <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted">
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                marke*****@e**********.com
+              </span>
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                (11) *****-8961
+              </span>
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+                419.***.***-84
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ENTREGA -->
+        <article class="card">
+          <header class="flex items-center justify-between gap-3 px-4 md:px-6 py-4 border-b border-surface-line flex-wrap">
+            <div class="flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <h2 class="text-base font-semibold uppercase tracking-wider">Entrega</h2>
+            </div>
+            <button type="button" class="text-xs uppercase tracking-wider text-brand-500 hover:text-brand-600 font-semibold inline-flex items-center gap-1">
+              Editar meu endereço de entrega
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </header>
+          <div class="card-body">
+
+            <!-- endereço atual -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4">
+              <div class="flex items-start gap-3 border-l-2 border-surface-line pl-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-ink-muted flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <address class="not-italic text-sm leading-relaxed text-ink">
+                  PAS***** TUC***** , S/N<br/>
+                  PIRA******* — Diadema — SP<br/>
+                  09***-*71<br/>
+                  NIC***** EM***** ** L*** SA****
+                </address>
+              </div>
+
+              <div class="flex flex-col gap-2 md:items-stretch">
+                <button type="button" class="btn-outline text-xs uppercase tracking-wider whitespace-nowrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Adicionar outro endereço
+                </button>
+                <button type="button" class="btn-outline text-xs uppercase tracking-wider whitespace-nowrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                  Selecionar outro endereço
+                </button>
+              </div>
+            </div>
+
+            <!-- forma de envio -->
+            <div class="mt-6">
+              <h3 class="text-xs uppercase tracking-wider text-ink-muted mb-3">Escolha a forma de envio</h3>
+              <div class="space-y-2" role="radiogroup">
+
+                <label class="block">
+                  <input type="radio" name="shipping" value="rapido" class="peer sr-only" checked />
+                  <span class="flex items-center justify-between gap-4 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                    <span class="flex items-center gap-3">
+                      <span class="w-5 h-5 rounded-full border-2 border-surface-line flex items-center justify-center peer-checked:border-success peer-checked:bg-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      </span>
+                      <span>
+                        <span class="block font-semibold uppercase tracking-wider">Rápido</span>
+                        <span class="block text-xs text-ink-muted uppercase">Em até 3 dias úteis</span>
+                      </span>
+                    </span>
+                    <span class="font-semibold">8,35</span>
+                  </span>
+                </label>
+
+                <label class="block">
+                  <input type="radio" name="shipping" value="economico" class="peer sr-only" />
+                  <span class="flex items-center justify-between gap-4 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                    <span class="flex items-center gap-3">
+                      <span class="w-5 h-5 rounded-full border-2 border-surface-line"></span>
+                      <span>
+                        <span class="block font-semibold uppercase tracking-wider">Econômico</span>
+                        <span class="block text-xs text-ink-muted uppercase">Em até 4 dias úteis</span>
+                      </span>
+                    </span>
+                    <span class="font-semibold">8,01</span>
+                  </span>
+                </label>
+
+                <label class="block">
+                  <input type="radio" name="shipping" value="caixa" class="peer sr-only" />
+                  <span class="flex flex-col gap-2 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                    <span class="flex items-center justify-between gap-4">
+                      <span class="flex items-center gap-3">
+                        <span class="w-5 h-5 rounded-full border-2 border-surface-line"></span>
+                        <span>
+                          <span class="block font-semibold uppercase tracking-wider">Caixa postal</span>
+                          <span class="block text-xs text-ink-muted uppercase">Em até 3 dias úteis</span>
+                        </span>
+                      </span>
+                      <span class="font-semibold">13,39</span>
+                    </span>
+                    <span class="flex items-start gap-2 text-xs text-ink-muted pl-8">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                      <span>A opção de frete CAIXA POSTAL deve ser selecionada apenas por quem possui uma Caixa Postal. <a href="#" class="text-brand-500 uppercase tracking-wider font-semibold ml-1">Entenda melhor →</a></span>
+                    </span>
+                  </span>
+                </label>
+
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- PAGAMENTO -->
+        <article class="card">
+          <header class="flex items-center gap-3 px-4 md:px-6 py-4 border-b border-surface-line">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <h2 class="text-base font-semibold uppercase tracking-wider">Pagamento</h2>
+          </header>
+          <div class="card-body">
+            <h3 class="text-xs uppercase tracking-wider text-ink-muted mb-3">Selecione uma forma de pagamento</h3>
+
+            <div class="space-y-2" role="radiogroup">
+
+              <!-- CARTÃO -->
+              <label class="block">
+                <input type="radio" name="payment" value="credit" class="peer sr-only" />
+                <span class="flex items-center gap-4 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                  <span class="w-5 h-5 rounded-full border-2 border-surface-line flex-shrink-0"></span>
+                  <span class="w-10 h-7 border border-ink rounded flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  </span>
+                  <span class="text-sm">Cartão — Até 6x</span>
+                </span>
+              </label>
+
+              <!-- Painel Cartão (expande quando selecionado) -->
+              <div class="hidden peer-checked:block pl-4" data-payment-panel="credit" hidden>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 bg-surface-alt rounded">
+                  <div class="md:col-span-2">
+                    <label class="field-label" for="cc-number">Número do cartão</label>
+                    <input id="cc-number" type="text" inputmode="numeric" class="field-input" placeholder="0000 0000 0000 0000" autocomplete="cc-number" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="cc-name">Nome impresso</label>
+                    <input id="cc-name" type="text" class="field-input" autocomplete="cc-name" />
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="field-label" for="cc-exp">Validade</label>
+                      <input id="cc-exp" type="text" class="field-input" placeholder="MM/AA" autocomplete="cc-exp" />
+                    </div>
+                    <div>
+                      <label class="field-label" for="cc-cvc">CVV</label>
+                      <input id="cc-cvc" type="text" inputmode="numeric" class="field-input" placeholder="123" autocomplete="cc-csc" />
+                    </div>
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="field-label" for="cc-installments">Parcelas</label>
+                    <select id="cc-installments" class="field-input">
+                      <option>1x de R$ 220,82 sem juros</option>
+                      <option>2x de R$ 110,41 sem juros</option>
+                      <option>3x de R$ 73,61 sem juros</option>
+                      <option>4x de R$ 55,21 sem juros</option>
+                      <option>5x de R$ 44,16 sem juros</option>
+                      <option>6x de R$ 36,80 sem juros</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PIX -->
+              <label class="block">
+                <input type="radio" name="payment" value="pix" class="peer sr-only" />
+                <span class="flex items-center gap-4 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                  <span class="w-5 h-5 rounded-full border-2 border-surface-line flex-shrink-0"></span>
+                  <span class="w-10 h-7 border border-ink rounded flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2zm0 3.41L18.59 12 12 18.59 5.41 12 12 5.41z"/></svg>
+                  </span>
+                  <span class="text-sm">PIX</span>
+                </span>
+              </label>
+              <div class="hidden peer-checked:block pl-4" data-payment-panel="pix" hidden>
+                <div class="p-4 bg-surface-alt rounded text-sm text-ink-muted">
+                  Ao confirmar, geramos um QR Code PIX. O pagamento é aprovado em segundos.
+                </div>
+              </div>
+
+              <!-- PAGALEVE -->
+              <label class="block">
+                <input type="radio" name="payment" value="pagaleve" class="peer sr-only" />
+                <span class="flex items-center gap-4 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                  <span class="w-5 h-5 rounded-full border-2 border-surface-line flex-shrink-0"></span>
+                  <span class="w-10 h-7 rounded bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">PL</span>
+                  <span class="text-sm">Pix Parcelado <span class="text-xs text-ink-muted">— Pagaleve, em até 4x sem juros</span></span>
+                </span>
+              </label>
+              <div class="hidden peer-checked:block pl-4" data-payment-panel="pagaleve" hidden>
+                <div class="p-4 bg-surface-alt rounded text-sm text-ink-muted">
+                  Após finalizar, você será redirecionado para a Pagaleve para escolher as parcelas e pagar o PIX da primeira parcela. Aprovação instantânea, sem cartão.
+                </div>
+              </div>
+
+              <!-- BOLETO -->
+              <label class="block">
+                <input type="radio" name="payment" value="boleto" class="peer sr-only" />
+                <span class="flex items-center gap-4 p-4 border-2 border-surface-line rounded peer-checked:border-success cursor-pointer hover:border-brand-400">
+                  <span class="w-5 h-5 rounded-full border-2 border-surface-line flex-shrink-0"></span>
+                  <span class="w-10 h-7 border border-ink rounded flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="4" y2="20"/><line x1="7" y1="4" x2="7" y2="20"/><line x1="11" y1="4" x2="11" y2="20"/><line x1="14" y1="4" x2="14" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/><line x1="20" y1="4" x2="20" y2="20"/></svg>
+                  </span>
+                  <span class="text-sm">Boleto</span>
+                </span>
+              </label>
+              <div class="hidden peer-checked:block pl-4" data-payment-panel="boleto" hidden>
+                <div class="p-4 bg-surface-alt rounded text-sm text-ink-muted">
+                  O boleto será enviado por e-mail e tem vencimento em 1 dia útil. Compensação em até 2 dias úteis.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <p class="text-center text-xs text-ink-muted">
+          Ao clicar em <strong>Finalizar compra</strong>, você concorda com nossa <a href="#" class="text-brand-500 underline">Política de Privacidade</a>.
+        </p>
+
+        <button type="submit" id="btn-finish" class="btn-primary w-full opacity-50 cursor-not-allowed" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="uppercase tracking-wider">Finalizar compra</span>
+        </button>
+
+      </section>
+
+      <!-- COLUNA DIREITA: RESUMO DA COMPRA -->
+      <aside class="lg:sticky lg:top-6 self-start">
+        <div class="card">
+          <header class="px-4 md:px-6 py-4 border-b border-surface-line">
+            <h2 class="text-base font-semibold uppercase tracking-wider">Resumo da sua compra</h2>
+          </header>
+          <div class="card-body space-y-4">
+
+            <!-- item miniatura -->
+            <div class="flex items-start gap-3 pb-3 border-b border-surface-line">
+              <div class="w-14 h-14 rounded bg-ink/90 flex-shrink-0"></div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-semibold uppercase tracking-wide leading-tight">Produto exemplo — Escuta o Véio</p>
+                <p class="text-xs text-ink-muted">450 G</p>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="text-xs text-ink-muted">1</p>
+                <p class="text-sm font-semibold whitespace-nowrap">R$ 212,47</p>
+              </div>
+            </div>
+
+            <div class="flex items-baseline justify-between pb-3 border-b border-surface-line">
+              <span class="text-xs uppercase tracking-wider text-ink-muted">Subtotal</span>
+              <span class="text-sm font-semibold">R$ 212,47</span>
+            </div>
+
+            <div class="flex items-baseline justify-between pb-3 border-b border-surface-line">
+              <span class="text-xs uppercase tracking-wider text-ink-muted">Frete</span>
+              <span class="text-sm font-semibold">R$ 8,35</span>
+            </div>
+
+            <div class="flex items-baseline justify-between pb-3 border-b border-surface-line">
+              <span class="text-xs uppercase tracking-wider text-ink-muted">Cupom de desconto</span>
+              <button type="button" class="text-xs uppercase tracking-wider text-brand-500 hover:text-brand-600 font-semibold" data-open="coupon-modal">Aplicar cupom</button>
+            </div>
+
+            <div class="flex items-baseline justify-between pt-1">
+              <span class="text-xs uppercase tracking-wider text-ink-muted">Total</span>
+              <span class="font-display text-2xl">R$ 220,82</span>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-white/80 mt-10">
+    <div class="container-checkout py-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-xs uppercase tracking-wider mb-2">Pague em até 6x no cartão</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge bg-white/10 text-white border-white/20">VISA</span>
+            <span class="badge bg-white/10 text-white border-white/20">MASTER</span>
+            <span class="badge bg-white/10 text-white border-white/20">DINERS</span>
+            <span class="badge bg-white/10 text-white border-white/20">BOLETO</span>
+            <span class="badge bg-white/10 text-white border-white/20">PIX</span>
+            <span class="badge bg-white/10 text-white border-white/20">ELO</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end items-center">
+          <span class="badge bg-white/10 text-white border-white/20">SSL 256 BITS</span>
+          <span class="badge bg-white/10 text-white border-white/20">Safe Browsing</span>
+          <span class="badge bg-white/10 text-white border-white/20">Reclame Aqui</span>
+        </div>
+      </div>
+      <hr class="border-white/10 my-6" />
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <span class="font-display text-xl tracking-widest">ESCUTA O VÉIO</span>
+        <span class="text-[11px] text-white/50">CNPJ: 00.000.000/0000-00 — Escuta o Véio Comércio LTDA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../Assets/JS/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "escuta-o-veio-checkout",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Checkout customizado da loja Escuta o Véio na Wake Commerce (Storefront SSR / Awake). Protótipo local antes de portar para o repositório oficial da loja.",
+  "scripts": {
+    "dev": "tailwindcss -i ./Assets/CSS/input.css -o ./Assets/CSS/output.css --watch",
+    "build": "tailwindcss -i ./Assets/CSS/input.css -o ./Assets/CSS/output.css --minify",
+    "preview": "npx --yes serve ."
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "tailwindcss": "^3.4.0"
+  }
+}

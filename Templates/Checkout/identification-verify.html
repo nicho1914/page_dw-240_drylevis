@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verificação — Escuta o Véio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Assets/CSS/output.css" />
+  <style>
+    .bg-hero {
+      background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.25)), url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-surface-alt min-h-screen flex flex-col">
+
+  <header class="bg-surface relative z-10">
+    <div class="container-checkout flex justify-center py-6">
+      <a href="/" class="font-display text-3xl tracking-widest text-ink">ESCUTA O VÉIO</a>
+    </div>
+  </header>
+
+  <main class="bg-hero flex-1 flex items-start justify-center pt-12 pb-20 px-4">
+    <div class="w-full max-w-md">
+
+      <div class="bg-surface rounded-lg shadow-card p-8">
+        <h1 class="font-display text-2xl text-center mb-1">
+          Olá, <span id="customer-name">Nicholas Emanuel</span>
+        </h1>
+        <p class="text-center text-sm font-medium mb-4">Que bom que você voltou!</p>
+        <p class="text-center text-sm text-ink-muted mb-6">
+          Identificamos que você já possui cadastro. Para sua segurança, selecione a opção correta para continuar:
+        </p>
+
+        <div class="bg-ink text-white text-center text-sm font-semibold uppercase tracking-wider rounded py-3 mb-4">
+          Qual o ano que você nasceu?
+        </div>
+
+        <form id="form-verify" class="space-y-3">
+          <button type="button" data-answer="1985" class="w-full text-left px-4 py-3 rounded border border-surface-line hover:border-brand-400 hover:bg-brand-50">
+            1985
+          </button>
+          <button type="button" data-answer="2002" class="w-full text-left px-4 py-3 rounded border border-surface-line hover:border-brand-400 hover:bg-brand-50">
+            2002
+          </button>
+          <button type="button" data-answer="1998" class="w-full text-left px-4 py-3 rounded border border-surface-line hover:border-brand-400 hover:bg-brand-50">
+            1998
+          </button>
+          <button type="button" data-answer="2005" class="w-full text-left px-4 py-3 rounded border border-surface-line hover:border-brand-400 hover:bg-brand-50">
+            2005
+          </button>
+        </form>
+
+        <p class="text-center text-sm mt-4">
+          <a href="./identification.html" class="text-ink-muted hover:text-ink">Voltar</a>
+        </p>
+
+        <div class="mt-6 flex items-center justify-between gap-3">
+          <p class="text-xs font-semibold text-ink">Ou entre com suas redes sociais</p>
+          <div class="flex gap-2">
+            <button type="button" aria-label="Entrar com Google" class="w-9 h-9 rounded-full border border-surface-line flex items-center justify-center hover:border-brand-400">
+              <span class="font-bold text-sm">G</span>
+            </button>
+            <button type="button" aria-label="Entrar com Facebook" class="w-9 h-9 rounded-full border border-surface-line flex items-center justify-center hover:border-brand-400">
+              <span class="font-bold text-sm">f</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-ink text-white/80">
+    <div class="container-checkout py-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-xs uppercase tracking-wider mb-2">Pague em até 6x no cartão</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge bg-white/10 text-white border-white/20">VISA</span>
+            <span class="badge bg-white/10 text-white border-white/20">MASTER</span>
+            <span class="badge bg-white/10 text-white border-white/20">DINERS</span>
+            <span class="badge bg-white/10 text-white border-white/20">BOLETO</span>
+            <span class="badge bg-white/10 text-white border-white/20">PIX</span>
+            <span class="badge bg-white/10 text-white border-white/20">ELO</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end items-center">
+          <span class="badge bg-white/10 text-white border-white/20">SSL 256 BITS</span>
+          <span class="badge bg-white/10 text-white border-white/20">Safe Browsing</span>
+          <span class="badge bg-white/10 text-white border-white/20">Reclame Aqui</span>
+        </div>
+      </div>
+      <hr class="border-white/10 my-6" />
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <span class="font-display text-xl tracking-widest">ESCUTA O VÉIO</span>
+        <span class="text-[11px] text-white/50">CNPJ: 00.000.000/0000-00 — Escuta o Véio Comércio LTDA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../Assets/JS/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HUB EOV — Selante Adesivo DW240 | Drylevis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     Reset / base
+  ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --ink-900:#0c0c0c;
+    --ink-800:#1a1a1a;
+    --ink-700:#2d2d2b;
+    --ink-600:#535353;
+    --ink-550:#636564;
+    --gray-300:#b5b5b5;
+    --gray-200:#bdbdbd;
+    --gray-100:#e6e6e6;
+    --muted:#878787;
+    --red:#d43730;
+    --red-dark:#ba080d;
+    --yellow:#febf13;
+    --yellow-ink:#0f1317;
+    --white:#ffffff;
+  }
+
+  html,body{ background:#f4f4f4; }
+  body{
+    font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color:var(--ink-700);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  p{ word-break:break-word; }
+  img{ display:block; }
+
+  /* ============================================================
+     Page frame — vertical flow of centered sections.
+     On desktop the fixed widths reproduce the Figma design 1:1;
+     on smaller screens each section reflows independently.
+  ============================================================ */
+  .page-frame{
+    position:relative;
+    width:100%;
+    max-width:1512px;
+    margin:0 auto;
+    background:var(--white);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:clamp(40px,8vw,156px) 0 80px;
+    overflow:hidden;
+  }
+
+  /* ============================================================
+     1. HERO  — fixed-ratio banner that scales as a single unit
+        (stays visually identical, only shrinks to fit).
+  ============================================================ */
+  .hero-scaler{
+    width:100%;
+    max-width:1351px;
+    aspect-ratio:1351 / 531;
+    position:relative;
+    container-type:inline-size;   /* enables cqw below */
+  }
+  .hero{
+    position:absolute; inset:0;
+    width:1351px; height:531px;
+    transform-origin:top left;
+    /* scale 1351px design down to the available container width */
+    transform:scale(calc(100cqw / 1351px));
+  }
+  .hero__bg{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:contain; border-radius:24px;
+  }
+  .hero__badge{
+    position:absolute; top:-4px; left:calc(50% + 20px);
+    transform:translateX(-50%);
+    width:121px; display:flex; flex-direction:column; align-items:center;
+  }
+  .hero__badge img{ width:100%; height:47px; object-fit:contain; }
+  .hero__badge span{
+    font-family:'Calibri','Inter',sans-serif; font-style:italic;
+    color:var(--muted); font-size:8.4px; text-align:center; width:100%;
+  }
+  .hero__info{
+    position:absolute; left:107px; top:119px; width:468px;
+    display:flex; flex-direction:column; gap:15px; color:#fff;
+  }
+  .hero__name{ display:flex; flex-direction:column; text-transform:uppercase; line-height:1.05; }
+  .hero__name .l1{ font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:64px; }
+  .hero__name .l2{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:64px; }
+  .hero__desc{ font-size:24px; font-weight:400; line-height:1.25; }
+  .hero__desc b{ font-weight:700; }
+  .hero__link{
+    position:absolute; left:112px; top:407px;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+    padding:14px; border-radius:16px; cursor:pointer; border:none;
+  }
+  .hero__link span{
+    font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:15.5px;
+    color:#151218; text-transform:uppercase; white-space:nowrap; line-height:1.1;
+  }
+  .hero__arrow{ position:absolute; top:45%; width:42px; height:42px; cursor:pointer; }
+  .hero__arrow img{ width:100%; height:100%; }
+  .hero__arrow--left{ left:-9px; }
+  .hero__arrow--right{ right:-12px; transform:scaleX(-1); }
+
+  /* ============================================================
+     2. "O que é o DW240?"
+  ============================================================ */
+  .what{
+    width:100%;
+    display:flex; gap:24px; align-items:center; justify-content:center;
+    flex-wrap:wrap;
+    padding:clamp(32px,5vw,80px);
+  }
+  .what__bg{
+    width:min(664px,100%); aspect-ratio:664 / 752; border-radius:25px; flex:0 1 664px;
+    background:#0c0c0c center/cover no-repeat;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .what__bg img{ max-width:70%; max-height:80%; object-fit:contain; }
+  .what__bg video{ width:100%; height:100%; object-fit:cover; border-radius:25px; }
+  .what__col{ display:flex; flex-direction:column; gap:48px; align-items:center; width:min(664px,100%); flex:0 1 664px; }
+  .what__head{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; color:var(--ink-700); line-height:1.1; }
+  .what__head h2{ font-weight:800; font-size:clamp(32px,5vw,64px); }
+  .what__head p{ font-weight:400; font-size:clamp(16px,2vw,20px); width:min(560px,100%); }
+  .attr-grid{ display:flex; gap:clamp(16px,3vw,47px); align-items:center; justify-content:center; flex-wrap:wrap; width:100%; }
+  .attr-col{ display:flex; flex-direction:column; gap:16px; }
+  .attr-card{
+    background:var(--ink-700); width:249px; max-width:100%; height:273px; border-radius:28px;
+    display:flex; flex-direction:column; gap:18px; align-items:center; justify-content:center;
+    padding:0 16px;
+  }
+  .attr-card__icon{ height:58px; display:flex; align-items:center; }
+  .attr-card__icon img{ height:100%; width:auto; object-fit:contain; }
+  .attr-card__txt{ display:flex; flex-direction:column; gap:18px; align-items:center; text-align:center; line-height:1.1; }
+  .attr-card__txt .t{ font-weight:700; font-size:16px; color:#fff; }
+  .attr-card__txt .d{ font-weight:500; font-size:12px; color:var(--gray-300); width:190px; max-width:100%; }
+
+  /* ============================================================
+     3. "Obra bem-feita não infiltra."
+  ============================================================ */
+  .infiltra{
+    width:100%; max-width:1300px; padding-inline:24px;
+    display:flex; flex-direction:column; gap:28px; align-items:center; text-align:center;
+    margin-top:clamp(32px,4vw,46px);
+  }
+  .infiltra h2{ font-weight:700; font-size:clamp(32px,6vw,64px); color:var(--ink-800); line-height:1.05; }
+  .infiltra p{ font-weight:400; font-size:clamp(16px,2.4vw,24px); color:var(--ink-700); width:100%; max-width:1227px; line-height:1.2; }
+
+  /* ============================================================
+     4. Cards (Telhas / Tanques / Trincas)
+  ============================================================ */
+  .cards{
+    width:100%; padding-inline:24px;
+    display:flex; gap:24px; align-items:stretch; justify-content:center; flex-wrap:wrap;
+    margin-top:clamp(40px,5vw,38px);
+  }
+  .card{
+    background:var(--ink-700); width:435px; max-width:100%; border-radius:25px; padding:clamp(24px,3vw,40px);
+    display:flex; flex-direction:column; gap:32px; align-items:flex-start;
+  }
+  .card__img{ width:100%; aspect-ratio:355 / 311; border-radius:8px; overflow:hidden; }
+  .card__img img{ width:100%; height:100%; object-fit:cover; }
+  .card__body{ display:flex; flex-direction:column; gap:16px; align-items:center; text-align:center; width:100%; line-height:1.1; }
+  .card__body h3{ font-weight:800; font-size:clamp(26px,3.2vw,36px); color:#fff; }
+  .card__body p{ font-weight:400; font-size:clamp(15px,2.4vw,20px); color:var(--gray-300); width:100%; }
+
+  /* ============================================================
+     5. Videos
+  ============================================================ */
+  .videos{
+    width:100%; padding-inline:24px;
+    display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap;
+    margin-top:clamp(48px,8vw,101px);
+  }
+  .video{
+    background:var(--ink-600); width:437px; max-width:100%; aspect-ratio:437 / 594; border-radius:38px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    position:relative; overflow:hidden;
+  }
+  .video__play{
+    width:69px; height:69px; border-radius:50%;
+    background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .video:hover .video__play{ transform:scale(1.08); background:#fff; }
+  .video__play::after{
+    content:""; width:0; height:0; margin-left:5px;
+    border-left:22px solid var(--ink-700); border-top:14px solid transparent; border-bottom:14px solid transparent;
+  }
+
+  /* ============================================================
+     6. Nav Tabs "Informações"
+  ============================================================ */
+  .navtabs{
+    width:100%; max-width:1200px; background:var(--ink-900);
+    border-radius:24px; padding:clamp(28px,4vw,56px); display:flex; gap:clamp(24px,3vw,48px); align-items:stretch;
+    margin-top:clamp(56px,10vw,128px);
+  }
+  .navtabs__nav{ display:flex; flex-direction:column; gap:28px; width:220px; flex:0 0 auto; }
+  .navtabs__tab{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:18px; text-align:left;
+    color:var(--gray-100); background:none; border:none; cursor:pointer; width:100%;
+    opacity:.5; transition:opacity .15s ease; padding:0;
+  }
+  .navtabs__tab:hover{ opacity:.8; }
+  .navtabs__tab.is-active{
+    opacity:1; background:var(--gray-100); color:var(--ink-900);
+    border-radius:100px; padding:12px 20px;
+  }
+  .navtabs__divider{ width:1px; background:var(--gray-200); align-self:stretch; flex:0 0 auto; }
+  .navtabs__content{ flex:1 1 0; min-width:0; display:flex; flex-direction:column; gap:16px; color:var(--gray-100); }
+  .navtabs__content h2{ font-weight:900; font-size:clamp(30px,5vw,52px); }
+  .navtabs__content .lbl{ font-weight:700; font-size:14px; }
+  .navtabs__content p{ font-weight:400; font-size:14px; line-height:1.6; }
+
+  /* ============================================================
+     7. Vertical Container (grade + ficha + banner "Compre junto")
+  ============================================================ */
+  .vcont{
+    width:100%; max-width:1512px;
+    background:var(--ink-900); border-radius:25px;
+    padding:clamp(28px,4vw,68px);
+    display:flex; flex-direction:column; gap:clamp(48px,7vw,95px);
+    margin-top:clamp(64px,12vw,204px);
+  }
+  .vcont__top{ display:flex; gap:clamp(32px,4vw,48px); align-items:center; justify-content:space-between; flex-wrap:wrap; }
+
+  .pgrid{
+    width:min(899px,100%); aspect-ratio:899 / 607; flex:1 1 460px;
+    display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); gap:8px;
+  }
+  .pgrid img{ width:100%; height:100%; object-fit:cover; border-radius:15px; }
+
+  .pinfo{ width:min(405px,100%); flex:0 1 405px; display:flex; flex-direction:column; gap:7px; }
+  .pinfo__badge{ display:flex; flex-direction:column; align-items:center; width:83px; }
+  .pinfo__badge img{ width:100%; height:32px; object-fit:contain; }
+  .pinfo__badge span{ font-family:'Calibri',sans-serif; font-style:italic; color:var(--muted); font-size:5.8px; text-align:center; width:100%; }
+  .pinfo__name{ font-weight:800; font-size:clamp(30px,4vw,40px); color:#fff; max-width:100%; line-height:1.1; }
+  .pinfo__name .accent{ color:var(--red-dark); }
+  .pinfo__sub{ color:#fff; font-size:clamp(16px,2.2vw,20px); line-height:1.35; max-width:100%; }
+  .pinfo__sub b{ font-weight:700; }
+  .pinfo__price{ display:flex; flex-direction:column; gap:5px; width:215px; max-width:100%; color:#fff; margin-top:8px; }
+  .pinfo__old{ font-size:15px; text-decoration:line-through; line-height:1.1; }
+  .pinfo__newrow{ display:flex; gap:10px; align-items:flex-end; }
+  .pinfo__new{ font-weight:800; font-size:clamp(30px,4vw,40px); line-height:1.1; }
+  .pinfo__each{ font-size:14px; }
+  .colors{ display:flex; flex-direction:column; gap:26px; width:235px; max-width:100%; margin-top:16px; }
+  .colors > .lbl{ font-weight:700; font-size:15px; color:#fff; line-height:1.1; }
+  .colors__opts{ display:flex; gap:14px; }
+  .swatch{ display:flex; flex-direction:column; gap:9px; align-items:center; width:69px; cursor:pointer; }
+  .swatch__chip{ height:54px; width:100%; border-radius:8px; border:1px solid #fff; transition:outline .12s ease; }
+  .swatch.is-active .swatch__chip{ outline:3px solid var(--yellow); outline-offset:2px; }
+  .swatch span{ font-size:14px; text-align:center; color:#fff; }
+  .addcart{
+    background:var(--yellow); color:var(--yellow-ink); border:none; cursor:pointer;
+    padding:11px 23px; border-radius:8px; font-weight:700; font-size:12px; margin-top:20px;
+    align-self:flex-start; font-family:'Inter',sans-serif;
+  }
+
+  /* compre junto banner — fixed-ratio banner, scales as a unit */
+  .kit-scaler{
+    width:100%; max-width:1352px; margin:0 auto;
+    aspect-ratio:1352 / 527; position:relative; container-type:inline-size;
+  }
+  .kit{
+    position:absolute; inset:0;
+    width:1352px; height:527px; transform-origin:top left;
+    transform:scale(calc(100cqw / 1352px));
+    border-radius:25px; overflow:hidden; background:var(--ink-550);
+  }
+  /* yellow swoosh art — node 476:1836 */
+  .kit__art{ position:absolute; left:492px; top:-16px; width:914.819px; height:555.954px; max-width:none; pointer-events:none; }
+  /* DW240 tube — node 476:1837 (clipped fill, no rotation) */
+  .kit__tube{ position:absolute; left:537px; top:91px; width:325px; height:436px; overflow:hidden; pointer-events:none; }
+  .kit__tube img{ position:absolute; height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; max-width:none; }
+  /* products — replicate Figma's rotated, clipped fills exactly */
+  .kit__prod{ position:absolute; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+  .kit__prod > .rot{ flex:none; }
+  .kit__prod .clip{ position:relative; overflow:hidden; }
+  .kit__prod .clip img{ position:absolute; max-width:none; }
+  /* 269781 (kit tubes) — node 476:1838 */
+  .kit-tubes{ left:939px; top:175px; width:478.241px; height:406.928px; }
+  .kit-tubes .rot{ transform:rotate(30deg); }
+  .kit-tubes .clip{ width:421.409px; height:226.58px; }
+  .kit-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
+  /* 266919 (PR10 + applicator) — node 476:1839 */
+  .kit-gun{ left:800px; top:175px; width:311.056px; height:445.423px; }
+  .kit-gun .rot{ transform:rotate(-13.61deg); }
+  .kit-gun .clip{ width:222.102px; height:404.518px; }
+  .kit-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
+  .kit__badge{
+    position:absolute; left:0; top:71px; background:var(--red);
+    padding:10px 18px; border-top-right-radius:15px; border-bottom-right-radius:15px;
+    display:flex; align-items:center; justify-content:center; min-width:228px;
+  }
+  .kit__badge span{ font-weight:700; font-size:20px; color:#fff; line-height:1; }
+  .kit__title{ position:absolute; left:34px; top:150px; width:471px; font-weight:500; font-size:48px; color:#fff; line-height:1.05; }
+  .kit__title b{ font-weight:700; }
+  .kit__desc{ position:absolute; left:34px; top:270px; width:516px; font-weight:400; font-size:24px; color:#fff; line-height:1.05; }
+  .kit__btn{
+    position:absolute; left:34px; top:400px; background:var(--red); color:#fff;
+    border:none; cursor:pointer; padding:10px 24px; border-radius:8px;
+    font-weight:700; font-size:20px; font-family:'Inter',sans-serif;
+  }
+
+  /* ---- compre junto: MOBILE (portrait) version, node 243:4339 ----
+     Hidden by default; shown below 640px in place of the landscape
+     banner. Scales the 390x527 design to the available width. */
+  .kit-mobile-scaler{
+    display:none;
+    width:100%; max-width:390px; margin:0 auto;
+    aspect-ratio:390 / 527; position:relative; container-type:inline-size;
+    overflow:hidden; border-radius:15px 15px 0 0;
+  }
+  .kit-mobile{
+    position:absolute; inset:0;
+    width:390px; height:527px; transform-origin:top left;
+    transform:scale(calc(100cqw / 390px));
+    background:#636564; overflow:hidden; border-radius:15px 15px 0 0;
+  }
+  .kit-mobile__art{ position:absolute; left:-76px; top:202px; width:914.819px; height:555.954px; pointer-events:none; max-width:none; }
+  .kit-mobile__badge{
+    position:absolute; left:0; top:43px; width:190px; background:var(--red);
+    padding:10px; border-top-right-radius:15px; border-bottom-right-radius:15px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .kit-mobile__badge span{ font-weight:700; font-size:20px; color:#fff; line-height:1; text-align:center; width:100%; }
+  .kit-mobile__content{ position:absolute; left:29px; top:124px; width:277px; display:flex; flex-direction:column; gap:24px; align-items:flex-start; }
+  .kit-mobile__text{ display:flex; flex-direction:column; gap:8px; width:100%; color:#fff; }
+  .kit-mobile__title{ font-weight:500; font-size:32px; line-height:1; width:100%; }
+  .kit-mobile__title b{ font-weight:700; }
+  .kit-mobile__desc{ font-weight:400; font-size:14px; line-height:1; width:100%; }
+  .kit-mobile__btn{
+    background:var(--red); color:#fff; border:none; cursor:pointer;
+    height:27px; width:92px; padding:6px 12px; border-radius:8px;
+    font-weight:700; font-size:13px; font-family:'Inter',sans-serif;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* product images — replicate Figma's rotated, clipped fills exactly */
+  .kit-mobile__prod{ position:absolute; display:flex; align-items:center; justify-content:center; }
+  .kit-mobile__prod > .rot{ flex:none; }
+  .kit-mobile__prod .clip{ position:relative; overflow:hidden; }
+  .kit-mobile__prod .clip img{ position:absolute; max-width:none; }
+  /* 266919 (PR10 + applicator) — node 243:4343 */
+  .km-gun{ left:160px; top:360px; width:143.764px; height:205.866px; }
+  .km-gun .rot{ transform:rotate(-13.61deg); }
+  .km-gun .clip{ width:102.651px; height:186.96px; }
+  .km-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
+  /* 269781 (kit tubes) — node 243:4342 */
+  .km-tubes{ left:182px; top:338px; width:255.447px; height:217.356px; }
+  .km-tubes .rot{ transform:rotate(30deg); }
+  .km-tubes .clip{ width:225.091px; height:121.025px; }
+  .km-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
+  /* DW240 tube — node 243:4341 (no rotation) */
+  .km-tube{ left:52px; top:338px; width:140px; height:188px; }
+  .km-tube .clip{ width:140px; height:188px; }
+  .km-tube .clip img{ height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; }
+
+  /* ============================================================
+     Breakpoints — fine-tuning the reflow
+  ============================================================ */
+  /* swap the landscape kit banner for the portrait mobile frame */
+  @media (max-width:640px){
+    .kit-scaler{ display:none; }
+    .kit-mobile-scaler{ display:block; }
+  }
+  /* inset everything from the screen edges on smaller viewports */
+  @media (max-width:1120px){
+    .page-frame{ padding-left:16px; padding-right:16px; }
+  }
+
+  /* stack the "Informações" tabs above the content */
+  @media (max-width:760px){
+    .navtabs{ flex-direction:column; gap:24px; }
+    .navtabs__nav{ width:100%; flex-direction:row; flex-wrap:wrap; gap:12px; }
+    .navtabs__tab{ width:auto; }
+    .navtabs__divider{ width:100%; height:1px; align-self:auto; }
+  }
+</style>
+</head>
+<body>
+  <main class="page-frame">
+
+    <!-- ============ HERO (scales as one unit) ============ -->
+    <section class="hero-scaler" aria-label="Selante Adesivo DW240">
+      <div class="hero">
+        <img class="hero__bg" src="assets/hero-bg.png" alt="Selante Adesivo DW240" />
+
+        <div class="hero__badge">
+          <img src="assets/hero-badge.svg" alt="Drylevis" />
+          <span>INOVAÇÃO EM CONCEITO</span>
+        </div>
+
+        <div class="hero__info">
+          <div class="hero__name">
+            <span class="l1">Selante Adesivo</span>
+            <span class="l2">dw240</span>
+          </div>
+          <p class="hero__desc"><b>Cola, veda e impermeabiliza</b> juntas de uma vez. Poliuretano extra forte mais <b>resistente e elástico</b> que silicone.</p>
+        </div>
+
+        <button class="hero__link" type="button">
+          <span>Conhecer mais do produto</span>
+        </button>
+
+        <div class="hero__arrow hero__arrow--left"><img src="assets/arrow-left.svg" alt="Anterior" /></div>
+        <div class="hero__arrow hero__arrow--right"><img src="assets/arrow-left.svg" alt="Próximo" /></div>
+      </div>
+    </section>
+
+    <!-- ============ O QUE É O DW240? ============ -->
+    <section class="what" aria-label="O que é o DW240">
+      <div class="what__bg">
+        <video class="what__video"
+               src="assets/magnific_o-produto-rotacionando-18_jS8ll6DLD0.mp4"
+               poster="assets/product-tube.png"
+               autoplay loop muted playsinline></video>
+      </div>
+      <div class="what__col">
+        <div class="what__head">
+          <h2>O que é o DW240?</h2>
+          <p>Cola, veda e impermeabiliza juntas de uma vez. Poliuretano extra forte, mais resistente e elástico que silicone.</p>
+        </div>
+        <div class="attr-grid">
+          <div class="attr-col">
+            <article class="attr-card">
+              <div class="attr-card__icon"><img src="assets/attr-icon-1.svg" alt="" /></div>
+              <div class="attr-card__txt">
+                <p class="t">Elástico e sem rachaduras</p>
+                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+              </div>
+            </article>
+            <article class="attr-card">
+              <div class="attr-card__icon"><img src="assets/attr-icon-2.svg" alt="" /></div>
+              <div class="attr-card__txt">
+                <p class="t">Elástico e sem rachaduras</p>
+                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+              </div>
+            </article>
+          </div>
+          <div class="attr-col">
+            <article class="attr-card">
+              <div class="attr-card__icon"><img src="assets/attr-icon-3.svg" alt="" /></div>
+              <div class="attr-card__txt">
+                <p class="t">Elástico e sem rachaduras</p>
+                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+              </div>
+            </article>
+            <article class="attr-card">
+              <div class="attr-card__icon"><img src="assets/attr-icon-3.svg" alt="" /></div>
+              <div class="attr-card__txt">
+                <p class="t">Elástico e sem rachaduras</p>
+                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OBRA BEM-FEITA ============ -->
+    <section class="infiltra" aria-label="Obra bem-feita não infiltra">
+      <h2>Obra bem-feita não infiltra.</h2>
+      <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza de uma vez, com elasticidade e aderência que o silicone convencional não entrega.</p>
+    </section>
+
+    <!-- ============ CARDS ============ -->
+    <section class="cards" aria-label="Aplicações">
+      <article class="card">
+        <div class="card__img"><img src="assets/card-telhas.png" alt="Telhas" /></div>
+        <div class="card__body">
+          <h3>Telhas</h3>
+          <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/card-tanques.png" alt="Tanques" /></div>
+        <div class="card__body">
+          <h3>Tanques</h3>
+          <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/card-trincas.png" alt="Trincas" /></div>
+        <div class="card__body">
+          <h3>Trincas</h3>
+          <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ VIDEOS ============ -->
+    <section class="videos" aria-label="Vídeos">
+      <div class="video"><div class="video__play"></div></div>
+      <div class="video"><div class="video__play"></div></div>
+      <div class="video"><div class="video__play"></div></div>
+    </section>
+
+    <!-- ============ NAV TABS / INFORMAÇÕES ============ -->
+    <section class="navtabs" aria-label="Informações do produto">
+      <nav class="navtabs__nav">
+        <button class="navtabs__tab is-active" data-tab="oque">O que são</button>
+        <button class="navtabs__tab" data-tab="beneficios">Benefícios</button>
+        <button class="navtabs__tab" data-tab="modo">Modo de Uso</button>
+        <button class="navtabs__tab" data-tab="composicao">Composição</button>
+      </nav>
+      <div class="navtabs__divider"></div>
+      <div class="navtabs__content" id="tabContent">
+        <h2 id="tabTitle">Informações</h2>
+        <p class="lbl" id="tabLabel">Informações</p>
+        <p id="tabText">O Selante DW240 da Drylevis é um selante adesivo com alto desempenho para tratamento de juntas de dilatação e de preenchimento. Já vem pronto para uso, além de vedar e aderir à superfície com rapidez e elasticidade. Possui ótima resistência à água, a raios UV, a vibrações, a movimentações e à ação do tempo. Pode ser utilizado também para fixação e vedação de diversos materiais, como pedras, concretos, vidros, esquadrias de alumínio etc.</p>
+      </div>
+    </section>
+
+    <!-- ============ VERTICAL CONTAINER ============ -->
+    <section class="vcont" aria-label="Compre o kit">
+      <div class="vcont__top">
+        <div class="pgrid">
+          <img src="assets/product-tube.png" alt="" />
+          <img src="assets/grid-2.jpg" alt="" />
+          <img src="assets/grid-3.png" alt="" />
+          <img src="assets/grid-4.png" alt="" />
+        </div>
+
+        <div class="pinfo">
+          <div class="pinfo__badge">
+            <img src="assets/pinfo-badge.svg" alt="Drylevis" />
+            <span>INOVAÇÃO EM CONCEITO</span>
+          </div>
+          <p class="pinfo__name">Selante Adesivo <span class="accent">DW240</span></p>
+          <p class="pinfo__sub"><b>Cola, veda e impermeabiliza</b> juntas de uma vez. Poliuretano extra forte mais resistente e elástico que silicone.</p>
+          <div class="pinfo__price">
+            <p class="pinfo__old">R$ 75,24</p>
+            <div class="pinfo__newrow">
+              <p class="pinfo__new">R$ 71,48</p>
+              <p class="pinfo__each">cada</p>
+            </div>
+          </div>
+          <div class="colors">
+            <p class="lbl">Cores</p>
+            <div class="colors__opts">
+              <div class="swatch is-active"><div class="swatch__chip" style="background:#fff"></div><span>Branco</span></div>
+              <div class="swatch"><div class="swatch__chip" style="background:#e6e6e6"></div><span>Cinza</span></div>
+              <div class="swatch"><div class="swatch__chip" style="background:#000"></div><span>Preto</span></div>
+            </div>
+          </div>
+          <button class="addcart" type="button">Adicionar ao carrinho</button>
+        </div>
+      </div>
+
+      <!-- compre junto -->
+      <div class="kit-scaler">
+        <div class="kit">
+          <img class="kit__art" src="assets/kit-art.png" alt="" />
+          <div class="kit__tube"><img src="assets/kit-tube.png" alt="" /></div>
+          <div class="kit__prod kit-tubes"><div class="rot"><div class="clip"><img src="assets/kit-prod-a.png" alt="" /></div></div></div>
+          <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="assets/kit-prod-b.png" alt="" /></div></div></div>
+          <div class="kit__badge"><span>Compre junto</span></div>
+          <p class="kit__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
+          <p class="kit__desc">Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+          <button class="kit__btn" type="button">Aproveitar</button>
+        </div>
+      </div>
+
+      <!-- compre junto — versão MOBILE (frame 243:4339), exibida abaixo de 640px -->
+      <div class="kit-mobile-scaler">
+        <div class="kit-mobile">
+          <img class="kit-mobile__art" src="assets/kit-m-art.png" alt="" />
+          <div class="kit-mobile__badge"><span>Compre junto</span></div>
+          <div class="kit-mobile__content">
+            <div class="kit-mobile__text">
+              <p class="kit-mobile__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
+              <p class="kit-mobile__desc">Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+            </div>
+            <button class="kit-mobile__btn" type="button">Aproveitar</button>
+          </div>
+          <div class="kit-mobile__prod km-gun"><div class="rot"><div class="clip"><img src="assets/kit-m-gun.png" alt="" /></div></div></div>
+          <div class="kit-mobile__prod km-tubes"><div class="rot"><div class="clip"><img src="assets/kit-m-tubes.png" alt="" /></div></div></div>
+          <div class="kit-mobile__prod km-tube"><div class="clip"><img src="assets/kit-m-tube.png" alt="" /></div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<script>
+  // ---------- Nav tabs ----------
+  var TAB_DATA = {
+    oque: {
+      title: 'Informações',
+      label: 'Informações',
+      text: 'O Selante DW240 da Drylevis é um selante adesivo com alto desempenho para tratamento de juntas de dilatação e de preenchimento. Já vem pronto para uso, além de vedar e aderir à superfície com rapidez e elasticidade. Possui ótima resistência à água, a raios UV, a vibrações, a movimentações e à ação do tempo. Pode ser utilizado também para fixação e vedação de diversos materiais, como pedras, concretos, vidros, esquadrias de alumínio etc.'
+    },
+    beneficios: {
+      title: 'Benefícios',
+      label: 'Por que usar',
+      text: 'Alta elasticidade que acompanha as movimentações da estrutura sem rachar; aderência superior ao silicone convencional; resistência à água, raios UV e variações de temperatura; cura rápida e pronto para uso. Cola, veda e impermeabiliza em uma única aplicação.'
+    },
+    modo: {
+      title: 'Modo de Uso',
+      label: 'Como aplicar',
+      text: 'Limpe e seque bem a superfície, removendo poeira, gordura e partículas soltas. Corte o bico na espessura desejada, aplique o selante uniformemente na junta e alise antes da formação de película. Tempo de cura conforme temperatura e umidade do ambiente.'
+    },
+    composicao: {
+      title: 'Composição',
+      label: 'O que contém',
+      text: 'Selante adesivo monocomponente à base de poliuretano (PU), com cura por umidade do ar. Não contém solventes agressivos. Disponível nas cores branco, cinza e preto.'
+    }
+  };
+
+  var tabs = document.querySelectorAll('.navtabs__tab');
+  var elTitle = document.getElementById('tabTitle');
+  var elLabel = document.getElementById('tabLabel');
+  var elText  = document.getElementById('tabText');
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      var data = TAB_DATA[tab.getAttribute('data-tab')];
+      if(!data) return;
+      elTitle.textContent = data.title;
+      elLabel.textContent = data.label;
+      elText.textContent  = data.text;
+    });
+  });
+
+  // ---------- Color swatches ----------
+  var swatches = document.querySelectorAll('.swatch');
+  swatches.forEach(function(sw){
+    sw.addEventListener('click', function(){
+      swatches.forEach(function(s){ s.classList.remove('is-active'); });
+      sw.classList.add('is-active');
+    });
+  });
+
+  // ---------- Video play placeholders ----------
+  document.querySelectorAll('.video').forEach(function(v){
+    v.addEventListener('click', function(){
+      v.style.outline = '3px solid #febf13';
+      v.style.outlineOffset = '-3px';
+    });
+  });
+
+  // ---------- Add to cart feedback ----------
+  document.querySelector('.addcart').addEventListener('click', function(){
+    var b = this; var prev = b.textContent;
+    b.textContent = 'Adicionado ✓';
+    setTimeout(function(){ b.textContent = prev; }, 1500);
+  });
+</script>
+</body>
+</html>
