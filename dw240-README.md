@@ -43,6 +43,25 @@ Como o bloco está em `@main`:
 > Para **congelar** uma versão (cache imutável): `git tag v1 && git push origin v1`
 > e troque `@main` por `@v1` nas URLs do `dw240-wake.html`.
 
+## Vídeos: limite e como comprimir
+
+⚠️ O jsDelivr serve arquivos do GitHub até **~20 MB**. Acima disso retorna `403`.
+Vídeos full HD/longos passam fácil disso, então **comprima antes de subir**.
+
+Com o [FFmpeg](https://ffmpeg.org/) (instalável no Windows via `winget install Gyan.FFmpeg`):
+
+```bash
+ffmpeg -y -i entrada.mp4 -c:v libx264 -preset fast -crf 30 -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k saida.mp4
+```
+
+- `-crf 30`: qualidade/tamanho. **Maior = menor arquivo** (tente 28–34).
+- `-movflags +faststart`: o vídeo começa a tocar antes de baixar tudo (streaming).
+- Ainda grande? Reduza a resolução com `-vf "scale=-2:1080"` (ou `:720`).
+- Referência: os 3 vídeos da seção saíram de 7,3 / 17,3 / 35,5 MB para **3,4 / 8,7 / 14,9 MB**.
+
+Depois é só substituir o arquivo em `Assets/`, `git push`, **purgar** o cache do jsDelivr
+(ver seção acima) e re-colar o bloco na Wake.
+
 ## Responsividade (resumo)
 
 - **Hero** e **banner "Compre junto"**: escalam como bloco único (proporção fixa).
