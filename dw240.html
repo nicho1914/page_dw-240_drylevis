@@ -4,19 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>HUB EOV — Selante Adesivo DW240 | Drylevis</title>
-</head>
-<body>
-<!-- ================= BLOCO ÚNICO — copie este <div> inteiro p/ o Wake ================= -->
-<div id="dw240-root">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Barlow+Condensed:wght@600;700;800&display=swap');
   /* ============================================================
-     Reset / base — escopado em #dw240-root para não afetar a
-     página hospedeira (CMS Wake). body{margin:0} é o único
-     ajuste global (inofensivo).
+     Reset / base
   ============================================================ */
-  body{ margin:0; }
-  #dw240-root, #dw240-root *, #dw240-root *::before, #dw240-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root{
     --ink-900:#0c0c0c;
@@ -35,15 +30,15 @@
     --white:#ffffff;
   }
 
-  #dw240-root{
-    background:#f4f4f4;
+  html,body{ background:#f4f4f4; }
+  body{
     font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     color:var(--ink-700);
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  #dw240-root p{ word-break:break-word; }
-  #dw240-root img{ display:block; }
+  p{ word-break:break-word; }
+  img{ display:block; }
 
   /* ============================================================
      Page frame — vertical flow of centered sections.
@@ -124,26 +119,25 @@
   .what{
     width:100%;
     display:flex; gap:24px; align-items:center; justify-content:center;
-    flex-wrap:wrap;
     padding:clamp(32px,5vw,80px);
   }
   .what__bg{
-    width:min(664px,100%); aspect-ratio:664 / 752; border-radius:25px; flex:0 1 664px;
+    flex:1 1 0; min-width:0; max-width:664px; aspect-ratio:664 / 752; border-radius:25px;
     background:#0c0c0c center/cover no-repeat;
     display:flex; align-items:center; justify-content:center;
   }
   .what__bg img{ max-width:70%; max-height:80%; object-fit:contain; }
   .what__bg video{ width:100%; height:100%; object-fit:cover; border-radius:25px; }
-  .what__col{ display:flex; flex-direction:column; gap:48px; align-items:center; width:min(664px,100%); flex:0 1 664px; }
+  .what__col{ flex:1 1 0; min-width:0; max-width:664px; display:flex; flex-direction:column; gap:48px; align-items:center; }
   .what__head{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; color:var(--ink-700); line-height:1.1; }
   .what__head h2{ font-weight:800; font-size:clamp(32px,5vw,64px); }
   .what__head p{ font-weight:400; font-size:clamp(16px,2vw,20px); width:min(560px,100%); }
-  .attr-grid{ display:flex; gap:clamp(16px,3vw,47px); align-items:center; justify-content:center; flex-wrap:wrap; width:100%; }
+  .attr-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; max-width:545px; margin:0 auto; }
   .attr-col{ display:flex; flex-direction:column; gap:16px; }
   .attr-card{
-    background:var(--ink-700); width:249px; max-width:100%; height:273px; border-radius:28px;
+    background:var(--ink-700); width:100%; min-height:273px; border-radius:28px;
     display:flex; flex-direction:column; gap:18px; align-items:center; justify-content:center;
-    padding:0 16px;
+    padding:24px 16px;
   }
   .attr-card__icon{ height:58px; display:flex; align-items:center; }
   .attr-card__icon img{ height:100%; width:auto; object-fit:contain; }
@@ -167,11 +161,12 @@
   ============================================================ */
   .cards{
     width:100%; padding-inline:24px;
-    display:flex; gap:24px; align-items:stretch; justify-content:center; flex-wrap:wrap;
-    margin-top:clamp(40px,5vw,38px);
+    display:flex; gap:24px; align-items:stretch; justify-content:center;
+    margin-top:clamp(40px,5vw,38px); scrollbar-width:none;
   }
+  .cards::-webkit-scrollbar{ display:none; }
   .card{
-    background:var(--ink-700); width:435px; max-width:100%; border-radius:25px; padding:clamp(24px,3vw,40px);
+    background:var(--ink-700); flex:1 1 0; min-width:0; max-width:435px; border-radius:25px; padding:clamp(24px,3vw,40px);
     display:flex; flex-direction:column; gap:32px; align-items:flex-start;
   }
   .card__img{ width:100%; aspect-ratio:355 / 311; border-radius:8px; overflow:hidden; }
@@ -185,11 +180,12 @@
   ============================================================ */
   .videos{
     width:100%; padding-inline:24px;
-    display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap;
-    margin-top:clamp(48px,8vw,101px);
+    display:flex; gap:18px; align-items:center; justify-content:center;
+    margin-top:clamp(48px,8vw,101px); scrollbar-width:none;
   }
+  .videos::-webkit-scrollbar{ display:none; }
   .video{
-    background:var(--ink-600); width:437px; max-width:100%; aspect-ratio:437 / 594; border-radius:38px;
+    background:var(--ink-600); flex:1 1 0; min-width:0; max-width:437px; aspect-ratio:437 / 594; border-radius:38px;
     display:flex; align-items:center; justify-content:center; cursor:pointer;
     position:relative; overflow:hidden;
   }
@@ -326,13 +322,13 @@
     display:none;
     width:100%; max-width:390px; margin:0 auto;
     aspect-ratio:390 / 527; position:relative; container-type:inline-size;
-    overflow:hidden; border-radius:15px 15px 0 0;
+    overflow:hidden; border-radius:15px;
   }
   .kit-mobile{
     position:absolute; inset:0;
     width:390px; height:527px; transform-origin:top left;
     transform:scale(calc(100cqw / 390px));
-    background:#636564; overflow:hidden; border-radius:15px 15px 0 0;
+    background:#636564; overflow:hidden; border-radius:15px;
   }
   .kit-mobile__art{ position:absolute; left:-76px; top:202px; width:914.819px; height:555.954px; pointer-events:none; max-width:none; }
   .kit-mobile__badge{
@@ -392,9 +388,22 @@
     .navtabs__tab{ width:auto; }
     .navtabs__divider{ width:100%; height:1px; align-self:auto; }
   }
-</style>
 
-  <div class="page-frame">
+  /* mobile: "O que e" empilha (texto > video > cards 2x2); cards e videos viram carrossel */
+  @media (max-width:768px){
+    .what{ display:grid; grid-template-columns:1fr; grid-template-areas:"head" "video" "cards"; gap:24px; }
+    .what__col{ display:contents; }
+    .what__bg{ grid-area:video; width:100%; max-width:none; }
+    .what__head{ grid-area:head; }
+    .attr-grid{ grid-area:cards; }
+    .cards, .videos{ flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+    .card{ flex:0 0 80%; max-width:80%; scroll-snap-align:center; }
+    .video{ flex:0 0 72%; max-width:72%; scroll-snap-align:center; }
+  }
+</style>
+</head>
+<body>
+  <main class="page-frame">
 
     <!-- ============ HERO (scales as one unit) ============ -->
     <section class="hero-scaler" aria-label="Selante Adesivo DW240">
@@ -596,7 +605,7 @@
       </div>
     </section>
 
-  </div>
+  </main>
 
 <script>
   // ---------- Nav tabs ----------
@@ -664,7 +673,5 @@
     setTimeout(function(){ b.textContent = prev; }, 1500);
   });
 </script>
-</div>
-<!-- ================= /BLOCO ÚNICO ================= -->
 </body>
 </html>

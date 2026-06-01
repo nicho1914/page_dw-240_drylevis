@@ -1,0 +1,507 @@
+<!-- ============================================================================
+     BLOCO LANDING PAGE - SELANTE ADESIVO DW240 (DRYLEVIS)
+     Cole TUDO isto num bloco de conteudo HTML do Wake (modo codigo-fonte).
+     - Sem <html>/<head>/<body> (e um fragmento).
+     - Sem Bootstrap (sem dependencia de JS externo).
+     - CSS escopado em #dw240-root (nao afeta o tema).
+     - SVGs (logos, setas, icones) embutidos: nao precisam de upload.
+     - Acentos em entidades HTML; textos das abas no proprio HTML (JS sem acento).
+     - IMAGENS e VIDEO: servidos do GitHub via CDN jsDelivr (repo publico
+       nicho1914/page_dw-240_drylevis, pasta Assets/). NAO precisa subir nada
+       na Wake. Detalhes de atualizacao/cache no comentario do FIM do arquivo.
+============================================================================ -->
+
+<!-- Fonte (CSS, nao JS). Pode ficar aqui ou no <head> do tema. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+
+<div id="dw240-root">
+<style type="text/css">
+  #dw240-root{
+    --ink-900:#0c0c0c; --ink-800:#1a1a1a; --ink-700:#2d2d2b; --ink-600:#535353;
+    --ink-550:#636564; --gray-300:#b5b5b5; --gray-200:#bdbdbd; --gray-100:#e6e6e6;
+    --muted:#878787; --red:#d43730; --red-dark:#ba080d; --yellow:#febf13;
+    --yellow-ink:#0f1317; --white:#ffffff;
+    background:#ffffff;
+    font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color:var(--ink-700);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  #dw240-root *, #dw240-root *::before, #dw240-root *::after { box-sizing:border-box; margin:0; padding:0; }
+  #dw240-root p{ word-break:break-word; }
+  #dw240-root img{ display:block; }
+
+  #dw240-root .page-frame{
+    position:relative; width:100%; max-width:1512px; margin:0 auto;
+    background:var(--white);
+    display:flex; flex-direction:column; align-items:center;
+    padding:clamp(40px,8vw,156px) 0 80px;
+    overflow:hidden;
+  }
+
+  /* 1. HERO */
+  #dw240-root .hero-scaler{ width:100%; max-width:1351px; aspect-ratio:1351 / 531; position:relative; container-type:inline-size; }
+  #dw240-root .hero{ position:absolute; inset:0; width:1351px; height:531px; transform-origin:top left; transform:scale(calc(100cqw / 1351px)); }
+  #dw240-root .hero__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; border-radius:24px; }
+  #dw240-root .hero__badge{ position:absolute; top:-4px; left:calc(50% + 20px); transform:translateX(-50%); width:121px; display:flex; flex-direction:column; align-items:center; }
+  #dw240-root .hero__badge svg{ width:100%; height:47px; }
+  #dw240-root .hero__badge span{ font-family:'Calibri','Inter',sans-serif; font-style:italic; color:var(--muted); font-size:8.4px; text-align:center; width:100%; }
+  #dw240-root .hero__info{ position:absolute; left:107px; top:119px; width:468px; display:flex; flex-direction:column; gap:15px; color:#fff; }
+  #dw240-root .hero__name{ display:flex; flex-direction:column; text-transform:uppercase; line-height:1.05; }
+  #dw240-root .hero__name .l1{ font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:64px; }
+  #dw240-root .hero__name .l2{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:64px; }
+  #dw240-root .hero__desc{ font-size:24px; font-weight:400; line-height:1.25; }
+  #dw240-root .hero__desc b{ font-weight:700; }
+  #dw240-root .hero__link{ position:absolute; left:112px; top:407px; background:#fff; display:flex; align-items:center; justify-content:center; padding:14px; border-radius:16px; cursor:pointer; border:none; }
+  #dw240-root .hero__link span{ font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:15.5px; color:#151218; text-transform:uppercase; white-space:nowrap; line-height:1.1; }
+  #dw240-root .hero__arrow{ position:absolute; top:45%; width:42px; height:42px; cursor:pointer; }
+  #dw240-root .hero__arrow svg{ width:100%; height:100%; }
+  #dw240-root .hero__arrow--left{ left:-9px; }
+  #dw240-root .hero__arrow--right{ right:-12px; transform:scaleX(-1); }
+
+  /* 2. O que e o DW240? */
+  #dw240-root .what{ width:100%; display:flex; gap:24px; align-items:center; justify-content:center; padding:clamp(32px,5vw,80px); }
+  #dw240-root .what__bg{ flex:1 1 0; min-width:0; max-width:664px; aspect-ratio:664 / 752; border-radius:25px; background:#0c0c0c center/cover no-repeat; display:flex; align-items:center; justify-content:center; }
+  #dw240-root .what__bg video{ width:100%; height:100%; object-fit:cover; border-radius:25px; }
+  #dw240-root .what__col{ flex:1 1 0; min-width:0; max-width:664px; display:flex; flex-direction:column; gap:48px; align-items:center; }
+  #dw240-root .what__head{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; color:var(--ink-700); line-height:1.1; }
+  #dw240-root .what__head h2{ font-weight:800; font-size:clamp(32px,5vw,64px); }
+  #dw240-root .what__head p{ font-weight:400; font-size:clamp(16px,2vw,20px); width:min(560px,100%); }
+  #dw240-root .attr-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; max-width:545px; margin:0 auto; }
+  #dw240-root .attr-col{ display:flex; flex-direction:column; gap:16px; }
+  #dw240-root .attr-card{ background:var(--ink-700); width:100%; min-height:273px; border-radius:28px; display:flex; flex-direction:column; gap:18px; align-items:center; justify-content:center; padding:24px 16px; }
+  #dw240-root .attr-card__icon{ height:58px; display:flex; align-items:center; }
+  #dw240-root .attr-card__icon svg{ height:100%; width:auto; }
+  #dw240-root .attr-card__txt{ display:flex; flex-direction:column; gap:18px; align-items:center; text-align:center; line-height:1.1; }
+  #dw240-root .attr-card__txt .t{ font-weight:700; font-size:16px; color:#fff; }
+  #dw240-root .attr-card__txt .d{ font-weight:500; font-size:12px; color:var(--gray-300); width:190px; max-width:100%; }
+
+  /* 3. Obra bem-feita */
+  #dw240-root .infiltra{ width:100%; max-width:1300px; padding-inline:24px; display:flex; flex-direction:column; gap:28px; align-items:center; text-align:center; margin-top:clamp(32px,4vw,46px); }
+  #dw240-root .infiltra h2{ font-weight:700; font-size:clamp(32px,6vw,64px); color:var(--ink-800); line-height:1.05; }
+  #dw240-root .infiltra p{ font-weight:400; font-size:clamp(16px,2.4vw,24px); color:var(--ink-700); width:100%; max-width:1227px; line-height:1.2; }
+
+  /* 4. Cards */
+  #dw240-root .cards{ width:100%; padding-inline:24px; display:flex; gap:24px; align-items:stretch; justify-content:center; margin-top:clamp(40px,5vw,38px); scrollbar-width:none; }
+  #dw240-root .cards::-webkit-scrollbar{ display:none; }
+  #dw240-root .card{ background:var(--ink-700); flex:1 1 0; min-width:0; max-width:435px; border-radius:25px; padding:clamp(24px,3vw,40px); display:flex; flex-direction:column; gap:32px; align-items:flex-start; }
+  #dw240-root .card__img{ width:100%; aspect-ratio:355 / 311; border-radius:8px; overflow:hidden; }
+  #dw240-root .card__img img{ width:100%; height:100%; object-fit:cover; }
+  #dw240-root .card__body{ display:flex; flex-direction:column; gap:16px; align-items:center; text-align:center; width:100%; line-height:1.1; }
+  #dw240-root .card__body h3{ font-weight:800; font-size:clamp(26px,3.2vw,36px); color:#fff; }
+  #dw240-root .card__body p{ font-weight:400; font-size:clamp(15px,2.4vw,20px); color:var(--gray-300); width:100%; }
+
+  /* 5. Videos */
+  #dw240-root .videos{ width:100%; padding-inline:24px; display:flex; gap:18px; align-items:center; justify-content:center; margin-top:clamp(48px,8vw,101px); scrollbar-width:none; }
+  #dw240-root .videos::-webkit-scrollbar{ display:none; }
+  #dw240-root .video{ background:var(--ink-600); flex:1 1 0; min-width:0; max-width:437px; aspect-ratio:437 / 594; border-radius:38px; display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative; overflow:hidden; }
+  #dw240-root .video__play{ width:69px; height:69px; border-radius:50%; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; transition:transform .15s ease, background .15s ease; }
+  #dw240-root .video:hover .video__play{ transform:scale(1.08); background:#fff; }
+  #dw240-root .video__play::after{ content:""; width:0; height:0; margin-left:5px; border-left:22px solid var(--ink-700); border-top:14px solid transparent; border-bottom:14px solid transparent; }
+
+  /* 6. Nav Tabs */
+  #dw240-root .navtabs{ width:100%; max-width:1200px; background:var(--ink-900); border-radius:24px; padding:clamp(28px,4vw,56px); display:flex; gap:clamp(24px,3vw,48px); align-items:stretch; margin-top:clamp(56px,10vw,128px); }
+  #dw240-root .navtabs__nav{ display:flex; flex-direction:column; gap:28px; width:220px; flex:0 0 auto; }
+  #dw240-root .navtabs__tab{ font-family:'Inter',sans-serif; font-weight:700; font-size:18px; text-align:left; color:var(--gray-100); background:none; border:none; cursor:pointer; width:100%; opacity:.5; transition:opacity .15s ease; padding:0; }
+  #dw240-root .navtabs__tab:hover{ opacity:.8; }
+  #dw240-root .navtabs__tab.is-active{ opacity:1; background:var(--gray-100); color:var(--ink-900); border-radius:100px; padding:12px 20px; }
+  #dw240-root .navtabs__divider{ width:1px; background:var(--gray-200); align-self:stretch; flex:0 0 auto; }
+  #dw240-root .navtabs__content{ flex:1 1 0; min-width:0; }
+  #dw240-root .navtabs__panel{ display:none; flex-direction:column; gap:16px; color:var(--gray-100); }
+  #dw240-root .navtabs__panel.is-active{ display:flex; }
+  #dw240-root .navtabs__panel h2{ font-weight:900; font-size:clamp(30px,5vw,52px); }
+  #dw240-root .navtabs__panel .lbl{ font-weight:700; font-size:14px; }
+  #dw240-root .navtabs__panel p{ font-weight:400; font-size:14px; line-height:1.6; }
+
+  /* 7. Container vertical */
+  #dw240-root .vcont{ width:100%; max-width:1512px; background:var(--ink-900); border-radius:25px; padding:clamp(28px,4vw,68px); display:flex; flex-direction:column; gap:clamp(48px,7vw,95px); margin-top:clamp(64px,12vw,204px); }
+  #dw240-root .vcont__top{ display:flex; gap:clamp(32px,4vw,48px); align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  #dw240-root .pgrid{ width:min(899px,100%); aspect-ratio:899 / 607; flex:1 1 460px; display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); gap:8px; }
+  #dw240-root .pgrid img{ width:100%; height:100%; object-fit:cover; border-radius:15px; }
+  #dw240-root .pinfo{ width:min(405px,100%); flex:0 1 405px; display:flex; flex-direction:column; gap:7px; }
+  #dw240-root .pinfo__badge{ display:flex; flex-direction:column; align-items:center; width:83px; }
+  #dw240-root .pinfo__badge svg{ width:100%; height:32px; }
+  #dw240-root .pinfo__badge span{ font-family:'Calibri',sans-serif; font-style:italic; color:var(--muted); font-size:5.8px; text-align:center; width:100%; }
+  #dw240-root .pinfo__name{ font-weight:800; font-size:clamp(30px,4vw,40px); color:#fff; max-width:100%; line-height:1.1; }
+  #dw240-root .pinfo__name .accent{ color:var(--red-dark); }
+  #dw240-root .pinfo__sub{ color:#fff; font-size:clamp(16px,2.2vw,20px); line-height:1.35; max-width:100%; }
+  #dw240-root .pinfo__sub b{ font-weight:700; }
+  #dw240-root .pinfo__price{ display:flex; flex-direction:column; gap:5px; width:215px; max-width:100%; color:#fff; margin-top:8px; }
+  #dw240-root .pinfo__old{ font-size:15px; text-decoration:line-through; line-height:1.1; }
+  #dw240-root .pinfo__newrow{ display:flex; gap:10px; align-items:flex-end; }
+  #dw240-root .pinfo__new{ font-weight:800; font-size:clamp(30px,4vw,40px); line-height:1.1; }
+  #dw240-root .pinfo__each{ font-size:14px; }
+  #dw240-root .colors{ display:flex; flex-direction:column; gap:26px; width:235px; max-width:100%; margin-top:16px; }
+  #dw240-root .colors > .lbl{ font-weight:700; font-size:15px; color:#fff; line-height:1.1; }
+  #dw240-root .colors__opts{ display:flex; gap:14px; }
+  #dw240-root .swatch{ display:flex; flex-direction:column; gap:9px; align-items:center; width:69px; cursor:pointer; }
+  #dw240-root .swatch__chip{ height:54px; width:100%; border-radius:8px; border:1px solid #fff; transition:outline .12s ease; }
+  #dw240-root .swatch.is-active .swatch__chip{ outline:3px solid var(--yellow); outline-offset:2px; }
+  #dw240-root .swatch span{ font-size:14px; text-align:center; color:#fff; }
+  #dw240-root .addcart{ background:var(--yellow); color:var(--yellow-ink); border:none; cursor:pointer; padding:11px 23px; border-radius:8px; font-weight:700; font-size:12px; margin-top:20px; align-self:flex-start; font-family:'Inter',sans-serif; }
+
+  /* banner Compre junto (desktop) */
+  #dw240-root .kit-scaler{ width:100%; max-width:1352px; margin:0 auto; aspect-ratio:1352 / 527; position:relative; container-type:inline-size; }
+  #dw240-root .kit{ position:absolute; inset:0; width:1352px; height:527px; transform-origin:top left; transform:scale(calc(100cqw / 1352px)); border-radius:25px; overflow:hidden; background:var(--ink-550); }
+  #dw240-root .kit__art{ position:absolute; left:492px; top:-16px; width:914.819px; height:555.954px; max-width:none; pointer-events:none; }
+  #dw240-root .kit__tube{ position:absolute; left:537px; top:91px; width:325px; height:436px; overflow:hidden; pointer-events:none; }
+  #dw240-root .kit__tube img{ position:absolute; height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; max-width:none; }
+  #dw240-root .kit__prod{ position:absolute; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+  #dw240-root .kit__prod > .rot{ flex:none; }
+  #dw240-root .kit__prod .clip{ position:relative; overflow:hidden; }
+  #dw240-root .kit__prod .clip img{ position:absolute; max-width:none; }
+  #dw240-root .kit-tubes{ left:939px; top:175px; width:478.241px; height:406.928px; }
+  #dw240-root .kit-tubes .rot{ transform:rotate(30deg); }
+  #dw240-root .kit-tubes .clip{ width:421.409px; height:226.58px; }
+  #dw240-root .kit-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
+  #dw240-root .kit-gun{ left:800px; top:175px; width:311.056px; height:445.423px; }
+  #dw240-root .kit-gun .rot{ transform:rotate(-13.61deg); }
+  #dw240-root .kit-gun .clip{ width:222.102px; height:404.518px; }
+  #dw240-root .kit-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
+  #dw240-root .kit__badge{ position:absolute; left:0; top:71px; background:var(--red); padding:10px 18px; border-top-right-radius:15px; border-bottom-right-radius:15px; display:flex; align-items:center; justify-content:center; min-width:228px; }
+  #dw240-root .kit__badge span{ font-weight:700; font-size:20px; color:#fff; line-height:1; }
+  #dw240-root .kit__title{ position:absolute; left:34px; top:150px; width:471px; font-weight:500; font-size:48px; color:#fff; line-height:1.05; }
+  #dw240-root .kit__title b{ font-weight:700; }
+  #dw240-root .kit__desc{ position:absolute; left:34px; top:270px; width:516px; font-weight:400; font-size:24px; color:#fff; line-height:1.05; }
+  #dw240-root .kit__btn{ position:absolute; left:34px; top:400px; background:var(--red); color:#fff; border:none; cursor:pointer; padding:10px 24px; border-radius:8px; font-weight:700; font-size:20px; font-family:'Inter',sans-serif; }
+
+  /* banner Compre junto (mobile) */
+  #dw240-root .kit-mobile-scaler{ display:none; width:100%; max-width:390px; margin:0 auto; aspect-ratio:390 / 527; position:relative; container-type:inline-size; overflow:hidden; border-radius:15px; }
+  #dw240-root .kit-mobile{ position:absolute; inset:0; width:390px; height:527px; transform-origin:top left; transform:scale(calc(100cqw / 390px)); background:#636564; overflow:hidden; border-radius:15px; }
+  #dw240-root .kit-mobile__art{ position:absolute; left:-76px; top:202px; width:914.819px; height:555.954px; pointer-events:none; max-width:none; }
+  #dw240-root .kit-mobile__badge{ position:absolute; left:0; top:43px; width:190px; background:var(--red); padding:10px; border-top-right-radius:15px; border-bottom-right-radius:15px; display:flex; align-items:center; justify-content:center; }
+  #dw240-root .kit-mobile__badge span{ font-weight:700; font-size:20px; color:#fff; line-height:1; text-align:center; width:100%; }
+  #dw240-root .kit-mobile__content{ position:absolute; left:29px; top:124px; width:277px; display:flex; flex-direction:column; gap:24px; align-items:flex-start; }
+  #dw240-root .kit-mobile__text{ display:flex; flex-direction:column; gap:8px; width:100%; color:#fff; }
+  #dw240-root .kit-mobile__title{ font-weight:500; font-size:32px; line-height:1; width:100%; }
+  #dw240-root .kit-mobile__title b{ font-weight:700; }
+  #dw240-root .kit-mobile__desc{ font-weight:400; font-size:14px; line-height:1; width:100%; }
+  #dw240-root .kit-mobile__btn{ background:var(--red); color:#fff; border:none; cursor:pointer; height:27px; width:92px; padding:6px 12px; border-radius:8px; font-weight:700; font-size:13px; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; }
+  #dw240-root .kit-mobile__prod{ position:absolute; display:flex; align-items:center; justify-content:center; }
+  #dw240-root .kit-mobile__prod > .rot{ flex:none; }
+  #dw240-root .kit-mobile__prod .clip{ position:relative; overflow:hidden; }
+  #dw240-root .kit-mobile__prod .clip img{ position:absolute; max-width:none; }
+  #dw240-root .km-gun{ left:160px; top:360px; width:143.764px; height:205.866px; }
+  #dw240-root .km-gun .rot{ transform:rotate(-13.61deg); }
+  #dw240-root .km-gun .clip{ width:102.651px; height:186.96px; }
+  #dw240-root .km-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
+  #dw240-root .km-tubes{ left:182px; top:338px; width:255.447px; height:217.356px; }
+  #dw240-root .km-tubes .rot{ transform:rotate(30deg); }
+  #dw240-root .km-tubes .clip{ width:225.091px; height:121.025px; }
+  #dw240-root .km-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
+  #dw240-root .km-tube{ left:52px; top:338px; width:140px; height:188px; }
+  #dw240-root .km-tube .clip{ width:140px; height:188px; }
+  #dw240-root .km-tube .clip img{ height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; }
+
+  @media (max-width:640px){
+    #dw240-root .kit-scaler{ display:none; }
+    #dw240-root .kit-mobile-scaler{ display:block; }
+  }
+  @media (max-width:1120px){
+    #dw240-root .page-frame{ padding-left:16px; padding-right:16px; }
+  }
+  @media (max-width:760px){
+    #dw240-root .navtabs{ flex-direction:column; gap:24px; }
+    #dw240-root .navtabs__nav{ width:100%; flex-direction:row; flex-wrap:wrap; gap:12px; }
+    #dw240-root .navtabs__tab{ width:auto; }
+    #dw240-root .navtabs__divider{ width:100%; height:1px; align-self:auto; }
+  }
+  /* mobile: "O que e" empilha (texto > video > cards 2x2); cards e videos viram carrossel */
+  @media (max-width:768px){
+    #dw240-root .what{ display:grid; grid-template-columns:1fr; grid-template-areas:"head" "video" "cards"; gap:24px; }
+    #dw240-root .what__col{ display:contents; }
+    #dw240-root .what__bg{ grid-area:video; width:100%; max-width:none; }
+    #dw240-root .what__head{ grid-area:head; }
+    #dw240-root .attr-grid{ grid-area:cards; }
+    #dw240-root .cards, #dw240-root .videos{ flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+    #dw240-root .card{ flex:0 0 80%; max-width:80%; scroll-snap-align:center; }
+    #dw240-root .video{ flex:0 0 72%; max-width:72%; scroll-snap-align:center; }
+  }
+</style>
+
+  <div class="page-frame">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero-scaler" aria-label="Selante Adesivo DW240">
+      <div class="hero">
+        <img class="hero__bg" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/hero-bg.png" alt="Selante Adesivo DW240" />
+        <div class="hero__badge">
+          <svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display:block;" viewBox="0 0 121 47.0689" fill="none" xmlns="http://www.w3.org/2000/svg"><g><path fill-rule="evenodd" clip-rule="evenodd" d="M3.69022 2.2412C23.2298 3.71437 42.7604 7.05837 62.3271 6.87761C81.9119 6.69686 101.424 3.32574 121 2.19601V47.0689C101.244 45.2071 81.7763 42.7578 62.3271 42.8211C42.7694 42.8844 23.2298 45.6951 3.69022 47.0237V2.2412Z" fill="#EDEDED"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.376076 0.370154C20.1597 1.65353 39.9162 5.32289 59.754 5.43135C79.5828 5.5398 99.3665 1.8614 119.168 0.397268C119.168 7.85349 119.168 15.3097 119.159 22.7569C119.159 30.2041 119.15 37.6512 119.132 45.0984C99.1676 43.3361 79.4654 41.1127 59.754 41.3748C39.9343 41.6369 20.1507 44.276 0.376076 45.2611V0.370154Z" fill="#ffffff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.388622 0C8.32376 0.515157 16.2408 1.4099 24.1669 2.31369C36.0154 3.66032 47.882 4.99793 59.7485 5.06119C72.2296 5.12446 84.7198 3.68744 97.21 2.25042C104.522 1.4099 111.824 0.569383 119.145 0.0271124L119.533 0V0.388626C119.533 5.55827 119.533 13.5477 119.524 21.5281V22.7482L119.515 33.919C119.515 37.6426 119.515 41.3662 119.497 45.0898V45.4875L119.099 45.4513C116.144 45.1892 112.692 44.8729 109.248 44.5566C92.6459 43.0292 76.1972 41.5108 59.7485 41.7277C48.0718 41.8814 36.3769 42.8665 24.6911 43.8426C16.6023 44.5204 8.50451 45.2073 0.379584 45.614L0 45.6321V0.370551H0.36151L0.388622 0.00903701V0ZM24.0946 3.03671C16.3041 2.15101 8.52259 1.27434 0.732055 0.759178V44.8729C8.67623 44.4662 16.6566 43.7974 24.6369 43.1286C36.3227 42.1435 48.0085 41.1583 59.7395 41.0137C76.2243 40.7968 92.6911 42.3152 109.311 43.8516C112.312 44.1318 115.304 44.4029 118.765 44.7102C118.765 41.1222 118.774 37.5251 118.783 33.9371V22.7663C118.792 22.7663 118.792 21.5462 118.792 21.5462C118.792 15.536 118.801 9.50781 118.801 0.795329C111.634 1.3376 104.458 2.16004 97.2913 2.98249C84.7921 4.4195 72.2839 5.85652 59.7485 5.79326C47.8277 5.72999 35.9521 4.38335 24.0946 3.04575V3.03671Z" fill="#C6C6C6"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.74957 5.27753C23.1595 6.52475 41.5513 9.26322 59.9792 9.30841C78.3981 9.34456 96.7809 6.58802 115.209 5.28657C115.2 11.0708 115.182 16.846 115.173 22.6302C115.164 28.4144 115.146 34.1896 115.137 39.9738C96.6363 38.7085 78.3168 37.3076 59.9792 37.4884C41.5603 37.6692 23.1504 39.4677 4.74957 40.3624V5.27753Z" fill="#E30613"/><path fill-rule="evenodd" clip-rule="evenodd" d="M50.9898 9.0285C61.6906 9.29963 72.4004 8.98331 83.0741 7.9801C93.7749 6.9769 104.458 5.88333 115.177 5.27779C115.167 11.062 115.149 16.8372 115.14 22.6214C115.131 28.4056 115.113 34.1808 115.104 39.965C104.331 39.1968 93.6393 38.4286 82.9928 37.9857C72.3552 37.5338 61.6906 37.4796 50.9898 37.6875V9.0285Z" fill="#878787"/><path fill-rule="evenodd" clip-rule="evenodd" d="M56.6718 30.0868V16.7018C57.431 16.7018 58.1902 16.7108 58.9494 16.7199V28.4419C61.4619 28.4419 63.9654 28.4419 66.4869 28.4239V30.0778C63.2062 30.0778 59.9345 30.0778 56.6718 30.0959V30.0868ZM70.7347 18.184V21.9528C72.5694 21.9076 74.386 21.8624 76.2387 21.8082C76.2387 22.3414 76.2387 22.8746 76.2297 23.4079C74.395 23.453 72.5603 23.4892 70.7437 23.5254V28.4148C73.2563 28.4058 75.7597 28.3877 78.2723 28.3787V30.0868C75.0006 30.0868 71.7379 30.0778 68.4752 30.0868C68.4752 27.8454 68.4752 25.595 68.4752 23.3536C68.4752 21.1122 68.4843 18.8618 68.4843 16.6114C71.7921 16.4939 75.109 16.3403 78.4259 16.1685V17.8767C75.8592 17.9942 73.3014 18.1026 70.7437 18.193L70.7347 18.184ZM86.6684 30.3218C86.2798 30.3218 85.9092 30.3218 85.5387 30.3128C84.5174 27.8906 83.4781 25.4866 82.4658 23.1096C81.4536 20.7507 80.4052 18.419 79.3929 16.1053C80.2244 16.0601 81.074 16.0059 81.9145 15.9516C82.6104 17.6508 83.3244 19.3679 84.0294 21.0851C84.7343 22.8204 85.4393 24.5647 86.1623 26.318C86.8492 24.5376 87.536 22.7391 88.2229 20.9315C88.9188 19.1149 89.6057 17.2712 90.3107 15.4274C91.115 15.3732 91.9375 15.328 92.7599 15.2738C91.7386 17.8496 90.7083 20.3983 89.6961 22.9108C88.6929 25.4052 87.6897 27.8726 86.6774 30.3218H86.6684ZM94.929 30.2314C94.938 27.7189 94.9561 25.2064 94.9652 22.6848C94.9742 20.1723 94.9742 17.6598 95.0104 15.1382C95.7696 15.093 96.5288 15.0479 97.288 15.0027C97.279 17.5513 97.2608 20.091 97.2518 22.6396C97.2427 25.1793 97.2246 27.7279 97.2156 30.2676C96.4564 30.2495 95.7062 30.2405 94.947 30.2224L94.929 30.2314ZM100.261 29.6259C100.551 28.9842 100.831 28.3335 101.102 27.6828C101.527 27.981 102.051 28.2341 102.683 28.4329C103.325 28.6408 103.886 28.7492 104.401 28.7583C105.277 28.7763 106 28.5685 106.552 28.1075C107.085 27.6647 107.356 27.0682 107.356 26.3542C107.356 25.8119 107.22 25.3058 106.922 24.8449C106.624 24.3749 105.865 23.8688 104.654 23.3356C104.211 23.1367 103.759 22.9469 103.316 22.7481C102.186 22.251 101.391 21.6816 100.939 21.0038C100.487 20.335 100.27 19.5306 100.279 18.5726C100.279 17.4158 100.722 16.4397 101.608 15.6353C102.494 14.8309 103.623 14.3881 105.006 14.3339C106.85 14.2616 108.133 14.5146 108.856 15.075C108.63 15.7167 108.395 16.3583 108.178 17C107.88 16.7922 107.41 16.5933 106.796 16.4126C106.154 16.2318 105.594 16.1505 105.042 16.1685C104.283 16.1957 103.669 16.4216 103.217 16.8554C102.774 17.2802 102.557 17.8225 102.557 18.4642C102.557 19.1058 102.62 19.2233 102.783 19.5487C102.946 19.8741 103.153 20.1452 103.443 20.3711C103.723 20.579 104.31 20.8863 105.196 21.284C105.639 21.4828 106.1 21.6907 106.561 21.8985C107.699 22.4047 108.495 23.0283 108.947 23.7513C109.408 24.4834 109.625 25.4052 109.625 26.5169C109.625 27.6285 109.127 28.7492 108.115 29.5536C107.094 30.367 105.747 30.7285 104.048 30.6743C102.566 30.6291 101.31 30.2676 100.261 29.6078V29.6259Z" fill="#ffffff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6826 31.0174C12.4444 31.0446 11.2062 31.0626 9.97707 31.0807V14.6499C12.345 14.6409 13.8272 14.6499 14.4237 14.6861C16.8639 14.7855 18.7799 15.5627 20.1989 16.9726C21.6178 18.3825 22.3318 20.172 22.3318 22.3863C22.3318 28.0169 19.4487 30.909 13.6735 31.0265L13.6826 31.0174ZM12.9505 17.2709V28.3965C13.4205 28.4326 13.9356 28.4507 14.496 28.4417C15.9872 28.4236 17.1622 27.8904 18.0027 26.842C18.8432 25.8026 19.268 24.3475 19.268 22.4948C19.268 19.0965 17.614 17.3342 14.2972 17.2257C13.9808 17.2167 13.5289 17.2257 12.9505 17.2709ZM33.4664 30.5384C31.9842 28.532 30.502 26.4805 29.0198 24.4018C28.5769 24.4018 27.9443 24.3656 27.1399 24.3114V30.7011C26.1187 30.7282 25.0883 30.7554 24.0761 30.7825V15.2464C24.2297 15.2464 24.8805 15.2645 25.9921 15.2735C27.1128 15.2735 28.0076 15.3006 28.6944 15.3458C32.9241 15.5899 35.048 17.1444 35.048 20.0274C35.048 22.9105 34.7498 21.6723 34.1714 22.3773C33.5839 23.0913 32.8428 23.5793 31.9661 23.8685C33.611 26.1009 35.2469 28.2971 36.8918 30.4481C35.744 30.4752 34.6142 30.5113 33.4755 30.5384H33.4664ZM27.1309 17.777V22.0248C27.6822 22.079 28.107 22.1061 28.3871 22.1152C29.6253 22.1423 30.5291 21.9977 31.0985 21.6994C31.6769 21.3921 31.9661 20.8047 31.9661 19.9009C31.9661 18.9971 31.6498 18.6446 31.0352 18.3283C30.4207 18.012 29.4536 17.8222 28.1251 17.768C27.8087 17.7589 27.4743 17.7589 27.1219 17.786L27.1309 17.777ZM42.8748 24.5373C44.7366 21.8079 46.5984 19.1327 48.4692 16.4846C47.4208 16.4484 46.3725 16.4033 45.3331 16.3671C44.0045 18.2922 42.6941 20.2443 41.3745 22.2236C40.064 20.172 38.7445 18.0933 37.434 15.9875C36.3856 15.9333 35.3372 15.87 34.2889 15.8158C36.1597 18.7802 38.0305 21.6814 39.9104 24.5192V30.3667C40.8955 30.3396 41.8897 30.3215 42.8748 30.2944V24.5283V24.5373Z" fill="#ffffff"/></g></svg>
+          <span>INOVA&Ccedil;&Atilde;O EM CONCEITO</span>
+        </div>
+        <div class="hero__info">
+          <div class="hero__name">
+            <span class="l1">Selante Adesivo</span>
+            <span class="l2">dw240</span>
+          </div>
+          <p class="hero__desc"><b>Cola, veda e impermeabiliza</b> juntas de uma vez. Poliuretano extra forte mais <b>resistente e el&aacute;stico</b> que silicone.</p>
+        </div>
+        <button class="hero__link" type="button"><span>Conhecer mais do produto</span></button>
+        <div class="hero__arrow hero__arrow--left"><svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.2865 0C10.0067 0 0 10.0067 0 22.2865C0 34.5664 10.0067 44.5731 22.2865 44.5731C34.5664 44.5731 44.5731 34.5664 44.5731 22.2865C44.5731 10.0067 34.5664 0 22.2865 0ZM26.2758 28.9725C26.9221 29.6188 26.9221 30.6886 26.2758 31.3349C25.9415 31.6692 25.5181 31.8252 25.0946 31.8252C24.6712 31.8252 24.2477 31.6692 23.9135 31.3349L16.0463 23.4677C15.4 22.8214 15.4 21.7517 16.0463 21.1053L23.9135 13.2382C24.5598 12.5919 25.6295 12.5919 26.2758 13.2382C26.9221 13.8845 26.9221 14.9543 26.2758 15.6006L19.5899 22.2865L26.2758 28.9725Z" fill="#2D2D2B"/></svg></div>
+        <div class="hero__arrow hero__arrow--right"><svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.2865 0C10.0067 0 0 10.0067 0 22.2865C0 34.5664 10.0067 44.5731 22.2865 44.5731C34.5664 44.5731 44.5731 34.5664 44.5731 22.2865C44.5731 10.0067 34.5664 0 22.2865 0ZM26.2758 28.9725C26.9221 29.6188 26.9221 30.6886 26.2758 31.3349C25.9415 31.6692 25.5181 31.8252 25.0946 31.8252C24.6712 31.8252 24.2477 31.6692 23.9135 31.3349L16.0463 23.4677C15.4 22.8214 15.4 21.7517 16.0463 21.1053L23.9135 13.2382C24.5598 12.5919 25.6295 12.5919 26.2758 13.2382C26.9221 13.8845 26.9221 14.9543 26.2758 15.6006L19.5899 22.2865L26.2758 28.9725Z" fill="#2D2D2B"/></svg></div>
+      </div>
+    </section>
+
+    <!-- ============ O QUE E O DW240? ============ -->
+    <section class="what" aria-label="O que &eacute; o DW240">
+      <div class="what__bg">
+        <!-- VIDEO servido do GitHub via CDN jsDelivr (o media da Wake nao aceita .mp4). -->
+        <video class="what__video"
+               src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/magnific_o-produto-rotacionando-18_jS8ll6DLD0.mp4"
+               poster="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/product-tube.png"
+               autoplay loop muted playsinline></video>
+      </div>
+      <div class="what__col">
+        <div class="what__head">
+          <h2>O que &eacute; o DW240?</h2>
+          <p>Cola, veda e impermeabiliza juntas de uma vez. Poliuretano extra forte, mais resistente e el&aacute;stico que silicone.</p>
+        </div>
+        <div class="attr-grid">
+          <div class="attr-col">
+            <article class="attr-card">
+              <div class="attr-card__icon"><svg width="48" height="58" viewBox="0 0 48 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M42.5999 6.39718L26.9694 0.454365C25.3496 -0.151455 22.7066 -0.151455 21.0867 0.454365L5.45644 6.39718C2.44403 7.55112 0 11.1283 0 14.3882V37.7555C0 40.0922 1.5062 43.179 3.35344 44.5638L18.9837 56.4205C21.7404 58.5265 26.259 58.5265 29.0156 56.4205L44.646 44.5638C46.4933 43.1502 47.9998 40.0922 47.9998 37.7555V14.3882C48.0282 11.1283 45.5839 7.55112 42.5999 6.39718ZM33.9037 22.5524L21.6835 34.9572C21.2572 35.3899 20.7173 35.5918 20.1773 35.5918C19.6374 35.5918 19.0974 35.3899 18.6711 34.9572L14.1242 30.2837C13.3001 29.4471 13.3001 28.0624 14.1242 27.2258C14.9484 26.3891 16.3125 26.3891 17.1366 27.2258L20.2057 30.3414L30.9197 19.4656C31.7438 18.629 33.1079 18.629 33.9321 19.4656C34.7562 20.3022 34.7562 21.7158 33.9037 22.5524Z" fill="white"/></svg></div>
+              <div class="attr-card__txt">
+                <p class="t">El&aacute;stico e sem rachaduras</p>
+                <p class="d">Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</p>
+              </div>
+            </article>
+            <article class="attr-card">
+              <div class="attr-card__icon"><svg width="48" height="58" viewBox="0 0 48 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.5998 15.6888L7.14081 45.5003C5.71861 46.8923 3.28901 46.5733 2.42976 44.8043C0.889037 41.7014 0.000158319 38.1924 0.000158319 34.5095C-0.0591002 18.5017 16.5333 4.81393 22.163 0.608991C23.2593 -0.202997 24.7407 -0.202997 25.8074 0.608991C28.3851 2.52296 33.2147 6.4959 37.748 11.7158C38.7554 12.8758 38.6961 14.6158 37.5998 15.6888Z" fill="white"/><path d="M48.0001 34.5394C48.0001 47.4732 37.2446 58 24.0003 58C18.6967 58 13.7485 56.3181 9.74854 53.4181C8.2967 52.3741 8.17818 50.2862 9.45224 49.0392L39.289 19.8365C40.6816 18.4735 43.0223 18.7635 43.9705 20.4455C46.4001 24.8245 48.0297 29.5805 48.0001 34.5394Z" fill="white"/></svg></div>
+              <div class="attr-card__txt">
+                <p class="t">El&aacute;stico e sem rachaduras</p>
+                <p class="d">Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</p>
+              </div>
+            </article>
+          </div>
+          <div class="attr-col">
+            <article class="attr-card">
+              <div class="attr-card__icon"><svg width="50" height="53" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.50098 19.4037C14.1034 -1.80122 35.3083 -1.80122 45.9107 19.4037" stroke="white" stroke-width="7" stroke-linecap="round"/><path d="M3.50098 49.4438C14.1034 28.2389 35.3083 28.2389 45.9107 49.4438" stroke="white" stroke-width="7" stroke-linecap="round"/></svg></div>
+              <div class="attr-card__txt">
+                <p class="t">El&aacute;stico e sem rachaduras</p>
+                <p class="d">Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</p>
+              </div>
+            </article>
+            <article class="attr-card">
+              <div class="attr-card__icon"><svg width="50" height="53" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.50098 19.4037C14.1034 -1.80122 35.3083 -1.80122 45.9107 19.4037" stroke="white" stroke-width="7" stroke-linecap="round"/><path d="M3.50098 49.4438C14.1034 28.2389 35.3083 28.2389 45.9107 49.4438" stroke="white" stroke-width="7" stroke-linecap="round"/></svg></div>
+              <div class="attr-card__txt">
+                <p class="t">El&aacute;stico e sem rachaduras</p>
+                <p class="d">Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OBRA BEM-FEITA ============ -->
+    <section class="infiltra" aria-label="Obra bem-feita n&atilde;o infiltra">
+      <h2>Obra bem-feita n&atilde;o infiltra.</h2>
+      <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza de uma vez, com elasticidade e ader&ecirc;ncia que o silicone convencional n&atilde;o entrega.</p>
+    </section>
+
+    <!-- ============ CARDS ============ -->
+    <section class="cards" aria-label="Aplica&ccedil;&otilde;es">
+      <article class="card">
+        <div class="card__img"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/card-telhas.png" alt="Telhas" /></div>
+        <div class="card__body">
+          <h3>Telhas</h3>
+          <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/card-tanques.png" alt="Tanques" /></div>
+        <div class="card__body">
+          <h3>Tanques</h3>
+          <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/card-trincas.png" alt="Trincas" /></div>
+        <div class="card__body">
+          <h3>Trincas</h3>
+          <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ VIDEOS ============ -->
+    <section class="videos" aria-label="V&iacute;deos">
+      <div class="video"><div class="video__play"></div></div>
+      <div class="video"><div class="video__play"></div></div>
+      <div class="video"><div class="video__play"></div></div>
+    </section>
+
+    <!-- ============ NAV TABS / INFORMACOES ============ -->
+    <section class="navtabs" aria-label="Informa&ccedil;&otilde;es do produto">
+      <nav class="navtabs__nav">
+        <button class="navtabs__tab is-active" data-tab="oque">O que s&atilde;o</button>
+        <button class="navtabs__tab" data-tab="beneficios">Benef&iacute;cios</button>
+        <button class="navtabs__tab" data-tab="modo">Modo de Uso</button>
+        <button class="navtabs__tab" data-tab="composicao">Composi&ccedil;&atilde;o</button>
+      </nav>
+      <div class="navtabs__divider"></div>
+      <div class="navtabs__content">
+        <div class="navtabs__panel is-active" data-panel="oque">
+          <h2>Informa&ccedil;&otilde;es</h2>
+          <p class="lbl">Informa&ccedil;&otilde;es</p>
+          <p>O Selante DW240 da Drylevis &eacute; um selante adesivo com alto desempenho para tratamento de juntas de dilata&ccedil;&atilde;o e de preenchimento. J&aacute; vem pronto para uso, al&eacute;m de vedar e aderir &agrave; superf&iacute;cie com rapidez e elasticidade. Possui &oacute;tima resist&ecirc;ncia &agrave; &aacute;gua, a raios UV, a vibra&ccedil;&otilde;es, a movimenta&ccedil;&otilde;es e &agrave; a&ccedil;&atilde;o do tempo. Pode ser utilizado tamb&eacute;m para fixa&ccedil;&atilde;o e veda&ccedil;&atilde;o de diversos materiais, como pedras, concretos, vidros, esquadrias de alum&iacute;nio etc.</p>
+        </div>
+        <div class="navtabs__panel" data-panel="beneficios">
+          <h2>Benef&iacute;cios</h2>
+          <p class="lbl">Por que usar</p>
+          <p>Alta elasticidade que acompanha as movimenta&ccedil;&otilde;es da estrutura sem rachar; ader&ecirc;ncia superior ao silicone convencional; resist&ecirc;ncia &agrave; &aacute;gua, raios UV e varia&ccedil;&otilde;es de temperatura; cura r&aacute;pida e pronto para uso. Cola, veda e impermeabiliza em uma &uacute;nica aplica&ccedil;&atilde;o.</p>
+        </div>
+        <div class="navtabs__panel" data-panel="modo">
+          <h2>Modo de Uso</h2>
+          <p class="lbl">Como aplicar</p>
+          <p>Limpe e seque bem a superf&iacute;cie, removendo poeira, gordura e part&iacute;culas soltas. Corte o bico na espessura desejada, aplique o selante uniformemente na junta e alise antes da forma&ccedil;&atilde;o de pel&iacute;cula. Tempo de cura conforme temperatura e umidade do ambiente.</p>
+        </div>
+        <div class="navtabs__panel" data-panel="composicao">
+          <h2>Composi&ccedil;&atilde;o</h2>
+          <p class="lbl">O que cont&eacute;m</p>
+          <p>Selante adesivo monocomponente &agrave; base de poliuretano (PU), com cura por umidade do ar. N&atilde;o cont&eacute;m solventes agressivos. Dispon&iacute;vel nas cores branco, cinza e preto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTAINER VERTICAL ============ -->
+    <section class="vcont" aria-label="Compre o kit">
+      <div class="vcont__top">
+        <div class="pgrid">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/product-tube.png" alt="" />
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/grid-2.jpg" alt="" />
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/grid-3.png" alt="" />
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/grid-4.png" alt="" />
+        </div>
+        <div class="pinfo">
+          <div class="pinfo__badge">
+            <svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display:block;" viewBox="0 0 83.0009 32.2869" fill="none" xmlns="http://www.w3.org/2000/svg"><g><path fill-rule="evenodd" clip-rule="evenodd" d="M2.53122 1.53735C15.9346 2.54787 29.3317 4.84169 42.7537 4.7177C56.188 4.59371 69.5727 2.28129 83.0009 1.50635V32.2869C69.4487 31.0098 56.095 29.3298 42.7537 29.3732C29.3379 29.4165 15.9346 31.3446 2.53122 32.2559V1.53735Z" fill="#EDEDED"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.25781 0.253906C13.8285 1.13424 27.3807 3.65124 40.9886 3.72563C54.5903 3.80003 68.161 1.27683 81.7442 0.272505C81.7442 5.3871 81.7442 10.5017 81.738 15.6101C81.738 20.7185 81.7318 25.8269 81.7194 30.9353C68.0247 29.7264 54.5097 28.2013 40.9886 28.3811C27.3931 28.5609 13.8223 30.3711 0.25781 31.0469V0.253906Z" fill="#ffffff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.266578 0C5.70975 0.353372 11.1405 0.967123 16.5775 1.58707C24.7051 2.5108 32.845 3.42833 40.985 3.47173C49.5465 3.51512 58.1142 2.5294 66.682 1.54368C71.6974 0.967123 76.7066 0.390568 81.7282 0.0185978L81.9947 0V0.266578C81.9947 3.8127 81.9947 9.29307 81.9885 14.7672V15.6042L81.9823 23.2668C81.9823 25.821 81.9823 28.3752 81.9699 30.9294V31.2021L81.6972 31.1773C79.6699 30.9976 77.3017 30.7806 74.9397 30.5636C63.5512 29.5159 52.2681 28.4744 40.985 28.6231C32.9752 28.7285 24.953 29.4043 16.9371 30.0738C11.3885 30.5388 5.83374 31.01 0.260378 31.2889L0 31.3013V0.254179H0.24798L0.266578 0.00619894V0ZM16.5279 2.08304C11.1839 1.47548 5.84614 0.874131 0.502159 0.520759V30.7806C5.95153 30.5016 11.4257 30.0428 16.8999 29.5841C24.9158 28.9083 32.9318 28.2326 40.9788 28.1334C52.2867 27.9846 63.5822 29.0261 74.9831 30.08C77.0413 30.2722 79.0934 30.4582 81.4678 30.669C81.4678 28.2078 81.474 25.7404 81.4802 23.2792V15.6166C81.4864 15.6166 81.4864 14.7796 81.4864 14.7796C81.4864 10.657 81.4926 6.52189 81.4926 0.545556C76.5764 0.917527 71.654 1.48168 66.7377 2.04584C58.1638 3.03156 49.5837 4.01728 40.985 3.97389C32.8078 3.93049 24.6617 3.00676 16.5279 2.08924V2.08304Z" fill="#C6C6C6"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3.25778 3.62012C15.8862 4.47565 28.5022 6.3541 41.143 6.3851C53.7776 6.4099 66.3874 4.51905 79.0282 3.62632C79.022 7.594 79.0096 11.5555 79.0034 15.5232C78.9972 19.4909 78.9848 23.4524 78.9786 27.42C66.2882 26.5521 53.7218 25.5912 41.143 25.7152C28.5084 25.8392 15.88 27.0729 3.25778 27.6866V3.62012Z" fill="#E30613"/><path fill-rule="evenodd" clip-rule="evenodd" d="M35.0011 6.19291C42.3413 6.3789 49.6877 6.16192 57.0094 5.47377C64.3496 4.78562 71.6774 4.03548 79.03 3.62012C79.0238 7.5878 79.0114 11.5493 79.0052 15.517C78.999 19.4847 78.9866 23.4462 78.9804 27.4138C71.5906 26.8869 64.2566 26.3599 56.9536 26.0561C49.6567 25.7462 42.3413 25.709 35.0011 25.8516V6.19291Z" fill="#878787"/><path fill-rule="evenodd" clip-rule="evenodd" d="M38.899 20.6382V11.4568C39.4197 11.4568 39.9405 11.463 40.4613 11.4692V19.5099C42.1847 19.5099 43.902 19.5099 45.6317 19.4975V20.6321C43.3812 20.6321 41.137 20.632 38.899 20.6444V20.6382ZM48.5454 12.4735V15.0587C49.8039 15.0277 51.05 14.9967 52.3209 14.9595C52.3209 15.3253 52.3209 15.691 52.3147 16.0568C51.0562 16.0878 49.7977 16.1126 48.5516 16.1374V19.4913C50.2751 19.4851 51.9924 19.4727 53.7158 19.4665V20.6382C51.4716 20.6382 49.2336 20.632 46.9956 20.6382C46.9956 19.1008 46.9956 17.5571 46.9956 16.0196C46.9956 14.4821 47.0017 12.9385 47.0017 11.3948C49.2708 11.3142 51.546 11.2088 53.8212 11.091V12.2627C52.0605 12.3433 50.3061 12.4177 48.5516 12.4797L48.5454 12.4735ZM59.4752 20.7994C59.2086 20.7994 58.9544 20.7994 58.7002 20.7932C57.9997 19.1318 57.2867 17.4827 56.5924 15.8522C55.898 14.2342 55.1789 12.6347 54.4846 11.0476C55.0549 11.0166 55.6377 10.9794 56.2142 10.9422C56.6916 12.1077 57.1813 13.2856 57.6649 14.4635C58.1485 15.6538 58.632 16.8503 59.128 18.0531C59.5992 16.8317 60.0703 15.598 60.5415 14.3581C61.0188 13.112 61.49 11.8473 61.9736 10.5826C62.5253 10.5454 63.0895 10.5144 63.6536 10.4773C62.9531 12.2441 62.2463 13.9924 61.552 15.7158C60.8639 17.4269 60.1757 19.1194 59.4814 20.7994H59.4752ZM65.1415 20.7374C65.1477 19.014 65.1601 17.2905 65.1663 15.5608C65.1725 13.8374 65.1725 12.1139 65.1849 10.3843C65.7057 10.3533 66.2264 10.3223 66.7472 10.2913C66.741 12.0395 66.7286 13.7816 66.7224 15.5299C66.7162 17.2719 66.7038 19.0202 66.6976 20.7622C66.1768 20.7498 65.6623 20.7436 65.1415 20.7312V20.7374ZM68.7992 20.3221C68.9976 19.8819 69.1898 19.4355 69.3758 18.9892C69.6672 19.1938 70.0267 19.3673 70.4607 19.5037C70.9009 19.6463 71.2852 19.7207 71.6386 19.7269C72.24 19.7393 72.7359 19.5967 73.1141 19.2806C73.4799 18.9768 73.6658 18.5676 73.6658 18.0779C73.6658 17.7059 73.5728 17.3587 73.3683 17.0425C73.1637 16.7202 72.6429 16.373 71.8122 16.0072C71.5084 15.8708 71.1984 15.7406 70.8947 15.6042C70.1197 15.2633 69.5742 14.8727 69.2642 14.4077C68.9542 13.949 68.8054 13.3972 68.8116 12.7401C68.8116 11.9465 69.1154 11.277 69.723 10.7252C70.3305 10.1735 71.1054 9.8697 72.054 9.8325C73.3187 9.78291 74.199 9.95649 74.695 10.3409C74.54 10.781 74.3788 11.2212 74.23 11.6614C74.0254 11.5188 73.703 11.3824 73.2815 11.2584C72.8413 11.1344 72.4569 11.0786 72.0788 11.091C71.558 11.1096 71.1364 11.2646 70.8265 11.5622C70.5227 11.8535 70.3739 12.2255 70.3739 12.6657C70.3739 13.1058 70.4173 13.1864 70.5289 13.4096C70.6405 13.6328 70.7831 13.8188 70.9815 13.9738C71.1736 14.1164 71.5766 14.3271 72.1842 14.5999C72.4879 14.7363 72.8041 14.8789 73.1203 15.0215C73.9014 15.3687 74.447 15.7964 74.757 16.2924C75.0731 16.7946 75.2219 17.4269 75.2219 18.1894C75.2219 18.952 74.881 19.7207 74.1866 20.2725C73.4861 20.8304 72.5623 21.0784 71.3968 21.0412C70.3801 21.0102 69.5184 20.7622 68.7992 20.3097V20.3221Z" fill="#ffffff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M9.38547 21.2764C8.53614 21.295 7.68681 21.3074 6.84368 21.3198V10.0491C8.46795 10.0429 9.48467 10.0491 9.89383 10.0739C11.5677 10.1421 12.882 10.6753 13.8553 11.6424C14.8286 12.6095 15.3184 13.837 15.3184 15.3559C15.3184 19.2182 13.3408 21.202 9.37927 21.2826L9.38547 21.2764ZM8.88331 11.847V19.4786C9.20569 19.5034 9.55906 19.5158 9.94343 19.5096C10.9663 19.4972 11.7723 19.1314 12.3488 18.4123C12.9254 17.6993 13.2168 16.7012 13.2168 15.4303C13.2168 13.0993 12.0823 11.8904 9.80704 11.816C9.59006 11.8098 9.28008 11.816 8.88331 11.847ZM22.9562 20.9479C21.9395 19.5716 20.9228 18.1643 19.906 16.7384C19.6023 16.7384 19.1683 16.7136 18.6165 16.6764V21.0594C17.916 21.078 17.2093 21.0966 16.5149 21.1152V10.4583C16.6203 10.4583 17.0667 10.4707 17.8292 10.4769C18.5979 10.4769 19.2117 10.4955 19.6829 10.5265C22.5842 10.6939 24.0411 11.7602 24.0411 13.7378C24.0411 15.7155 23.8365 14.8661 23.4398 15.3497C23.0368 15.8395 22.5284 16.1742 21.9271 16.3726C23.0554 17.9039 24.1775 19.4104 25.3058 20.8859C24.5185 20.9045 23.7435 20.9293 22.9624 20.9479H22.9562ZM18.6103 12.1941V15.1079C18.9885 15.1451 19.2799 15.1637 19.4721 15.1699C20.3214 15.1885 20.9414 15.0893 21.3319 14.8847C21.7287 14.6739 21.9271 14.271 21.9271 13.651C21.9271 13.0311 21.7101 12.7893 21.2885 12.5723C20.867 12.3553 20.2036 12.2251 19.2923 12.1879C19.0753 12.1817 18.8459 12.1817 18.6041 12.2003L18.6103 12.1941ZM29.4099 16.8314C30.687 14.9591 31.9641 13.1241 33.2474 11.3076C32.5282 11.2828 31.8091 11.2518 31.0962 11.227C30.1848 12.5475 29.2859 13.8866 28.3808 15.2443C27.4818 13.837 26.5767 12.4111 25.6778 10.9666C24.9586 10.9294 24.2395 10.886 23.5204 10.8488C24.8037 12.8823 26.087 14.8723 27.3765 16.819V20.8301C28.0522 20.8115 28.7341 20.7991 29.4099 20.7805V16.8252V16.8314Z" fill="#ffffff"/></g></svg>
+            <span>INOVA&Ccedil;&Atilde;O EM CONCEITO</span>
+          </div>
+          <p class="pinfo__name">Selante Adesivo <span class="accent">DW240</span></p>
+          <p class="pinfo__sub"><b>Cola, veda e impermeabiliza</b> juntas de uma vez. Poliuretano extra forte mais resistente e el&aacute;stico que silicone.</p>
+          <div class="pinfo__price">
+            <p class="pinfo__old">R$ 75,24</p>
+            <div class="pinfo__newrow">
+              <p class="pinfo__new">R$ 71,48</p>
+              <p class="pinfo__each">cada</p>
+            </div>
+          </div>
+          <div class="colors">
+            <p class="lbl">Cores</p>
+            <div class="colors__opts">
+              <div class="swatch is-active"><div class="swatch__chip" style="background:#fff"></div><span>Branco</span></div>
+              <div class="swatch"><div class="swatch__chip" style="background:#e6e6e6"></div><span>Cinza</span></div>
+              <div class="swatch"><div class="swatch__chip" style="background:#000"></div><span>Preto</span></div>
+            </div>
+          </div>
+          <button class="addcart" type="button">Adicionar ao carrinho</button>
+        </div>
+      </div>
+
+      <!-- compre junto (desktop) -->
+      <div class="kit-scaler">
+        <div class="kit">
+          <img class="kit__art" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-art.png" alt="" />
+          <div class="kit__tube"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-tube.png" alt="" /></div>
+          <div class="kit__prod kit-tubes"><div class="rot"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-prod-a.png" alt="" /></div></div></div>
+          <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-prod-b.png" alt="" /></div></div></div>
+          <div class="kit__badge"><span>Compre junto</span></div>
+          <p class="kit__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
+          <p class="kit__desc">Selecionamos os melhores produtos para que voc&ecirc; tenha a melhor performance e aplica&ccedil;&atilde;o do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+          <button class="kit__btn" type="button">Aproveitar</button>
+        </div>
+      </div>
+
+      <!-- compre junto (mobile, abaixo de 640px) -->
+      <div class="kit-mobile-scaler">
+        <div class="kit-mobile">
+          <img class="kit-mobile__art" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-m-art.png" alt="" />
+          <div class="kit-mobile__badge"><span>Compre junto</span></div>
+          <div class="kit-mobile__content">
+            <div class="kit-mobile__text">
+              <p class="kit-mobile__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
+              <p class="kit-mobile__desc">Selecionamos os melhores produtos para que voc&ecirc; tenha a melhor performance e aplica&ccedil;&atilde;o do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+            </div>
+            <button class="kit-mobile__btn" type="button">Aproveitar</button>
+          </div>
+          <div class="kit-mobile__prod km-gun"><div class="rot"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-m-gun.png" alt="" /></div></div></div>
+          <div class="kit-mobile__prod km-tubes"><div class="rot"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-m-tubes.png" alt="" /></div></div></div>
+          <div class="kit-mobile__prod km-tube"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/kit-m-tube.png" alt="" /></div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  (function () {
+    var root = document.getElementById('dw240-root');
+    if (!root) return;
+
+    // Nav tabs: alterna botao + painel correspondente (sem texto no JS)
+    var tabs = root.querySelectorAll('.navtabs__tab');
+    var panels = root.querySelectorAll('.navtabs__panel');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var key = tab.getAttribute('data-tab');
+        tabs.forEach(function (t) { t.classList.toggle('is-active', t === tab); });
+        panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === key); });
+      });
+    });
+
+    // Cores
+    var swatches = root.querySelectorAll('.swatch');
+    swatches.forEach(function (sw) {
+      sw.addEventListener('click', function () {
+        swatches.forEach(function (s) { s.classList.remove('is-active'); });
+        sw.classList.add('is-active');
+      });
+    });
+
+    // Videos (placeholder)
+    root.querySelectorAll('.video').forEach(function (v) {
+      v.addEventListener('click', function () {
+        v.style.outline = '3px solid #febf13';
+        v.style.outlineOffset = '-3px';
+      });
+    });
+
+    // Adicionar ao carrinho (feedback)
+    var addcart = root.querySelector('.addcart');
+    if (addcart) {
+      addcart.addEventListener('click', function () {
+        var b = this, prev = b.textContent;
+        b.textContent = 'Adicionado ✓';
+        setTimeout(function () { b.textContent = prev; }, 1500);
+      });
+    }
+  })();
+</script>
+</div>
+<!-- ============================================================================
+     UPLOAD NO GERENCIADOR DE MIDIA DO WAKE (apenas imagens .png/.jpg)
+     Os SVGs (logos, setas, icones) ja estao embutidos: nao precisam subir.
+     Padrao: https://escutaoveio.fbitsstatic.net/media/<arquivo>
+
+       Assets/hero-bg.png       -> dw240-hero-bg.png
+       Assets/product-tube.png  -> dw240-product-tube.png  (poster do video + grade)
+       Assets/card-telhas.png   -> dw240-card-telhas.png
+       Assets/card-tanques.png  -> dw240-card-tanques.png
+       Assets/card-trincas.png  -> dw240-card-trincas.png
+       Assets/grid-2.jpg        -> dw240-grid-2.jpg
+       Assets/grid-3.png        -> dw240-grid-3.png
+       Assets/grid-4.png        -> dw240-grid-4.png
+       Assets/kit-art.png       -> dw240-kit-art.png
+       Assets/kit-tube.png      -> dw240-kit-tube.png
+       Assets/kit-prod-a.png    -> dw240-kit-prod-a.png
+       Assets/kit-prod-b.png    -> dw240-kit-prod-b.png
+       Assets/kit-m-art.png     -> dw240-kit-m-art.png
+       Assets/kit-m-gun.png     -> dw240-kit-m-gun.png
+       Assets/kit-m-tubes.png   -> dw240-kit-m-tubes.png
+       Assets/kit-m-tube.png    -> dw240-kit-m-tube.png
+
+     VIDEO (.mp4) -> NAO sobe no media da Wake. Hospede externamente:
+       1) Cloudinary (gratis) -> copie a URL .mp4 -> cole no src do <video>.
+       2) Ou Vimeo/YouTube -> me avise que troco o <video> por <iframe>.
+============================================================================ -->
