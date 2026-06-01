@@ -21,7 +21,7 @@
     --ink-550:#636564; --gray-300:#b5b5b5; --gray-200:#bdbdbd; --gray-100:#e6e6e6;
     --muted:#878787; --red:#d43730; --red-dark:#ba080d; --yellow:#febf13;
     --yellow-ink:#0f1317; --white:#ffffff;
-    background:#ffffff;
+    background:transparent;
     font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     color:var(--ink-700);
     -webkit-font-smoothing:antialiased;
@@ -123,7 +123,7 @@
   /* 7. Container vertical */
   #dw240-root .vcont{ width:100%; max-width:1512px; background:var(--ink-900); border-radius:25px; padding:clamp(28px,4vw,68px); display:flex; flex-direction:column; gap:clamp(48px,7vw,95px); margin-top:clamp(64px,12vw,204px); }
   #dw240-root .vcont__top{ display:flex; gap:clamp(32px,4vw,48px); align-items:center; justify-content:space-between; flex-wrap:wrap; }
-  #dw240-root .pgrid{ width:min(899px,100%); aspect-ratio:899 / 607; flex:1 1 460px; display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); gap:8px; }
+  #dw240-root .pgrid{ flex:1 1 460px; max-width:899px; margin-inline:auto; aspect-ratio:899 / 607; display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); gap:8px; }
   #dw240-root .pgrid img{ width:100%; height:100%; object-fit:cover; border-radius:15px; }
   #dw240-root .pinfo{ width:min(405px,100%); flex:0 1 405px; display:flex; flex-direction:column; gap:7px; }
   #dw240-root .pinfo__badge{ display:flex; flex-direction:column; align-items:center; width:83px; }
@@ -409,12 +409,12 @@
           <div class="colors">
             <p class="lbl">Cores</p>
             <div class="colors__opts">
-              <div class="swatch is-active"><div class="swatch__chip" style="background:#fff"></div><span>Branco</span></div>
-              <div class="swatch"><div class="swatch__chip" style="background:#e6e6e6"></div><span>Cinza</span></div>
-              <div class="swatch"><div class="swatch__chip" style="background:#000"></div><span>Preto</span></div>
+              <div class="swatch is-active" data-variantid="266913"><div class="swatch__chip" style="background:#fff"></div><span>Branco</span></div>
+              <div class="swatch" data-variantid="266858"><div class="swatch__chip" style="background:#e6e6e6"></div><span>Cinza</span></div>
+              <div class="swatch" data-variantid="269771"><div class="swatch__chip" style="background:#000"></div><span>Preto</span></div>
             </div>
           </div>
-          <button class="addcart" type="button">Adicionar ao carrinho</button>
+          <button class="addcart" type="button" data-buy-custom data-product-quantity="1" data-product-variantid="266913">Adicionar ao carrinho</button>
         </div>
       </div>
 
@@ -469,12 +469,15 @@
       });
     });
 
-    // Cores
+    // Cores -> atualiza a variante do botao de compra (Wake)
     var swatches = root.querySelectorAll('.swatch');
+    var buyBtn = root.querySelector('.addcart');
     swatches.forEach(function (sw) {
       sw.addEventListener('click', function () {
         swatches.forEach(function (s) { s.classList.remove('is-active'); });
         sw.classList.add('is-active');
+        var vid = sw.getAttribute('data-variantid');
+        if (buyBtn && vid) { buyBtn.setAttribute('data-product-variantid', vid); }
       });
     });
 
@@ -499,15 +502,7 @@
       });
     });
 
-    // Adicionar ao carrinho (feedback)
-    var addcart = root.querySelector('.addcart');
-    if (addcart) {
-      addcart.addEventListener('click', function () {
-        var b = this, prev = b.textContent;
-        b.textContent = 'Adicionado ✓';
-        setTimeout(function () { b.textContent = prev; }, 1500);
-      });
-    }
+    // (a acao de compra e tratada pelo data-buy-custom do tema da Wake)
   })();
 </script>
 </div>
