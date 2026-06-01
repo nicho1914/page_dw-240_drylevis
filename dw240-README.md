@@ -21,10 +21,10 @@ todos os assets (imagens **e** o vídeo) são servidos do **próprio repositóri
 (que precisa ser **público**) pelo CDN **jsDelivr**:
 
 ```
-https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@v1/Assets/<arquivo>
+https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/<arquivo>
 ```
 
-- `@v1` é uma **tag imutável** → cache estável e previsível.
+- Hoje o bloco usa **`@main`** durante a fase de ajustes (reflete os pushes; se não atualizar, force com purge — ver abaixo). Quando a página estiver finalizada, dá pra **congelar numa tag** (ex.: `@v1`) trocando `@main` pela tag nas URLs.
 - Os SVGs (logos, setas, ícones) estão **embutidos** no HTML, então não dependem do CDN.
 
 ## Como atualizar
@@ -34,15 +34,14 @@ Não precisa de tag nova — esse conteúdo mora no bloco colado.
 1. Edite os arquivos e dê `git push` (para manter o histórico).
 2. **Re-cole** o `dw240-wake.html` atualizado no bloco da Wake.
 
-**Trocou/otimizou alguma imagem ou o vídeo (arquivos em `Assets/`)?**
-A tag `@v1` é congelada, então é preciso publicar uma nova versão:
+**Trocou/otimizou/adicionou alguma imagem ou vídeo (arquivos em `Assets/`)?**
+Como o bloco está em `@main`:
 1. `git add ... && git commit && git push`
-2. `git tag v2 && git push origin v2`
-3. Troque `@v1` por `@v2` nas URLs do `dw240-wake.html` e re-cole o bloco.
+2. Se o jsDelivr ainda servir a versão antiga (cache ~7 dias), force o purge:
+   `https://purge.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/<arquivo>`
 
-> Alternativa durante ajustes frequentes de imagem: usar `@main` no lugar de `@v1`
-> e forçar atualização com purge, sem criar tag a cada troca:
-> `https://purge.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/<arquivo>`
+> Para **congelar** uma versão (cache imutável): `git tag v1 && git push origin v1`
+> e troque `@main` por `@v1` nas URLs do `dw240-wake.html`.
 
 ## Responsividade (resumo)
 

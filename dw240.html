@@ -54,7 +54,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:clamp(40px,8vw,156px) 0 80px;
+    padding:clamp(40px,8vw,156px) 16px 80px;
     overflow:hidden;
   }
 
@@ -110,8 +110,8 @@
   }
   .hero__arrow{ position:absolute; top:45%; width:42px; height:42px; cursor:pointer; }
   .hero__arrow img{ width:100%; height:100%; }
-  .hero__arrow--left{ left:8px; }
-  .hero__arrow--right{ right:8px; transform:scaleX(-1); }
+  .hero__arrow--left{ left:-9px; }
+  .hero__arrow--right{ right:-12px; transform:scaleX(-1); }
 
   /* ============================================================
      2. "O que é o DW240?"
@@ -127,7 +127,7 @@
     display:flex; align-items:center; justify-content:center;
   }
   .what__bg img{ max-width:70%; max-height:80%; object-fit:contain; }
-  .what__bg video{ width:100%; height:100%; object-fit:cover; border-radius:25px; }
+  .what__bg video{ width:100%; height:100%; object-fit:contain; border-radius:25px; }
   .what__col{ flex:1 1 0; min-width:0; max-width:664px; display:flex; flex-direction:column; gap:48px; align-items:center; }
   .what__head{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; color:var(--ink-700); line-height:1.1; }
   .what__head h2{ font-weight:800; font-size:clamp(32px,5vw,64px); }
@@ -186,19 +186,26 @@
   .videos::-webkit-scrollbar{ display:none; }
   .video{
     background:var(--ink-600); flex:1 1 0; min-width:0; max-width:437px; aspect-ratio:437 / 594; border-radius:38px;
-    display:flex; align-items:center; justify-content:center; cursor:pointer;
-    position:relative; overflow:hidden;
+    cursor:pointer; position:relative; overflow:hidden;
   }
-  .video__play{
-    width:69px; height:69px; border-radius:50%;
-    background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center;
-    transition:transform .15s ease, background .15s ease;
+  .video__media{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#000; }
+  /* gradiente sutil pra dar contraste ao botão */
+  .video::before{ content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.35)); opacity:1; transition:opacity .25s ease; pointer-events:none; }
+  .video.is-playing::before{ opacity:0; }
+  .video__btn{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:84px; height:84px; border-radius:50%; border:1.5px solid rgba(255,255,255,.8);
+    background:rgba(255,255,255,.16); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; z-index:2;
+    box-shadow:0 12px 34px rgba(0,0,0,.4);
+    transition:transform .2s ease, opacity .25s ease, background .2s ease;
   }
-  .video:hover .video__play{ transform:scale(1.08); background:#fff; }
-  .video__play::after{
-    content:""; width:0; height:0; margin-left:5px;
-    border-left:22px solid var(--ink-700); border-top:14px solid transparent; border-bottom:14px solid transparent;
-  }
+  .video__btn::after{ content:""; width:0; height:0; margin-left:7px; border-left:28px solid #fff; border-top:17px solid transparent; border-bottom:17px solid transparent; }
+  .video:hover .video__btn{ transform:translate(-50%,-50%) scale(1.07); background:rgba(255,255,255,.28); }
+  .video.is-playing .video__btn{ opacity:0; pointer-events:none; transform:translate(-50%,-50%) scale(.8); }
+  .video__bar{ position:absolute; left:0; right:0; bottom:0; height:5px; background:rgba(255,255,255,.22); opacity:0; transition:opacity .25s ease; z-index:2; }
+  .video.is-playing .video__bar{ opacity:1; }
+  .video__progress{ display:block; height:100%; width:0%; background:var(--yellow); transition:width .1s linear; }
 
   /* ============================================================
      6. Nav Tabs "Informações"
@@ -450,15 +457,15 @@
             <article class="attr-card">
               <div class="attr-card__icon"><img src="Assets/attr-icon-1.svg" alt="" /></div>
               <div class="attr-card__txt">
-                <p class="t">Elástico e sem rachaduras</p>
-                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+                <p class="t">Mais forte que silicone</p>
+                <p class="d">Poliuretano com aderência imediata em superfícies porosas e não porosas.</p>
               </div>
             </article>
             <article class="attr-card">
               <div class="attr-card__icon"><img src="Assets/attr-icon-2.svg" alt="" /></div>
               <div class="attr-card__txt">
-                <p class="t">Elástico e sem rachaduras</p>
-                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+                <p class="t">Ultra resistente à água</p>
+                <p class="d">Aguenta água, raios UV, vibrações e a ação do tempo, dentro e fora de casa.</p>
               </div>
             </article>
           </div>
@@ -467,14 +474,14 @@
               <div class="attr-card__icon"><img src="Assets/attr-icon-3.svg" alt="" /></div>
               <div class="attr-card__txt">
                 <p class="t">Elástico e sem rachaduras</p>
-                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+                <p class="d">Acompanha as movimentações da estrutura sem perder a vedação.</p>
               </div>
             </article>
             <article class="attr-card">
               <div class="attr-card__icon"><img src="Assets/attr-icon-3.svg" alt="" /></div>
               <div class="attr-card__txt">
-                <p class="t">Elástico e sem rachaduras</p>
-                <p class="d">Acompanha movimentações da estrutura sem perder a vedação.</p>
+                <p class="t">Pronto para usar</p>
+                <p class="d">Já vem pronto: aplique com pistola ou espátula e preencha as juntas.</p>
               </div>
             </article>
           </div>
@@ -494,30 +501,42 @@
         <div class="card__img"><img src="Assets/card-telhas.png" alt="Telhas" /></div>
         <div class="card__body">
           <h3>Telhas</h3>
-          <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+          <p>Veda juntas e sobreposições de telhas e calhas e impede infiltrações, mesmo com a dilatação do telhado.</p>
         </div>
       </article>
       <article class="card">
         <div class="card__img"><img src="Assets/card-tanques.png" alt="Tanques" /></div>
         <div class="card__body">
           <h3>Tanques</h3>
-          <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+          <p>Sela e impermeabiliza juntas de caixas d'água, tanques e reservatórios, resistindo ao contato constante com a água.</p>
         </div>
       </article>
       <article class="card">
         <div class="card__img"><img src="Assets/card-trincas.png" alt="Trincas" /></div>
         <div class="card__body">
           <h3>Trincas</h3>
-          <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+          <p>Preenche trincas e juntas de dilatação em pisos e paredes, com elasticidade que acompanha o movimento da estrutura.</p>
         </div>
       </article>
     </section>
 
     <!-- ============ VIDEOS ============ -->
     <section class="videos" aria-label="Vídeos">
-      <div class="video"><div class="video__play"></div></div>
-      <div class="video"><div class="video__play"></div></div>
-      <div class="video"><div class="video__play"></div></div>
+      <div class="video">
+        <video class="video__media" src="Assets/video-1.mp4#t=0.1" preload="metadata" playsinline></video>
+        <button class="video__btn" type="button" aria-label="Reproduzir vídeo"></button>
+        <div class="video__bar"><span class="video__progress"></span></div>
+      </div>
+      <div class="video">
+        <video class="video__media" src="Assets/video-2.mp4#t=0.1" preload="metadata" playsinline></video>
+        <button class="video__btn" type="button" aria-label="Reproduzir vídeo"></button>
+        <div class="video__bar"><span class="video__progress"></span></div>
+      </div>
+      <div class="video">
+        <video class="video__media" src="Assets/video-3.mp4#t=0.1" preload="metadata" playsinline></video>
+        <button class="video__btn" type="button" aria-label="Reproduzir vídeo"></button>
+        <div class="video__bar"><span class="video__progress"></span></div>
+      </div>
     </section>
 
     <!-- ============ NAV TABS / INFORMAÇÕES ============ -->
@@ -531,8 +550,8 @@
       <div class="navtabs__divider"></div>
       <div class="navtabs__content" id="tabContent">
         <h2 id="tabTitle">Informações</h2>
-        <p class="lbl" id="tabLabel">Informações</p>
-        <p id="tabText">O Selante DW240 da Drylevis é um selante adesivo com alto desempenho para tratamento de juntas de dilatação e de preenchimento. Já vem pronto para uso, além de vedar e aderir à superfície com rapidez e elasticidade. Possui ótima resistência à água, a raios UV, a vibrações, a movimentações e à ação do tempo. Pode ser utilizado também para fixação e vedação de diversos materiais, como pedras, concretos, vidros, esquadrias de alumínio etc.</p>
+        <p class="lbl" id="tabLabel">O que é</p>
+        <p id="tabText">O Selante Adesivo DW240 Flex da Drylevis é um poliuretano monocomponente, pronto para uso, que cola, veda e impermeabiliza juntas de uma só vez. Totalmente elástico e com alto poder de adesão, substitui o silicone comum com muito mais resistência à água, raios UV, vibrações e movimentações. Indicado para áreas internas e externas.</p>
       </div>
     </section>
 
@@ -581,7 +600,7 @@
           <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="Assets/kit-prod-b.png" alt="" /></div></div></div>
           <div class="kit__badge"><span>Compre junto</span></div>
           <p class="kit__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
-          <p class="kit__desc">Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+          <p class="kit__desc">Selecionamos o Selante DW240 e o primer PR10 para você ter a melhor aderência e performance na aplicação. Aproveite e leve o kit completo!</p>
           <button class="kit__btn" type="button">Aproveitar</button>
         </div>
       </div>
@@ -594,7 +613,7 @@
           <div class="kit-mobile__content">
             <div class="kit-mobile__text">
               <p class="kit-mobile__title">Montamos seu <b>kit</b> de <b>desempenho</b></p>
-              <p class="kit-mobile__desc">Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+              <p class="kit-mobile__desc">Selecionamos o Selante DW240 e o primer PR10 para você ter a melhor aderência e performance na aplicação. Aproveite e leve o kit completo!</p>
             </div>
             <button class="kit-mobile__btn" type="button">Aproveitar</button>
           </div>
@@ -612,23 +631,23 @@
   var TAB_DATA = {
     oque: {
       title: 'Informações',
-      label: 'Informações',
-      text: 'O Selante DW240 da Drylevis é um selante adesivo com alto desempenho para tratamento de juntas de dilatação e de preenchimento. Já vem pronto para uso, além de vedar e aderir à superfície com rapidez e elasticidade. Possui ótima resistência à água, a raios UV, a vibrações, a movimentações e à ação do tempo. Pode ser utilizado também para fixação e vedação de diversos materiais, como pedras, concretos, vidros, esquadrias de alumínio etc.'
+      label: 'O que é',
+      text: 'O Selante Adesivo DW240 Flex da Drylevis é um poliuretano monocomponente, pronto para uso, que cola, veda e impermeabiliza juntas de uma só vez. Totalmente elástico e com alto poder de adesão, substitui o silicone comum com muito mais resistência à água, raios UV, vibrações e movimentações. Indicado para áreas internas e externas.'
     },
     beneficios: {
       title: 'Benefícios',
       label: 'Por que usar',
-      text: 'Alta elasticidade que acompanha as movimentações da estrutura sem rachar; aderência superior ao silicone convencional; resistência à água, raios UV e variações de temperatura; cura rápida e pronto para uso. Cola, veda e impermeabiliza em uma única aplicação.'
+      text: 'Mais forte que o silicone e que o PU comum; ultra resistente à água; elástico e sem rachaduras; aderência imediata em superfícies porosas e não porosas; aceita pintura; secagem rápida e ótimo rendimento (de 8 a 10 metros lineares por bisnaga em juntas de 1 cm x 3 mm).'
     },
     modo: {
       title: 'Modo de Uso',
       label: 'Como aplicar',
-      text: 'Limpe e seque bem a superfície, removendo poeira, gordura e partículas soltas. Corte o bico na espessura desejada, aplique o selante uniformemente na junta e alise antes da formação de película. Tempo de cura conforme temperatura e umidade do ambiente.'
+      text: 'Limpe e seque bem a superfície. Aplique com pistola aplicadora ou espátula de aço, em cordão ou pontos, preenchendo completamente as juntas e os vazios. Para máxima adesão, use o primer PR10 antes. Cura ao toque em 2h, inicial em 12h e final em 24h (a 25°C e 60% de umidade).'
     },
     composicao: {
       title: 'Composição',
       label: 'O que contém',
-      text: 'Selante adesivo monocomponente à base de poliuretano (PU), com cura por umidade do ar. Não contém solventes agressivos. Disponível nas cores branco, cinza e preto.'
+      text: 'Poliuretano monocomponente, sem isocianato livre e sem solventes, de textura pastosa. Embalagem de 400g, disponível nas cores branco, cinza e preto. Validade de 12 meses a partir da fabricação, com a embalagem fechada.'
     }
   };
 
@@ -658,11 +677,24 @@
     });
   });
 
-  // ---------- Video play placeholders ----------
-  document.querySelectorAll('.video').forEach(function(v){
-    v.addEventListener('click', function(){
-      v.style.outline = '3px solid #febf13';
-      v.style.outlineOffset = '-3px';
+  // ---------- Custom video player (clicar pra tocar) ----------
+  document.querySelectorAll('.video').forEach(function(card){
+    var media = card.querySelector('.video__media');
+    var prog = card.querySelector('.video__progress');
+    if(!media) return;
+    card.addEventListener('click', function(){
+      if(media.paused){
+        document.querySelectorAll('.video__media').forEach(function(m){ if(m!==media) m.pause(); });
+        media.play();
+      } else {
+        media.pause();
+      }
+    });
+    media.addEventListener('play', function(){ card.classList.add('is-playing'); });
+    media.addEventListener('pause', function(){ card.classList.remove('is-playing'); });
+    media.addEventListener('ended', function(){ card.classList.remove('is-playing'); media.currentTime = 0; });
+    media.addEventListener('timeupdate', function(){
+      if(media.duration) prog.style.width = (media.currentTime / media.duration * 100) + '%';
     });
   });
 
