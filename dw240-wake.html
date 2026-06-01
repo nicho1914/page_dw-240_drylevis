@@ -56,8 +56,8 @@
   #dw240-root .hero__link span{ font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:15.5px; color:#151218; text-transform:uppercase; white-space:nowrap; line-height:1.1; }
   #dw240-root .hero__arrow{ position:absolute; top:45%; width:42px; height:42px; cursor:pointer; }
   #dw240-root .hero__arrow svg{ width:100%; height:100%; }
-  #dw240-root .hero__arrow--left{ left:-9px; }
-  #dw240-root .hero__arrow--right{ right:-12px; transform:scaleX(-1); }
+  #dw240-root .hero__arrow--left{ left:8px; }
+  #dw240-root .hero__arrow--right{ right:8px; transform:scaleX(-1); }
 
   /* 2. O que e o DW240? */
   #dw240-root .what{ width:100%; display:flex; gap:24px; align-items:center; justify-content:center; padding:clamp(32px,5vw,80px); }
@@ -67,9 +67,9 @@
   #dw240-root .what__head{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; color:var(--ink-700); line-height:1.1; }
   #dw240-root .what__head h2{ font-weight:800; font-size:clamp(32px,5vw,64px); }
   #dw240-root .what__head p{ font-weight:400; font-size:clamp(16px,2vw,20px); width:min(560px,100%); }
-  #dw240-root .attr-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; max-width:545px; margin:0 auto; }
+  #dw240-root .attr-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,249px)); column-gap:clamp(12px,3vw,47px); justify-content:center; width:100%; margin:0 auto; }
   #dw240-root .attr-col{ display:flex; flex-direction:column; gap:16px; }
-  #dw240-root .attr-card{ background:var(--ink-700); width:100%; min-height:273px; border-radius:28px; display:flex; flex-direction:column; gap:18px; align-items:center; justify-content:center; padding:24px 16px; }
+  #dw240-root .attr-card{ background:var(--ink-700); width:100%; height:273px; border-radius:28px; display:flex; flex-direction:column; gap:18px; align-items:center; justify-content:center; padding:0 16px; }
   #dw240-root .attr-card__icon{ height:58px; display:flex; align-items:center; }
   #dw240-root .attr-card__icon svg{ height:100%; width:auto; }
   #dw240-root .attr-card__txt{ display:flex; flex-direction:column; gap:18px; align-items:center; text-align:center; line-height:1.1; }
