@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HUB EOV — Hold Stone Pro | Escuta o Véio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     Reset / tokens
+  ============================================================ */
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --yellow:#febf13;
+    --red:#d12b2b;        /* títulos / intro */
+    --red-pill:#c0392b;   /* badges / abas */
+    --ink:#2d2d2b;        /* header / cards escuros */
+    --ink-2:#161616;      /* top-bar */
+    --gray-600:#5f5f5f;
+    --gray-500:#7b7b7b;
+    --gray-400:#9a9a9a;
+    --gray-200:#bdbdbd;
+    --line:#d9d9d9;
+    --white:#ffffff;
+    --s:1;
+  }
+  html,body{ background:#fff; }
+  body{
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ display:block; max-width:none; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; }
+
+  /* ============================================================
+     Scaler — o design tem 1512 x 6492. Reproduzimos 1:1 e
+     escalamos o conjunto para caber em qualquer largura.
+  ============================================================ */
+  .stage-wrap{ position:relative; overflow:hidden; margin:0 auto; }
+  .stage{
+    position:absolute; top:0; left:0;
+    width:1512px; height:6492px;
+    transform-origin:top left; transform:scale(var(--s));
+    background:#fff;
+  }
+  .abs{ position:absolute; }
+
+  /* ============================================================
+     1. Banner promocional (amarelo)
+  ============================================================ */
+  .banner{ top:0; left:0; width:1512px; height:32px; background:var(--yellow);
+    display:flex; align-items:center; justify-content:center; gap:11px;
+    font-size:15px; color:#2b2b29; }
+  .banner b{ font-weight:700; }
+  .banner .dot{ width:5px; height:5px; border-radius:50%; background:#2b2b29; }
+  .banner .soft{ color:#5a4d12; }
+
+  /* ============================================================
+     2. Top-bar (preta)
+  ============================================================ */
+  .topbar{ top:32px; left:0; width:1512px; height:45px; background:var(--ink-2);
+    color:#e9e9e9; font-size:12px; }
+  .topbar__welcome{ position:absolute; left:101px; top:15px; }
+  .topbar__welcome b{ color:var(--yellow); font-weight:700; }
+  .topbar__links{ position:absolute; left:759px; top:15px; display:flex; align-items:center; gap:8px; }
+  .topbar__links a{ display:inline-flex; align-items:center; gap:6px; }
+  .topbar__links .sep{ color:#666; margin:0 2px; }
+  .topbar__social{ display:flex; align-items:center; gap:4px; }
+  .topbar__social a{ display:inline-flex; }
+  .topbar svg{ display:block; }
+
+  /* ============================================================
+     3. Header (faixa escura) + menu de marcas
+  ============================================================ */
+  .headbar{ top:77px; left:0; width:1512px; height:129px; background:var(--ink); }
+  .header{ position:absolute; left:144.72px; top:21px; width:1196px; height:66px; }
+  .header__logo{ position:absolute; left:0; top:0; height:66px; }
+  .header__logo img{ height:66px; width:auto; }
+  .search{ position:absolute; left:250px; top:14px; width:516px; height:38px;
+    background:#ececec; border-radius:8px; display:flex; align-items:center; }
+  .search__field{ display:flex; align-items:center; gap:8px; padding-left:16px; color:#8a8a8a; font-size:15px; }
+  .search__btn{ position:absolute; right:0; top:0; width:38px; height:38px; background:var(--yellow);
+    border:none; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .top-icons{ position:absolute; left:812px; top:16px; display:flex; align-items:center; gap:8px; color:#fff; }
+  .ti{ display:flex; align-items:center; gap:9px; }
+  .ti__txt{ font-size:12px; line-height:1.25; }
+  .ti__txt b{ font-weight:600; }
+  .ti--cart{ margin-left:20px; }
+  .ti--cart .ti__txt span{ display:block; color:#c9c9c9; }
+  .ti__cartbadge{ position:relative; }
+  .ti__cartbadge i{ position:absolute; top:-3px; right:-3px; width:11px; height:11px; border-radius:50%; background:var(--yellow); }
+
+  .brandmenu{ position:absolute; left:86.4px; top:101px; width:1298px; height:20px;
+    display:flex; align-items:center; color:#fff; font-size:13px; }
+  .brandmenu__track{ display:flex; align-items:center; gap:10px; font-weight:600; }
+  .brandmenu__list{ position:absolute; left:336px; top:3px; display:flex; gap:28px; white-space:nowrap; color:#eaeaea; }
+
+  /* Barra de departamentos (branca) */
+  .deptbar{ top:206px; left:0; width:1512px; height:52px; background:#fff;
+    border-bottom:1px solid #eee; }
+  .deptbar__inner{ position:absolute; left:82px; top:0; height:52px; display:flex; align-items:center; gap:36px; }
+  .dept-all{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink); }
+  .deptbar__list{ display:flex; align-items:center; gap:36px; font-size:14px; color:#3a3a3a; }
+  .dept-ofertas{ display:flex; align-items:center; gap:9px; background:var(--yellow);
+    color:#2b2b29; font-weight:700; font-size:14px; padding:5px 14px; border-radius:100px; }
+  .dept-ofertas .star{ width:18px; height:18px; border-radius:50%; background:#2b2b29; color:var(--yellow);
+    display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; }
+
+  /* ============================================================
+     4. Banner "linha PRO"
+  ============================================================ */
+  .probanner{ top:302px; left:91px; width:1330px; height:668px; border-radius:24px; overflow:hidden; }
+  .probanner img{ width:100%; height:100%; object-fit:cover; }
+  .hs-medal{ top:945px; left:50%; transform:translateX(-50%); width:96px; height:96px; border-radius:50%;
+    background:#fff; box-shadow:0 8px 24px rgba(0,0,0,.18); display:flex; align-items:center; justify-content:center; }
+  .hs-medal img{ width:60px; height:auto; }
+
+  /* ============================================================
+     5. Intro (texto vermelho) + título
+  ============================================================ */
+  .intro{ top:1046px; left:80px; width:1352px; height:106px; text-align:center;
+    color:var(--red); font-weight:800; font-style:italic; font-size:42px; line-height:1.05; }
+  .title{ top:1231px; left:0; width:1512px; text-align:center;
+    font-family:'Barlow Condensed',sans-serif; font-weight:800; font-style:italic;
+    font-size:84px; line-height:1; color:var(--red); letter-spacing:.5px; }
+  .subtitle{ top:1327px; left:0; width:1512px; text-align:center;
+    font-weight:700; font-style:italic; font-size:30px; color:var(--ink); }
+
+  /* ============================================================
+     6. Vitrine do produto (FIXADOR central + placeholders + features)
+  ============================================================ */
+  .showcase-center{ top:1351px; left:445px; width:664px; height:752px; border-radius:25px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; }
+  .showcase-center img{ max-width:100%; max-height:100%; object-fit:contain; }
+  .ph{ background:#2c2c2a; border-radius:25px; }
+  .ph--1{ top:1504px; left:80px; width:435px; height:244px; }
+  .ph--2{ top:1772px; left:80px; width:435px; height:244px; }
+
+  .feature{ left:1037px; width:382px; height:110px; background:var(--ink); border-radius:16px;
+    display:flex; align-items:center; padding:24px; gap:14px; }
+  .feature__icon{ width:48px; height:58px; flex:none; }
+  .feature__txt{ flex:1; text-align:center; color:#fff; }
+  .feature__txt b{ display:block; font-weight:700; font-size:16px; margin-bottom:8px; }
+  .feature__txt span{ display:block; color:#c4c4c4; font-size:12px; line-height:1.25; }
+  .feature--1{ top:1504px; } .feature--2{ top:1638px; }
+  .feature--3{ top:1772px; } .feature--4{ top:1906px; }
+
+  /* ============================================================
+     7. "Obra bem-feita não infiltra."
+  ============================================================ */
+  .obra{ top:2103px; left:133px; width:1227px; text-align:center; }
+  .obra h2{ font-weight:400; font-size:64px; color:#1f1f1f; line-height:1; margin-bottom:28px; }
+  .obra p{ font-weight:400; font-size:20px; color:#5a5a5a; line-height:1.3; }
+
+  /* ============================================================
+     8. Cards "Telhas"
+  ============================================================ */
+  .cards{ top:2301px; left:80px; width:1353px; display:flex; gap:24px; }
+  .tcard{ width:435px; background:#fff; border-radius:25px; padding:40px;
+    box-shadow:0 6px 24px rgba(0,0,0,.06); }
+  .tcard__img{ width:355px; height:311px; border-radius:14px; object-fit:cover; }
+  .tcard h3{ font-weight:700; font-size:36px; color:#111; margin:32px 0 16px; }
+  .tcard p{ font-weight:400; font-size:20px; color:#5a5a5a; line-height:1.1; }
+
+  /* ============================================================
+     9. Vídeos
+  ============================================================ */
+  .videos{ top:2981px; left:81px; width:1349px; display:flex; gap:18px; }
+  .video{ width:437px; height:594px; background:#3a3a38; border-radius:38px; position:relative;
+    overflow:hidden; cursor:pointer; }
+  .video__media{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#3a3a38; }
+  .video::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.32)); z-index:1; transition:opacity .25s; }
+  .video.is-playing::before{ opacity:0; }
+  .video__btn{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;
+    width:84px; height:84px; border-radius:50%; border:1.5px solid rgba(255,255,255,.85);
+    background:rgba(255,255,255,.14); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center; }
+  .video__btn::after{ content:""; width:0; height:0; margin-left:7px;
+    border-left:26px solid #fff; border-top:16px solid transparent; border-bottom:16px solid transparent; }
+  .video.is-playing .video__btn{ opacity:0; }
+  .video__line{ position:absolute; left:31px; right:31px; bottom:26px; height:2px; background:rgba(255,255,255,.55); z-index:2; }
+
+  /* ============================================================
+     10. Nav Tabs "Informações"
+  ============================================================ */
+  .navtabs{ top:3703px; left:87px; width:1344px; height:312px; border-radius:24px;
+    background:linear-gradient(70deg,#dcdadd 19%,#e6e6e6 91%);
+    display:flex; padding:56px; gap:48px; }
+  .navtabs__nav{ width:200px; flex:none; display:flex; flex-direction:column; gap:28px; }
+  .navtabs__tab{ font-weight:700; font-size:18px; text-align:left; color:var(--ink);
+    background:none; border:none; cursor:pointer; opacity:.45; padding:0; transition:opacity .15s; }
+  .navtabs__tab:hover{ opacity:.75; }
+  .navtabs__tab.is-active{ opacity:1; background:var(--red-pill); color:#f2efef;
+    border-radius:100px; padding:12px 22px; align-self:flex-start; }
+  .navtabs__divider{ width:1px; background:var(--gray-200); flex:none; }
+  .navtabs__content{ flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; color:#2b2b2b; }
+  .navtabs__content h2{ font-weight:900; font-size:52px; color:#1f1f1f; }
+  .navtabs__content .lbl{ font-weight:700; font-size:14px; }
+  .navtabs__content p{ font-weight:400; font-size:14px; line-height:1.6; color:#454545; }
+
+  /* ============================================================
+     11. Grade de produto + ficha (Hold Stone Pro)
+  ============================================================ */
+  .pgrid{ top:4227px; left:80px; width:899px; height:607px; display:grid;
+    grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); gap:8px; }
+  .pgrid img{ width:100%; height:100%; object-fit:cover; border-radius:15px; }
+
+  .pinfo{ top:4257px; left:1107px; width:405px; display:flex; flex-direction:column; }
+  .pinfo__logo{ width:58px; height:55px; object-fit:contain; margin-bottom:14px; }
+  .pinfo__name{ font-weight:800; font-size:40px; line-height:1.05; color:#222; max-width:230px; }
+  .pinfo__sub{ font-size:18px; color:#3a3a3a; line-height:1.35; margin-top:18px; }
+  .pinfo__sub b{ font-weight:700; }
+  .pinfo__old{ font-size:15px; color:#8a8a8a; text-decoration:line-through; margin-top:30px; }
+  .pinfo__newrow{ display:flex; align-items:flex-end; gap:10px; margin-top:6px; }
+  .pinfo__new{ font-weight:800; font-size:40px; color:var(--red); line-height:1; }
+  .pinfo__each{ font-size:15px; color:#6a6a6a; padding-bottom:4px; }
+  .colors{ margin-top:34px; }
+  .colors__lbl{ font-weight:700; font-size:15px; color:#222; margin-bottom:18px; }
+  .colors__opts{ display:flex; gap:14px; }
+  .swatch{ width:69px; cursor:pointer; }
+  .swatch__chip{ height:54px; border-radius:8px; border:1px solid #2d2d2b; }
+  .swatch span{ display:block; text-align:center; font-size:14px; color:#333; margin-top:9px; }
+  .swatch.is-active .swatch__chip{ outline:3px solid var(--yellow); outline-offset:2px; }
+  .addcart{ margin-top:36px; align-self:flex-start; background:var(--yellow); color:#0f1317;
+    border:none; cursor:pointer; padding:12px 24px; border-radius:8px; font-weight:700; font-size:20px; }
+
+  /* ============================================================
+     12. "Montamos seu kit de desempenho"
+  ============================================================ */
+  .kit{ top:4929px; left:80px; width:1352px; height:527px; border-radius:25px; overflow:hidden;
+    background:#5f5f5f; }
+  .kit__art{ position:absolute; left:492px; top:-16px; width:915px; height:556px; pointer-events:none; }
+  .kit__tube{ position:absolute; left:537px; top:91px; width:325px; height:436px; overflow:hidden; }
+  .kit__tube img{ position:absolute; height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; }
+  .kit__prod{ position:absolute; display:flex; align-items:center; justify-content:center; }
+  .kit__prod .clip{ position:relative; overflow:hidden; }
+  .kit__prod .clip img{ position:absolute; }
+  .kit-tubes{ left:939px; top:175px; width:478px; height:407px; }
+  .kit-tubes .rot{ transform:rotate(30deg); }
+  .kit-tubes .clip{ width:421px; height:227px; }
+  .kit-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
+  .kit-gun{ left:800px; top:175px; width:311px; height:445px; }
+  .kit-gun .rot{ transform:rotate(-13.61deg); }
+  .kit-gun .clip{ width:222px; height:404px; }
+  .kit-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
+  .kit__badge{ position:absolute; left:0; top:71px; background:var(--red); min-width:228px;
+    padding:10px 18px; border-radius:0 15px 15px 0; display:flex; align-items:center; justify-content:center; }
+  .kit__badge span{ font-weight:700; font-size:20px; color:#fff; }
+  .kit__title{ position:absolute; left:34px; top:150px; width:471px; font-weight:500; font-size:48px; color:#fff; line-height:1.05; }
+  .kit__title b{ font-weight:700; }
+  .kit__desc{ position:absolute; left:34px; top:272px; width:516px; font-weight:400; font-size:22px; color:#f0f0f0; line-height:1.1; }
+  .kit__btn{ position:absolute; left:34px; top:398px; background:var(--red); color:#fff; border:none;
+    cursor:pointer; padding:10px 24px; border-radius:8px; font-weight:700; font-size:20px; }
+
+  /* ============================================================
+     13. Conheça a nossa História
+  ============================================================ */
+  .historia{ top:5806px; left:270px; width:973px; height:103px; display:flex; align-items:center; gap:54px; }
+  .historia__logo{ width:318px; flex:none; }
+  .historia__logo img{ width:100%; height:auto; }
+  .historia__div{ width:1px; height:100px; background:#c9c9c9; flex:none; }
+  .historia__txt{ flex:1; display:flex; flex-direction:column; gap:14px; }
+  .historia__txt p{ font-size:15px; color:#4a4a4a; line-height:1.2; }
+  .historia__cta{ display:flex; align-items:center; gap:12px; font-family:'Barlow Condensed',sans-serif;
+    font-weight:600; font-size:28px; color:#2b2b2b; }
+  .historia__cta .arr{ width:25px; height:25px; border:1.5px solid #2b2b2b; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; }
+
+  /* ============================================================
+     14. Footer
+  ============================================================ */
+  .footer{ top:6077px; left:161px; width:1190px; height:390px; font-size:14px; color:#4a4a4a; }
+  .fcol{ position:absolute; top:0; }
+  .fcol--atend{ left:27px; width:200px; }
+  .fcol--inst{ left:247px; width:170px; }
+  .fcol--ajuda{ left:467px; width:150px; }
+  .fcol--redes{ left:687px; width:200px; }
+  .fcol--pgto{ left:909px; width:200px; }
+  .fcol--envios{ left:687px; top:110px; }
+  .ftitle{ font-weight:700; font-size:16px; color:#2b2b2b; padding-bottom:8px; position:relative; display:inline-block; }
+  .ftitle::after{ content:""; position:absolute; left:0; bottom:0; width:48px; height:2px; background:var(--yellow); }
+  .fcol ul{ list-style:none; margin-top:34px; display:flex; flex-direction:column; gap:20px; }
+  .fcol--inst a, .fcol--ajuda a{ text-decoration:underline; text-underline-offset:3px; }
+  .fcontact{ margin-top:34px; display:flex; flex-direction:column; gap:20px; }
+  .fcontact .row{ display:flex; align-items:center; gap:8px; }
+  .fcontact .row a{ text-decoration:underline; text-underline-offset:3px; }
+  .fsocial{ margin-top:34px; display:flex; gap:10px; }
+  .fsocial a{ width:30px; height:30px; border-radius:50%; background:var(--yellow); color:#161616;
+    display:flex; align-items:center; justify-content:center; }
+  .fcopy1{ position:absolute; left:0; top:272px; width:856px; font-size:13px; color:#6a6a6a; line-height:1.4; }
+  .fline{ position:absolute; left:0; width:1190px; height:1px; background:#e3e3e3; }
+  .fline--1{ top:335px; } .fline--2{ top:355px; }
+  .fcopy2{ position:absolute; left:0; top:368px; width:789px; font-size:10px; color:#9a9a9a; line-height:1.5; }
+</style>
+</head>
+<body>
+  <div class="stage-wrap">
+  <div class="stage">
+
+    <!-- 1. Banner promocional -->
+    <div class="abs banner">
+      <span><b>Ganhe 10% de Descontos</b></span>
+      <span class="dot"></span>
+      <span class="soft">Na primeira compra</span>
+    </div>
+
+    <!-- 2. Top-bar -->
+    <div class="abs topbar">
+      <div class="topbar__welcome">Seja bem vindo(a) à <b>Escuta o Véio!</b> - Novas Soluções para Velhos Problemas!</div>
+      <div class="topbar__links">
+        <a><svg width="12" height="15" viewBox="0 0 12 15" fill="none"><path d="M6 0C2.7 0 0 2.6 0 5.9 0 10.1 6 15 6 15s6-4.9 6-9.1C12 2.6 9.3 0 6 0Zm0 8.2A2.3 2.3 0 1 1 6 3.6a2.3 2.3 0 0 1 0 4.6Z" fill="#febf13"/></svg>Nossa Loja</a>
+        <a><svg width="16" height="15" viewBox="0 0 16 15" fill="none"><path d="M1 5 2 1h12l1 4M1 5h14M1 5v8h14V5M5 8h6" stroke="#febf13" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>Retire na loja</a>
+        <a><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 0 0-6 6v3a2 2 0 0 0 2 2h1V7H2.2A4.8 4.8 0 0 1 11.8 7H10v5h1a2 2 0 0 0 2-2V7a6 6 0 0 0-6-6Z" fill="#febf13"/></svg>Atendimento Técnico</a>
+        <a><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#febf13" stroke-width="1.3" fill="none"/><path d="M4 4h6M4 7h6M4 10h4" stroke="#febf13" stroke-width="1.3"/></svg>Blog</a>
+        <span class="sep">-</span>
+        <span class="topbar__social">
+          <a aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M7 0C5.1 0 4.9 0 4.1.1c-.8 0-1.3.2-1.8.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.5-.3 1-.4 1.8C0 4.9 0 5.1 0 7s0 2.1.1 2.9c0 .8.2 1.3.4 1.8.2.5.4.9.8 1.3.4.4.8.6 1.3.8.5.2 1 .3 1.8.4C4.9 14 5.1 14 7 14s2.1 0 2.9-.1c.8 0 1.3-.2 1.8-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.5.3-1 .4-1.8 0-.8.1-1 .1-2.9s0-2.1-.1-2.9c0-.8-.2-1.3-.4-1.8a3.6 3.6 0 0 0-.8-1.3 3.6 3.6 0 0 0-1.3-.8c-.5-.2-1-.3-1.8-.4C9.1 0 8.9 0 7 0Zm0 3.4A3.6 3.6 0 1 1 7 10.6 3.6 3.6 0 0 1 7 3.4Zm0 5.9A2.3 2.3 0 1 0 7 4.7a2.3 2.3 0 0 0 0 4.6Zm4.6-6a.84.84 0 1 1-1.7 0 .84.84 0 0 1 1.7 0Z"/></svg></a>
+          <a aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M14 7a7 7 0 1 0-8.1 6.9V9H4.1V7h1.8V5.5c0-1.8 1-2.7 2.6-2.7.8 0 1.5.1 1.7.1v1.9h-1c-.9 0-1.1.5-1.1 1.1V7h2l-.3 2H8.1v4.9A7 7 0 0 0 14 7Z"/></svg></a>
+          <a aria-label="Pinterest"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M7 0a7 7 0 0 0-2.6 13.5c0-.6-.1-1.4 0-2l.9-3.8s-.2-.5-.2-1.1c0-1 .6-1.8 1.3-1.8.6 0 .9.5.9 1 0 .6-.4 1.6-.6 2.4-.2.7.4 1.3 1 1.3 1.3 0 2.2-1.6 2.2-3.6 0-1.5-1-2.6-2.8-2.6a3.2 3.2 0 0 0-3.3 3.2c0 .6.2 1 .4 1.3.1.1.1.2.1.3l-.1.6c0 .2-.2.3-.4.2-1-.4-1.4-1.5-1.4-2.7C2.8 4 4.3 2 7.2 2c2.4 0 4 1.7 4 3.6 0 2.4-1.4 4.2-3.3 4.2-.7 0-1.3-.4-1.5-.8l-.4 1.6c-.2.6-.5 1.2-.8 1.6A7 7 0 1 0 7 0Z"/></svg></a>
+          <a aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M12 0H2C.9 0 0 .9 0 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2ZM4.3 11.9H2.4V5.6h1.9v6.3ZM3.3 4.8A1.1 1.1 0 1 1 3.3 2.6a1.1 1.1 0 0 1 0 2.2Zm8.6 7.1H10V8.7c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3.2H6V5.6h1.8v.9h.1c.3-.5.9-1 1.8-1 1.9 0 2.2 1.2 2.2 2.9v3.5Z"/></svg></a>
+          <a aria-label="TikTok"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M10.3 0c.2 1.6 1.1 2.6 2.7 2.7v1.9c-.9.1-1.7-.2-2.7-.7v3.3c0 4.2-4.6 5.5-6.4 2.5C2.8 7.7 4.3 5.2 7 5.5v2c-.4-.1-.8-.1-1.2 0-1.1.4-1 2.2.4 2.3.9 0 1.4-.6 1.4-1.6V0h2.7Z"/></svg></a>
+          <a aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 14 11" fill="#febf13"><path d="M13.7 1.7C13.5 1 13 .5 12.3.3 11 0 7 0 7 0S3 0 1.7.3C1 .5.5 1 .3 1.7 0 3 0 5.5 0 5.5s0 2.5.3 3.8c.2.7.7 1.2 1.4 1.4C3 11 7 11 7 11s4 0 5.3-.3c.7-.2 1.2-.7 1.4-1.4.3-1.3.3-3.8.3-3.8s0-2.5-.3-3.8ZM5.6 7.8V3.2L9.4 5.5 5.6 7.8Z"/></svg></a>
+        </span>
+      </div>
+    </div>
+
+    <!-- 3. Header escuro -->
+    <div class="abs headbar">
+      <div class="header">
+        <a class="header__logo"><img src="Assets/hsp-logo-eov.png" alt="Escuta o Véio" /></a>
+        <div class="search">
+          <div class="search__field">
+            <svg width="14" height="19" viewBox="0 0 14 19" fill="none"><path d="M7 0a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3Z" fill="#9a9a9a"/><path d="M1 8v1a6 6 0 0 0 12 0V8M7 15v3M4 18h6" stroke="#9a9a9a" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <span>Qual produto você está precisando?</span>
+          </div>
+          <button class="search__btn" aria-label="Buscar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.3" stroke="#2b2b29" stroke-width="1.6"/><path d="M11 11l4 4" stroke="#2b2b29" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="top-icons">
+          <div class="ti">
+            <svg width="27" height="27" viewBox="0 0 27 27" fill="none"><circle cx="13.5" cy="9" r="4.5" stroke="#fff" stroke-width="1.6"/><path d="M4.5 23a9 9 0 0 1 18 0" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="ti__txt"><b>Bem-Vindo(a)!</b><br>Entre ou cadastre-se</span>
+          </div>
+          <div class="ti ti--cart">
+            <span class="ti__cartbadge"><i></i><svg width="44" height="34" viewBox="0 0 44 34" fill="none"><path d="M2 3h6l3 17h20l3-12H11" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="27" r="2.5" fill="#fff"/><circle cx="31" cy="27" r="2.5" fill="#fff"/></svg></span>
+            <span class="ti__txt"><b>Meu Carrinho</b><span>(0) itens</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="brandmenu">
+        <span class="brandmenu__track">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 5l8-3 8 3-8 3-8-3Zm0 0v8l8 3 8-3V5M10 8v10" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          Rastreio de Pedido
+        </span>
+        <div class="brandmenu__list">
+          <span>Elastment</span><span>DryLevis</span><span>Cristal</span><span>LT Shiner</span>
+          <span>Wood Wood</span><span>Hobby Art</span><span>Transfix</span><span>Profixx</span>
+          <span>IvaClean</span><span>O Pulo do Gato</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de departamentos -->
+    <div class="abs deptbar">
+      <div class="deptbar__inner">
+        <span class="dept-all">
+          <svg width="20" height="16" viewBox="0 0 20 16" fill="none"><path d="M1 2h18M1 8h18M1 14h18" stroke="#2d2d2b" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Todos os Departamentos
+        </span>
+        <div class="deptbar__list">
+          <span>Alvenaria</span><span>Construção a Seco</span><span>Impermeabilização</span>
+          <span>Revestimento</span><span>Acabamento</span><span>Marcenaria</span>
+          <span>Artesanato</span><span>Limpeza</span>
+        </div>
+        <span class="dept-ofertas"><span class="star">%</span>Descubra seu ambiente</span>
+      </div>
+    </div>
+
+    <!-- 4. Banner linha PRO -->
+    <div class="abs probanner"><img src="Assets/hsp-banner.jpg" alt="Linha PRO — Hold Stone" /></div>
+    <div class="abs hs-medal"><img src="Assets/hsp-logo-holdstone.png" alt="Hold Stone Pro" /></div>
+
+    <!-- 5. Intro + título -->
+    <p class="abs intro">HOLD STONE PRO reúne soluções para pisos monolíticos Drenantes e Fulget que combinam alta resistência, estética e praticidade.</p>
+    <h1 class="abs title">HOLD STONE PRO</h1>
+    <p class="abs subtitle">Resina para pisos drenantes</p>
+
+    <!-- 6. Vitrine do produto -->
+    <div class="abs showcase-center"><img src="Assets/hsp-fixador.png" alt="Fixador de Pedras Soltas — Hold Stone Pro" /></div>
+    <div class="abs ph ph--1"></div>
+    <div class="abs ph ph--2"></div>
+
+    <div class="abs feature feature--1">
+      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="feature__txt"><b>Elástico e sem rachaduras</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
+    </div>
+    <div class="abs feature feature--2">
+      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="feature__txt"><b>Elástico e sem rachaduras</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
+    </div>
+    <div class="abs feature feature--3">
+      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="feature__txt"><b>Elástico e sem rachaduras</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
+    </div>
+    <div class="abs feature feature--4">
+      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="feature__txt"><b>Elástico e sem rachaduras</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
+    </div>
+
+    <!-- 7. Obra bem-feita -->
+    <div class="abs obra">
+      <h2>Obra bem-feita não infiltra.</h2>
+      <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza de uma vez, com elasticidade e aderência que o silicone convencional não entrega.</p>
+    </div>
+
+    <!-- 8. Cards Telhas -->
+    <div class="abs cards">
+      <article class="tcard">
+        <img class="tcard__img" src="Assets/hsp-telhas.jpg" alt="Telhas" />
+        <h3>Telhas</h3>
+        <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+      </article>
+      <article class="tcard">
+        <img class="tcard__img" src="Assets/hsp-telhas.jpg" alt="Telhas" />
+        <h3>Telhas</h3>
+        <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+      </article>
+      <article class="tcard">
+        <img class="tcard__img" src="Assets/hsp-telhas.jpg" alt="Telhas" />
+        <h3>Telhas</h3>
+        <p>Você não precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
+      </article>
+    </div>
+
+    <!-- 9. Vídeos -->
+    <div class="abs videos">
+      <div class="video"><video class="video__media" src="Assets/video-1.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" aria-label="Reproduzir"></button><div class="video__line"></div></div>
+      <div class="video"><video class="video__media" src="Assets/video-2.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" aria-label="Reproduzir"></button><div class="video__line"></div></div>
+      <div class="video"><video class="video__media" src="Assets/video-3.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" aria-label="Reproduzir"></button><div class="video__line"></div></div>
+    </div>
+
+    <!-- 10. Nav Tabs -->
+    <div class="abs navtabs">
+      <nav class="navtabs__nav">
+        <button class="navtabs__tab is-active" data-tab="oque">O que são</button>
+        <button class="navtabs__tab" data-tab="beneficios">Benefícios</button>
+        <button class="navtabs__tab" data-tab="modo">Modo de Uso</button>
+        <button class="navtabs__tab" data-tab="composicao">Composição</button>
+      </nav>
+      <div class="navtabs__divider"></div>
+      <div class="navtabs__content">
+        <h2 id="tabTitle">Informações</h2>
+        <p class="lbl" id="tabLabel">Informações</p>
+        <p id="tabText">O Selante DW240 da Drylevis é um selante adesivo com alto desempenho para tratamento de juntas de dilatação e de preenchimento. Já vem pronto para uso, além de vedar e aderir à superfície com rapidez e elasticidade. Possui ótima resistência à água, a raios UV, a vibrações, a movimentações e à ação do tempo. Pode ser utilizado também para fixação e vedação de diversos materiais, como pedras, concretos, vidros, esquadrias de alumínio etc.</p>
+      </div>
+    </div>
+
+    <!-- 11. Grade + ficha -->
+    <div class="abs pgrid">
+      <img src="Assets/hsp-grid-1.jpg" alt="" />
+      <img src="Assets/hsp-grid-2.jpg" alt="" />
+      <img src="Assets/hsp-grid-3.jpg" alt="" />
+      <img src="Assets/hsp-grid-4.jpg" alt="" />
+    </div>
+
+    <div class="abs pinfo">
+      <img class="pinfo__logo" src="Assets/hsp-logo-holdstone.png" alt="Hold Stone" />
+      <p class="pinfo__name">Hold Stone Pro</p>
+      <p class="pinfo__sub"><b>Cola, veda e impermeabiliza</b> juntas de uma vez. Poliuretano extra forte mais resistente e elástico que silicone.</p>
+      <p class="pinfo__old">R$ 75,24</p>
+      <div class="pinfo__newrow"><p class="pinfo__new">R$ 71,48</p><p class="pinfo__each">cada</p></div>
+      <div class="colors">
+        <p class="colors__lbl">Cores</p>
+        <div class="colors__opts">
+          <div class="swatch is-active" data-variantid="266913"><div class="swatch__chip" style="background:#fff"></div><span>Branco</span></div>
+          <div class="swatch" data-variantid="266858"><div class="swatch__chip" style="background:#bdbdbd"></div><span>Cinza</span></div>
+          <div class="swatch" data-variantid="269771"><div class="swatch__chip" style="background:#1a1a1a"></div><span>Preto</span></div>
+        </div>
+      </div>
+      <button class="addcart" data-buy-custom data-product-quantity="1" data-product-variantid="266913">Adicionar ao carrinho</button>
+    </div>
+
+    <!-- 12. Compre junto -->
+    <div class="abs kit">
+      <img class="kit__art" src="Assets/kit-art.png" alt="" />
+      <div class="kit__tube"><img src="Assets/kit-tube.png" alt="" /></div>
+      <div class="kit__prod kit-tubes"><div class="rot"><div class="clip"><img src="Assets/kit-prod-a.png" alt="" /></div></div></div>
+      <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="Assets/kit-prod-b.png" alt="" /></div></div></div>
+      <div class="kit__badge"><span>Compre junto</span></div>
+      <p class="kit__title">Montamos seu <b>kit</b><br>de <b>desempenho</b></p>
+      <p class="kit__desc">Selecionamos os melhores produtos para que você tenha a melhor performance e aplicação do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
+      <button class="kit__btn">Aproveitar</button>
+    </div>
+
+    <!-- 13. Conheça a nossa História -->
+    <div class="abs historia">
+      <div class="historia__logo"><img src="Assets/hsp-logo-eov-full.png" alt="Escuta o Véio" /></div>
+      <div class="historia__div"></div>
+      <div class="historia__txt">
+        <p>O Escuta o Véio é um e-commerce de materiais de construção que nasceu para ajudar os brasileiros a resolverem problemas comuns da construção civil em suas casas de forma personalizada, com produtos de qualidade e que realmente funcionam.</p>
+        <span class="historia__cta">Conheça A Nossa História
+          <span class="arr"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 1l5 4.5L3 10" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+    </div>
+
+    <!-- 14. Footer -->
+    <div class="abs footer">
+      <div class="fcol fcol--atend">
+        <span class="ftitle">Atendimento</span>
+        <div class="fcontact">
+          <div class="row"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M2 1h3l1 3-2 1c.6 1.6 2 3 3.6 3.6l1-2 3 1v3c0 .6-.5 1-1 1A11 11 0 0 1 1 2c0-.6.4-1 1-1Z"/></svg><a href="tel:1140678086">(11) 4067-8086</a></div>
+          <div class="row"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M7 0a7 7 0 0 0-6 10.6L0 14l3.5-1A7 7 0 1 0 7 0Zm3.8 9.6c-.2.5-1 .9-1.4.9-.4 0-.8.2-2.6-.6-2.2-1-3.6-3.3-3.7-3.5-.1-.2-.9-1.2-.9-2.2s.5-1.5.7-1.7c.2-.2.4-.2.5-.2h.4c.1 0 .3 0 .5.4l.6 1.5c0 .1.1.3 0 .4l-.3.5c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.3.1.5-.1l.6-.7c.2-.2.3-.1.5-.1l1.4.7c.2.1.4.2.4.3.1.1.1.6-.1 1Z"/></svg><a href="https://wa.me/5511915902455">(11) 91590-2455</a></div>
+          <div class="row"><a href="mailto:comercial@escutaoveio.com">comercial@escutaoveio.com</a></div>
+          <div class="row">Segunda - Sexta: 08:00 ~ 17:30</div>
+        </div>
+      </div>
+
+      <div class="fcol fcol--inst">
+        <span class="ftitle">Institucional</span>
+        <ul>
+          <li><a>Quem somos</a></li>
+          <li><a>Política de Pagamentos</a></li>
+          <li><a>Envio, Trocas e Devoluções</a></li>
+          <li><a>Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol fcol--ajuda">
+        <span class="ftitle">Ajuda e Suporte</span>
+        <ul>
+          <li><a>Como comprar</a></li>
+          <li><a>Minha Conta</a></li>
+          <li><a>Meus Pedidos</a></li>
+          <li><a>Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol fcol--redes">
+        <span class="ftitle">Redes Sociais</span>
+        <div class="fsocial">
+          <a aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M7 0C5.1 0 4.9 0 4.1.1c-.8 0-1.3.2-1.8.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.5-.3 1-.4 1.8C0 4.9 0 5.1 0 7s0 2.1.1 2.9c0 .8.2 1.3.4 1.8.2.5.4.9.8 1.3.4.4.8.6 1.3.8.5.2 1 .3 1.8.4C4.9 14 5.1 14 7 14s2.1 0 2.9-.1c.8 0 1.3-.2 1.8-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.5.3-1 .4-1.8 0-.8.1-1 .1-2.9s0-2.1-.1-2.9c0-.8-.2-1.3-.4-1.8a3.6 3.6 0 0 0-.8-1.3 3.6 3.6 0 0 0-1.3-.8c-.5-.2-1-.3-1.8-.4C9.1 0 8.9 0 7 0Zm0 3.4A3.6 3.6 0 1 1 7 10.6 3.6 3.6 0 0 1 7 3.4Zm0 5.9A2.3 2.3 0 1 0 7 4.7a2.3 2.3 0 0 0 0 4.6Zm4.6-6a.84.84 0 1 1-1.7 0 .84.84 0 0 1 1.7 0Z"/></svg></a>
+          <a aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M14 7a7 7 0 1 0-8.1 6.9V9H4.1V7h1.8V5.5c0-1.8 1-2.7 2.6-2.7.8 0 1.5.1 1.7.1v1.9h-1c-.9 0-1.1.5-1.1 1.1V7h2l-.3 2H8.1v4.9A7 7 0 0 0 14 7Z"/></svg></a>
+          <a aria-label="Pinterest"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M7 0a7 7 0 0 0-2.6 13.5c0-.6-.1-1.4 0-2l.9-3.8s-.2-.5-.2-1.1c0-1 .6-1.8 1.3-1.8.6 0 .9.5.9 1 0 .6-.4 1.6-.6 2.4-.2.7.4 1.3 1 1.3 1.3 0 2.2-1.6 2.2-3.6 0-1.5-1-2.6-2.8-2.6a3.2 3.2 0 0 0-3.3 3.2c0 .6.2 1 .4 1.3.1.1.1.2.1.3l-.1.6c0 .2-.2.3-.4.2-1-.4-1.4-1.5-1.4-2.7C2.8 4 4.3 2 7.2 2c2.4 0 4 1.7 4 3.6 0 2.4-1.4 4.2-3.3 4.2-.7 0-1.3-.4-1.5-.8l-.4 1.6c-.2.6-.5 1.2-.8 1.6A7 7 0 1 0 7 0Z"/></svg></a>
+          <a aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M12 0H2C.9 0 0 .9 0 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2ZM4.3 11.9H2.4V5.6h1.9v6.3ZM3.3 4.8A1.1 1.1 0 1 1 3.3 2.6a1.1 1.1 0 0 1 0 2.2Zm8.6 7.1H10V8.7c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3.2H6V5.6h1.8v.9h.1c.3-.5.9-1 1.8-1 1.9 0 2.2 1.2 2.2 2.9v3.5Z"/></svg></a>
+          <a aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M10.3 0c.2 1.6 1.1 2.6 2.7 2.7v1.9c-.9.1-1.7-.2-2.7-.7v3.3c0 4.2-4.6 5.5-6.4 2.5C2.8 7.7 4.3 5.2 7 5.5v2c-.4-.1-.8-.1-1.2 0-1.1.4-1 2.2.4 2.3.9 0 1.4-.6 1.4-1.6V0h2.7Z"/></svg></a>
+          <a aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 14 11" fill="#161616"><path d="M13.7 1.7C13.5 1 13 .5 12.3.3 11 0 7 0 7 0S3 0 1.7.3C1 .5.5 1 .3 1.7 0 3 0 5.5 0 5.5s0 2.5.3 3.8c.2.7.7 1.2 1.4 1.4C3 11 7 11 7 11s4 0 5.3-.3c.7-.2 1.2-.7 1.4-1.4.3-1.3.3-3.8.3-3.8s0-2.5-.3-3.8ZM5.6 7.8V3.2L9.4 5.5 5.6 7.8Z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="fcol fcol--envios">
+        <span class="ftitle">Envios</span>
+      </div>
+
+      <div class="fcol fcol--pgto">
+        <span class="ftitle">Formas de Pagamento</span>
+      </div>
+
+      <p class="fcopy1">Vip Collection Comércio e Distribuidora LTDA | CNPJ: 17.507.426/0001-39 - IE: 286.544.121.113 | Av. Piraporinha, 1839 - Vila Nogueira Diadema - SP, 09950-000</p>
+      <div class="fline fline--1"></div>
+      <div class="fline fline--2"></div>
+      <p class="fcopy2">As ofertas são válidas até o término de nossos estoques sem prévio aviso. As vendas ainda estão sujeitas à análise e confirmação de dados. Caso exista alguma diferença nos preços ofertados, será considerado válido o preço do Carrinho de Compras. As imagens dos produtos são meramente ilustrativas. ©Copyright Escuta o Veio . Todos os direitos reservados.</p>
+    </div>
+
+  </div>
+  </div>
+
+<script>
+  // ---------- Scaler: mantém o design 1512x6492 fiel em qualquer largura ----------
+  (function(){
+    var W = 1512, H = 6492;
+    var wrap = document.querySelector('.stage-wrap');
+    function fit(){
+      var s = Math.min(1, window.innerWidth / W);
+      document.documentElement.style.setProperty('--s', s);
+      wrap.style.width  = (W * s) + 'px';
+      wrap.style.height = (H * s) + 'px';
+    }
+    fit();
+    window.addEventListener('resize', fit);
+  })();
+
+  // ---------- Nav tabs ----------
+  var TAB_DATA = {
+    oque:{ title:'Informações', label:'Informações', text:'O Selante DW240 da Drylevis é um selante adesivo com alto desempenho para tratamento de juntas de dilatação e de preenchimento. Já vem pronto para uso, além de vedar e aderir à superfície com rapidez e elasticidade. Possui ótima resistência à água, a raios UV, a vibrações, a movimentações e à ação do tempo. Pode ser utilizado também para fixação e vedação de diversos materiais, como pedras, concretos, vidros, esquadrias de alumínio etc.' },
+    beneficios:{ title:'Benefícios', label:'Por que usar', text:'Mais forte que o silicone e que o PU comum; ultra resistente à água; elástico e sem rachaduras; aderência imediata em superfícies porosas e não porosas; aceita pintura; secagem rápida e ótimo rendimento.' },
+    modo:{ title:'Modo de Uso', label:'Como aplicar', text:'Limpe e seque bem a superfície. Aplique com pistola aplicadora ou espátula, preenchendo completamente as juntas e os vazios. Para máxima adesão, use o primer PR10 antes. Cura ao toque em 2h, inicial em 12h e final em 24h.' },
+    composicao:{ title:'Composição', label:'O que contém', text:'Poliuretano monocomponente, sem isocianato livre e sem solventes, de textura pastosa. Disponível nas cores branco, cinza e preto. Validade de 12 meses a partir da fabricação, com a embalagem fechada.' }
+  };
+  var tabs = document.querySelectorAll('.navtabs__tab');
+  var elT = document.getElementById('tabTitle'), elL = document.getElementById('tabLabel'), elX = document.getElementById('tabText');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      var d = TAB_DATA[tab.getAttribute('data-tab')]; if(!d) return;
+      elT.textContent = d.title; elL.textContent = d.label; elX.textContent = d.text;
+    });
+  });
+
+  // ---------- Cores -> variante (Wake) ----------
+  var swatches = document.querySelectorAll('.swatch'), buyBtn = document.querySelector('.addcart');
+  swatches.forEach(function(sw){
+    sw.addEventListener('click', function(){
+      swatches.forEach(function(s){ s.classList.remove('is-active'); });
+      sw.classList.add('is-active');
+      var vid = sw.getAttribute('data-variantid');
+      if(buyBtn && vid) buyBtn.setAttribute('data-product-variantid', vid);
+    });
+  });
+
+  // ---------- Player de vídeo ----------
+  document.querySelectorAll('.video').forEach(function(card){
+    var media = card.querySelector('.video__media'); if(!media) return;
+    card.addEventListener('click', function(){
+      if(media.paused){ document.querySelectorAll('.video__media').forEach(function(m){ if(m!==media) m.pause(); }); media.play(); }
+      else media.pause();
+    });
+    media.addEventListener('play', function(){ card.classList.add('is-playing'); });
+    media.addEventListener('pause', function(){ card.classList.remove('is-playing'); });
+    media.addEventListener('ended', function(){ card.classList.remove('is-playing'); media.currentTime = 0; });
+  });
+</script>
+</body>
+</html>

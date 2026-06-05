@@ -54,10 +54,10 @@
   #dw240-root .hero__desc b{ font-weight:700; }
   #dw240-root .hero__link{ position:absolute; left:112px; top:407px; background:#fff; display:flex; align-items:center; justify-content:center; padding:14px; border-radius:16px; cursor:pointer; border:none; }
   #dw240-root .hero__link span{ font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:15.5px; color:#151218; text-transform:uppercase; white-space:nowrap; line-height:1.1; }
-  #dw240-root .hero__arrow{ position:absolute; top:45%; width:42px; height:42px; cursor:pointer; }
-  #dw240-root .hero__arrow svg{ width:100%; height:100%; }
+  #dw240-root .hero__arrow{ position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  #dw240-root .hero__arrow svg{ width:100%; height:100%; display:block; }
   #dw240-root .hero__arrow--left{ left:-9px; }
-  #dw240-root .hero__arrow--right{ right:-12px; transform:scaleX(-1); }
+  #dw240-root .hero__arrow--right{ right:-12px; transform:translateY(-50%) scaleX(-1); }
 
   /* 2. O que e o DW240? */
   #dw240-root .what{ width:100%; display:flex; gap:24px; align-items:center; justify-content:center; padding:clamp(32px,5vw,80px); }
