@@ -1,132 +1,59 @@
 <!-- ============================================================================
-     BLOCO LANDING PAGE - HOLD STONE PRO (ESCUTA O VEIO)
+     BLOCO LANDING PAGE - HOLD STONE PRO (ESCUTA O VEIO) - RESPONSIVO
      Cole TUDO isto num bloco de conteudo HTML do Wake (modo codigo-fonte).
      - Sem <html>/<head>/<body> (e um fragmento).
-     - Sem dependencia de JS externo.
+     - Layout responsivo de verdade (reflow), sem canvas fixo.
      - CSS escopado em #hsp-root (nao afeta o tema).
-     - SVGs (logos, icones) embutidos: nao precisam de upload.
-     - Acentos em entidades HTML; o JS nao usa acento.
-     - IMAGENS e VIDEO: servidos do GitHub via CDN jsDelivr (repo publico
-       nicho1914/page_dw-240_drylevis, pasta Assets/). NAO precisa subir nada
-       na Wake. Faca commit + push dos assets hsp-* antes de publicar.
-
-     OBS.: este bloco reproduz a PAGINA INTEIRA do Figma, incluindo a barra
-     promocional, top-bar, header (busca/conta/carrinho), menus e rodape.
-     Se o tema da loja JA renderiza header/rodape, voce pode REMOVER os blocos
-     marcados como [CHROME DA LOJA] abaixo e manter so o conteudo.
+     - SVGs (logos, icones) embutidos; acentos em entidades; JS sem acento.
+     - IMAGENS e VIDEO via CDN jsDelivr (repo nicho1914/page_dw-240_drylevis,
+       pasta Assets/). Faca commit + push dos assets hsp-* antes de publicar.
+     - Se o tema da loja JA renderiza header/rodape, remova os blocos
+       marcados [CHROME DA LOJA].
 ============================================================================ -->
 
-<!-- Fonte (CSS, nao JS). Pode ficar aqui ou no <head> do tema. -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Passion+One:wght@400&family=Poppins:wght@300;400&display=swap" rel="stylesheet" />
 
 <div id="hsp-root">
 <style type="text/css">
-  #hsp-root{
-    --yellow:#febf13; --red:#d12b2b; --red-pill:#c0392b; --ink:#2d2d2b; --ink-2:#161616;
-    --gray-200:#bdbdbd; --white:#ffffff; --s:1;
-    background:transparent;
-    font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  #hsp-root{ --yellow:#febf13; --red:#d12b2b; --title-red:#ba1c1d; --red-pill:#c0392b; --ink:#2d2d2b; --ink-2:#161616; --gray-200:#bdbdbd;
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden; background:#fff; }
   #hsp-root *, #hsp-root *::before, #hsp-root *::after{ box-sizing:border-box; margin:0; padding:0; }
-  #hsp-root img{ display:block; max-width:none; }
+  #hsp-root img{ display:block; max-width:100%; }
   #hsp-root a{ color:inherit; text-decoration:none; }
   #hsp-root button{ font-family:inherit; }
+  #hsp-root .wrap{ width:100%; max-width:1432px; margin:0 auto; padding-inline:clamp(16px,4vw,60px); }
 
-  /* Scaler — o design tem 1512 x 6492, reproduzido 1:1 e escalado p/ caber. */
-  #hsp-root .stage-wrap{ position:relative; overflow:hidden; margin:0 auto; }
-  #hsp-root .stage{ position:absolute; top:0; left:0; width:1512px; height:6492px;
-    transform-origin:top left; transform:scale(var(--s)); background:#fff; }
-  #hsp-root .abs{ position:absolute; }
+  #hsp-root .probanner{ margin-top:clamp(20px,3vw,32px); }
+  #hsp-root .probanner img{ width:100%; border-radius:clamp(14px,1.6vw,24px); aspect-ratio:1330/668; object-fit:cover; }
 
-  /* 1. Banner promocional */
-  #hsp-root .banner{ top:0; left:0; width:1512px; height:32px; background:var(--yellow);
-    display:flex; align-items:center; justify-content:center; gap:11px; font-size:15px; color:#2b2b29; }
-  #hsp-root .banner b{ font-weight:700; }
-  #hsp-root .banner .dot{ width:5px; height:5px; border-radius:50%; background:#2b2b29; }
-  #hsp-root .banner .soft{ color:#5a4d12; }
+  #hsp-root .intro{ text-align:center; font-family:'Passion One',sans-serif; font-weight:400; color:var(--title-red); font-size:clamp(26px,4.4vw,48px); line-height:1.1; margin-top:clamp(28px,4vw,40px); }
+  #hsp-root .title{ text-align:center; font-family:'Passion One',sans-serif; font-weight:400; color:var(--title-red); font-size:clamp(46px,8.5vw,96px); line-height:1.05; margin-top:clamp(24px,4vw,60px); }
+  #hsp-root .subtitle{ text-align:center; font-family:'Passion One',sans-serif; font-weight:400; color:var(--ink); font-size:clamp(22px,3.2vw,36px); margin-top:6px; }
 
-  /* 2. Top-bar */
-  #hsp-root .topbar{ top:32px; left:0; width:1512px; height:45px; background:var(--ink-2); color:#e9e9e9; font-size:12px; }
-  #hsp-root .topbar__welcome{ position:absolute; left:101px; top:15px; }
-  #hsp-root .topbar__welcome b{ color:var(--yellow); font-weight:700; }
-  #hsp-root .topbar__links{ position:absolute; left:759px; top:15px; display:flex; align-items:center; gap:8px; }
-  #hsp-root .topbar__links a{ display:inline-flex; align-items:center; gap:6px; }
-  #hsp-root .topbar__links .sep{ color:#666; margin:0 2px; }
-  #hsp-root .topbar__social{ display:flex; align-items:center; gap:4px; }
-  #hsp-root .topbar__social a{ display:inline-flex; }
-  #hsp-root .topbar svg{ display:block; }
-
-  /* 3. Header escuro + menu de marcas */
-  #hsp-root .headbar{ top:77px; left:0; width:1512px; height:129px; background:var(--ink); }
-  #hsp-root .header{ position:absolute; left:144.72px; top:21px; width:1196px; height:66px; }
-  #hsp-root .header__logo{ position:absolute; left:0; top:0; height:66px; }
-  #hsp-root .header__logo img{ height:66px; width:auto; }
-  #hsp-root .search{ position:absolute; left:250px; top:14px; width:516px; height:38px; background:#ececec; border-radius:8px; display:flex; align-items:center; }
-  #hsp-root .search__field{ display:flex; align-items:center; gap:8px; padding-left:16px; color:#8a8a8a; font-size:15px; }
-  #hsp-root .search__btn{ position:absolute; right:0; top:0; width:38px; height:38px; background:var(--yellow); border:none; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
-  #hsp-root .top-icons{ position:absolute; left:812px; top:16px; display:flex; align-items:center; gap:8px; color:#fff; }
-  #hsp-root .ti{ display:flex; align-items:center; gap:9px; }
-  #hsp-root .ti__txt{ font-size:12px; line-height:1.25; }
-  #hsp-root .ti__txt b{ font-weight:600; }
-  #hsp-root .ti--cart{ margin-left:20px; }
-  #hsp-root .ti--cart .ti__txt span{ display:block; color:#c9c9c9; }
-  #hsp-root .ti__cartbadge{ position:relative; }
-  #hsp-root .ti__cartbadge i{ position:absolute; top:-3px; right:-3px; width:11px; height:11px; border-radius:50%; background:var(--yellow); }
-  #hsp-root .brandmenu{ position:absolute; left:86.4px; top:101px; width:1298px; height:20px; display:flex; align-items:center; color:#fff; font-size:13px; }
-  #hsp-root .brandmenu__track{ display:flex; align-items:center; gap:10px; font-weight:600; }
-  #hsp-root .brandmenu__list{ position:absolute; left:336px; top:3px; display:flex; gap:28px; white-space:nowrap; color:#eaeaea; }
-
-  /* Barra de departamentos */
-  #hsp-root .deptbar{ top:206px; left:0; width:1512px; height:52px; background:#fff; border-bottom:1px solid #eee; }
-  #hsp-root .deptbar__inner{ position:absolute; left:82px; top:0; height:52px; display:flex; align-items:center; gap:36px; }
-  #hsp-root .dept-all{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink); }
-  #hsp-root .deptbar__list{ display:flex; align-items:center; gap:36px; font-size:14px; color:#3a3a3a; }
-  #hsp-root .dept-ofertas{ display:flex; align-items:center; gap:9px; background:var(--yellow); color:#2b2b29; font-weight:700; font-size:14px; padding:5px 14px; border-radius:100px; }
-  #hsp-root .dept-ofertas .star{ width:18px; height:18px; border-radius:50%; background:#2b2b29; color:var(--yellow); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; }
-
-  /* 4. Banner linha PRO */
-  #hsp-root .probanner{ top:302px; left:91px; width:1330px; height:668px; border-radius:24px; overflow:hidden; }
-  #hsp-root .probanner img{ width:100%; height:100%; object-fit:cover; }
-  #hsp-root .hs-medal{ top:945px; left:50%; transform:translateX(-50%); width:96px; height:96px; border-radius:50%; background:#fff; box-shadow:0 8px 24px rgba(0,0,0,.18); display:flex; align-items:center; justify-content:center; }
-  #hsp-root .hs-medal img{ width:60px; height:auto; }
-
-  /* 5. Intro + titulo */
-  #hsp-root .intro{ top:1046px; left:80px; width:1352px; height:106px; text-align:center; color:var(--red); font-weight:800; font-style:italic; font-size:42px; line-height:1.05; }
-  #hsp-root .title{ top:1231px; left:0; width:1512px; text-align:center; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-style:italic; font-size:84px; line-height:1; color:var(--red); letter-spacing:.5px; }
-  #hsp-root .subtitle{ top:1327px; left:0; width:1512px; text-align:center; font-weight:700; font-style:italic; font-size:30px; color:var(--ink); }
-
-  /* 6. Vitrine do produto */
-  #hsp-root .showcase-center{ top:1351px; left:445px; width:664px; height:752px; border-radius:25px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-  #hsp-root .showcase-center img{ max-width:100%; max-height:100%; object-fit:contain; }
-  #hsp-root .ph{ background:#2c2c2a; border-radius:25px; }
-  #hsp-root .ph--1{ top:1504px; left:80px; width:435px; height:244px; }
-  #hsp-root .ph--2{ top:1772px; left:80px; width:435px; height:244px; }
-  #hsp-root .feature{ left:1037px; width:382px; height:110px; background:var(--ink); border-radius:16px; display:flex; align-items:center; padding:24px; gap:14px; }
-  #hsp-root .feature__icon{ width:48px; height:58px; flex:none; }
+  #hsp-root .showcase{ display:flex; gap:24px; flex-wrap:wrap; align-items:stretch; justify-content:center; margin-top:clamp(28px,4vw,48px); }
+  #hsp-root .showcase__imgs{ flex:1 1 260px; display:flex; flex-direction:column; gap:24px; min-width:230px; }
+  #hsp-root .showcase__imgs img{ width:100%; aspect-ratio:435/360; object-fit:cover; border-radius:25px; }
+  #hsp-root .showcase__product{ flex:2 1 360px; display:flex; align-items:center; justify-content:center; }
+  #hsp-root .showcase__product img, #hsp-root .showcase__product video{ width:100%; max-width:480px; max-height:640px; object-fit:contain; }
+  #hsp-root .showcase__features{ flex:1 1 340px; display:flex; flex-direction:column; gap:16px; justify-content:center; min-width:300px; }
+  #hsp-root .feature{ display:flex; align-items:center; gap:16px; background:var(--ink); border-radius:16px; padding:22px 26px; }
+  #hsp-root .feature__icon{ width:46px; height:54px; flex:none; }
   #hsp-root .feature__txt{ flex:1; text-align:center; color:#fff; }
-  #hsp-root .feature__txt b{ display:block; font-weight:700; font-size:16px; margin-bottom:8px; }
-  #hsp-root .feature__txt span{ display:block; color:#c4c4c4; font-size:12px; line-height:1.25; }
-  #hsp-root .feature--1{ top:1504px; } #hsp-root .feature--2{ top:1638px; }
-  #hsp-root .feature--3{ top:1772px; } #hsp-root .feature--4{ top:1906px; }
+  #hsp-root .feature__txt b{ display:block; font-weight:700; font-size:18px; margin-bottom:7px; }
+  #hsp-root .feature__txt span{ display:block; color:#cfcfcf; font-size:14px; line-height:1.4; }
 
-  /* 7. Obra bem-feita */
-  #hsp-root .obra{ top:2103px; left:133px; width:1227px; text-align:center; }
-  #hsp-root .obra h2{ font-weight:400; font-size:64px; color:#1f1f1f; line-height:1; margin-bottom:28px; }
-  #hsp-root .obra p{ font-weight:400; font-size:20px; color:#5a5a5a; line-height:1.3; }
+  #hsp-root .obra{ text-align:center; margin-top:clamp(48px,7vw,90px); }
+  #hsp-root .obra h2{ font-weight:500; font-size:clamp(30px,5vw,64px); color:#1a1a1a; line-height:1.05; }
+  #hsp-root .obra p{ font-weight:400; font-size:clamp(16px,2.2vw,24px); color:#71717a; line-height:1.3; max-width:1100px; margin:24px auto 0; }
 
-  /* 8. Cards Telhas */
-  #hsp-root .cards{ top:2301px; left:80px; width:1353px; display:flex; gap:24px; }
-  #hsp-root .tcard{ width:435px; background:#fff; border-radius:25px; padding:40px; box-shadow:0 6px 24px rgba(0,0,0,.06); }
-  #hsp-root .tcard__img{ width:355px; height:311px; border-radius:14px; object-fit:cover; }
-  #hsp-root .tcard h3{ font-weight:700; font-size:36px; color:#111; margin:32px 0 16px; }
-  #hsp-root .tcard p{ font-weight:400; font-size:20px; color:#5a5a5a; line-height:1.1; }
+  #hsp-root .cards{ display:flex; gap:24px; flex-wrap:wrap; margin-top:clamp(32px,4vw,52px); }
+  #hsp-root .tcard{ flex:1 1 300px; background:#fff; border-radius:25px; padding:clamp(24px,2.4vw,40px); box-shadow:0 6px 24px rgba(0,0,0,.07); }
+  #hsp-root .tcard img{ width:100%; aspect-ratio:355/311; object-fit:cover; border-radius:14px; }
+  #hsp-root .tcard h3{ font-weight:700; font-size:clamp(26px,3vw,36px); color:#111; margin:28px 0 14px; }
+  #hsp-root .tcard p{ font-weight:400; font-size:clamp(16px,1.5vw,21px); color:#4f4f4f; line-height:1.45; }
 
-  /* 9. Videos */
-  #hsp-root .videos{ top:2981px; left:81px; width:1349px; display:flex; gap:18px; }
-  #hsp-root .video{ width:437px; height:594px; background:#3a3a38; border-radius:38px; position:relative; overflow:hidden; cursor:pointer; }
+  #hsp-root .videos{ display:flex; gap:18px; margin-top:clamp(48px,7vw,90px); }
+  #hsp-root .video{ flex:1 1 0; min-width:0; aspect-ratio:437/594; background:#3a3a38; border-radius:clamp(20px,3vw,38px); position:relative; overflow:hidden; cursor:pointer; }
   #hsp-root .video__media{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#3a3a38; }
   #hsp-root .video::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.32)); z-index:1; transition:opacity .25s; }
   #hsp-root .video.is-playing::before{ opacity:0; }
@@ -135,8 +62,7 @@
   #hsp-root .video.is-playing .video__btn{ opacity:0; }
   #hsp-root .video__line{ position:absolute; left:31px; right:31px; bottom:26px; height:2px; background:rgba(255,255,255,.55); z-index:2; }
 
-  /* 10. Nav Tabs */
-  #hsp-root .navtabs{ top:3703px; left:87px; width:1344px; height:312px; border-radius:24px; background:linear-gradient(70deg,#dcdadd 19%,#e6e6e6 91%); display:flex; padding:56px; gap:48px; }
+  #hsp-root .navtabs{ display:flex; gap:clamp(24px,3vw,48px); background:linear-gradient(70deg,#dcdadd 19%,#e6e6e6 91%); border-radius:24px; padding:clamp(28px,4vw,56px); margin-top:clamp(56px,9vw,128px); }
   #hsp-root .navtabs__nav{ width:200px; flex:none; display:flex; flex-direction:column; gap:28px; }
   #hsp-root .navtabs__tab{ font-weight:700; font-size:18px; text-align:left; color:var(--ink); background:none; border:none; cursor:pointer; opacity:.45; padding:0; transition:opacity .15s; }
   #hsp-root .navtabs__tab:hover{ opacity:.75; }
@@ -145,234 +71,198 @@
   #hsp-root .navtabs__content{ flex:1; min-width:0; }
   #hsp-root .navtabs__panel{ display:none; flex-direction:column; gap:14px; color:#2b2b2b; }
   #hsp-root .navtabs__panel.is-active{ display:flex; }
-  #hsp-root .navtabs__panel h2{ font-weight:900; font-size:52px; color:#1f1f1f; }
+  #hsp-root .navtabs__panel h2{ font-weight:900; font-size:clamp(30px,5vw,52px); color:#1f1f1f; }
   #hsp-root .navtabs__panel .lbl{ font-weight:700; font-size:14px; }
   #hsp-root .navtabs__panel p{ font-weight:400; font-size:14px; line-height:1.6; color:#454545; }
 
-  /* 11. Grade + ficha */
-  #hsp-root .pgrid{ top:4227px; left:80px; width:899px; height:607px; display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr); gap:8px; }
-  #hsp-root .pgrid img{ width:100%; height:100%; object-fit:cover; border-radius:15px; }
-  #hsp-root .pinfo{ top:4257px; left:1107px; width:405px; display:flex; flex-direction:column; }
-  #hsp-root .pinfo__logo{ width:58px; height:55px; object-fit:contain; margin-bottom:14px; }
-  #hsp-root .pinfo__name{ font-weight:800; font-size:40px; line-height:1.05; color:#222; max-width:230px; }
-  #hsp-root .pinfo__sub{ font-size:18px; color:#3a3a3a; line-height:1.35; margin-top:18px; }
-  #hsp-root .pinfo__sub b{ font-weight:700; }
-  #hsp-root .pinfo__old{ font-size:15px; color:#8a8a8a; text-decoration:line-through; margin-top:30px; }
-  #hsp-root .pinfo__newrow{ display:flex; align-items:flex-end; gap:10px; margin-top:6px; }
-  #hsp-root .pinfo__new{ font-weight:800; font-size:40px; color:var(--red); line-height:1; }
-  #hsp-root .pinfo__each{ font-size:15px; color:#6a6a6a; padding-bottom:4px; }
-  #hsp-root .colors{ margin-top:34px; }
-  #hsp-root .colors__lbl{ font-weight:700; font-size:15px; color:#222; margin-bottom:18px; }
-  #hsp-root .colors__opts{ display:flex; gap:14px; }
-  #hsp-root .swatch{ width:69px; cursor:pointer; }
-  #hsp-root .swatch__chip{ height:54px; border-radius:8px; border:1px solid #2d2d2b; }
-  #hsp-root .swatch span{ display:block; text-align:center; font-size:14px; color:#333; margin-top:9px; }
-  #hsp-root .swatch.is-active .swatch__chip{ outline:3px solid var(--yellow); outline-offset:2px; }
-  #hsp-root .addcart{ margin-top:36px; align-self:flex-start; background:var(--yellow); color:#0f1317; border:none; cursor:pointer; padding:12px 24px; border-radius:8px; font-weight:700; font-size:20px; }
+  #hsp-root .shop{ margin-top:clamp(56px,9vw,120px); }
+  #hsp-root .shop__tabs{ display:flex; gap:12px; flex-wrap:wrap; }
+  #hsp-root .shop__tab{ display:flex; align-items:center; gap:10px; border:1.5px solid #d5d5d5; background:#fff; color:#6a6a6a; font-weight:700; font-size:clamp(15px,1.8vw,18px); padding:12px 26px; border-radius:100px; cursor:pointer; transition:.15s; }
+  #hsp-root .shop__tab:hover{ border-color:#aaa; }
+  #hsp-root .shop__tab.is-active{ background:var(--ink); border-color:var(--ink); color:#fff; }
+  #hsp-root .shop__tab .tag{ font-size:11px; font-weight:700; padding:3px 8px; border-radius:100px; background:var(--yellow); color:#2b2b29; }
+  #hsp-root .shop__panel{ display:none; gap:clamp(28px,3.5vw,48px); align-items:stretch; flex-wrap:wrap; margin-top:clamp(24px,3vw,40px); }
+  #hsp-root .shop__panel.is-active{ display:flex; }
+  #hsp-root .shop__media{ flex:1 1 460px; min-width:0; }
+  #hsp-root .shop__buy{ flex:1 1 360px; min-width:0; max-width:460px; display:flex; flex-direction:column; }
 
-  /* 12. Compre junto */
-  #hsp-root .kit{ top:4929px; left:80px; width:1352px; height:527px; border-radius:25px; overflow:hidden; background:#5f5f5f; }
-  #hsp-root .kit__art{ position:absolute; left:492px; top:-16px; width:915px; height:556px; pointer-events:none; }
+  #hsp-root .gstage{ position:relative; width:100%; aspect-ratio:899/560; border-radius:20px; overflow:hidden; background:#111; }
+  #hsp-root .gslide{ position:absolute; inset:0; opacity:0; transform:scale(1.04); transition:opacity .6s ease, transform 6s ease; }
+  #hsp-root .gslide.is-active{ opacity:1; transform:scale(1); }
+  #hsp-root .gslide img{ width:100%; height:100%; object-fit:cover; }
+  #hsp-root .gstage::after{ content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.1) 42%, rgba(0,0,0,0) 70%); }
+  #hsp-root .gbadge{ position:absolute; left:24px; top:24px; z-index:3; background:var(--red-pill); color:#fff; font-weight:700; font-size:13px; padding:7px 16px; border-radius:100px; }
+  #hsp-root .gcounter{ position:absolute; right:24px; top:24px; z-index:3; color:#fff; font-weight:700; font-size:14px; letter-spacing:1.5px; background:rgba(0,0,0,.32); padding:6px 13px; border-radius:100px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+  #hsp-root .gcap{ position:absolute; left:28px; right:90px; bottom:34px; z-index:3; color:#fff; }
+  #hsp-root .gcap h4{ font-weight:800; font-size:clamp(22px,2.6vw,30px); line-height:1.05; margin-bottom:8px; }
+  #hsp-root .gcap p{ font-weight:400; font-size:clamp(14px,1.6vw,16px); color:#e8e8e8; line-height:1.3; }
+  #hsp-root .garrow{ position:absolute; top:calc(50% - 26px); z-index:4; width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(255,255,255,.65); background:rgba(0,0,0,.28); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); transition:background .15s, transform .15s; }
+  #hsp-root .garrow:hover{ background:rgba(0,0,0,.55); transform:scale(1.07); }
+  #hsp-root .garrow--prev{ left:20px; } #hsp-root .garrow--next{ right:20px; }
+  #hsp-root .gprogress{ position:absolute; left:0; bottom:0; height:4px; width:100%; background:rgba(255,255,255,.22); z-index:3; }
+  #hsp-root .gprogress span{ display:block; height:100%; width:0%; background:var(--yellow); }
+  #hsp-root .gthumbs{ display:flex; gap:14px; margin-top:14px; }
+  #hsp-root .gthumb{ flex:1; min-width:0; aspect-ratio:210/116; border-radius:14px; overflow:hidden; cursor:pointer; position:relative; border:3px solid transparent; transition:border-color .15s, transform .15s; }
+  #hsp-root .gthumb img{ width:100%; height:100%; object-fit:cover; }
+  #hsp-root .gthumb::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.35); transition:opacity .15s; }
+  #hsp-root .gthumb:hover{ transform:translateY(-2px); } #hsp-root .gthumb:hover::after{ opacity:.4; }
+  #hsp-root .gthumb.is-active{ border-color:var(--yellow); } #hsp-root .gthumb.is-active::after{ opacity:0; }
+
+  #hsp-root .cstage{ position:relative; width:100%; aspect-ratio:899/560; border-radius:20px; overflow:hidden; background-size:cover; background-position:center; transition:background-image .25s ease; }
+  #hsp-root .cstage::after{ content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 55%); }
+  #hsp-root .cbadge{ position:absolute; left:24px; top:24px; z-index:3; background:var(--red-pill); color:#fff; font-weight:700; font-size:13px; padding:7px 16px; border-radius:100px; }
+  #hsp-root .ccap{ position:absolute; left:28px; bottom:30px; z-index:3; color:#fff; }
+  #hsp-root .ccap .k{ font-size:13px; letter-spacing:1px; text-transform:uppercase; opacity:.85; }
+  #hsp-root .ccap h4{ font-weight:800; font-size:clamp(26px,3.4vw,38px); line-height:1.05; margin-top:4px; }
+  #hsp-root .cthumbs{ display:flex; gap:12px; margin-top:14px; }
+  #hsp-root .cthumb{ flex:1; cursor:pointer; }
+  #hsp-root .cthumb .sw{ width:100%; aspect-ratio:1/.8; border-radius:12px; border:3px solid transparent; background-size:cover; background-position:center; transition:border-color .15s, transform .15s; }
+  #hsp-root .cthumb:hover .sw{ transform:translateY(-2px); }
+  #hsp-root .cthumb.is-active .sw{ border-color:var(--yellow); }
+  #hsp-root .cthumb span{ display:block; text-align:center; font-size:11px; color:#555; margin-top:6px; line-height:1.1; }
+
+  #hsp-root .buy__logo{ width:58px; height:55px; object-fit:contain; margin-bottom:14px; }
+  #hsp-root .buy__name{ font-weight:800; font-size:clamp(30px,3.6vw,40px); line-height:1.05; color:#222; }
+  #hsp-root .buy__sub{ font-size:clamp(15px,1.8vw,18px); color:#3a3a3a; line-height:1.35; margin-top:16px; }
+  #hsp-root .buy__sub b{ font-weight:700; }
+  #hsp-root .buy__lbl{ font-weight:700; font-size:15px; color:#222; margin:26px 0 14px; }
+  #hsp-root .size-opts{ display:flex; gap:12px; flex-wrap:wrap; }
+  #hsp-root .size-btn{ border:1.5px solid #c9c9c9; background:#fff; color:#2d2d2b; border-radius:10px; padding:10px 22px; font-weight:700; font-size:15px; cursor:pointer; transition:.15s; }
+  #hsp-root .size-btn:hover{ border-color:#9a9a9a; }
+  #hsp-root .size-btn.is-active{ border-color:#2d2d2b; background:#2d2d2b; color:#fff; }
+  #hsp-root .buy__old{ font-size:15px; color:#8a8a8a; text-decoration:line-through; margin-top:26px; }
+  #hsp-root .buy__newrow{ display:flex; align-items:flex-end; gap:10px; margin-top:6px; }
+  #hsp-root .buy__new{ font-weight:800; font-size:clamp(32px,4vw,40px); color:var(--red); line-height:1; }
+  #hsp-root .buy__each{ font-size:15px; color:#6a6a6a; padding-bottom:4px; }
+  #hsp-root .buy__note{ font-size:13px; color:#6a6a6a; line-height:1.4; margin-top:14px; background:#f4f2f0; border-radius:10px; padding:12px 14px; }
+  #hsp-root .buy__note b{ color:#2d2d2b; }
+  #hsp-root .addcart{ margin-top:auto; align-self:flex-start; background:var(--yellow); color:#0f1317; border:none; cursor:pointer; padding:13px 26px; border-radius:8px; font-weight:700; font-size:18px; }
+  #hsp-root .buy__cta{ padding-top:28px; }
+
+  #hsp-root .kit-scaler{ width:100%; margin-top:clamp(48px,7vw,90px); aspect-ratio:1352/527; position:relative; container-type:inline-size; }
+  #hsp-root .kit{ position:absolute; inset:0; width:1352px; height:527px; transform-origin:top left; transform:scale(calc(100cqw / 1352)); border-radius:25px; overflow:hidden; background:#5f5f5f; }
+  #hsp-root .kit__art{ position:absolute; left:492px; top:-16px; width:915px; height:556px; max-width:none; }
   #hsp-root .kit__tube{ position:absolute; left:537px; top:91px; width:325px; height:436px; overflow:hidden; }
-  #hsp-root .kit__tube img{ position:absolute; height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; }
+  #hsp-root .kit__tube img{ position:absolute; height:260.86%; left:-67.28%; top:-23.82%; width:350.6%; max-width:none; }
   #hsp-root .kit__prod{ position:absolute; display:flex; align-items:center; justify-content:center; }
-  #hsp-root .kit__prod .clip{ position:relative; overflow:hidden; }
-  #hsp-root .kit__prod .clip img{ position:absolute; }
-  #hsp-root .kit-tubes{ left:939px; top:175px; width:478px; height:407px; }
-  #hsp-root .kit-tubes .rot{ transform:rotate(30deg); }
-  #hsp-root .kit-tubes .clip{ width:421px; height:227px; }
-  #hsp-root .kit-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
-  #hsp-root .kit-gun{ left:800px; top:175px; width:311px; height:445px; }
-  #hsp-root .kit-gun .rot{ transform:rotate(-13.61deg); }
-  #hsp-root .kit-gun .clip{ width:222px; height:404px; }
-  #hsp-root .kit-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
+  #hsp-root .kit__prod .clip{ position:relative; overflow:hidden; } #hsp-root .kit__prod .clip img{ position:absolute; max-width:none; }
+  #hsp-root .kit-tubes{ left:939px; top:175px; width:478px; height:407px; } #hsp-root .kit-tubes .rot{ transform:rotate(30deg); }
+  #hsp-root .kit-tubes .clip{ width:421px; height:227px; } #hsp-root .kit-tubes .clip img{ height:222.93%; left:-7.88%; top:-60.51%; width:119.86%; }
+  #hsp-root .kit-gun{ left:800px; top:175px; width:311px; height:445px; } #hsp-root .kit-gun .rot{ transform:rotate(-13.61deg); }
+  #hsp-root .kit-gun .clip{ width:222px; height:404px; } #hsp-root .kit-gun .clip img{ height:120.48%; left:-48.9%; top:-9.81%; width:219.44%; }
   #hsp-root .kit__badge{ position:absolute; left:0; top:71px; background:var(--red); min-width:228px; padding:10px 18px; border-radius:0 15px 15px 0; display:flex; align-items:center; justify-content:center; }
   #hsp-root .kit__badge span{ font-weight:700; font-size:20px; color:#fff; }
-  #hsp-root .kit__title{ position:absolute; left:34px; top:150px; width:471px; font-weight:500; font-size:48px; color:#fff; line-height:1.05; }
-  #hsp-root .kit__title b{ font-weight:700; }
+  #hsp-root .kit__title{ position:absolute; left:34px; top:150px; width:471px; font-weight:500; font-size:48px; color:#fff; line-height:1.05; } #hsp-root .kit__title b{ font-weight:700; }
   #hsp-root .kit__desc{ position:absolute; left:34px; top:272px; width:516px; font-weight:400; font-size:22px; color:#f0f0f0; line-height:1.1; }
   #hsp-root .kit__btn{ position:absolute; left:34px; top:398px; background:var(--red); color:#fff; border:none; cursor:pointer; padding:10px 24px; border-radius:8px; font-weight:700; font-size:20px; }
 
-  /* 13. Historia */
-  #hsp-root .historia{ top:5806px; left:270px; width:973px; height:103px; display:flex; align-items:center; gap:54px; }
-  #hsp-root .historia__logo{ width:318px; flex:none; }
-  #hsp-root .historia__logo img{ width:100%; height:auto; }
-  #hsp-root .historia__div{ width:1px; height:100px; background:#c9c9c9; flex:none; }
-  #hsp-root .historia__txt{ flex:1; display:flex; flex-direction:column; gap:14px; }
-  #hsp-root .historia__txt p{ font-size:15px; color:#4a4a4a; line-height:1.2; }
-  #hsp-root .historia__cta{ display:flex; align-items:center; gap:12px; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:28px; color:#2b2b2b; }
-  #hsp-root .historia__cta .arr{ width:25px; height:25px; border:1.5px solid #2b2b2b; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  #hsp-root .ficha{ background:linear-gradient(203deg,#dbd9dc 16%,#e6e6e6 56%); border-radius:24px; padding:clamp(28px,4vw,56px); margin-top:clamp(48px,7vw,90px); }
+  #hsp-root .ficha__tag{ display:inline-block; background:var(--red-pill); color:#fff; font-weight:700; font-size:14px; padding:7px 18px; border-radius:100px; }
+  #hsp-root .ficha__title{ font-weight:800; font-size:clamp(28px,4vw,40px); color:#1a1a1a; margin-top:18px; }
+  #hsp-root .ficha__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px 40px; margin-top:32px; }
+  #hsp-root .spec{ display:flex; flex-direction:column; gap:6px; border-top:1px solid #c4c2c5; padding-top:14px; }
+  #hsp-root .spec__k{ font-weight:700; font-size:12px; color:var(--red-pill); text-transform:uppercase; letter-spacing:.3px; }
+  #hsp-root .spec__v{ font-size:15px; color:#2d2d2b; line-height:1.3; }
 
-  /* 14. Footer */
-  #hsp-root .footer{ top:6077px; left:161px; width:1190px; height:390px; font-size:14px; color:#4a4a4a; }
-  #hsp-root .fcol{ position:absolute; top:0; }
-  #hsp-root .fcol--atend{ left:27px; width:200px; }
-  #hsp-root .fcol--inst{ left:247px; width:170px; }
-  #hsp-root .fcol--ajuda{ left:467px; width:150px; }
-  #hsp-root .fcol--redes{ left:687px; width:200px; }
-  #hsp-root .fcol--pgto{ left:909px; width:200px; }
-  #hsp-root .fcol--envios{ left:687px; top:110px; }
+  #hsp-root .historia{ display:flex; align-items:center; gap:clamp(24px,4vw,54px); margin-top:clamp(56px,8vw,110px); flex-wrap:wrap; }
+  #hsp-root .historia__logo{ flex:0 0 280px; max-width:318px; }
+  #hsp-root .historia__div{ width:1px; align-self:stretch; background:#c9c9c9; }
+  #hsp-root .historia__txt{ flex:1 1 360px; display:flex; flex-direction:column; gap:14px; }
+  #hsp-root .historia__txt p{ font-family:'Poppins',sans-serif; font-weight:400; font-size:13px; color:#707070; line-height:1.5; }
+  #hsp-root .historia__cta{ display:flex; align-items:center; gap:12px; font-family:'Poppins',sans-serif; font-weight:300; font-size:clamp(20px,2.4vw,24px); color:#2d2d2b; text-transform:capitalize; }
+  #hsp-root .historia__cta .arr{ width:25px; height:25px; border:1.5px solid #2b2b2b; border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; }
+
+  #hsp-root .band--footer{ background:#fff; margin-top:clamp(48px,7vw,90px); }
+  #hsp-root .footer{ padding-block:40px; font-size:14px; color:#4a4a4a; }
+  #hsp-root .footer__cols{ display:flex; flex-wrap:wrap; gap:40px 60px; }
+  #hsp-root .fcol{ flex:1 1 160px; min-width:150px; }
+  #hsp-root .fcol--pgto{ flex-basis:200px; }
   #hsp-root .ftitle{ font-weight:700; font-size:16px; color:#2b2b2b; padding-bottom:8px; position:relative; display:inline-block; }
   #hsp-root .ftitle::after{ content:""; position:absolute; left:0; bottom:0; width:48px; height:2px; background:var(--yellow); }
-  #hsp-root .fcol ul{ list-style:none; margin-top:34px; display:flex; flex-direction:column; gap:20px; }
+  #hsp-root .fcol ul{ list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:18px; }
   #hsp-root .fcol--inst a, #hsp-root .fcol--ajuda a{ text-decoration:underline; text-underline-offset:3px; }
-  #hsp-root .fcontact{ margin-top:34px; display:flex; flex-direction:column; gap:20px; }
+  #hsp-root .fcontact{ margin-top:24px; display:flex; flex-direction:column; gap:18px; }
   #hsp-root .fcontact .row{ display:flex; align-items:center; gap:8px; }
   #hsp-root .fcontact .row a{ text-decoration:underline; text-underline-offset:3px; }
-  #hsp-root .fsocial{ margin-top:34px; display:flex; gap:10px; }
+  #hsp-root .fsocial{ margin-top:24px; display:flex; gap:10px; }
   #hsp-root .fsocial a{ width:30px; height:30px; border-radius:50%; background:var(--yellow); color:#161616; display:flex; align-items:center; justify-content:center; }
-  #hsp-root .fcopy1{ position:absolute; left:0; top:272px; width:856px; font-size:13px; color:#6a6a6a; line-height:1.4; }
-  #hsp-root .fline{ position:absolute; left:0; width:1190px; height:1px; background:#e3e3e3; }
-  #hsp-root .fline--1{ top:335px; } #hsp-root .fline--2{ top:355px; }
-  #hsp-root .fcopy2{ position:absolute; left:0; top:368px; width:789px; font-size:10px; color:#9a9a9a; line-height:1.5; }
+  #hsp-root .footer__legal{ margin-top:40px; border-top:1px solid #e3e3e3; padding-top:18px; }
+  #hsp-root .footer__legal .l1{ font-size:13px; color:#6a6a6a; line-height:1.5; }
+  #hsp-root .footer__legal .l2{ font-size:10px; color:#9a9a9a; line-height:1.6; margin-top:18px; border-top:1px solid #e3e3e3; padding-top:14px; }
+
+  @media (max-width:900px){
+    #hsp-root .navtabs{ flex-direction:column; gap:24px; }
+    #hsp-root .navtabs__nav{ width:100%; flex-direction:row; flex-wrap:wrap; gap:12px; }
+    #hsp-root .navtabs__tab{ width:auto; }
+    #hsp-root .navtabs__divider{ width:100%; height:1px; }
+    #hsp-root .showcase__product{ order:-1; flex-basis:100%; }
+    #hsp-root .shop__buy{ max-width:none; }
+  }
+  @media (max-width:760px){
+    #hsp-root .topbar__links{ display:none; }
+    #hsp-root .topbar{ justify-content:center; }
+    #hsp-root .search{ order:3; flex-basis:100%; }
+    #hsp-root .header__icons{ margin-left:0; }
+    #hsp-root .ficha__grid{ grid-template-columns:repeat(2,1fr); }
+    #hsp-root .videos{ overflow-x:auto; }
+    #hsp-root .video{ flex:0 0 70%; }
+    #hsp-root .historia__div{ display:none; }
+  }
+  @media (max-width:480px){
+    #hsp-root .ti--user .ti__txt, #hsp-root .ti--cart .ti__txt{ display:none; }
+    #hsp-root .ficha__grid{ grid-template-columns:1fr 1fr; }
+    #hsp-root .tcard{ flex-basis:100%; }
+  }
 </style>
 
-  <div class="stage-wrap">
-  <div class="stage">
 
-    <!-- [CHROME DA LOJA] 1. Banner promocional -->
-    <div class="abs banner">
-      <span><b>Ganhe 10% de Descontos</b></span>
-      <span class="dot"></span>
-      <span class="soft">Na primeira compra</span>
-    </div>
-
-    <!-- [CHROME DA LOJA] 2. Top-bar -->
-    <div class="abs topbar">
-      <div class="topbar__welcome">Seja bem vindo(a) &agrave; <b>Escuta o V&eacute;io!</b> - Novas Solu&ccedil;&otilde;es para Velhos Problemas!</div>
-      <div class="topbar__links">
-        <a><svg width="12" height="15" viewBox="0 0 12 15" fill="none"><path d="M6 0C2.7 0 0 2.6 0 5.9 0 10.1 6 15 6 15s6-4.9 6-9.1C12 2.6 9.3 0 6 0Zm0 8.2A2.3 2.3 0 1 1 6 3.6a2.3 2.3 0 0 1 0 4.6Z" fill="#febf13"/></svg>Nossa Loja</a>
-        <a><svg width="16" height="15" viewBox="0 0 16 15" fill="none"><path d="M1 5 2 1h12l1 4M1 5h14M1 5v8h14V5M5 8h6" stroke="#febf13" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>Retire na loja</a>
-        <a><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 0 0-6 6v3a2 2 0 0 0 2 2h1V7H2.2A4.8 4.8 0 0 1 11.8 7H10v5h1a2 2 0 0 0 2-2V7a6 6 0 0 0-6-6Z" fill="#febf13"/></svg>Atendimento T&eacute;cnico</a>
-        <a><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#febf13" stroke-width="1.3" fill="none"/><path d="M4 4h6M4 7h6M4 10h4" stroke="#febf13" stroke-width="1.3"/></svg>Blog</a>
-        <span class="sep">-</span>
-        <span class="topbar__social">
-          <a aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M7 0C5.1 0 4.9 0 4.1.1c-.8 0-1.3.2-1.8.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.5-.3 1-.4 1.8C0 4.9 0 5.1 0 7s0 2.1.1 2.9c0 .8.2 1.3.4 1.8.2.5.4.9.8 1.3.4.4.8.6 1.3.8.5.2 1 .3 1.8.4C4.9 14 5.1 14 7 14s2.1 0 2.9-.1c.8 0 1.3-.2 1.8-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.5.3-1 .4-1.8 0-.8.1-1 .1-2.9s0-2.1-.1-2.9c0-.8-.2-1.3-.4-1.8a3.6 3.6 0 0 0-.8-1.3 3.6 3.6 0 0 0-1.3-.8c-.5-.2-1-.3-1.8-.4C9.1 0 8.9 0 7 0Zm0 3.4A3.6 3.6 0 1 1 7 10.6 3.6 3.6 0 0 1 7 3.4Zm0 5.9A2.3 2.3 0 1 0 7 4.7a2.3 2.3 0 0 0 0 4.6Zm4.6-6a.84.84 0 1 1-1.7 0 .84.84 0 0 1 1.7 0Z"/></svg></a>
-          <a aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M14 7a7 7 0 1 0-8.1 6.9V9H4.1V7h1.8V5.5c0-1.8 1-2.7 2.6-2.7.8 0 1.5.1 1.7.1v1.9h-1c-.9 0-1.1.5-1.1 1.1V7h2l-.3 2H8.1v4.9A7 7 0 0 0 14 7Z"/></svg></a>
-          <a aria-label="Pinterest"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M7 0a7 7 0 0 0-2.6 13.5c0-.6-.1-1.4 0-2l.9-3.8s-.2-.5-.2-1.1c0-1 .6-1.8 1.3-1.8.6 0 .9.5.9 1 0 .6-.4 1.6-.6 2.4-.2.7.4 1.3 1 1.3 1.3 0 2.2-1.6 2.2-3.6 0-1.5-1-2.6-2.8-2.6a3.2 3.2 0 0 0-3.3 3.2c0 .6.2 1 .4 1.3.1.1.1.2.1.3l-.1.6c0 .2-.2.3-.4.2-1-.4-1.4-1.5-1.4-2.7C2.8 4 4.3 2 7.2 2c2.4 0 4 1.7 4 3.6 0 2.4-1.4 4.2-3.3 4.2-.7 0-1.3-.4-1.5-.8l-.4 1.6c-.2.6-.5 1.2-.8 1.6A7 7 0 1 0 7 0Z"/></svg></a>
-          <a aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M12 0H2C.9 0 0 .9 0 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2ZM4.3 11.9H2.4V5.6h1.9v6.3ZM3.3 4.8A1.1 1.1 0 1 1 3.3 2.6a1.1 1.1 0 0 1 0 2.2Zm8.6 7.1H10V8.7c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3.2H6V5.6h1.8v.9h.1c.3-.5.9-1 1.8-1 1.9 0 2.2 1.2 2.2 2.9v3.5Z"/></svg></a>
-          <a aria-label="TikTok"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M10.3 0c.2 1.6 1.1 2.6 2.7 2.7v1.9c-.9.1-1.7-.2-2.7-.7v3.3c0 4.2-4.6 5.5-6.4 2.5C2.8 7.7 4.3 5.2 7 5.5v2c-.4-.1-.8-.1-1.2 0-1.1.4-1 2.2.4 2.3.9 0 1.4-.6 1.4-1.6V0h2.7Z"/></svg></a>
-          <a aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 14 11" fill="#febf13"><path d="M13.7 1.7C13.5 1 13 .5 12.3.3 11 0 7 0 7 0S3 0 1.7.3C1 .5.5 1 .3 1.7 0 3 0 5.5 0 5.5s0 2.5.3 3.8c.2.7.7 1.2 1.4 1.4C3 11 7 11 7 11s4 0 5.3-.3c.7-.2 1.2-.7 1.4-1.4.3-1.3.3-3.8.3-3.8s0-2.5-.3-3.8ZM5.6 7.8V3.2L9.4 5.5 5.6 7.8Z"/></svg></a>
-        </span>
-      </div>
-    </div>
-
-    <!-- [CHROME DA LOJA] 3. Header escuro -->
-    <div class="abs headbar">
-      <div class="header">
-        <a class="header__logo"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-logo-eov.png" alt="Escuta o V&eacute;io" /></a>
-        <div class="search">
-          <div class="search__field">
-            <svg width="14" height="19" viewBox="0 0 14 19" fill="none"><path d="M7 0a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3Z" fill="#9a9a9a"/><path d="M1 8v1a6 6 0 0 0 12 0V8M7 15v3M4 18h6" stroke="#9a9a9a" stroke-width="1.3" stroke-linecap="round"/></svg>
-            <span>Qual produto voc&ecirc; est&aacute; precisando?</span>
-          </div>
-          <button class="search__btn" aria-label="Buscar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.3" stroke="#2b2b29" stroke-width="1.6"/><path d="M11 11l4 4" stroke="#2b2b29" stroke-width="1.6" stroke-linecap="round"/></svg></button>
-        </div>
-        <div class="top-icons">
-          <div class="ti">
-            <svg width="27" height="27" viewBox="0 0 27 27" fill="none"><circle cx="13.5" cy="9" r="4.5" stroke="#fff" stroke-width="1.6"/><path d="M4.5 23a9 9 0 0 1 18 0" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
-            <span class="ti__txt"><b>Bem-Vindo(a)!</b><br>Entre ou cadastre-se</span>
-          </div>
-          <div class="ti ti--cart">
-            <span class="ti__cartbadge"><i></i><svg width="44" height="34" viewBox="0 0 44 34" fill="none"><path d="M2 3h6l3 17h20l3-12H11" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="27" r="2.5" fill="#fff"/><circle cx="31" cy="27" r="2.5" fill="#fff"/></svg></span>
-            <span class="ti__txt"><b>Meu Carrinho</b><span>(0) itens</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="brandmenu">
-        <span class="brandmenu__track">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 5l8-3 8 3-8 3-8-3Zm0 0v8l8 3 8-3V5M10 8v10" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
-          Rastreio de Pedido
-        </span>
-        <div class="brandmenu__list">
-          <span>Elastment</span><span>DryLevis</span><span>Cristal</span><span>LT Shiner</span>
-          <span>Wood Wood</span><span>Hobby Art</span><span>Transfix</span><span>Profixx</span>
-          <span>IvaClean</span><span>O Pulo do Gato</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- [CHROME DA LOJA] Barra de departamentos -->
-    <div class="abs deptbar">
-      <div class="deptbar__inner">
-        <span class="dept-all">
-          <svg width="20" height="16" viewBox="0 0 20 16" fill="none"><path d="M1 2h18M1 8h18M1 14h18" stroke="#2d2d2b" stroke-width="1.8" stroke-linecap="round"/></svg>
-          Todos os Departamentos
-        </span>
-        <div class="deptbar__list">
-          <span>Alvenaria</span><span>Constru&ccedil;&atilde;o a Seco</span><span>Impermeabiliza&ccedil;&atilde;o</span>
-          <span>Revestimento</span><span>Acabamento</span><span>Marcenaria</span>
-          <span>Artesanato</span><span>Limpeza</span>
-        </div>
-        <span class="dept-ofertas"><span class="star">%</span>Descubra seu ambiente</span>
-      </div>
-    </div>
+  <div class="wrap">
 
     <!-- 4. Banner linha PRO -->
-    <div class="abs probanner"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-banner.jpg" alt="Linha PRO - Hold Stone" /></div>
-    <div class="abs hs-medal"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-logo-holdstone.png" alt="Hold Stone Pro" /></div>
+    <div class="probanner"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-banner.jpg" alt="Linha PRO - Hold Stone" /></div>
 
     <!-- 5. Intro + titulo -->
-    <p class="abs intro">HOLD STONE PRO re&uacute;ne solu&ccedil;&otilde;es para pisos monol&iacute;ticos Drenantes e Fulget que combinam alta resist&ecirc;ncia, est&eacute;tica e praticidade.</p>
-    <h1 class="abs title">HOLD STONE PRO</h1>
-    <p class="abs subtitle">Resina para pisos drenantes</p>
+    <p class="intro">HOLD STONE PRO re&uacute;ne solu&ccedil;&otilde;es para pisos monol&iacute;ticos Drenantes e Fulget que combinam alta resist&ecirc;ncia, est&eacute;tica e praticidade.</p>
+    <h1 class="title">HOLD STONE PRO</h1>
+    <p class="subtitle">Resina para pisos drenantes</p>
 
-    <!-- 6. Vitrine do produto -->
-    <div class="abs showcase-center"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-fixador.png" alt="Fixador de Pedras Soltas - Hold Stone Pro" /></div>
-    <div class="abs ph ph--1"></div>
-    <div class="abs ph ph--2"></div>
+    <!-- 6. Vitrine -->
+    <section class="showcase">
+      <div class="showcase__imgs">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-telhas.jpg" alt="Aplica&ccedil;&atilde;o" />
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-3.jpg" alt="Aplica&ccedil;&atilde;o" />
+      </div>
+      <div class="showcase__product"><video src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/magnific_o-produto-rotacionando-18_xgBrwmBjfW.mp4" poster="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-fixador.png" autoplay loop muted playsinline aria-label="Fixador Hold Stone Pro girando"></video></div>
+      <div class="showcase__features">
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><path d="M11 8h21l-6 22h-9L11 8Z" fill="#fff"/><rect x="20" y="30" width="6" height="20" rx="3" fill="#fff"/></svg><div class="feature__txt"><b>F&aacute;cil aplica&ccedil;&atilde;o</b><span>Aplique com desempenadeira, rastelo ou esp&aacute;tula. Pronto para usar.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><rect x="8" y="34" width="8" height="16" rx="1.5" fill="#fff"/><rect x="20" y="24" width="8" height="26" rx="1.5" fill="#fff"/><rect x="32" y="12" width="8" height="38" rx="1.5" fill="#fff"/></svg><div class="feature__txt"><b>Alto rendimento</b><span>1L fixa at&eacute; 33 kg de pedra; a bombona de 5L, at&eacute; 165 kg.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><circle cx="19" cy="29" r="9" fill="none" stroke="#fff" stroke-width="4"/><circle cx="31" cy="29" r="9" fill="none" stroke="#fff" stroke-width="4"/></svg><div class="feature__txt"><b>&Oacute;tima fixa&ccedil;&atilde;o</b><span>Fixa&ccedil;&atilde;o superior em pedras e granilhas, com alta resist&ecirc;ncia.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 7c0 0-12 16-12 26a12 12 0 0 0 24 0C36 23 24 7 24 7Z" fill="#fff"/><circle cx="16" cy="53" r="2" fill="#fff"/><circle cx="24" cy="55" r="2" fill="#fff"/><circle cx="32" cy="53" r="2" fill="#fff"/></svg><div class="feature__txt"><b>Piso drenante</b><span>N&atilde;o impermeabiliza a base: deixa a &aacute;gua percolar para o solo.</span></div></div>
+      </div>
+    </section>
 
-    <div class="abs feature feature--1">
-      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="feature__txt"><b>El&aacute;stico e sem rachaduras</b><span>Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</span></div>
-    </div>
-    <div class="abs feature feature--2">
-      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="feature__txt"><b>El&aacute;stico e sem rachaduras</b><span>Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</span></div>
-    </div>
-    <div class="abs feature feature--3">
-      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="feature__txt"><b>El&aacute;stico e sem rachaduras</b><span>Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</span></div>
-    </div>
-    <div class="abs feature feature--4">
-      <svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 2 46 11v18c0 15-10 24-22 28C12 53 2 44 2 29V11L24 2Z" fill="#fff"/><path d="M16 29l6 6 11-13" stroke="#2d2d2b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="feature__txt"><b>El&aacute;stico e sem rachaduras</b><span>Acompanha movimenta&ccedil;&otilde;es da estrutura sem perder a veda&ccedil;&atilde;o.</span></div>
-    </div>
+    <!-- 7. Obra -->
+    <section class="obra">
+      <h2>Pedras firmes. &Aacute;gua que escoa.</h2>
+      <p>O Hold Stone Pro reveste e agrega pedras e granilhas com alta resist&ecirc;ncia, sem impermeabilizar a base &mdash; permitindo a percola&ccedil;&atilde;o da &aacute;gua para o solo em pisos drenantes de cal&ccedil;adas, estacionamentos e &aacute;reas de piscina.</p>
+    </section>
 
-    <!-- 7. Obra bem-feita -->
-    <div class="abs obra">
-      <h2>Obra bem-feita n&atilde;o infiltra.</h2>
-      <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza de uma vez, com elasticidade e ader&ecirc;ncia que o silicone convencional n&atilde;o entrega.</p>
-    </div>
-
-    <!-- 8. Cards Telhas -->
-    <div class="abs cards">
-      <article class="tcard">
-        <img class="tcard__img" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-telhas.jpg" alt="Telhas" />
-        <h3>Telhas</h3>
-        <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
-      </article>
-      <article class="tcard">
-        <img class="tcard__img" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-telhas.jpg" alt="Telhas" />
-        <h3>Telhas</h3>
-        <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
-      </article>
-      <article class="tcard">
-        <img class="tcard__img" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-telhas.jpg" alt="Telhas" />
-        <h3>Telhas</h3>
-        <p>Voc&ecirc; n&atilde;o precisa trocar o piso nem quebrar a parede. O Selante DW240 Drylevis resolve na junta, veda, cola e impermeabiliza.</p>
-      </article>
-    </div>
+    <!-- 8. Cards -->
+    <section class="cards">
+      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-1.jpg" alt="Piso drenante" /><h3>Piso Drenante</h3><p>Cal&ccedil;adas, estacionamentos e &aacute;reas de piscina com escoamento natural da &aacute;gua para o solo.</p></article>
+      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-3.jpg" alt="&Aacute;reas de jardim" /><h3>&Aacute;reas de Jardim</h3><p>Canteiros de flores, pedras de passagem e caminhos com acabamento natural e sofisticado.</p></article>
+      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-4.jpg" alt="Tr&aacute;fego intenso" /><h3>Tr&aacute;fego Intenso</h3><p>Alta resist&ecirc;ncia para estacionamentos e locais de grande circula&ccedil;&atilde;o, uso interno e externo.</p></article>
+    </section>
 
     <!-- 9. Videos -->
-    <div class="abs videos">
-      <div class="video"><video class="video__media" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/video-1.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" type="button" aria-label="Reproduzir"></button><div class="video__line"></div></div>
-      <div class="video"><video class="video__media" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/video-2.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" type="button" aria-label="Reproduzir"></button><div class="video__line"></div></div>
-      <div class="video"><video class="video__media" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/video-3.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" type="button" aria-label="Reproduzir"></button><div class="video__line"></div></div>
-    </div>
+    <section class="videos">
+      <div class="video"><video class="video__media" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/video-1.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" aria-label="Reproduzir"></button><div class="video__line"></div></div>
+      <div class="video"><video class="video__media" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/video-2.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" aria-label="Reproduzir"></button><div class="video__line"></div></div>
+      <div class="video"><video class="video__media" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/video-3.mp4#t=0.1" preload="metadata" playsinline></video><button class="video__btn" aria-label="Reproduzir"></button><div class="video__line"></div></div>
+    </section>
 
     <!-- 10. Nav Tabs -->
-    <div class="abs navtabs">
+    <section class="navtabs">
       <nav class="navtabs__nav">
         <button class="navtabs__tab is-active" data-tab="oque">O que s&atilde;o</button>
         <button class="navtabs__tab" data-tab="beneficios">Benef&iacute;cios</button>
@@ -381,199 +271,239 @@
       </nav>
       <div class="navtabs__divider"></div>
       <div class="navtabs__content">
-        <div class="navtabs__panel is-active" data-panel="oque">
-          <h2>Informa&ccedil;&otilde;es</h2>
-          <p class="lbl">Informa&ccedil;&otilde;es</p>
-          <p>O Selante DW240 da Drylevis &eacute; um selante adesivo com alto desempenho para tratamento de juntas de dilata&ccedil;&atilde;o e de preenchimento. J&aacute; vem pronto para uso, al&eacute;m de vedar e aderir &agrave; superf&iacute;cie com rapidez e elasticidade. Possui &oacute;tima resist&ecirc;ncia &agrave; &aacute;gua, a raios UV, a vibra&ccedil;&otilde;es, a movimenta&ccedil;&otilde;es e &agrave; a&ccedil;&atilde;o do tempo. Pode ser utilizado tamb&eacute;m para fixa&ccedil;&atilde;o e veda&ccedil;&atilde;o de diversos materiais, como pedras, concretos, vidros, esquadrias de alum&iacute;nio etc.</p>
+        <div class="navtabs__panel is-active" data-panel="oque"><h2>Informa&ccedil;&otilde;es</h2><p class="lbl">Descri&ccedil;&atilde;o</p><p>O Hold Stone Pro &eacute; um fixador indicado para revestir, proteger e agregar pedras e granilhas, dando sofistica&ccedil;&atilde;o ao ambiente e conferindo alta resist&ecirc;ncia. Pode ser aplicado em pisos externos como cal&ccedil;adas, estacionamentos e locais de alto tr&aacute;fego, al&eacute;m de canteiros, pedras de passagem e &aacute;reas de jardim &mdash; em uso interno e externo.</p></div>
+        <div class="navtabs__panel" data-panel="beneficios"><h2>Benef&iacute;cios</h2><p class="lbl">Por que usar</p><p>F&aacute;cil aplica&ccedil;&atilde;o e alto rendimento; &oacute;tima fixa&ccedil;&atilde;o em pedras e granilhas; alta resist&ecirc;ncia para tr&aacute;fego intenso. N&atilde;o impermeabiliza a base, permitindo a percola&ccedil;&atilde;o da &aacute;gua para o solo quando aplicado sobre local n&atilde;o pavimentado.</p></div>
+        <div class="navtabs__panel" data-panel="modo"><h2>Modo de Uso</h2><p class="lbl">Como aplicar</p><p>Misture de 20g a 40g de Hold Stone Pro por kg de pedras secas, conforme a absor&ccedil;&atilde;o. Espalhe sobre base perme&aacute;vel com desempenadeira e compacte com rolo ou a pr&oacute;pria desempenadeira. Profundidade m&iacute;nima de 1,5 cm para baixo tr&aacute;fego e 2,5 cm para alto tr&aacute;fego. Use pedras/granilhas de 2 a 9 mm.</p></div>
+        <div class="navtabs__panel" data-panel="composicao"><h2>Composi&ccedil;&atilde;o</h2><p class="lbl">O que cont&eacute;m</p><p>Copol&iacute;mero alif&aacute;tico, l&iacute;quido viscoso incolor, com densidade de 1,16 kg/L a 25&deg;C. Produto n&atilde;o inflam&aacute;vel. Validade de 12 meses a partir da fabrica&ccedil;&atilde;o, com a embalagem fechada (25&deg;C e 60% de umidade).</p></div>
+      </div>
+    </section>
+
+    <!-- 11. Loja: duas experiencias -->
+    <section class="shop">
+      <div class="shop__tabs">
+        <button class="shop__tab is-active" data-exp="pro">Hold Stone Pro <span class="tag">Fixador</span></button>
+        <button class="shop__tab" data-exp="carpets">Hold Stone Carpets <span class="tag">Pedras</span></button>
+      </div>
+
+      <!-- experiencia: PRO -->
+      <div class="shop__panel is-active" data-panel="pro">
+        <div class="shop__media">
+          <div class="gstage">
+            <div class="gslide is-active"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-1.jpg" alt="" /></div>
+            <div class="gslide"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-2.jpg" alt="" /></div>
+            <div class="gslide"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-3.jpg" alt="" /></div>
+            <div class="gslide"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-4.jpg" alt="" /></div>
+            <span class="gbadge">Aplica&ccedil;&otilde;es</span>
+            <span class="gcounter">01 / 04</span>
+            <div class="gcap"><h4 data-cap-title>Piso Drenante</h4><p data-cap-text>Escoamento natural da &aacute;gua para o solo em cal&ccedil;adas e estacionamentos.</p></div>
+            <button class="garrow garrow--prev" aria-label="Anterior"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 4l-8 8 8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="garrow garrow--next" aria-label="Pr&oacute;ximo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 4l8 8-8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="gprogress"><span></span></div>
+          </div>
+          <div class="gthumbs">
+            <div class="gthumb is-active" data-title="Piso Drenante" data-text="Escoamento natural da &aacute;gua para o solo em cal&ccedil;adas e estacionamentos."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-1.jpg" alt="" /></div>
+            <div class="gthumb" data-title="Tr&aacute;fego Intenso" data-text="Alta resist&ecirc;ncia para estacionamentos e &aacute;reas de grande circula&ccedil;&atilde;o."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-2.jpg" alt="" /></div>
+            <div class="gthumb" data-title="&Aacute;reas de Jardim" data-text="Canteiros de flores, caminhos e pedras de passagem."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-3.jpg" alt="" /></div>
+            <div class="gthumb" data-title="Decora&ccedil;&atilde;o &amp; Paisagismo" data-text="Acabamento sofisticado com pedras naturais selecionadas."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-4.jpg" alt="" /></div>
+          </div>
         </div>
-        <div class="navtabs__panel" data-panel="beneficios">
-          <h2>Benef&iacute;cios</h2>
-          <p class="lbl">Por que usar</p>
-          <p>Mais forte que o silicone e que o PU comum; ultra resistente &agrave; &aacute;gua; el&aacute;stico e sem rachaduras; ader&ecirc;ncia imediata em superf&iacute;cies porosas e n&atilde;o porosas; aceita pintura; secagem r&aacute;pida e &oacute;timo rendimento.</p>
-        </div>
-        <div class="navtabs__panel" data-panel="modo">
-          <h2>Modo de Uso</h2>
-          <p class="lbl">Como aplicar</p>
-          <p>Limpe e seque bem a superf&iacute;cie. Aplique com pistola aplicadora ou esp&aacute;tula, preenchendo completamente as juntas e os vazios. Para m&aacute;xima ades&atilde;o, use o primer PR10 antes. Cura ao toque em 2h, inicial em 12h e final em 24h.</p>
-        </div>
-        <div class="navtabs__panel" data-panel="composicao">
-          <h2>Composi&ccedil;&atilde;o</h2>
-          <p class="lbl">O que cont&eacute;m</p>
-          <p>Poliuretano monocomponente, sem isocianato livre e sem solventes, de textura pastosa. Dispon&iacute;vel nas cores branco, cinza e preto. Validade de 12 meses a partir da fabrica&ccedil;&atilde;o, com a embalagem fechada.</p>
+        <div class="shop__buy">
+          <img class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/LOGO%20HOLD%20STONE.svg" alt="Hold Stone" />
+          <p class="buy__name">Hold Stone Pro</p>
+          <p class="buy__sub"><b>Fixa, protege e agrega</b> pedras e granilhas com alta resist&ecirc;ncia. Fixador para pisos drenantes e tr&aacute;fego intenso.</p>
+          <p class="buy__lbl">Tamanho do fixador</p>
+          <div class="size-opts">
+            <button class="size-btn is-active" data-old="R$ 75,24" data-now="R$ 71,48" data-variantid="266913">1 Litro</button>
+            <button class="size-btn" data-old="R$ 312,00" data-now="R$ 296,40" data-variantid="266914">5 Litros</button>
+          </div>
+          <p class="buy__old" id="proOld">R$ 75,24</p>
+          <div class="buy__newrow"><p class="buy__new" id="proNew">R$ 71,48</p><p class="buy__each">cada</p></div>
+          <div class="buy__cta"><button class="addcart" data-buy-custom data-product-quantity="1" data-product-variantid="266913">Adicionar ao carrinho</button></div>
         </div>
       </div>
-    </div>
 
-    <!-- 11. Grade + ficha -->
-    <div class="abs pgrid">
-      <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-1.jpg" alt="" />
-      <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-2.jpg" alt="" />
-      <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-3.jpg" alt="" />
-      <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-grid-4.jpg" alt="" />
-    </div>
-
-    <div class="abs pinfo">
-      <img class="pinfo__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-logo-holdstone.png" alt="Hold Stone" />
-      <p class="pinfo__name">Hold Stone Pro</p>
-      <p class="pinfo__sub"><b>Cola, veda e impermeabiliza</b> juntas de uma vez. Poliuretano extra forte mais resistente e el&aacute;stico que silicone.</p>
-      <p class="pinfo__old">R$ 75,24</p>
-      <div class="pinfo__newrow"><p class="pinfo__new">R$ 71,48</p><p class="pinfo__each">cada</p></div>
-      <div class="colors">
-        <p class="colors__lbl">Cores</p>
-        <div class="colors__opts">
-          <div class="swatch is-active" data-variantid="266913"><div class="swatch__chip" style="background:#fff"></div><span>Branco</span></div>
-          <div class="swatch" data-variantid="266858"><div class="swatch__chip" style="background:#bdbdbd"></div><span>Cinza</span></div>
-          <div class="swatch" data-variantid="269771"><div class="swatch__chip" style="background:#1a1a1a"></div><span>Preto</span></div>
+      <!-- experiencia: CARPETS -->
+      <div class="shop__panel" data-panel="carpets">
+        <div class="shop__media">
+          <div class="cstage" id="cstage" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg')">
+            <span class="cbadge">Cores dispon&iacute;veis</span>
+            <div class="ccap"><span class="k">Pedra natural &middot; Seixo</span><h4 id="cName">Jaspe Cinza</h4></div>
+          </div>
+          <div class="cthumbs">
+            <div class="cthumb is-active" data-stone="Jaspe Cinza" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg" data-variantid="82920"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg')"></div><span>Jaspe Cinza</span></div>
+            <div class="cthumb" data-stone="Rio da Prata" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_rio-da-prata-2.jpg" data-variantid="82921"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_rio-da-prata-2.jpg')"></div><span>Rio da Prata</span></div>
+            <div class="cthumb" data-stone="Pedra &Acirc;mbar" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_%C3%A2mbar-2.jpg" data-variantid="82922"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_%C3%A2mbar-2.jpg')"></div><span>Pedra &Acirc;mbar</span></div>
+            <div class="cthumb" data-stone="Opala Rosa" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_opala-rosa-2.jpg" data-variantid="82927"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_opala-rosa-2.jpg')"></div><span>Opala Rosa</span></div>
+            <div class="cthumb" data-stone="Rutilo" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg" data-variantid="82923"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg')"></div><span>Rutilo</span></div>
+          </div>
+        </div>
+        <div class="shop__buy">
+          <img class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/LOGO%20HOLD%20STONE.svg" alt="Hold Stone" />
+          <p class="buy__name">Hold Stone Carpets</p>
+          <p class="buy__sub"><b>Revestimento de pedras naturais</b> para pisos drenantes, decora&ccedil;&atilde;o e paisagismo. Seixos selecionados para &aacute;reas externas de alto tr&aacute;fego.</p>
+          <p class="buy__lbl">Cor da pedra: <span id="cSel">Jaspe Cinza</span></p>
+          <p class="buy__note"><b>Produto bicomponente:</b> o balde j&aacute; vem com as pedras e o fixador na propor&ccedil;&atilde;o correta para uso. Rende ~20 kg/m&sup2; por cm de espessura.</p>
+          <p class="buy__old">R$ 489,90</p>
+          <div class="buy__newrow"><p class="buy__new">R$ 449,90</p><p class="buy__each">balde 20,8 kg</p></div>
+          <div class="buy__cta"><button class="addcart" id="carpetsBuy" data-buy-custom data-product-quantity="1" data-product-variantid="82920">Adicionar ao carrinho</button></div>
         </div>
       </div>
-      <button class="addcart" type="button" data-buy-custom data-product-quantity="1" data-product-variantid="266913">Adicionar ao carrinho</button>
-    </div>
+    </section>
 
     <!-- 12. Compre junto -->
-    <div class="abs kit">
+    <div class="kit-scaler"><div class="kit">
       <img class="kit__art" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/kit-art.png" alt="" />
       <div class="kit__tube"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/kit-tube.png" alt="" /></div>
       <div class="kit__prod kit-tubes"><div class="rot"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/kit-prod-a.png" alt="" /></div></div></div>
       <div class="kit__prod kit-gun"><div class="rot"><div class="clip"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/kit-prod-b.png" alt="" /></div></div></div>
       <div class="kit__badge"><span>Compre junto</span></div>
       <p class="kit__title">Montamos seu <b>kit</b><br>de <b>desempenho</b></p>
-      <p class="kit__desc">Selecionamos os melhores produtos para que voc&ecirc; tenha a melhor performance e aplica&ccedil;&atilde;o do Selante Adesivo DW240. Aproveite e compre seu kit!</p>
-      <button class="kit__btn" type="button">Aproveitar</button>
-    </div>
+      <p class="kit__desc">Selecionamos os produtos ideais para voc&ecirc; ter a melhor performance e acabamento na aplica&ccedil;&atilde;o do Hold Stone Pro. Aproveite e leve o kit completo!</p>
+      <button class="kit__btn">Aproveitar</button>
+    </div></div>
 
-    <!-- 13. Conhe&ccedil;a a nossa Hist&oacute;ria -->
-    <div class="abs historia">
-      <div class="historia__logo"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-logo-eov-full.png" alt="Escuta o V&eacute;io" /></div>
-      <div class="historia__div"></div>
-      <div class="historia__txt">
-        <p>O Escuta o V&eacute;io &eacute; um e-commerce de materiais de constru&ccedil;&atilde;o que nasceu para ajudar os brasileiros a resolverem problemas comuns da constru&ccedil;&atilde;o civil em suas casas de forma personalizada, com produtos de qualidade e que realmente funcionam.</p>
-        <span class="historia__cta">Conhe&ccedil;a A Nossa Hist&oacute;ria
-          <span class="arr"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 1l5 4.5L3 10" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
+    <!-- 12b. Ficha Tecnica -->
+    <section class="ficha">
+      <span class="ficha__tag">Ficha T&eacute;cnica</span>
+      <h2 class="ficha__title">Dados do produto</h2>
+      <div class="ficha__grid">
+        <div class="spec"><span class="spec__k">Aspecto / Cor</span><span class="spec__v">L&iacute;quido viscoso incolor</span></div>
+        <div class="spec"><span class="spec__k">Composi&ccedil;&atilde;o</span><span class="spec__v">Copol&iacute;mero alif&aacute;tico</span></div>
+        <div class="spec"><span class="spec__k">Densidade</span><span class="spec__v">1,16 kg/L a 25&deg;C</span></div>
+        <div class="spec"><span class="spec__k">Tipo do produto</span><span class="spec__v">N&atilde;o inflam&aacute;vel</span></div>
+        <div class="spec"><span class="spec__k">Consumo</span><span class="spec__v">20g a 40g por kg de pedras</span></div>
+        <div class="spec"><span class="spec__k">Rendimento</span><span class="spec__v">1L at&eacute; 33 kg &middot; 5L at&eacute; 165 kg de pedra</span></div>
+        <div class="spec"><span class="spec__k">N&ordm; de dem&atilde;os</span><span class="spec__v">Uma dem&atilde;o</span></div>
+        <div class="spec"><span class="spec__k">Tempo de cura</span><span class="spec__v">Ao toque 4h &middot; tr&acirc;nsito leve 24h &middot; alto tr&aacute;fego 72h</span></div>
+        <div class="spec"><span class="spec__k">Temperatura</span><span class="spec__v">Ideal entre 5&deg;C e 37&deg;C</span></div>
+        <div class="spec"><span class="spec__k">Embalagens</span><span class="spec__v">Frasco de 1L e bombona de 5L</span></div>
+        <div class="spec"><span class="spec__k">Validade</span><span class="spec__v">12 meses (embalagem fechada)</span></div>
+        <div class="spec"><span class="spec__k">Normas aplic&aacute;veis</span><span class="spec__v">N&atilde;o se aplica</span></div>
       </div>
-    </div>
-
-    <!-- [CHROME DA LOJA] 14. Footer -->
-    <div class="abs footer">
-      <div class="fcol fcol--atend">
-        <span class="ftitle">Atendimento</span>
-        <div class="fcontact">
-          <div class="row"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M2 1h3l1 3-2 1c.6 1.6 2 3 3.6 3.6l1-2 3 1v3c0 .6-.5 1-1 1A11 11 0 0 1 1 2c0-.6.4-1 1-1Z"/></svg><a href="tel:1140678086">(11) 4067-8086</a></div>
-          <div class="row"><svg width="14" height="14" viewBox="0 0 14 14" fill="#febf13"><path d="M7 0a7 7 0 0 0-6 10.6L0 14l3.5-1A7 7 0 1 0 7 0Zm3.8 9.6c-.2.5-1 .9-1.4.9-.4 0-.8.2-2.6-.6-2.2-1-3.6-3.3-3.7-3.5-.1-.2-.9-1.2-.9-2.2s.5-1.5.7-1.7c.2-.2.4-.2.5-.2h.4c.1 0 .3 0 .5.4l.6 1.5c0 .1.1.3 0 .4l-.3.5c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.3.1.5-.1l.6-.7c.2-.2.3-.1.5-.1l1.4.7c.2.1.4.2.4.3.1.1.1.6-.1 1Z"/></svg><a href="https://wa.me/5511915902455">(11) 91590-2455</a></div>
-          <div class="row"><a href="mailto:comercial@escutaoveio.com">comercial@escutaoveio.com</a></div>
-          <div class="row">Segunda - Sexta: 08:00 ~ 17:30</div>
-        </div>
-      </div>
-
-      <div class="fcol fcol--inst">
-        <span class="ftitle">Institucional</span>
-        <ul>
-          <li><a>Quem somos</a></li>
-          <li><a>Pol&iacute;tica de Pagamentos</a></li>
-          <li><a>Envio, Trocas e Devolu&ccedil;&otilde;es</a></li>
-          <li><a>Pol&iacute;tica de Privacidade</a></li>
-        </ul>
-      </div>
-
-      <div class="fcol fcol--ajuda">
-        <span class="ftitle">Ajuda e Suporte</span>
-        <ul>
-          <li><a>Como comprar</a></li>
-          <li><a>Minha Conta</a></li>
-          <li><a>Meus Pedidos</a></li>
-          <li><a>Perguntas Frequentes</a></li>
-        </ul>
-      </div>
-
-      <div class="fcol fcol--redes">
-        <span class="ftitle">Redes Sociais</span>
-        <div class="fsocial">
-          <a aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M7 0C5.1 0 4.9 0 4.1.1c-.8 0-1.3.2-1.8.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.5-.3 1-.4 1.8C0 4.9 0 5.1 0 7s0 2.1.1 2.9c0 .8.2 1.3.4 1.8.2.5.4.9.8 1.3.4.4.8.6 1.3.8.5.2 1 .3 1.8.4C4.9 14 5.1 14 7 14s2.1 0 2.9-.1c.8 0 1.3-.2 1.8-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.5.3-1 .4-1.8 0-.8.1-1 .1-2.9s0-2.1-.1-2.9c0-.8-.2-1.3-.4-1.8a3.6 3.6 0 0 0-.8-1.3 3.6 3.6 0 0 0-1.3-.8c-.5-.2-1-.3-1.8-.4C9.1 0 8.9 0 7 0Zm0 3.4A3.6 3.6 0 1 1 7 10.6 3.6 3.6 0 0 1 7 3.4Zm0 5.9A2.3 2.3 0 1 0 7 4.7a2.3 2.3 0 0 0 0 4.6Zm4.6-6a.84.84 0 1 1-1.7 0 .84.84 0 0 1 1.7 0Z"/></svg></a>
-          <a aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M14 7a7 7 0 1 0-8.1 6.9V9H4.1V7h1.8V5.5c0-1.8 1-2.7 2.6-2.7.8 0 1.5.1 1.7.1v1.9h-1c-.9 0-1.1.5-1.1 1.1V7h2l-.3 2H8.1v4.9A7 7 0 0 0 14 7Z"/></svg></a>
-          <a aria-label="Pinterest"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M7 0a7 7 0 0 0-2.6 13.5c0-.6-.1-1.4 0-2l.9-3.8s-.2-.5-.2-1.1c0-1 .6-1.8 1.3-1.8.6 0 .9.5.9 1 0 .6-.4 1.6-.6 2.4-.2.7.4 1.3 1 1.3 1.3 0 2.2-1.6 2.2-3.6 0-1.5-1-2.6-2.8-2.6a3.2 3.2 0 0 0-3.3 3.2c0 .6.2 1 .4 1.3.1.1.1.2.1.3l-.1.6c0 .2-.2.3-.4.2-1-.4-1.4-1.5-1.4-2.7C2.8 4 4.3 2 7.2 2c2.4 0 4 1.7 4 3.6 0 2.4-1.4 4.2-3.3 4.2-.7 0-1.3-.4-1.5-.8l-.4 1.6c-.2.6-.5 1.2-.8 1.6A7 7 0 1 0 7 0Z"/></svg></a>
-          <a aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M12 0H2C.9 0 0 .9 0 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2ZM4.3 11.9H2.4V5.6h1.9v6.3ZM3.3 4.8A1.1 1.1 0 1 1 3.3 2.6a1.1 1.1 0 0 1 0 2.2Zm8.6 7.1H10V8.7c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3.2H6V5.6h1.8v.9h.1c.3-.5.9-1 1.8-1 1.9 0 2.2 1.2 2.2 2.9v3.5Z"/></svg></a>
-          <a aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 14 14" fill="#161616"><path d="M10.3 0c.2 1.6 1.1 2.6 2.7 2.7v1.9c-.9.1-1.7-.2-2.7-.7v3.3c0 4.2-4.6 5.5-6.4 2.5C2.8 7.7 4.3 5.2 7 5.5v2c-.4-.1-.8-.1-1.2 0-1.1.4-1 2.2.4 2.3.9 0 1.4-.6 1.4-1.6V0h2.7Z"/></svg></a>
-          <a aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 14 11" fill="#161616"><path d="M13.7 1.7C13.5 1 13 .5 12.3.3 11 0 7 0 7 0S3 0 1.7.3C1 .5.5 1 .3 1.7 0 3 0 5.5 0 5.5s0 2.5.3 3.8c.2.7.7 1.2 1.4 1.4C3 11 7 11 7 11s4 0 5.3-.3c.7-.2 1.2-.7 1.4-1.4.3-1.3.3-3.8.3-3.8s0-2.5-.3-3.8ZM5.6 7.8V3.2L9.4 5.5 5.6 7.8Z"/></svg></a>
-        </div>
-      </div>
-
-      <div class="fcol fcol--envios"><span class="ftitle">Envios</span></div>
-      <div class="fcol fcol--pgto"><span class="ftitle">Formas de Pagamento</span></div>
-
-      <p class="fcopy1">Vip Collection Com&eacute;rcio e Distribuidora LTDA | CNPJ: 17.507.426/0001-39 - IE: 286.544.121.113 | Av. Piraporinha, 1839 - Vila Nogueira Diadema - SP, 09950-000</p>
-      <div class="fline fline--1"></div>
-      <div class="fline fline--2"></div>
-      <p class="fcopy2">As ofertas s&atilde;o v&aacute;lidas at&eacute; o t&eacute;rmino de nossos estoques sem pr&eacute;vio aviso. As vendas ainda est&atilde;o sujeitas &agrave; an&aacute;lise e confirma&ccedil;&atilde;o de dados. Caso exista alguma diferen&ccedil;a nos pre&ccedil;os ofertados, ser&aacute; considerado v&aacute;lido o pre&ccedil;o do Carrinho de Compras. As imagens dos produtos s&atilde;o meramente ilustrativas. &copy;Copyright Escuta o Veio . Todos os direitos reservados.</p>
-    </div>
-
+    </section>
   </div>
-  </div>
-</div>
 
 <script>
 (function(){
-  var root = document.getElementById('hsp-root');
-  if(!root) return;
+  var root = document.getElementById('hsp-root'); if(!root) return;
 
-  // ---------- Scaler: mantem o design 1512x6492 fiel a qualquer largura ----------
-  var W = 1512, H = 6492;
-  var wrap = root.querySelector('.stage-wrap');
-  function fit(){
-    var s = Math.min(1, (root.clientWidth || W) / W);
-    root.style.setProperty('--s', s);
-    wrap.style.width  = (W * s) + 'px';
-    wrap.style.height = (H * s) + 'px';
-  }
-  fit();
-  window.addEventListener('resize', fit);
+  // Loja: troca de experiencias (Pro / Carpets)
+  var expTabs = root.querySelectorAll('.shop__tab');
+  var expPanels = root.querySelectorAll('.shop__panel');
+  expTabs.forEach(function(tab){ tab.addEventListener('click', function(){
+    expTabs.forEach(function(t){ t.classList.remove('is-active'); });
+    expPanels.forEach(function(p){ p.classList.remove('is-active'); });
+    tab.classList.add('is-active');
+    var sel = root.querySelector('.shop__panel[data-panel="' + tab.getAttribute('data-exp') + '"]');
+    if(sel) sel.classList.add('is-active');
+  }); });
 
-  // ---------- Nav tabs (troca de paineis) ----------
+  // Experiencia Pro: carrossel
+  (function(){
+    var slides = root.querySelectorAll('[data-panel="pro"] .gslide');
+    var thumbs = root.querySelectorAll('[data-panel="pro"] .gthumb');
+    if(!slides.length) return;
+    var counter = root.querySelector('[data-panel="pro"] .gcounter');
+    var prog = root.querySelector('[data-panel="pro"] .gprogress span');
+    var capT = root.querySelector('[data-panel="pro"] [data-cap-title]');
+    var capX = root.querySelector('[data-panel="pro"] [data-cap-text]');
+    var stage = root.querySelector('[data-panel="pro"] .gstage');
+    var n = slides.length, idx = 0, elapsed = 0, last = null, paused = false, DUR = 5000;
+    var total = (n < 10 ? '0' : '') + n;
+    function pad(i){ return (i + 1 < 10 ? '0' : '') + (i + 1); }
+    function show(i){
+      idx = (i + n) % n;
+      slides.forEach(function(s, k){ s.classList.toggle('is-active', k === idx); });
+      thumbs.forEach(function(t, k){ t.classList.toggle('is-active', k === idx); });
+      var th = thumbs[idx];
+      if(capT && th) capT.textContent = th.getAttribute('data-title');
+      if(capX && th) capX.textContent = th.getAttribute('data-text');
+      if(counter) counter.textContent = pad(idx) + ' / ' + total;
+      elapsed = 0; if(prog) prog.style.width = '0%';
+    }
+    thumbs.forEach(function(t, k){ t.addEventListener('click', function(){ show(k); }); });
+    var prev = root.querySelector('[data-panel="pro"] .garrow--prev');
+    var next = root.querySelector('[data-panel="pro"] .garrow--next');
+    if(prev) prev.addEventListener('click', function(){ show(idx - 1); });
+    if(next) next.addEventListener('click', function(){ show(idx + 1); });
+    if(stage){ stage.addEventListener('mouseenter', function(){ paused = true; }); stage.addEventListener('mouseleave', function(){ paused = false; }); }
+    function loop(ts){ if(last === null) last = ts; var dt = ts - last; last = ts;
+      if(!paused){ elapsed += dt; if(prog) prog.style.width = Math.min(100, elapsed / DUR * 100) + '%'; if(elapsed >= DUR) show(idx + 1); }
+      requestAnimationFrame(loop); }
+    requestAnimationFrame(loop);
+  })();
+
+  // Experiencia Pro: tamanho -> preco + variante
+  (function(){
+    var sizeBtns = root.querySelectorAll('[data-panel="pro"] .size-btn');
+    var old = root.querySelector('#proOld'), now = root.querySelector('#proNew');
+    var buy = root.querySelector('[data-panel="pro"] .addcart');
+    sizeBtns.forEach(function(b){ b.addEventListener('click', function(){
+      sizeBtns.forEach(function(x){ x.classList.remove('is-active'); });
+      b.classList.add('is-active');
+      if(old) old.textContent = b.getAttribute('data-old');
+      if(now) now.textContent = b.getAttribute('data-now');
+      if(buy) buy.setAttribute('data-product-variantid', b.getAttribute('data-variantid'));
+    }); });
+  })();
+
+  // Experiencia Carpets: explorador de cores
+  (function(){
+    var stage = root.querySelector('#cstage');
+    var name = root.querySelector('#cName');
+    var sel = root.querySelector('#cSel');
+    var buy = root.querySelector('#carpetsBuy');
+    var thumbs = root.querySelectorAll('[data-panel="carpets"] .cthumb');
+    thumbs.forEach(function(t){ t.addEventListener('click', function(){
+      thumbs.forEach(function(x){ x.classList.remove('is-active'); });
+      t.classList.add('is-active');
+      var img = t.getAttribute('data-img'), s = t.getAttribute('data-stone');
+      if(stage) stage.style.backgroundImage = "url('" + img + "')";
+      if(name) name.textContent = s;
+      if(sel) sel.textContent = s;
+      if(buy) buy.setAttribute('data-product-variantid', t.getAttribute('data-variantid'));
+    }); });
+  })();
+
+  // Nav tabs (paineis)
   var tabs = root.querySelectorAll('.navtabs__tab');
   var panels = root.querySelectorAll('.navtabs__panel');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      tabs.forEach(function(t){ t.classList.remove('is-active'); });
-      panels.forEach(function(p){ p.classList.remove('is-active'); });
-      tab.classList.add('is-active');
-      var sel = root.querySelector('.navtabs__panel[data-panel="' + tab.getAttribute('data-tab') + '"]');
-      if(sel) sel.classList.add('is-active');
-    });
-  });
+  tabs.forEach(function(tab){ tab.addEventListener('click', function(){
+    tabs.forEach(function(t){ t.classList.remove('is-active'); });
+    panels.forEach(function(p){ p.classList.remove('is-active'); });
+    tab.classList.add('is-active');
+    var sel = root.querySelector('.navtabs__panel[data-panel="' + tab.getAttribute('data-tab') + '"]');
+    if(sel) sel.classList.add('is-active');
+  }); });
 
-  // ---------- Cores -> variante (Wake) ----------
-  var swatches = root.querySelectorAll('.swatch');
-  var buyBtn = root.querySelector('.addcart');
-  swatches.forEach(function(sw){
-    sw.addEventListener('click', function(){
-      swatches.forEach(function(s){ s.classList.remove('is-active'); });
-      sw.classList.add('is-active');
-      var vid = sw.getAttribute('data-variantid');
-      if(buyBtn && vid){ buyBtn.setAttribute('data-product-variantid', vid); }
-    });
-  });
-
-  // ---------- Player de video ----------
+  // Player de video
   root.querySelectorAll('.video').forEach(function(card){
-    var media = card.querySelector('.video__media');
-    if(!media) return;
+    var media = card.querySelector('.video__media'); if(!media) return;
     card.addEventListener('click', function(){
-      if(media.paused){
-        root.querySelectorAll('.video__media').forEach(function(m){ if(m !== media) m.pause(); });
-        media.play();
-      } else { media.pause(); }
+      if(media.paused){ root.querySelectorAll('.video__media').forEach(function(m){ if(m !== media) m.pause(); }); media.play(); }
+      else media.pause();
     });
-    media.addEventListener('play',  function(){ card.classList.add('is-playing'); });
+    media.addEventListener('play', function(){ card.classList.add('is-playing'); });
     media.addEventListener('pause', function(){ card.classList.remove('is-playing'); });
     media.addEventListener('ended', function(){ card.classList.remove('is-playing'); media.currentTime = 0; });
   });
+
+  // Forcar autoplay do video do produto
+  (function(){
+    var v = root.querySelector('.showcase__product video');
+    if(!v) return;
+    v.muted = true; v.setAttribute('muted','');
+    function kick(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+    kick();
+    v.addEventListener('canplay', kick);
+    window.addEventListener('pointerdown', kick, { once:true });
+  })();
 })();
 </script>
+</div>
 
 <!-- ============================================================================
-     ATUALIZAR IMAGENS/VIDEO (cache do CDN):
-     1) Faca commit + push dos arquivos em Assets/ (hsp-*, kit-*, video-*) no
-        repo nicho1914/page_dw-240_drylevis (branch main).
-     2) O jsDelivr serve via @main; pode levar alguns minutos para propagar.
-        Para forcar atualizacao imediata, troque @main por uma tag/commit, ex:
-        @<hash-do-commit>. Para producao estavel, prefira fixar numa tag.
+     ATUALIZAR IMAGENS/VIDEO (cache do CDN): faca commit + push dos arquivos em
+     Assets/ no repo nicho1914/page_dw-240_drylevis (branch main). O jsDelivr
+     serve via @main; para forcar atualizacao, troque @main por @<hash-do-commit>.
 ============================================================================ -->
