@@ -94,8 +94,8 @@
 
   /* carrossel (experiência Pro) */
   .gstage{ position:relative; width:100%; aspect-ratio:899/560; border-radius:20px; overflow:hidden; background:#111; }
-  .gslide{ position:absolute; inset:0; opacity:0; transform:scale(1.04); transition:opacity .6s ease, transform 6s ease; }
-  .gslide.is-active{ opacity:1; transform:scale(1); }
+  .gslide{ position:absolute; inset:0; opacity:0; transition:opacity .6s ease; }
+  .gslide.is-active{ opacity:1; }
   .gslide img{ width:100%; height:100%; object-fit:cover; }
   .gstage::after{ content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.1) 42%, rgba(0,0,0,0) 70%); }
   .gbadge{ position:absolute; left:24px; top:24px; z-index:3; background:var(--red-pill); color:#fff; font-weight:700; font-size:13px; padding:7px 16px; border-radius:100px; }
@@ -198,6 +198,9 @@
     .videos{ overflow-x:auto; }
     .video{ flex:0 0 70%; }
     .historia__div{ display:none; }
+    .gcap{ right:28px; bottom:26px; }
+    .gcap p{ display:none; }
+    .garrow{ width:42px; height:42px; top:calc(50% - 21px); }
   }
   @media (max-width:480px){
     .ficha__grid{ grid-template-columns:1fr 1fr; }
@@ -303,11 +306,10 @@
           <p class="buy__sub"><b>Fixa, protege e agrega</b> pedras e granilhas com alta resistência. Fixador para pisos drenantes e tráfego intenso.</p>
           <p class="buy__lbl">Tamanho do fixador</p>
           <div class="size-opts">
-            <button class="size-btn is-active" data-old="R$ 75,24" data-now="R$ 71,48" data-variantid="266913">1 Litro</button>
-            <button class="size-btn" data-old="R$ 312,00" data-now="R$ 296,40" data-variantid="266914">5 Litros</button>
+            <button class="size-btn is-active" data-price="R$ 285,00" data-variantid="266913">1 Litro</button>
+            <button class="size-btn" data-price="R$ 1.274,96" data-variantid="266914">5 Litros</button>
           </div>
-          <p class="buy__old" id="proOld">R$ 75,24</p>
-          <div class="buy__newrow"><p class="buy__new" id="proNew">R$ 71,48</p><p class="buy__each">cada</p></div>
+          <div class="buy__newrow"><p class="buy__new" id="proNew">R$ 285,00</p><p class="buy__each">cada</p></div>
           <div class="buy__cta"><button class="addcart" data-buy-custom data-product-quantity="1" data-product-variantid="266913">Adicionar ao carrinho</button></div>
         </div>
       </div>
@@ -320,11 +322,11 @@
             <div class="ccap"><span class="k">Pedra natural · Seixo</span><h4 id="cName">Jaspe Cinza</h4></div>
           </div>
           <div class="cthumbs">
-            <div class="cthumb is-active" data-stone="Jaspe Cinza" data-img="Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg" data-variantid="82920"><div class="sw" style="background-image:url('Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg')"></div><span>Jaspe Cinza</span></div>
-            <div class="cthumb" data-stone="Rio da Prata" data-img="Assets/foto-pedras-naturais-hold-stone-pro_25KG_rio-da-prata-2.jpg" data-variantid="82921"><div class="sw" style="background-image:url('Assets/foto-pedras-naturais-hold-stone-pro_25KG_rio-da-prata-2.jpg')"></div><span>Rio da Prata</span></div>
-            <div class="cthumb" data-stone="Pedra Âmbar" data-img="Assets/foto-pedras-naturais-hold-stone-pro_25KG_âmbar-2.jpg" data-variantid="82922"><div class="sw" style="background-image:url('Assets/foto-pedras-naturais-hold-stone-pro_25KG_âmbar-2.jpg')"></div><span>Pedra Âmbar</span></div>
+            <div class="cthumb is-active" data-stone="Jaspe Cinza" data-img="Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg" data-variantid="82934"><div class="sw" style="background-image:url('Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg')"></div><span>Jaspe Cinza</span></div>
+            <div class="cthumb" data-stone="Quartzo" data-img="Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-quartzo-2.jpg" data-variantid="82928"><div class="sw" style="background-image:url('Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-quartzo-2.jpg')"></div><span>Quartzo</span></div>
+            <div class="cthumb" data-stone="Âmbar" data-img="Assets/foto-pedras-naturais-hold-stone-pro_25KG_âmbar-2.jpg" data-variantid="82929"><div class="sw" style="background-image:url('Assets/foto-pedras-naturais-hold-stone-pro_25KG_âmbar-2.jpg')"></div><span>Âmbar</span></div>
             <div class="cthumb" data-stone="Opala Rosa" data-img="Assets/foto-pedras-naturais-hold-stone-pro_25KG_opala-rosa-2.jpg" data-variantid="82927"><div class="sw" style="background-image:url('Assets/foto-pedras-naturais-hold-stone-pro_25KG_opala-rosa-2.jpg')"></div><span>Opala Rosa</span></div>
-            <div class="cthumb" data-stone="Rutilo" data-img="Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg" data-variantid="82923"><div class="sw" style="background-image:url('Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg')"></div><span>Rutilo</span></div>
+            <div class="cthumb" data-stone="Rutilo" data-img="Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg" data-variantid="82997"><div class="sw" style="background-image:url('Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg')"></div><span>Rutilo</span></div>
           </div>
         </div>
         <div class="shop__buy">
@@ -435,13 +437,12 @@
   // ----- Experiência Pro: tamanho -> preço + variante -----
   (function(){
     var sizeBtns = document.querySelectorAll('[data-panel="pro"] .size-btn');
-    var old = document.getElementById('proOld'), now = document.getElementById('proNew');
+    var now = document.getElementById('proNew');
     var buy = document.querySelector('[data-panel="pro"] .addcart');
     sizeBtns.forEach(function(b){ b.addEventListener('click', function(){
       sizeBtns.forEach(function(x){ x.classList.remove('is-active'); });
       b.classList.add('is-active');
-      if(old) old.textContent = b.getAttribute('data-old');
-      if(now) now.textContent = b.getAttribute('data-now');
+      if(now) now.textContent = b.getAttribute('data-price');
       if(buy) buy.setAttribute('data-product-variantid', b.getAttribute('data-variantid'));
     }); });
   })();

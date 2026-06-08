@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Umi Block · O Bloqueio Definitivo Contra a Umidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────────────── */
+:root{
+  --bg0:#070610;--bg1:#0c0b1a;--bg2:#100f22;--bg3:#14132a;
+  --t0:#f1eeff;--t1:#a89fc8;--t2:#5c5480;
+  --vio:#7c3aed;--vioL:#a78bfa;--vioD:#4c1d95;
+  --vioGl:rgba(124,58,237,.18);
+  --gold:#fbbf24;--goldL:#fde68a;
+  --b0:rgba(124,58,237,.09);--b1:rgba(124,58,237,.22);--b2:rgba(124,58,237,.42);
+}
+
+/* ─── RESET + BASE ─────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg0);color:var(--t0);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:16px;line-height:1.7;overflow-x:hidden;
+}
+
+/* noise overlay */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  opacity:.55;
+}
+
+/* ─── LAYOUT ────────────────────────────────────────────────────────── */
+.wrap{position:relative;z-index:1;}
+.container{max-width:1200px;margin:0 auto;padding:0 64px;}
+.section{padding:120px 0;position:relative;}
+.section-alt{background:var(--bg1);}
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--b0) 20%,var(--b0) 80%,transparent);}
+
+/* grid bg */
+.grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black,transparent);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black,transparent);
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────────── */
+.overline{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--vioL);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.overline::before{content:'';width:20px;height:1px;background:var(--vioL);}
+.sec-title{
+  font-family:'Syne',sans-serif;
+  font-size:52px;font-weight:800;line-height:1.04;letter-spacing:-.03em;text-transform:uppercase;
+  color:var(--t0);margin-bottom:16px;max-width:700px;
+}
+.sec-title .acc{color:var(--vioL);}
+.sec-title .gld{color:var(--gold);}
+.sec-sub{font-size:17px;line-height:1.75;color:var(--t1);max-width:560px;}
+
+/* ─── BUTTONS ────────────────────────────────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 32px;background:var(--vio);color:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:15px;font-weight:600;border-radius:10px;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  position:relative;overflow:hidden;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);
+  pointer-events:none;
+}
+.btn-primary:hover{background:var(--vioL);color:var(--bg0);transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.45);}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 24px;background:transparent;color:var(--t1);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:15px;font-weight:500;border-radius:10px;
+  border:1px solid var(--b1);cursor:pointer;text-decoration:none;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.btn-ghost:hover{border-color:var(--b2);color:var(--t0);background:var(--vioGl);}
+
+/* ─── NAV ────────────────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
+  transition:background .35s,border-color .35s,backdrop-filter .35s;
+}
+.nav.scrolled{
+  background:rgba(7,6,16,.88);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--b0);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 64px;
+  display:flex;align-items:center;justify-content:space-between;height:100%;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;
+  letter-spacing:-.02em;text-transform:uppercase;color:var(--t0);
+  display:flex;align-items:center;gap:8px;text-decoration:none;
+}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--vio);box-shadow:0 0 12px var(--vio);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--t2);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--t0);}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 20px;background:var(--vio);color:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:13px;font-weight:600;border-radius:10px;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.nav-cta:hover{background:var(--vioL);color:var(--bg0);transform:translateY(-1px);box-shadow:0 4px 20px var(--vioGl);}
+
+/* ─── HERO ───────────────────────────────────────────────────────────── */
+.hero{padding-top:160px;padding-bottom:140px;position:relative;overflow:hidden;}
+.hero-orb-1{
+  position:absolute;width:700px;height:700px;right:-120px;top:-80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(109,40,217,.28) 0%,transparent 65%);pointer-events:none;
+}
+.hero-orb-2{
+  position:absolute;width:400px;height:400px;left:-60px;bottom:-40px;border-radius:50%;
+  background:radial-gradient(circle,rgba(251,191,36,.12) 0%,transparent 65%);pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1fr 400px;gap:72px;align-items:center;}
+
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);
+  border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.hero-pill-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.75);}}
+
+.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:96px;font-weight:800;line-height:.95;letter-spacing:-.04em;text-transform:uppercase;
+  color:var(--t0);margin-bottom:0;
+}
+.hero-title-line2{
+  display:block;
+  -webkit-text-stroke:2px var(--vio);color:transparent;
+}
+.hero-tagline{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;
+  color:var(--t1);letter-spacing:-.01em;margin-top:16px;margin-bottom:32px;line-height:1.3;
+}
+.hero-tagline .hl{color:var(--gold);}
+.hero-desc{font-size:17px;line-height:1.75;color:var(--t1);max-width:480px;margin-bottom:48px;}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 14px;
+  background:var(--b0);border:1px solid var(--b1);border-radius:100px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--vioL);
+}
+.tag.gold{background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.2);color:var(--gold);}
+.tag-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* ─── PRODUCT CARD ───────────────────────────────────────────────────── */
+.product-float{position:relative;}
+.product-float::before{
+  content:'';position:absolute;inset:-1px;border-radius:24px;
+  background:linear-gradient(135deg,var(--vio) 0%,var(--vioD) 40%,var(--gold) 100%);
+  opacity:.4;z-index:0;
+}
+.product-inner{
+  position:relative;z-index:1;
+  background:linear-gradient(160deg,var(--bg2) 0%,var(--bg0) 100%);
+  border-radius:23px;padding:36px 28px 28px;text-align:center;overflow:hidden;
+}
+.product-inner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(167,139,250,.6),transparent);
+}
+.product-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 14px;
+  background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);border-radius:100px;
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.product-img-wrap{width:200px;height:200px;margin:0 auto 24px;position:relative;}
+.product-img-wrap::before{
+  content:'';position:absolute;
+  width:160px;height:160px;left:50%;top:50%;transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(109,40,217,.5) 0%,transparent 70%);
+  animation:breathe 3s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{transform:translate(-50%,-50%) scale(1);}
+  50%{transform:translate(-50%,-50%) scale(1.18);}
+}
+.product-img-wrap img{
+  width:100%;height:100%;object-fit:contain;position:relative;z-index:1;
+  filter:drop-shadow(0 12px 32px rgba(109,40,217,.5));transition:transform .4s;
+}
+.product-img-wrap:hover img{transform:translateY(-8px) scale(1.04);}
+.product-name{
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
+  letter-spacing:.02em;text-transform:uppercase;color:var(--t0);margin-bottom:4px;
+}
+.product-sku{font-size:12px;color:var(--t2);margin-bottom:20px;letter-spacing:.04em;}
+.product-price-from{font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.product-price{
+  font-family:'Syne',sans-serif;font-size:46px;font-weight:800;
+  color:var(--t0);line-height:1;margin-bottom:6px;
+}
+.product-price sup{font-size:22px;font-weight:700;vertical-align:super;margin-right:2px;}
+.product-price .cents{font-size:26px;font-weight:600;}
+.product-installment{font-size:13px;color:var(--t1);margin-bottom:24px;}
+.product-cta{
+  display:block;width:100%;padding:14px;background:var(--vio);color:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;
+  border-radius:10px;border:none;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden;
+}
+.product-cta::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);
+}
+.product-cta:hover{background:var(--vioL);color:var(--bg0);transform:translateY(-1px);box-shadow:0 6px 24px rgba(124,58,237,.4);}
+.product-trust{
+  display:flex;justify-content:center;gap:16px;
+  margin-top:16px;font-size:11px;color:var(--t2);flex-wrap:wrap;
+}
+
+/* ─── STATS BAR ──────────────────────────────────────────────────────── */
+.stats-bar{position:relative;}
+.stats-inner{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--b0);border-bottom:1px solid var(--b0);
+}
+.stat-cell{
+  padding:40px 32px;text-align:center;
+  border-right:1px solid var(--b0);position:relative;
+  transition:background .25s;
+}
+.stat-cell:last-child{border-right:none;}
+.stat-cell:hover{background:rgba(124,58,237,.04);}
+.stat-num{
+  font-family:'Syne',sans-serif;font-size:48px;font-weight:800;
+  line-height:1;letter-spacing:-.03em;color:var(--t0);margin-bottom:8px;
+}
+.stat-num .u{font-size:24px;color:var(--vioL);}
+.stat-num .ug{font-size:24px;color:var(--gold);}
+.stat-label{font-size:13px;color:var(--t2);letter-spacing:.02em;}
+
+/* ─── BENTO GRID ─────────────────────────────────────────────────────── */
+.bento{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:16px;margin-top:56px;
+}
+.bento-card{
+  background:var(--bg2);border:1px solid var(--b0);border-radius:20px;
+  padding:32px 28px;transition:border-color .25s,transform .25s,background .25s;
+  position:relative;overflow:hidden;
+}
+.bento-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 100% 0%,rgba(124,58,237,.07),transparent);
+  pointer-events:none;
+}
+.bento-card:hover{border-color:var(--b1);transform:translateY(-3px);background:var(--bg3);}
+.b-s2{grid-column:span 2;}.b-s3{grid-column:span 3;}
+.bento-icon{
+  width:48px;height:48px;border-radius:14px;background:var(--b0);border:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;
+  transition:transform .25s;
+}
+.bento-card:hover .bento-icon{transform:scale(1.1) rotate(-4deg);}
+.bento-title{
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--t0);margin-bottom:10px;
+}
+.bento-card.big .bento-title{font-size:22px;}
+.bento-desc{font-size:14px;line-height:1.65;color:var(--t1);}
+.bento-card.big .bento-desc{font-size:15px;}
+
+/* ─── USES ───────────────────────────────────────────────────────────── */
+.uses-layout{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:start;margin-top:56px;}
+.uses-panel{
+  position:sticky;top:96px;
+  background:var(--bg2);border:1px solid var(--b0);border-radius:24px;
+  padding:40px 32px;text-align:center;
+}
+.uses-panel-label{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--t2);margin-bottom:20px;
+}
+.uses-panel-emoji{font-size:56px;line-height:1;margin-bottom:16px;transition:all .3s;}
+.uses-panel-title{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.02em;color:var(--vioL);margin-bottom:10px;
+  min-height:56px;transition:all .3s;
+}
+.uses-panel-desc{font-size:14px;color:var(--t1);line-height:1.65;transition:all .3s;}
+.uses-list{display:flex;flex-direction:column;gap:12px;}
+.use-row{
+  display:flex;align-items:center;gap:20px;padding:20px 24px;
+  background:var(--bg2);border:1px solid var(--b0);border-radius:14px;
+  cursor:pointer;transition:border-color .2s,background .2s,transform .2s;
+}
+.use-row:hover{border-color:var(--b1);background:var(--bg3);transform:translateX(4px);}
+.use-row.active{border-color:var(--b2);background:var(--bg3);transform:translateX(6px);}
+.use-emoji{font-size:28px;flex-shrink:0;}
+.use-content strong{
+  display:block;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--t0);margin-bottom:4px;
+}
+.use-content span{font-size:13px;color:var(--t1);}
+.use-arrow{margin-left:auto;font-size:18px;color:var(--t2);flex-shrink:0;transition:color .2s,transform .2s;}
+.use-row.active .use-arrow{color:var(--vioL);transform:translateX(4px);}
+
+/* ─── STEPS + SPECS ──────────────────────────────────────────────────── */
+.steps-layout{display:grid;grid-template-columns:1fr 460px;gap:72px;align-items:start;margin-top:56px;}
+.steps-list{display:flex;flex-direction:column;}
+.step-item{
+  display:flex;gap:24px;padding:28px 0;
+  border-bottom:1px solid var(--b0);
+}
+.step-item:last-child{border-bottom:none;}
+.step-n{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.12em;color:var(--vioL);
+  background:var(--b0);border:1px solid var(--b1);border-radius:8px;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+.step-body strong{
+  display:block;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--t0);margin-bottom:8px;
+}
+.step-body p{font-size:14px;line-height:1.65;color:var(--t1);}
+
+.specs-glass{
+  background:linear-gradient(160deg,var(--bg2) 0%,var(--bg0) 100%);
+  border:1px solid var(--b1);border-radius:24px;overflow:hidden;position:relative;
+}
+.specs-glass::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--vioL),transparent);
+}
+.specs-top{padding:28px 28px 20px;border-bottom:1px solid var(--b0);}
+.specs-top-label{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--t2);margin-bottom:4px;
+}
+.specs-top-name{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:800;
+  letter-spacing:-.02em;text-transform:uppercase;color:var(--t0);
+}
+.spec-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:13px 28px;border-bottom:1px solid var(--b0);
+}
+.spec-row:last-child{border-bottom:none;}
+.spec-l{font-size:13px;color:var(--t2);}
+.spec-v{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t0);text-align:right;}
+.spec-v.vio{color:var(--vioL);}.spec-v.gld{color:var(--gold);}
+
+/* ─── SIZES ──────────────────────────────────────────────────────────── */
+.sizes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px;}
+.size-card{
+  background:var(--bg2);border:1px solid var(--b0);border-radius:20px;
+  padding:32px 24px 28px;text-align:center;position:relative;
+  transition:border-color .25s,transform .25s;overflow:hidden;
+}
+.size-card:hover{border-color:var(--b1);transform:translateY(-3px);}
+.size-card.featured{border-color:var(--vio);box-shadow:0 0 40px rgba(124,58,237,.18);}
+.size-card.featured::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(124,58,237,.12),transparent);
+  pointer-events:none;
+}
+.size-ribbon{
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--bg0);
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 16px;border-radius:0 0 10px 10px;white-space:nowrap;
+}
+.size-vol{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1;color:var(--t0);margin-bottom:4px;}
+.size-unit{font-size:14px;color:var(--t2);margin-bottom:16px;}
+.size-coverage{font-size:13px;color:var(--vioL);font-weight:600;margin-bottom:6px;}
+.size-desc{font-size:12px;color:var(--t2);margin-bottom:24px;}
+.size-btn{
+  display:block;width:100%;padding:12px;background:transparent;color:var(--t1);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;
+  border:1px solid var(--b1);border-radius:10px;cursor:pointer;text-decoration:none;
+  transition:all .2s;
+}
+.size-btn:hover{border-color:var(--b2);color:var(--vioL);background:var(--vioGl);}
+.size-card.featured .size-btn{background:var(--vio);color:#fff;border-color:var(--vio);}
+.size-card.featured .size-btn:hover{background:var(--vioL);color:var(--bg0);}
+
+/* ─── CTA FINAL ──────────────────────────────────────────────────────── */
+.cta-final{padding:140px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-orb{
+  position:absolute;width:800px;height:600px;
+  left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(ellipse,rgba(109,40,217,.22) 0%,rgba(251,191,36,.06) 50%,transparent 70%);
+  pointer-events:none;
+}
+.cta-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(124,58,237,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,.03) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent);
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent);
+}
+.cta-eyebrow{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--t2);margin-bottom:24px;
+}
+.cta-title{
+  font-family:'Syne',sans-serif;font-size:80px;font-weight:800;
+  line-height:.95;letter-spacing:-.04em;text-transform:uppercase;
+  color:var(--t0);max-width:800px;margin:0 auto 24px;
+}
+.cta-title .acc{color:var(--vioL);}
+.cta-title .gld{-webkit-text-stroke:2px var(--gold);color:transparent;}
+.cta-sub{font-size:18px;line-height:1.7;color:var(--t1);max-width:520px;margin:0 auto 48px;}
+.cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.cta-footnote{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:48px;}
+.cta-footnote span{font-size:13px;color:var(--t2);}
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────── */
+footer{padding:40px 0;border-top:1px solid var(--b0);}
+.footer-inner{
+  max-width:1200px;margin:0 auto;padding:0 64px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-brand{
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
+  letter-spacing:-.02em;text-transform:uppercase;color:var(--t0);
+  display:flex;align-items:center;gap:8px;
+}
+.footer-dot{width:6px;height:6px;border-radius:50%;background:var(--vio);}
+.footer-copy{font-size:13px;color:var(--t2);}
+.footer-link{color:var(--vioL);text-decoration:none;transition:color .2s;}
+.footer-link:hover{color:var(--t0);}
+
+/* ─── FADE-IN ─────────────────────────────────────────────────────────── */
+.fi{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1);}
+.fi.v{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────── */
+@media(max-width:1023px){
+  .container{padding:0 40px;}
+  .nav-inner{padding:0 40px;}
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .hero-title{font-size:72px;}
+  .product-float{max-width:420px;margin:0 auto;}
+  .bento{grid-template-columns:repeat(2,1fr);}
+  .b-s2,.b-s3{grid-column:span 1;}
+  .b-s2:first-child,.b-s2:nth-child(2),.b-s2:nth-child(3){grid-column:span 1;}
+  .bento-card.b-s3.big{grid-column:span 2;}
+  .uses-layout{grid-template-columns:1fr;}
+  .uses-panel{display:none;}
+  .steps-layout{grid-template-columns:1fr;}
+  .sizes-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-inner{padding:0 40px;}
+}
+@media(max-width:767px){
+  .container{padding:0 24px;}
+  .nav-inner{padding:0 24px;}
+  .hero{padding-top:120px;padding-bottom:80px;}
+  .hero-title{font-size:54px;}
+  .hero-tagline{font-size:18px;}
+  .section{padding:80px 0;}
+  .sec-title{font-size:38px;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .stat-cell:nth-child(2){border-right:none;}
+  .stat-cell:nth-child(3){border-top:1px solid var(--b0);}
+  .stat-num{font-size:36px;}
+  .bento{grid-template-columns:1fr;}
+  .b-s2,.b-s3,.bento-card.b-s3.big{grid-column:span 1;}
+  .sizes-grid{grid-template-columns:1fr;}
+  .cta-title{font-size:46px;}
+  .cta-footnote{gap:24px;}
+  .footer-inner{padding:0 24px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── NAV ──────────────────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      UmiBlock
+    </a>
+    <div class="nav-links">
+      <a href="#beneficios">Benefícios</a>
+      <a href="#aplicacoes">Aplicações</a>
+      <a href="#como-usar">Como usar</a>
+      <a href="#embalagens">Embalagens</a>
+    </div>
+    <a href="https://www.escutaoveio.com/produto/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191" target="_blank" class="nav-cta">
+      Comprar →
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- copy -->
+      <div>
+        <div class="fi">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            Impermeabilizante incolor · Cristal
+          </div>
+          <h1 class="hero-title">
+            UMI<span class="hero-title-line2">BLOCK</span>
+          </h1>
+          <p class="hero-tagline">
+            O bloqueio <span class="hl">definitivo</span><br>
+            contra a umidade.
+          </p>
+          <p class="hero-desc">
+            Polímeros modificados com silano em formulação monocomponente. Pronto para uso, seca com umidade, incolor — repara trincas, tubulações, telhados e muito mais.
+          </p>
+        </div>
+        <div class="fi" style="transition-delay:120ms">
+          <div class="hero-actions">
+            <a href="https://www.escutaoveio.com/produto/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191" target="_blank" class="btn-primary">
+              Comprar agora 🛒
+            </a>
+            <a href="#beneficios" class="btn-ghost">Saiba mais ↓</a>
+          </div>
+          <div class="tags">
+            <span class="tag gold"><span class="tag-dot"></span>Pronto para uso</span>
+            <span class="tag"><span class="tag-dot"></span>Resistência UV</span>
+            <span class="tag"><span class="tag-dot"></span>Não inflamável</span>
+            <span class="tag"><span class="tag-dot"></span>Super flexível</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- product card -->
+      <div class="fi" style="transition-delay:200ms">
+        <div class="product-float">
+          <div class="product-inner">
+            <div class="product-badge">⭐ Mais vendido da categoria</div>
+            <div class="product-img-wrap">
+              <img src="https://escutaoveio.fbitsstatic.net/img/p/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191/268746-1.jpg?w=700&h=700" alt="Umiblock Cristal 250mL"/>
+            </div>
+            <div class="product-name">Impermeabilizante Umi Block</div>
+            <div class="product-sku">Cristal · 250mL · Incolor · Pronto para uso</div>
+            <div class="product-price-from">A PARTIR DE</div>
+            <div class="product-price">
+              <sup>R$</sup>159<span class="cents">,60</span>
+            </div>
+            <div class="product-installment">ou 2× de R$ 79,80 sem juros</div>
+            <a href="https://www.escutaoveio.com/produto/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191" target="_blank" class="product-cta">
+              Comprar agora →
+            </a>
+            <div class="product-trust">
+              <span>🔒 Pix parcelado</span>
+              <span>📦 Entrega rápida</span>
+              <span>💳 7× sem juros</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ──────────────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="fi stat-cell">
+      <div class="stat-num">3<span class="u">h</span></div>
+      <div class="stat-label">Secagem entre demãos</div>
+    </div>
+    <div class="fi stat-cell" style="transition-delay:80ms">
+      <div class="stat-num">24<span class="u">h</span></div>
+      <div class="stat-label">Cura total garantida</div>
+    </div>
+    <div class="fi stat-cell" style="transition-delay:160ms">
+      <div class="stat-num">3<span class="u">×</span></div>
+      <div class="stat-label">Demãos para proteção plena</div>
+    </div>
+    <div class="fi stat-cell" style="transition-delay:240ms">
+      <div class="stat-num">12<span class="ug">mo</span></div>
+      <div class="stat-label">Meses de validade</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BENEFÍCIOS ─────────────────────────────────────────────────────── -->
+<section class="section" id="beneficios">
+  <div class="container">
+    <div class="fi">
+      <div class="overline">Por que o Umi Block?</div>
+      <h2 class="sec-title">Tecnologia que <span class="acc">veda</span><br>de verdade.</h2>
+      <p class="sec-sub">Cada benefício foi pensado para resolver os problemas reais de quem trabalha com impermeabilização no dia a dia.</p>
+    </div>
+    <div class="bento">
+      <div class="fi bento-card b-s2" style="transition-delay:0ms">
+        <div class="bento-icon">🛡️</div>
+        <div class="bento-title">Resistência UV</div>
+        <div class="bento-desc">Protege contra degradação solar sem perder eficácia. Sem amarelamento, sem descascamento ao longo do tempo.</div>
+      </div>
+      <div class="fi bento-card b-s2" style="transition-delay:70ms">
+        <div class="bento-icon">💧</div>
+        <div class="bento-title">Seca com umidade</div>
+        <div class="bento-desc">Polímeros com silano que curam mesmo em ambientes úmidos — sem esperar dias de sol para aplicar.</div>
+      </div>
+      <div class="fi bento-card b-s2" style="transition-delay:140ms">
+        <div class="bento-icon">✅</div>
+        <div class="bento-title">Pronto para uso</div>
+        <div class="bento-desc">Sem mistura, sem preparo. Abriu, aplicou. Ideal para reparos rápidos com zero desperdício.</div>
+      </div>
+      <div class="fi bento-card b-s3 big" style="transition-delay:210ms">
+        <div class="bento-icon">🔗</div>
+        <div class="bento-title">Ótima aderência</div>
+        <div class="bento-desc">Fixação superior em paredes, telhados, pisos, tubulações e superfícies cimentícias. Não escorrega, não destaca mesmo sob pressão d'água e variações térmicas constantes.</div>
+      </div>
+      <div class="fi bento-card b-s3 big" style="transition-delay:280ms">
+        <div class="bento-icon">🌀</div>
+        <div class="bento-title">Super flexível</div>
+        <div class="bento-desc">Mantém elasticidade plena mesmo em variações térmicas extremas e movimentações estruturais. Não trinca, não desprende, não falha onde outros impermeabilizantes cedem.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── APLICAÇÕES ──────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="aplicacoes">
+  <div class="container">
+    <div class="fi">
+      <div class="overline">Onde aplicar</div>
+      <h2 class="sec-title">Resolve <span class="gld">qualquer</span><br>infiltração.</h2>
+      <p class="sec-sub">Do detalhe à área crítica — o Umi Block cobre as situações mais comuns de vazamento e umidade.</p>
+    </div>
+    <div class="uses-layout">
+      <!-- sticky panel -->
+      <div class="uses-panel" id="usesPanel">
+        <div class="uses-panel-label">Aplicação selecionada</div>
+        <div class="uses-panel-emoji" id="panelEmoji">🧱</div>
+        <div class="uses-panel-title" id="panelTitle">Trincas e microfissuras</div>
+        <div class="uses-panel-desc" id="panelDesc">Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.</div>
+      </div>
+      <!-- list -->
+      <div class="uses-list" id="usesList">
+        <div class="fi use-row active" data-emoji="🧱" data-title="Trincas e microfissuras" data-desc="Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.">
+          <div class="use-emoji">🧱</div>
+          <div class="use-content">
+            <strong>Trincas e microfissuras</strong>
+            <span>Sela aberturas em paredes, pisos e lajes</span>
+          </div>
+          <div class="use-arrow">→</div>
+        </div>
+        <div class="fi use-row" style="transition-delay:60ms" data-emoji="🪟" data-title="Frestas de janela" data-desc="Impermeabiliza juntas entre caixilhos e alvenaria evitando infiltração lateral.">
+          <div class="use-emoji">🪟</div>
+          <div class="use-content">
+            <strong>Frestas de janela</strong>
+            <span>Impermeabiliza juntas entre caixilhos e alvenaria</span>
+          </div>
+          <div class="use-arrow">→</div>
+        </div>
+        <div class="fi use-row" style="transition-delay:120ms" data-emoji="🚿" data-title="Canos e tubulações" data-desc="Estanca vazamentos em tubos e conexões expostas de forma duradoura.">
+          <div class="use-emoji">🚿</div>
+          <div class="use-content">
+            <strong>Canos e tubulações</strong>
+            <span>Estanca vazamentos em tubos e conexões expostas</span>
+          </div>
+          <div class="use-arrow">→</div>
+        </div>
+        <div class="fi use-row" style="transition-delay:180ms" data-emoji="🏠" data-title="Telhados e calhas" data-desc="Repara infiltrações em pontos críticos do telhado, calhas e rufos.">
+          <div class="use-emoji">🏠</div>
+          <div class="use-content">
+            <strong>Telhados e calhas</strong>
+            <span>Repara infiltrações em pontos críticos do telhado</span>
+          </div>
+          <div class="use-arrow">→</div>
+        </div>
+        <div class="fi use-row" style="transition-delay:240ms" data-emoji="⬛" data-title="Rejuntes deteriorados" data-desc="Fecha frestas em rejuntes de áreas molhadas como banheiros e cozinhas.">
+          <div class="use-emoji">⬛</div>
+          <div class="use-content">
+            <strong>Rejuntes deteriorados</strong>
+            <span>Fecha frestas em rejuntes de áreas molhadas</span>
+          </div>
+          <div class="use-arrow">→</div>
+        </div>
+        <div class="fi use-row" style="transition-delay:300ms" data-emoji="🌧️" data-title="Paredes externas" data-desc="Proteção contra infiltração lateral em fachadas, muros e paredes expostas.">
+          <div class="use-emoji">🌧️</div>
+          <div class="use-content">
+            <strong>Paredes externas</strong>
+            <span>Proteção contra infiltração em fachadas e muros</span>
+          </div>
+          <div class="use-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── COMO USAR ──────────────────────────────────────────────────────── -->
+<section class="section" id="como-usar">
+  <div class="container">
+    <div class="fi">
+      <div class="overline">Modo de uso</div>
+      <h2 class="sec-title">5 passos.<br><span class="acc">Simples assim.</span></h2>
+    </div>
+    <div class="steps-layout">
+      <div class="steps-list">
+        <div class="fi step-item">
+          <div class="step-n">01</div>
+          <div class="step-body">
+            <strong>Prepare a superfície</strong>
+            <p>Deve estar seca, limpa, firme e livre de pó, gordura, mofo e partes soltas.</p>
+          </div>
+        </div>
+        <div class="fi step-item" style="transition-delay:80ms">
+          <div class="step-n">02</div>
+          <div class="step-body">
+            <strong>Trate vazamentos ativos</strong>
+            <p>Se houver vazamento ativo, resolva antes de aplicar o Umi Block.</p>
+          </div>
+        </div>
+        <div class="fi step-item" style="transition-delay:160ms">
+          <div class="step-n">03</div>
+          <div class="step-body">
+            <strong>Homogeneize o produto</strong>
+            <p>Misture bem antes de usar. Utilize luvas e óculos de segurança.</p>
+          </div>
+        </div>
+        <div class="fi step-item" style="transition-delay:240ms">
+          <div class="step-n">04</div>
+          <div class="step-body">
+            <strong>Aplique com pincel</strong>
+            <p>Passe com pincel ou trincha de forma uniforme sobre toda a área afetada.</p>
+          </div>
+        </div>
+        <div class="fi step-item" style="transition-delay:320ms">
+          <div class="step-n">05</div>
+          <div class="step-body">
+            <strong>Repita 2 a 3 demãos</strong>
+            <p>Aguarde 3h entre cada demão. Cura total em 24h a 25°C com 60% de umidade relativa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fi" style="transition-delay:160ms">
+        <div class="specs-glass">
+          <div class="specs-top">
+            <div class="specs-top-label">Referência técnica</div>
+            <div class="specs-top-name">Cristal Umi Block</div>
+          </div>
+          <div class="spec-row"><span class="spec-l">Composição</span><span class="spec-v vio">Polímeros modificados com silano</span></div>
+          <div class="spec-row"><span class="spec-l">Aparência</span><span class="spec-v vio">Incolor / transparente</span></div>
+          <div class="spec-row"><span class="spec-l">Tipo</span><span class="spec-v">Não inflamável</span></div>
+          <div class="spec-row"><span class="spec-l">Secagem entre demãos</span><span class="spec-v gld">3 horas</span></div>
+          <div class="spec-row"><span class="spec-l">Cura total</span><span class="spec-v gld">24 h (25°C / 60% URA)</span></div>
+          <div class="spec-row"><span class="spec-l">Rendimento 250mL</span><span class="spec-v">0,6 – 1 m² / demão</span></div>
+          <div class="spec-row"><span class="spec-l">Temp. de aplicação</span><span class="spec-v">10°C a 37°C</span></div>
+          <div class="spec-row"><span class="spec-l">Validade</span><span class="spec-v">12 meses (emb. fechada)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── EMBALAGENS ─────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="embalagens">
+  <div class="container">
+    <div class="fi">
+      <div class="overline">Embalagens disponíveis</div>
+      <h2 class="sec-title">O tamanho<br><span class="acc">certo</span> para você.</h2>
+      <p class="sec-sub">Do pequeno reparo pontual à manutenção de áreas extensas — escolha a embalagem ideal.</p>
+    </div>
+    <div class="sizes-grid">
+      <div class="fi size-card" style="transition-delay:0ms">
+        <div class="size-vol">250</div>
+        <div class="size-unit">mL</div>
+        <div class="size-coverage">0,6 – 1 m² / demão</div>
+        <div class="size-desc">Reparos pontuais</div>
+        <a href="https://www.escutaoveio.com/produto/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191" target="_blank" class="size-btn">Comprar →</a>
+      </div>
+      <div class="fi size-card featured" style="transition-delay:80ms">
+        <div class="size-ribbon">Mais vendido</div>
+        <div class="size-vol">500</div>
+        <div class="size-unit">mL</div>
+        <div class="size-coverage">1,2 – 2 m² / demão</div>
+        <div class="size-desc">Manutenção e reparos médios</div>
+        <a href="https://www.escutaoveio.com/todas-as-marcas/cristal/impermeabilizantes/umi-block" target="_blank" class="size-btn">Comprar →</a>
+      </div>
+      <div class="fi size-card" style="transition-delay:160ms">
+        <div class="size-vol">3,6</div>
+        <div class="size-unit">L</div>
+        <div class="size-coverage">Até 8,6 m² / demão</div>
+        <div class="size-desc">Obras e áreas amplas</div>
+        <a href="https://www.escutaoveio.com/todas-as-marcas/cristal/impermeabilizantes/umi-block" target="_blank" class="size-btn">Comprar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ──────────────────────────────────────────────────────── -->
+<section class="cta-final">
+  <div class="cta-orb"></div>
+  <div class="cta-grid"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="fi">
+      <div class="cta-eyebrow">Disponível na Escuta o Véio</div>
+      <h2 class="cta-title">
+        Chega de<br>
+        <span class="gld">infiltração.</span><br>
+        Resolva <span class="acc">hoje.</span>
+      </h2>
+      <p class="cta-sub">
+        Frete para todo o Brasil, parcelamento em até 7× sem juros e entrega rápida via Correios ou transportadora.
+      </p>
+      <div class="cta-actions">
+        <a href="https://www.escutaoveio.com/produto/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191" target="_blank" class="btn-primary" style="font-size:16px;padding:18px 40px">
+          Comprar Umi Block →
+        </a>
+        <a href="https://wa.me/5511915902455?text=Olá! Quero informações sobre o Umi Block Cristal" target="_blank" class="btn-ghost" style="font-size:15px">
+          💬 Falar com especialista
+        </a>
+      </div>
+      <div class="cta-footnote">
+        <span>🔒 Pix parcelado em até 4×</span>
+        <span>📦 Correios e transportadora</span>
+        <span>✅ 12 meses de validade</span>
+        <span>💳 Cartão em até 7× sem juros</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-dot"></div>
+      UmiBlock
+      <span style="color:var(--t2);font-weight:400;font-size:13px;margin-left:4px;">by Cristal</span>
+    </div>
+    <div class="footer-copy">
+      Comercializado pela
+      <a href="https://www.escutaoveio.com" target="_blank" class="footer-link"> Escuta o Véio</a>
+      · Novas Soluções para Velhos Problemas
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ─── NAV scroll ─────────────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ─── Fade-in IntersectionObserver ───────────────────────────────────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+/* ─── Uses interactive panel ─────────────────────────────────────────── */
+const rows = document.querySelectorAll('.use-row');
+const panelEmoji = document.getElementById('panelEmoji');
+const panelTitle = document.getElementById('panelTitle');
+const panelDesc  = document.getElementById('panelDesc');
+
+rows.forEach(row => {
+  row.addEventListener('click', () => {
+    rows.forEach(r => r.classList.remove('active'));
+    row.classList.add('active');
+    if (panelEmoji) {
+      panelEmoji.style.transform = 'scale(.8)';
+      panelEmoji.style.opacity   = '0';
+      setTimeout(() => {
+        panelEmoji.textContent = row.dataset.emoji;
+        panelTitle.textContent = row.dataset.title;
+        panelDesc.textContent  = row.dataset.desc;
+        panelEmoji.style.transform = 'scale(1)';
+        panelEmoji.style.opacity   = '1';
+      }, 180);
+    }
+  });
+});
+
+if (panelEmoji) {
+  panelEmoji.style.transition = 'transform .25s, opacity .25s';
+}
+</script>
+</body>
+</html>
