@@ -1,4 +1,4 @@
-<!-- ============================================================================
+﻿<!-- ============================================================================
      BLOCO LANDING PAGE - HOLD STONE PRO (ESCUTA O VEIO) - RESPONSIVO
      Cole TUDO isto num bloco de conteudo HTML do Wake (modo codigo-fonte).
      - Sem <html>/<head>/<body> (e um fragmento).
@@ -36,7 +36,7 @@
   #hsp-root .showcase__product{ flex:2 1 360px; display:flex; align-items:center; justify-content:center; }
   #hsp-root .showcase__product img, #hsp-root .showcase__product video{ width:100%; max-width:480px; max-height:640px; object-fit:contain; }
   #hsp-root .showcase__features{ flex:1 1 340px; display:flex; flex-direction:column; gap:16px; justify-content:center; min-width:300px; }
-  #hsp-root .feature{ display:flex; align-items:center; gap:16px; background:var(--ink); border-radius:16px; padding:22px 26px; }
+  #hsp-root .feature{ display:flex; align-items:center; gap:16px; background:linear-gradient(145deg,#525250 0%,#2d2d2b 50%,#1a1a18 100%); border-radius:16px; padding:22px 26px; }
   #hsp-root .feature__icon{ width:46px; height:54px; flex:none; }
   #hsp-root .feature__txt{ flex:1; text-align:center; color:#fff; }
   #hsp-root .feature__txt b{ display:block; font-weight:700; font-size:18px; margin-bottom:7px; }
@@ -206,10 +206,27 @@
     #hsp-root .gcap{ right:28px; bottom:26px; }
     #hsp-root .gcap p{ display:none; }
     #hsp-root .garrow{ width:42px; height:42px; top:calc(50% - 21px); }
+    #hsp-root .cards{ flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding-bottom:4px; gap:16px; }
+    #hsp-root .cards::-webkit-scrollbar{ display:none; }
+    #hsp-root .tcard{ flex:0 0 82%; scroll-snap-align:start; }
+    /* vitrine vira bloco: tira a briga do flex com o carrossel */
+    #hsp-root .showcase{ display:block; }
+    #hsp-root .showcase__imgs{ margin-bottom:24px; }
+    #hsp-root .showcase__product{ margin-bottom:24px; }
+    /* cards pretos: carrossel contido na largura da pagina (confiavel no celular) */
+    #hsp-root .showcase__features{
+      display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:flex-start; gap:14px;
+      width:100%; min-width:0;
+      overflow-x:auto; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
+      padding-bottom:6px;
+    }
+    #hsp-root .showcase__features::-webkit-scrollbar{ display:none; }
+    #hsp-root .showcase__features::after{ content:''; flex:0 0 16%; }
+    #hsp-root .feature{ flex:0 0 85%; scroll-snap-align:start; }
   }
   @media (max-width:480px){
     #hsp-root .ficha__grid{ grid-template-columns:1fr 1fr; }
-    #hsp-root .tcard{ flex-basis:100%; }
+    #hsp-root .tcard{ flex:0 0 88%; }
   }
 </style>
 
@@ -220,36 +237,36 @@
     <div class="probanner"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-banner.jpg" alt="Linha PRO - Hold Stone" /></div>
 
     <!-- 5. Intro + titulo -->
-    <p class="intro">HOLD STONE PRO re&uacute;ne solu&ccedil;&otilde;es para pisos monol&iacute;ticos Drenantes e Fulget que combinam alta resist&ecirc;ncia, est&eacute;tica e praticidade.</p>
+    <p class="intro">HOLD STONE PRO reúne soluções para pisos monolíticos Drenantes e Fulget que combinam alta resistência, estética e praticidade.</p>
     <h1 class="title">HOLD STONE PRO</h1>
     <p class="subtitle">Resina para pisos drenantes</p>
 
     <!-- 6. Vitrine -->
     <section class="showcase">
       <div class="showcase__imgs">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hold1.png" alt="Aplica&ccedil;&atilde;o" />
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hold2.png" alt="Aplica&ccedil;&atilde;o" />
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hold1.png" alt="Aplicação" />
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hold2.png" alt="Aplicação" />
       </div>
       <div class="showcase__product"><video src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/magnific_o-produto-rotacionando-18_xgBrwmBjfW.mp4" poster="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-fixador.png" autoplay loop muted playsinline aria-label="Fixador Hold Stone Pro girando"></video></div>
       <div class="showcase__features">
-        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><path d="M11 8h21l-6 22h-9L11 8Z" fill="#fff"/><rect x="20" y="30" width="6" height="20" rx="3" fill="#fff"/></svg><div class="feature__txt"><b>F&aacute;cil aplica&ccedil;&atilde;o</b><span>Aplique com desempenadeira, rastelo ou esp&aacute;tula. Pronto para usar.</span></div></div>
-        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><rect x="8" y="34" width="8" height="16" rx="1.5" fill="#fff"/><rect x="20" y="24" width="8" height="26" rx="1.5" fill="#fff"/><rect x="32" y="12" width="8" height="38" rx="1.5" fill="#fff"/></svg><div class="feature__txt"><b>Alto rendimento</b><span>1L fixa at&eacute; 33 kg de pedra; a bombona de 5L, at&eacute; 165 kg.</span></div></div>
-        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><circle cx="19" cy="29" r="9" fill="none" stroke="#fff" stroke-width="4"/><circle cx="31" cy="29" r="9" fill="none" stroke="#fff" stroke-width="4"/></svg><div class="feature__txt"><b>&Oacute;tima fixa&ccedil;&atilde;o</b><span>Fixa&ccedil;&atilde;o superior em pedras e granilhas, com alta resist&ecirc;ncia.</span></div></div>
-        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 7c0 0-12 16-12 26a12 12 0 0 0 24 0C36 23 24 7 24 7Z" fill="#fff"/><circle cx="16" cy="53" r="2" fill="#fff"/><circle cx="24" cy="55" r="2" fill="#fff"/><circle cx="32" cy="53" r="2" fill="#fff"/></svg><div class="feature__txt"><b>Piso drenante</b><span>N&atilde;o impermeabiliza a base: deixa a &aacute;gua percolar para o solo.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><path d="M11 8h21l-6 22h-9L11 8Z" fill="#fff"/><rect x="20" y="30" width="6" height="20" rx="3" fill="#fff"/></svg><div class="feature__txt"><b>Fácil aplicação</b><span>Aplique com desempenadeira, rastelo ou espátula. Pronto para usar.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><rect x="8" y="34" width="8" height="16" rx="1.5" fill="#fff"/><rect x="20" y="24" width="8" height="26" rx="1.5" fill="#fff"/><rect x="32" y="12" width="8" height="38" rx="1.5" fill="#fff"/></svg><div class="feature__txt"><b>Alto rendimento</b><span>1L fixa até 33 kg de pedra; a bombona de 5L, até 165 kg.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><circle cx="19" cy="29" r="9" fill="none" stroke="#fff" stroke-width="4"/><circle cx="31" cy="29" r="9" fill="none" stroke="#fff" stroke-width="4"/></svg><div class="feature__txt"><b>Ótima fixação</b><span>Fixação superior em pedras e granilhas, com alta resistência.</span></div></div>
+        <div class="feature"><svg class="feature__icon" viewBox="0 0 48 58"><path d="M24 7c0 0-12 16-12 26a12 12 0 0 0 24 0C36 23 24 7 24 7Z" fill="#fff"/><circle cx="16" cy="53" r="2" fill="#fff"/><circle cx="24" cy="55" r="2" fill="#fff"/><circle cx="32" cy="53" r="2" fill="#fff"/></svg><div class="feature__txt"><b>Piso drenante</b><span>Não impermeabiliza a base: deixa a água percolar para o solo.</span></div></div>
       </div>
     </section>
 
     <!-- 7. Obra -->
     <section class="obra">
-      <h2>Pedras firmes. &Aacute;gua que escoa.</h2>
-      <p>O Hold Stone Pro reveste e agrega pedras e granilhas com alta resist&ecirc;ncia, sem impermeabilizar a base &mdash; permitindo a percola&ccedil;&atilde;o da &aacute;gua para o solo em pisos drenantes de cal&ccedil;adas, estacionamentos e &aacute;reas de piscina.</p>
+      <h2>Pedras firmes. Água que escoa.</h2>
+      <p>O Hold Stone Pro agrega pedras e granilhas com alta resistência, mantendo a permeabilidade do piso. Ideal para calçadas, estacionamentos e áreas de piscina.</p>
     </section>
 
     <!-- 8. Cards -->
     <section class="cards">
-      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/piso%20drenante%201.png" alt="Piso drenante" /><h3>Piso Drenante</h3><p>Cal&ccedil;adas, estacionamentos e &aacute;reas de piscina com escoamento natural da &aacute;gua para o solo.</p></article>
-      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/IMG_0885hold%20stone%20pro%2C%20resultado%20%281%29.JPEG" alt="&Aacute;reas de jardim" /><h3>&Aacute;reas de Jardim</h3><p>Canteiros de flores, pedras de passagem e caminhos com acabamento natural e sofisticado.</p></article>
-      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD_STONE_PRO_fotos_04.jpg" alt="Tr&aacute;fego intenso" /><h3>Tr&aacute;fego Intenso</h3><p>Alta resist&ecirc;ncia para estacionamentos e locais de grande circula&ccedil;&atilde;o, uso interno e externo.</p></article>
+      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/piso%20drenante%201.png" alt="Piso drenante" /><h3>Piso Drenante</h3><p>Calçadas, estacionamentos e áreas de piscina com escoamento natural da água para o solo.</p></article>
+      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/IMG_0885hold%20stone%20pro%2C%20resultado%20%281%29.JPEG" alt="Áreas de jardim" /><h3>Áreas de Jardim</h3><p>Canteiros de flores, pedras de passagem e caminhos com acabamento natural e sofisticado.</p></article>
+      <article class="tcard"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD_STONE_PRO_fotos_04.jpg" alt="Tráfego intenso" /><h3>Tráfego Intenso</h3><p>Alta resistência para estacionamentos e locais de grande circulação, uso interno e externo.</p></article>
     </section>
 
     <!-- 9. Videos -->
@@ -262,43 +279,44 @@
     <!-- 10. Nav Tabs -->
     <section class="navtabs">
       <nav class="navtabs__nav">
-        <button class="navtabs__tab is-active" data-tab="oque">O que s&atilde;o</button>
-        <button class="navtabs__tab" data-tab="beneficios">Benef&iacute;cios</button>
+        <button class="navtabs__tab is-active" data-tab="oque">O que são</button>
+        <button class="navtabs__tab" data-tab="beneficios">Benefícios</button>
         <button class="navtabs__tab" data-tab="modo">Modo de Uso</button>
-        <button class="navtabs__tab" data-tab="composicao">Composi&ccedil;&atilde;o</button>
+        <button class="navtabs__tab" data-tab="composicao">Composição</button>
       </nav>
       <div class="navtabs__divider"></div>
       <div class="navtabs__content">
-        <div class="navtabs__panel is-active" data-panel="oque"><h2>Informa&ccedil;&otilde;es</h2><p class="lbl">Descri&ccedil;&atilde;o</p><p>O Hold Stone Pro &eacute; um fixador indicado para revestir, proteger e agregar pedras e granilhas, dando sofistica&ccedil;&atilde;o ao ambiente e conferindo alta resist&ecirc;ncia. Pode ser aplicado em pisos externos como cal&ccedil;adas, estacionamentos e locais de alto tr&aacute;fego, al&eacute;m de canteiros, pedras de passagem e &aacute;reas de jardim &mdash; em uso interno e externo.</p></div>
-        <div class="navtabs__panel" data-panel="beneficios"><h2>Benef&iacute;cios</h2><p class="lbl">Por que usar</p><p>F&aacute;cil aplica&ccedil;&atilde;o e alto rendimento; &oacute;tima fixa&ccedil;&atilde;o em pedras e granilhas; alta resist&ecirc;ncia para tr&aacute;fego intenso. N&atilde;o impermeabiliza a base, permitindo a percola&ccedil;&atilde;o da &aacute;gua para o solo quando aplicado sobre local n&atilde;o pavimentado.</p></div>
-        <div class="navtabs__panel" data-panel="modo"><h2>Modo de Uso</h2><p class="lbl">Como aplicar</p><p>Misture de 20g a 40g de Hold Stone Pro por kg de pedras secas, conforme a absor&ccedil;&atilde;o. Espalhe sobre base perme&aacute;vel com desempenadeira e compacte com rolo ou a pr&oacute;pria desempenadeira. Profundidade m&iacute;nima de 1,5 cm para baixo tr&aacute;fego e 2,5 cm para alto tr&aacute;fego. Use pedras/granilhas de 2 a 9 mm.</p></div>
-        <div class="navtabs__panel" data-panel="composicao"><h2>Composi&ccedil;&atilde;o</h2><p class="lbl">O que cont&eacute;m</p><p>Copol&iacute;mero alif&aacute;tico, l&iacute;quido viscoso incolor, com densidade de 1,16 kg/L a 25&deg;C. Produto n&atilde;o inflam&aacute;vel. Validade de 12 meses a partir da fabrica&ccedil;&atilde;o, com a embalagem fechada (25&deg;C e 60% de umidade).</p></div>
+        <div class="navtabs__panel is-active" data-panel="oque"><h2>Informações</h2><p class="lbl">Descrição</p><p>O Hold Stone Pro é um fixador indicado para revestir, proteger e agregar pedras e granilhas, dando sofisticação ao ambiente e conferindo alta resistência. Pode ser aplicado em pisos externos como calçadas, estacionamentos e locais de alto tráfego, além de canteiros, pedras de passagem e áreas de jardim — em uso interno e externo.</p></div>
+        <div class="navtabs__panel" data-panel="beneficios"><h2>Benefícios</h2><p class="lbl">Por que usar</p><p>Fácil aplicação e alto rendimento; ótima fixação em pedras e granilhas; alta resistência para tráfego intenso. Não impermeabiliza a base, permitindo a percolação da água para o solo quando aplicado sobre local não pavimentado.</p></div>
+        <div class="navtabs__panel" data-panel="modo"><h2>Modo de Uso</h2><p class="lbl">Como aplicar</p><p>Misture de 20g a 40g de Hold Stone Pro por kg de pedras secas, conforme a absorção. Espalhe sobre base permeável com desempenadeira e compacte com rolo ou a própria desempenadeira. Profundidade mínima de 1,5 cm para baixo tráfego e 2,5 cm para alto tráfego. Use pedras/granilhas de 2 a 9 mm.</p></div>
+        <div class="navtabs__panel" data-panel="composicao"><h2>Composição</h2><p class="lbl">O que contém</p><p>Copolímero alifático, líquido viscoso incolor, com densidade de 1,16 kg/L a 25°C. Produto não inflamável. Validade de 12 meses a partir da fabricação, com a embalagem fechada (25°C e 60% de umidade).</p></div>
       </div>
     </section>
 
         <!-- 11. Ficha Tecnica -->
     <section class="ficha">
-      <span class="ficha__tag">Ficha T&eacute;cnica</span>
+      <span class="ficha__tag">Ficha Técnica</span>
       <h2 class="ficha__title">Dados do produto</h2>
       <div class="ficha__grid">
-        <div class="spec"><span class="spec__k">Aspecto / Cor</span><span class="spec__v">L&iacute;quido viscoso incolor</span></div>
-        <div class="spec"><span class="spec__k">Composi&ccedil;&atilde;o</span><span class="spec__v">Copol&iacute;mero alif&aacute;tico</span></div>
-        <div class="spec"><span class="spec__k">Densidade</span><span class="spec__v">1,16 kg/L a 25&deg;C</span></div>
-        <div class="spec"><span class="spec__k">Tipo do produto</span><span class="spec__v">N&atilde;o inflam&aacute;vel</span></div>
+        <div class="spec"><span class="spec__k">Aspecto / Cor</span><span class="spec__v">Líquido viscoso incolor</span></div>
+        <div class="spec"><span class="spec__k">Composição</span><span class="spec__v">Copolímero alifático</span></div>
+        <div class="spec"><span class="spec__k">Densidade</span><span class="spec__v">1,16 kg/L a 25°C</span></div>
+        <div class="spec"><span class="spec__k">Tipo do produto</span><span class="spec__v">Não inflamável</span></div>
         <div class="spec"><span class="spec__k">Consumo</span><span class="spec__v">20g a 40g por kg de pedras</span></div>
-        <div class="spec"><span class="spec__k">Rendimento</span><span class="spec__v">1L at&eacute; 33 kg &middot; 5L at&eacute; 165 kg de pedra</span></div>
-        <div class="spec"><span class="spec__k">N&ordm; de dem&atilde;os</span><span class="spec__v">Uma dem&atilde;o</span></div>
-        <div class="spec"><span class="spec__k">Tempo de cura</span><span class="spec__v">Ao toque 4h &middot; tr&acirc;nsito leve 24h &middot; alto tr&aacute;fego 72h</span></div>
-        <div class="spec"><span class="spec__k">Temperatura</span><span class="spec__v">Ideal entre 5&deg;C e 37&deg;C</span></div>
+        <div class="spec"><span class="spec__k">Rendimento</span><span class="spec__v">1L até 33 kg · 5L até 165 kg de pedra</span></div>
+        <div class="spec"><span class="spec__k">Nº de demãos</span><span class="spec__v">Uma demão</span></div>
+        <div class="spec"><span class="spec__k">Tempo de cura</span><span class="spec__v">Ao toque 4h · trânsito leve 24h · alto tráfego 72h</span></div>
+        <div class="spec"><span class="spec__k">Temperatura</span><span class="spec__v">Ideal entre 5°C e 37°C</span></div>
         <div class="spec"><span class="spec__k">Embalagens</span><span class="spec__v">Frasco de 1L e bombona de 5L</span></div>
         <div class="spec"><span class="spec__k">Validade</span><span class="spec__v">12 meses (embalagem fechada)</span></div>
-        <div class="spec"><span class="spec__k">Normas aplic&aacute;veis</span><span class="spec__v">N&atilde;o se aplica</span></div>
+        <div class="spec"><span class="spec__k">Normas aplicáveis</span><span class="spec__v">Não se aplica</span></div>
       </div>
     </section>
   </div>
 
     <!-- 12. Loja: duas experiencias -->
     <section class="shop">
+      <div class="wrap">
       <div class="shop__tabs">
         <button class="shop__tab is-active" data-exp="pro">Hold Stone Pro <span class="tag">Fixador</span></button>
         <button class="shop__tab" data-exp="carpets">Hold Stone Carpets <span class="tag">Pedras</span></button>
@@ -313,22 +331,22 @@
             <div class="gslide"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-aplicacao-jardim.jpg" alt="" /></div>
             <div class="gslide"><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD_STONE_PRO_FOTO_1%201.png" alt="" /></div>
             <span class="gcounter">01 / 04</span>
-            <div class="gcap"><h4 data-cap-title>Piso Drenante</h4><p data-cap-text>Escoamento natural da &aacute;gua para o solo em cal&ccedil;adas e estacionamentos.</p></div>
+            <div class="gcap"><h4 data-cap-title>Piso Drenante</h4><p data-cap-text>Escoamento natural da água para o solo em calçadas e estacionamentos.</p></div>
             <button class="garrow garrow--prev" aria-label="Anterior"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 4l-8 8 8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button class="garrow garrow--next" aria-label="Pr&oacute;ximo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 4l8 8-8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="garrow garrow--next" aria-label="Próximo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 4l8 8-8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <div class="gprogress"><span></span></div>
           </div>
           <div class="gthumbs">
-            <div class="gthumb is-active" data-title="Piso Drenante" data-text="Escoamento natural da &aacute;gua para o solo em cal&ccedil;adas e estacionamentos."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/IMG_0505%201.png" alt="" /></div>
-            <div class="gthumb" data-title="Tr&aacute;fego Intenso" data-text="Alta resist&ecirc;ncia para estacionamentos e &aacute;reas de grande circula&ccedil;&atilde;o."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD%20STONE_APLICA%C3%87%C3%83O_FIXADOR%20DE%20PEDRAS%20SOLTAS_PRO%20_2%201.png" alt="" /></div>
-            <div class="gthumb" data-title="&Aacute;reas de Jardim" data-text="Canteiros de flores, caminhos e pedras de passagem."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-aplicacao-jardim.jpg" alt="" /></div>
-            <div class="gthumb" data-title="Decora&ccedil;&atilde;o &amp; Paisagismo" data-text="Acabamento sofisticado com pedras naturais selecionadas."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD_STONE_PRO_FOTO_1%201.png" alt="" /></div>
+            <div class="gthumb is-active" data-title="Piso Drenante" data-text="Escoamento natural da água para o solo em calçadas e estacionamentos."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/IMG_0505%201.png" alt="" /></div>
+            <div class="gthumb" data-title="Tráfego Intenso" data-text="Alta resistência para estacionamentos e áreas de grande circulação."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD%20STONE_APLICA%C3%87%C3%83O_FIXADOR%20DE%20PEDRAS%20SOLTAS_PRO%20_2%201.png" alt="" /></div>
+            <div class="gthumb" data-title="Áreas de Jardim" data-text="Canteiros de flores, caminhos e pedras de passagem."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/hsp-aplicacao-jardim.jpg" alt="" /></div>
+            <div class="gthumb" data-title="Decoração &amp; Paisagismo" data-text="Acabamento sofisticado com pedras naturais selecionadas."><img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/HOLD_STONE_PRO_FOTO_1%201.png" alt="" /></div>
           </div>
         </div>
         <div class="shop__buy">
           <img class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/LOGO%20HOLD%20STONE.svg" alt="Hold Stone" />
           <p class="buy__name">Hold Stone Pro</p>
-          <p class="buy__sub"><b>Fixa, protege e agrega</b> pedras e granilhas com alta resist&ecirc;ncia. Fixador para pisos drenantes e tr&aacute;fego intenso.</p>
+          <p class="buy__sub"><b>Fixa, protege e agrega</b> pedras e granilhas com alta resistência. Fixador para pisos drenantes e tráfego intenso.</p>
           <p class="buy__lbl">Tamanho do fixador</p>
           <div class="size-opts">
             <button class="size-btn is-active" data-price="R$ 285,00" data-variantid="269178">1 Litro</button>
@@ -343,13 +361,13 @@
       <div class="shop__panel" data-panel="carpets">
         <div class="shop__media">
           <div class="cstage" id="cstage" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg')">
-            <span class="cbadge">Cores dispon&iacute;veis</span>
-            <div class="ccap"><span class="k">Pedra natural &middot; Seixo</span><h4 id="cName">Jaspe Cinza</h4></div>
+            <span class="cbadge">Cores disponíveis</span>
+            <div class="ccap"><span class="k">Pedra natural · Seixo</span><h4 id="cName">Jaspe Cinza</h4></div>
           </div>
           <div class="cthumbs">
             <div class="cthumb is-active" data-stone="Jaspe Cinza" data-price="R$ 638,40" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg" data-variantid="269677"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-jaspe-cinza-2.jpg')"></div><span>Jaspe Cinza</span></div>
             <div class="cthumb" data-stone="Quartzo" data-price="R$ 638,40" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-quartzo-2.jpg" data-variantid="269671"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-carpets-pedras-decorativas-hold-stone-pro-26kg-quartzo-2.jpg')"></div><span>Quartzo</span></div>
-            <div class="cthumb" data-stone="&Acirc;mbar" data-price="R$ 638,40" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_%C3%A2mbar-2.jpg" data-variantid="269672"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_%C3%A2mbar-2.jpg')"></div><span>&Acirc;mbar</span></div>
+            <div class="cthumb" data-stone="Âmbar" data-price="R$ 638,40" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_%C3%A2mbar-2.jpg" data-variantid="269672"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_%C3%A2mbar-2.jpg')"></div><span>Âmbar</span></div>
             <div class="cthumb" data-stone="Opala Rosa" data-price="R$ 638,40" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_opala-rosa-2.jpg" data-variantid="269670"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_opala-rosa-2.jpg')"></div><span>Opala Rosa</span></div>
             <div class="cthumb" data-stone="Rutilo" data-price="R$ 560,00" data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg" data-variantid="269743"><div class="sw" style="background-image:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/foto-pedras-naturais-hold-stone-pro_25KG_rutilo-2.jpg')"></div><span>Rutilo</span></div>
           </div>
@@ -357,12 +375,13 @@
         <div class="shop__buy">
           <img class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/LOGO%20HOLD%20STONE.svg" alt="Hold Stone" />
           <p class="buy__name">Hold Stone Carpets</p>
-          <p class="buy__sub"><b>Revestimento de pedras naturais</b> para pisos drenantes, decora&ccedil;&atilde;o e paisagismo. Seixos selecionados para &aacute;reas externas de alto tr&aacute;fego.</p>
+          <p class="buy__sub"><b>Revestimento de pedras naturais</b> para pisos drenantes, decoração e paisagismo. Seixos selecionados para áreas externas de alto tráfego.</p>
           <p class="buy__lbl">Cor da pedra: <span id="cSel">Jaspe Cinza</span></p>
-          <p class="buy__note"><b>Produto bicomponente:</b> o balde j&aacute; vem com as pedras e o fixador na propor&ccedil;&atilde;o correta para uso. Rende ~20 kg/m&sup2; por cm de espessura.</p>
+          <p class="buy__note"><b>Produto bicomponente:</b> o balde já vem com as pedras e o fixador na proporção correta para uso. Rende ~20 kg/m² por cm de espessura.</p>
           <div class="buy__newrow"><p class="buy__new" id="carpetsPrice">R$ 638,40</p><p class="buy__each">balde 20,8 kg</p></div>
           <div class="buy__cta"><button class="addcart" id="carpetsBuy" data-buy-custom data-product-quantity="1" data-product-variantid="269677">Adicionar ao carrinho</button></div>
         </div>
+      </div>
       </div>
     </section>
 
