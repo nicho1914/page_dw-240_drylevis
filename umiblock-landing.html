@@ -507,12 +507,23 @@ select,input{font-family:inherit;}
 /* ─── CTA FINAL ─────────────────────────────────────────────────────── */
 .cta{
   position:relative;overflow:hidden;
+  border-radius:25px 25px 0 0;
   background:
     radial-gradient(700px 420px at 80% 10%, rgba(167,139,250,.35), transparent 60%),
     radial-gradient(540px 380px at 10% 95%, rgba(255,204,0,.18), transparent 55%),
-    linear-gradient(160deg, var(--vioD) 0%, var(--vio-card) 60%, var(--vio) 100%);
+    linear-gradient(120deg, var(--vioD) 0%, var(--vio-card) 22%, var(--vio) 42%, var(--vioL) 55%, var(--vio) 70%, var(--vio-card) 85%, var(--vioD) 100%);
+  background-size:100% 100%, 100% 100%, 300% 300%;
+  background-position:0% 0%, 0% 0%, 0% 50%;
+  animation:umiCtaGradient 16s ease-in-out infinite;
   padding:clamp(72px,9vw,130px) clamp(20px,4.5vw,64px);
   display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center;
+}
+@keyframes umiCtaGradient{
+  0%,100%{background-position:0% 0%, 0% 0%, 0% 50%;}
+  50%{background-position:0% 0%, 0% 0%, 100% 50%;}
+}
+@media (prefers-reduced-motion: reduce){
+  .cta{animation:none;}
 }
 .cta .sec-title{color:#fff;max-width:1100px;}
 .cta .sec-title .yel{color:var(--yellow);}
@@ -805,10 +816,9 @@ select,input{font-family:inherit;}
 
   <!-- ============ VÍDEOS ============ -->
   <section class="videos container" aria-label="Vídeos">
-    <!-- placeholders do Figma: quando tiver os .mp4, adicionar <video class="vid-card__media" src="..."> em cada card -->
-    <div class="vid-card rv"><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
-    <div class="vid-card rv" style="--d:.1s"><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
-    <div class="vid-card rv" style="--d:.2s"><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
+    <div class="vid-card rv"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_BANCO_DE_MADEIRA.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
+    <div class="vid-card rv" style="--d:.1s"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_UMIDADE-ASCENDENTE.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
+    <div class="vid-card rv" style="--d:.2s"><video class="vid-card__media" src="Assets/Umi Block - Banco de madeira.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
   </section>
 
   <!-- ============ INFORMAÇÕES (navtabs) ============ -->
