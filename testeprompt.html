@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protótipo — Container Scroll Animation (vanilla)</title>
+
+  <!-- Tailwind Play CDN: só para o protótipo. Permite manter as classes do
+       componente original quase verbatim, sem etapa de build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    /* O card recebe rotateX; a perspectiva vem do wrapper (#perspective-wrap).
+       will-change ajuda na suavidade do scroll. */
+    #scroll-card,
+    #scroll-header { will-change: transform; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Espelha o wrapper do demo original: bastante espaço de scroll antes/depois -->
+  <div class="flex flex-col overflow-hidden pb-[500px] pt-[1000px]">
+
+    <!-- ===== ContainerScroll ===== -->
+    <div
+      id="scroll-container"
+      class="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
+    >
+      <div id="perspective-wrap" class="py-10 md:py-40 w-full relative" style="perspective: 1000px;">
+
+        <!-- Header (translateY 0 -> -100) -->
+        <div id="scroll-header" class="max-w-5xl mx-auto text-center">
+          <h1 class="text-4xl font-semibold text-black">
+            Unleash the power of <br />
+            <span class="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+              Scroll Animations
+            </span>
+          </h1>
+        </div>
+
+        <!-- Card (rotateX 20 -> 0, scale 1.05 -> 1 / mobile 0.7 -> 0.9) -->
+        <div
+          id="scroll-card"
+          class="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+          style="box-shadow: 0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003;"
+        >
+          <div class="h-full w-full overflow-hidden rounded-2xl bg-gray-100 md:rounded-2xl md:p-4">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80"
+              alt="Dashboard de analytics num notebook"
+              width="1400"
+              height="720"
+              draggable="false"
+              class="mx-auto rounded-2xl object-cover h-full w-full object-left-top select-none"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- ===== /ContainerScroll ===== -->
+
+  </div>
+
+  <script>
+    (function () {
+      const container = document.getElementById("scroll-container");
+      const card = document.getElementById("scroll-card");
+      const header = document.getElementById("scroll-header");
+
+      const MOBILE_BREAKPOINT = 768;
+      const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+      const lerp = (from, to, t) => from + (to - from) * t;
+
+      let isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+
+      // Equivalente ao useScroll({ target }) do Framer com offset padrão
+      // "start start" -> "end end":
+      //   progress 0  quando o topo do container alinha com o topo da viewport
+      //   progress 1  quando a base do container alinha com a base da viewport
+      function getProgress() {
+        const rect = container.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const denom = vh - rect.height; // negativo: container é mais alto que a viewport
+        if (denom === 0) return 0;
+        return clamp(rect.top / denom, 0, 1);
+      }
+
+      function render() {
+        const p = getProgress();
+
+        // useTransform(scrollYProgress, [0, 1], [20, 0])
+        const rotateX = lerp(20, 0, p);
+        // desktop [1.05, 1] | mobile [0.7, 0.9]
+        const scale = isMobile ? lerp(0.7, 0.9, p) : lerp(1.05, 1, p);
+        // useTransform(scrollYProgress, [0, 1], [0, -100])
+        const translateY = lerp(0, -100, p);
+
+        card.style.transform = `rotateX(${rotateX}deg) scale(${scale})`;
+        header.style.transform = `translateY(${translateY}px)`;
+      }
+
+      // Loop com rAF para suavidade; "ticking" evita empilhar frames no scroll.
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            render();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      function onResize() {
+        isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+        render();
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onResize);
+      render(); // estado inicial
+    })();
+  </script>
+</body>
+</html>

@@ -114,40 +114,6 @@
   .hero__arrow--right{ right:-12px; top:238px; transform:scaleX(-1); }
 
   /* ============================================================
-     2. Diferenciais (painel com arco) — bloco escalável
-  ============================================================ */
-  .diff-scaler{ width:100%; max-width:1512px; margin:clamp(24px,4vw,52px) auto 0; aspect-ratio:1512 / 997; position:relative; container-type:inline-size; overflow:hidden; }
-  .diff{ position:absolute; inset:0; width:1512px; height:997px; transform-origin:top left; transform:scale(calc(100cqw / 1512px)); }
-  .diff__panel{
-    position:absolute; left:80px; top:54.766px; width:1352px; height:760px;
-    border-radius:38.336px; box-shadow:0 2px 2px rgba(0,0,0,.25);
-    background:linear-gradient(214deg, #dcdadd 27%, #e6e6e6 67%);
-  }
-  .diff__badge{
-    position:absolute; left:54.766px; top:49.29px;
-    background:#d22a2d; border:1px solid #fff; color:#fff;
-    font-weight:800; font-size:24.645px; padding:13.692px 30.121px; border-radius:137px; white-space:nowrap;
-  }
-  .diff__arco{ position:absolute; left:54.766px; top:107px; width:1242.468px; height:602.43px; }
-  .diff__arc{ position:absolute; left:calc(50% + 0.23px); top:148.61px; transform:translateX(-50%); width:1016px; height:503px; border:3px solid #ff7070; border-bottom:0; border-radius:999px 999px 0 0; }
-  .diff__semi{ position:absolute; left:calc(50% + 0.23px); top:371.61px; transform:translateX(-50%); width:514px; height:280px; background:#ff7171; border-radius:999px 999px 0 0; }
-  .diff__product{ position:absolute; left:calc(50% - 47.34px); top:-99.39px; transform:translateX(-50%); width:512.859px; height:899.768px; display:flex; align-items:center; justify-content:center; pointer-events:none; }
-  .diff__product .clip{ flex:none; width:322.277px; height:847.712px; overflow:hidden; position:relative; transform:rotate(-13.62deg); }
-  .diff__product .clip img{ position:absolute; height:130.6%; width:343.54%; left:-116.85%; top:-15.16%; max-width:none; }
-  .diff__label{ position:absolute; display:flex; flex-direction:column; gap:8.215px; width:314.907px; align-items:flex-end; text-align:right; }
-  .diff__label b{ font-weight:700; font-size:24.645px; color:var(--ink-700); }
-  .diff__label span{ font-weight:500; font-size:16px; color:#424242; line-height:1.1; }
-  .diff__l1{ left:945.47px; top:169.61px; }
-  .diff__l2{ left:-31.53px; top:227.61px; }
-  .diff__l3{ left:27.47px; top:495.61px; }
-  .diff__l4{ left:940.47px; top:413.61px; }
-  .diff__dot{ position:absolute; width:28px; height:28px; }
-  .diff__d1{ left:875.47px; top:195.61px; }
-  .diff__d2{ left:316.47px; top:243.61px; }
-  .diff__d3{ left:156.47px; top:466.61px; }
-  .diff__d4{ left:1088.47px; top:413.61px; }
-
-  /* ============================================================
      3. "Obra bem-feita não infiltra."
   ============================================================ */
   .infiltra{
@@ -446,28 +412,6 @@
 
         <div class="hero__arrow hero__arrow--left"><img src="Assets/arrow-left.svg" alt="Anterior" /></div>
         <div class="hero__arrow hero__arrow--right"><img src="Assets/arrow-left.svg" alt="Próximo" /></div>
-      </div>
-    </section>
-
-    <!-- ============ DIFERENCIAIS (arco) ============ -->
-    <section class="diff-scaler" aria-label="Diferenciais do DW240">
-      <div class="diff">
-        <div class="diff__panel">
-          <span class="diff__badge">Diferenciais</span>
-          <div class="diff__arco">
-            <div class="diff__arc"></div>
-            <div class="diff__semi"></div>
-            <div class="diff__label diff__l1"><b>Resistente</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
-            <div class="diff__label diff__l2"><b>Resistente</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
-            <div class="diff__label diff__l3"><b>Resistente</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
-            <div class="diff__label diff__l4"><b>Resistente</b><span>Acompanha movimentações da estrutura sem perder a vedação.</span></div>
-            <img class="diff__dot diff__d1" src="Assets/diff-ellipse.svg" alt="" />
-            <img class="diff__dot diff__d2" src="Assets/diff-ellipse.svg" alt="" />
-            <img class="diff__dot diff__d3" src="Assets/diff-ellipse.svg" alt="" />
-            <img class="diff__dot diff__d4" src="Assets/diff-ellipse.svg" alt="" />
-            <div class="diff__product"><div class="clip"><img src="Assets/arc-product.png" alt="Selante DW240" /></div></div>
-          </div>
-        </div>
       </div>
     </section>
 
