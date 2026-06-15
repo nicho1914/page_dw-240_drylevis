@@ -327,17 +327,13 @@ select,input{font-family:inherit;}
 .use-row.is-active .use-row__desc{color:#fff;}
 .use-row.is-active .use-row__arrow{color:var(--vioL);}
 
-/* ─── EMBALAGENS & RENDIMENTO (parallax) ────────────────────────────── */
+/* ─── EMBALAGENS & RENDIMENTO ───────────────────────────────────────── */
 .pack{
   position:relative;
   padding:clamp(72px,9vw,140px) clamp(20px,4.5vw,64px);
   background-image:linear-gradient(rgba(12,8,24,.72),rgba(12,8,24,.78)),url("Assets/CRISTAL-UMI-BLOCK.jpg");
   background-size:cover;background-position:center 30%;
-  background-attachment:fixed;
   display:flex;flex-direction:column;gap:48px;
-}
-@media (max-width:920px), (prefers-reduced-motion: reduce){
-  .pack{background-attachment:scroll;}
 }
 .pack .sec-title{color:#fff;}
 .pack .sec-sub{color:var(--card-t1);}
@@ -467,6 +463,16 @@ select,input{font-family:inherit;}
 }
 .vid-card:hover .vid-card__play{transform:translate(-50%,-50%) scale(1.1);}
 .vid-card.is-playing .vid-card__play{opacity:0;}
+.vid-card__full{
+  position:absolute;top:14px;right:14px;z-index:3;
+  width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
+  background:rgba(0,0,0,.42);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  transition:background .2s,transform .2s;
+}
+.vid-card__full:hover{background:rgba(0,0,0,.7);transform:scale(1.08);}
+.vid-card__full svg{width:20px;height:20px;display:block;}
 @media (max-width:920px){
   .videos{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
     scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
@@ -823,9 +829,9 @@ select,input{font-family:inherit;}
 
   <!-- ============ VÍDEOS ============ -->
   <section class="videos container" aria-label="Vídeos">
-    <div class="vid-card rv"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_BANCO_DE_MADEIRA.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
-    <div class="vid-card rv" style="--d:.1s"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_UMIDADE-ASCENDENTE.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
-    <div class="vid-card rv" style="--d:.2s"><video class="vid-card__media" src="Assets/Umi Block - Banco de madeira.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/></div>
+    <div class="vid-card rv"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_BANCO_DE_MADEIRA.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/><button class="vid-card__full" type="button" aria-label="Maximizar vídeo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button></div>
+    <div class="vid-card rv" style="--d:.1s"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_UMIDADE-ASCENDENTE.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/><button class="vid-card__full" type="button" aria-label="Maximizar vídeo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button></div>
+    <div class="vid-card rv" style="--d:.2s"><video class="vid-card__media" src="Assets/Umi Block - Banco de madeira.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/><button class="vid-card__full" type="button" aria-label="Maximizar vídeo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button></div>
   </section>
 
   <!-- ============ INFORMAÇÕES (navtabs) ============ -->
@@ -1024,7 +1030,7 @@ select,input{font-family:inherit;}
     reveals.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // ---------- Vídeos: player clique-pra-tocar (ativa quando houver <video>) ----------
+  // ---------- Vídeos: player clique-pra-tocar + botão maximizar ----------
   document.querySelectorAll('.vid-card').forEach(function(card){
     var media = card.querySelector('.vid-card__media');
     if(!media || media.tagName !== 'VIDEO') return;
@@ -1039,6 +1045,22 @@ select,input{font-family:inherit;}
     media.addEventListener('play', function(){ card.classList.add('is-playing'); });
     media.addEventListener('pause', function(){ card.classList.remove('is-playing'); });
     media.addEventListener('ended', function(){ card.classList.remove('is-playing'); media.currentTime = 0; });
+    var full = card.querySelector('.vid-card__full');
+    if(full) full.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(media.requestFullscreen){ media.setAttribute('controls',''); media.requestFullscreen(); }
+      else if(media.webkitRequestFullscreen){ media.setAttribute('controls',''); media.webkitRequestFullscreen(); }
+      else if(media.webkitEnterFullscreen){ media.webkitEnterFullscreen(); }
+      else if(media.msRequestFullscreen){ media.setAttribute('controls',''); media.msRequestFullscreen(); }
+      var p = media.play(); if(p && p.catch) p.catch(function(){});
+    });
+  });
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){
+    document.addEventListener(ev, function(){
+      if(!(document.fullscreenElement || document.webkitFullscreenElement)){
+        document.querySelectorAll('.vid-card__media').forEach(function(m){ m.removeAttribute('controls'); });
+      }
+    });
   });
 </script>
 </body>
