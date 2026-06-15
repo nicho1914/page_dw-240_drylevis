@@ -1,7 +1,5 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1440 333.216" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Group 249">
-<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0 140.657V328.2C27.431 329.788 55.8779 331.009 85.8488 331.863C252.34 336.137 449.055 330.764 678.282 308.909C980.277 280.216 1234.14 256.04 1440 236.504V128.081L0 140.657Z" fill="var(--fill-0, #FFED00)"/>
-<path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd" d="M0 141.878V316.601C197.478 332.107 394.828 325.636 634.85 303.78C976.721 272.523 1242.01 247.859 1440 229.3V135.407L0 141.878Z" fill="var(--fill-0, #FFCC00)"/>
-<path id="Vector_3" fill-rule="evenodd" clip-rule="evenodd" d="M0 32.8445V308.665C209.796 319.409 463.406 313.427 764.893 276.797C984.087 250.302 1213.31 229.179 1440 212.451V33.0887C1440 14.896 1424.63 0 1405.58 0H34.0347C15.2394 0.122098 0 14.7739 0 32.8445Z" fill="var(--fill-0, #7A3F91)"/>
-</g>
+<svg preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 1440 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 93.5585V159.758C27.431 160.319 55.8779 160.75 85.8488 161.051C252.34 162.56 449.055 160.663 678.282 152.949C980.277 142.821 1234.14 134.287 1440 127.391V89.1194L0 93.5585Z" fill="#FFED00"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 68.8268V141.286C197.478 147.716 394.828 145.032 634.85 135.969C976.721 123.006 1242.01 112.778 1440 105.081V66.1433L0 68.8268Z" fill="#FFCC00"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 13.6425V128.209C209.796 132.672 463.406 130.187 764.893 114.972C984.087 103.967 1213.31 95.1931 1440 88.2449V13.7439C1440 6.18729 1424.63 0 1405.58 0H34.0347C15.2394 0.0507153 0 6.13657 0 13.6425Z" fill="#7A3F91"/>
 </svg>

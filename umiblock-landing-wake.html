@@ -73,6 +73,8 @@
   background:#fff;color:var(--black);
   font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   font-size:16px;line-height:1.6;overflow-x:hidden;
+  /* full-bleed: fura o container do tema da loja e ocupa a viewport inteira */
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
 }
 #umi-root img{display:block;}
 #umi-root p{word-break:break-word;}
@@ -110,10 +112,7 @@
   pointer-events:none;
 }
 /* onda lavanda na base — atravessa a viewport inteira */
-#umi-root .hero__wave{
-  position:absolute;left:50%;bottom:-130px;width:max(1700px,118vw);height:300px;
-  opacity:.05;transform:translateX(-50%) rotate(180deg);pointer-events:none;
-}
+
 /* fita amarela varrendo o rodape — full-bleed */
 #umi-root .hero__ribbon{
   position:absolute;left:50%;bottom:-40px;width:max(1700px,118vw);height:150px;
@@ -192,11 +191,11 @@
 }
 
 /* ─── FAIXA CRISTAL ──────────────────────────────────────────────────── */
-#umi-root .cristal{position:relative;width:100%;aspect-ratio:1440 / 333.216;overflow:hidden;}
-#umi-root .cristal__wave{position:absolute;inset:0;width:100%;height:100%;}
+#umi-root .cristal{position:relative;width:100%;aspect-ratio:1440 / 162;overflow:hidden;}
+#umi-root .cristal__wave{position:absolute;top:0;left:0;width:100%;height:auto;}
 #umi-root .cristal__logo{
-  position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);
-  width:44.45%;height:auto;
+  position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);
+  width:15.3%;height:auto;
 }
 
 /* ─── SEÇÕES (títulos) ───────────────────────────────────────────────── */
@@ -279,7 +278,7 @@
 #umi-root .step__num{
   font-family:var(--coco);
   font-weight:400;font-size:44px;line-height:1;color:transparent;
-  -webkit-text-stroke:2px var(--vio);
+  -webkit-text-stroke:2px var(--yellow);
   flex:0 0 72px;
 }
 #umi-root .step__txt{display:flex;flex-direction:column;gap:6px;}
@@ -288,7 +287,7 @@
 #umi-root .step__desc b{font-weight:700;color:var(--black);}
 #umi-root .apply__note{
   margin-top:18px;font-size:13px;color:var(--gray);line-height:1.6;
-  background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.18);
+  background:rgba(255,204,0,.2);border:1px solid rgba(124,58,237,.18);
   border-radius:12px;padding:14px 16px;
 }
 
@@ -315,18 +314,21 @@
 #umi-root .uses__list{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px;}
 #umi-root .use-row{
   display:flex;gap:20px;align-items:center;width:100%;
-  background:var(--gray);border:1px solid var(--row-border);border-radius:14px;
+  background:#f1ebf7;border:1px solid transparent;border-radius:14px;
   padding:20px 24px;text-align:left;
-  transition:background .2s,border-color .2s,transform .2s cubic-bezier(.22,.8,.3,1);
+  box-shadow:0 5px 4.6px -2px rgba(0,0,0,.11);
+  transition:background .2s,color .2s,box-shadow .2s,transform .2s cubic-bezier(.22,.8,.3,1);
 }
 #umi-root .use-row:hover{transform:translateX(6px);}
 #umi-root .use-row__emoji{font-size:28px;line-height:1;flex:0 0 auto;}
 #umi-root .use-row__txt{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px;}
-#umi-root .use-row__title{font-weight:800;font-size:16px;letter-spacing:-.01em;color:#f1eeff;text-transform:uppercase;}
-#umi-root .use-row__desc{font-size:13px;color:var(--row-desc);}
+#umi-root .use-row__title{font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--vio);text-transform:uppercase;}
+#umi-root .use-row__desc{font-size:13px;color:var(--vio);}
 #umi-root .use-row__arrow{font-size:18px;color:#5c5480;flex:0 0 auto;transition:color .2s,transform .2s;}
 #umi-root .use-row:hover .use-row__arrow{transform:translateX(4px);}
-#umi-root .use-row.is-active{background:var(--row-active-bg);border-color:var(--row-active-border);}
+#umi-root .use-row.is-active{background:var(--vio);box-shadow:0 4px 4px rgba(0,0,0,.25);}
+#umi-root .use-row.is-active .use-row__title,
+#umi-root .use-row.is-active .use-row__desc{color:#fff;}
 #umi-root .use-row.is-active .use-row__arrow{color:var(--vioL);}
 
 /* ─── EMBALAGENS & RENDIMENTO (parallax) ────────────────────────────── */
@@ -492,7 +494,7 @@
 }
 #umi-root .navtabs__tab:hover{opacity:.8;}
 #umi-root .navtabs__tab.is-active{
-  opacity:1;background:#c0392b;color:#eeedee;
+  opacity:1;background:#7C3AED;color:#eeedee;
   border-radius:100px;padding:12px 20px;
 }
 #umi-root .navtabs__divider{width:1px;background:#bdbdbd;align-self:stretch;flex:0 0 auto;}
@@ -503,10 +505,16 @@
 #umi-root .navtabs__panel .lbl{font-weight:700;font-size:14px;}
 #umi-root .navtabs__panel p{font-weight:400;font-size:14px;line-height:1.6;}
 @media (max-width:760px){
-  #umi-root .navtabs{flex-direction:column;gap:24px;}
-  #umi-root .navtabs__nav{width:100%;flex-direction:row;flex-wrap:wrap;gap:12px;}
-  #umi-root .navtabs__tab{width:auto;}
+  #umi-root .navtabs{flex-direction:column;gap:20px;}
+  /* abas = tira de passos rolavel horizontal */
+  #umi-root .navtabs__nav{width:100%;flex-direction:row;flex-wrap:nowrap;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  #umi-root .navtabs__nav::-webkit-scrollbar{display:none;}
+  #umi-root .navtabs__tab{flex:0 0 auto;width:auto;white-space:nowrap;}
   #umi-root .navtabs__divider{width:100%;height:1px;align-self:auto;}
+  /* conteudo = carrossel arrastavel de steps (swipe horizontal) */
+  #umi-root .navtabs__content{flex:0 1 auto;display:flex;flex-direction:row;flex-wrap:nowrap;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  #umi-root .navtabs__content::-webkit-scrollbar{display:none;}
+  #umi-root .navtabs__panel{display:flex!important;flex:0 0 100%;min-width:0;scroll-snap-align:start;}
 }
 
 /* ─── CTA FINAL ─────────────────────────────────────────────────────── */
@@ -558,10 +566,14 @@
 
 </style>
 
-<!-- ============ HERO — PALCO DO PRODUTO ============ -->
+<!-- ============ FAIXA CRISTAL ============ -->
+  <div class="cristal" aria-label="Cristal">
+    <img class="cristal__wave" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-cristal-banner.svg" alt=""/>
+    <img class="cristal__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-cristal-logo.svg" alt="Cristal"/>
+  </div>
+
+  <!-- ============ HERO — PALCO DO PRODUTO ============ -->
   <header class="hero" id="topo">
-    <svg class="hero__wave" viewBox="0 0 1440 333.216" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 32.8445V308.665C209.796 319.409 463.406 313.427 764.893 276.797C984.087 250.302 1213.31 229.179 1440 212.451V33.0887C1440 14.896 1424.63 0 1405.58 0H34.0347C15.2394 0.122098 0 14.7739 0 32.8445Z" fill="#7C3AED"/></svg>
-    <svg class="hero__ribbon" viewBox="0 0 1440 333.216" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 141.878V316.601C197.478 332.107 394.828 325.636 634.85 303.78C976.721 272.523 1242.01 247.859 1440 229.3V135.407L0 141.878Z" fill="#FFCC00"/></svg>
 
     <div class="hero__stage">
       <div class="hero__glow"></div>
@@ -591,12 +603,6 @@
       </div>
     </div>
   </header>
-
-  <!-- ============ FAIXA CRISTAL ============ -->
-  <div class="cristal" aria-label="Cristal">
-    <img class="cristal__wave" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-cristal-banner.svg" alt=""/>
-    <img class="cristal__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-cristal-logo.svg" alt="Cristal"/>
-  </div>
 
   <!-- ============ BENEFÍCIOS (bento de fotos) ============ -->
   <section class="section benef" id="beneficios" aria-label="Benefícios">
@@ -638,7 +644,7 @@
       </div>
       <div class="apply__steps">
         <div class="apply__head rv">
-          <h2 class="sec-title">Simples assim: <span class="vio">prepare, aplique, cure.</span></h2>
+          <h2 class="sec-title">Simples assim: <span class="yel">prepare, aplique, cure.</span></h2>
         </div>
         <div class="step rv" style="--d:.05s">
           <span class="step__num">01</span>
@@ -669,7 +675,7 @@
   <!-- ============ APLICAÇÕES ============ -->
   <section class="section container" aria-label="Aplicações">
     <div class="sec-head rv">
-      <h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Resolve <span class="gld">qualquer</span> infiltração.</h2>
+      <h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Resolve <span class="vio">qualquer</span> infiltração.</h2>
       <p class="sec-sub">Do detalhe à área crítica, o Umi Block cobre as situações mais comuns de vazamento e umidade.</p>
     </div>
 
@@ -890,13 +896,37 @@
   // ---------- Informações: navtabs ----------
   var tabs = root.querySelectorAll('.navtabs__tab');
   var panels = root.querySelectorAll('.navtabs__panel');
+  var navContent = root.querySelector('.navtabs__content');
+  function navCarousel(){ return navContent && navContent.scrollWidth > navContent.clientWidth + 4; }
+  function navActivate(key, scrollTab){
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-tab') === key;
+      t.classList.toggle('is-active', on);
+      if(on && scrollTab && navCarousel()) t.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+    });
+    panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-panel') === key); });
+  }
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       var key = tab.getAttribute('data-tab');
-      tabs.forEach(function(t){ t.classList.toggle('is-active', t === tab); });
-      panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-panel') === key); });
+      navActivate(key, true);
+      if(navCarousel()){
+        panels.forEach(function(p){ if(p.getAttribute('data-panel') === key) p.scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' }); });
+      }
     });
   });
+  if(navContent){
+    var navTimer;
+    navContent.addEventListener('scroll', function(){
+      if(!navCarousel()) return;
+      clearTimeout(navTimer);
+      navTimer = setTimeout(function(){
+        var cl = navContent.getBoundingClientRect().left, best = null, bestD = 1e9;
+        panels.forEach(function(p){ var d = Math.abs(p.getBoundingClientRect().left - cl); if(d < bestD){ bestD = d; best = p; } });
+        if(best) navActivate(best.getAttribute('data-panel'), true);
+      }, 80);
+    }, { passive:true });
+  }
 
   // ---------- Calculadora de rendimento ----------
   (function(){
