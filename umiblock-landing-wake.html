@@ -320,11 +320,11 @@
   transition:background .2s,color .2s,box-shadow .2s,transform .2s cubic-bezier(.22,.8,.3,1);
 }
 #umi-root .use-row:hover{transform:translateX(6px);}
-#umi-root .use-row__emoji{font-size:28px;line-height:1;flex:0 0 auto;}
+#umi-root .use-row__emoji{width:38px;height:38px;object-fit:contain;flex:0 0 auto;}
 #umi-root .use-row__txt{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px;}
 #umi-root .use-row__title{font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--vio);text-transform:uppercase;}
 #umi-root .use-row__desc{font-size:13px;color:var(--vio);}
-#umi-root .use-row__arrow{font-size:18px;color:#5c5480;flex:0 0 auto;transition:color .2s,transform .2s;}
+#umi-root .use-row__arrow{width:22px;height:22px;color:#5c5480;fill:currentColor;flex:0 0 auto;transition:color .2s,transform .2s;}
 #umi-root .use-row:hover .use-row__arrow{transform:translateX(4px);}
 #umi-root .use-row.is-active{background:var(--vio);box-shadow:0 4px 4px rgba(0,0,0,.25);}
 #umi-root .use-row.is-active .use-row__title,
@@ -576,12 +576,6 @@
   <header class="hero" id="topo">
 
     <div class="hero__stage">
-      <div class="hero__glow"></div>
-      <span class="hero__dot" style="left:12.5%;top:120px;width:10px;height:10px;background:var(--gold);"></span>
-      <span class="hero__dot" style="left:43%;top:90px;width:8px;height:8px;background:var(--vio);"></span>
-      <span class="hero__dot" style="left:93%;top:200px;width:12px;height:12px;background:var(--gold);"></span>
-      <span class="hero__dot" style="left:48.6%;top:640px;width:10px;height:10px;background:var(--vio);"></span>
-
       <div class="hero__orbit"></div>
       <div class="hero__mockup">
         <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-hero-mockup.png" alt="Frasco do Impermeabilizante Umi Block 250ml" draggable="false"/>
@@ -595,7 +589,7 @@
       <div class="hero__copy">
         <img class="hero__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-logo.svg" alt="Umi Block"/>
         <h1 class="hero__title">O bloqueio <span class="acc">definitivo</span> <span class="light">contra a umidade.</span></h1>
-        <p class="hero__desc">Polímeros modificados com silano, incolor e pronto para uso. Repara trincas, tubulações e telhados — seca com a própria umidade do ar.</p>
+        <p class="hero__desc">Polímeros modificados com silano, incolor e pronto para uso. Repara trincas, tubulações, telhados e seca com a própria umidade do ar.</p>
         <div class="hero__actions">
           <a class="hero-btn hero-btn--vio" href="#beneficios">Conhecer o produto ↓</a>
           <a class="hero-btn hero-btn--gold" href="#cta">Comprar o produto →</a>
@@ -667,7 +661,7 @@
             <p class="step__desc">Aplique <b>2 a 3 demãos</b>, com intervalo de <b>3 horas</b> entre elas. Cura total em <b>24 horas</b>.</p>
           </div>
         </div>
-        <p class="apply__note rv" style="--d:.3s">💡 Limpeza das ferramentas: use solvente após o uso — indicado o Aguarrás mineral premium da linha Cristal. Vede bem o frasco: o produto seca em contato com o ar.</p>
+        <p class="apply__note rv" style="--d:.3s">💡 Limpeza das ferramentas: use solvente após o uso indicado o Aguarrás mineral premium da linha Cristal. Vede bem o frasco: o produto seca em contato com o ar.</p>
       </div>
     </div>
   </section>
@@ -689,34 +683,34 @@
 
       <div class="uses__list rv" style="--d:.1s" role="list">
         <button class="use-row is-active" type="button" data-name="Trincas e microfissuras" data-desc="Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.">
-          <span class="use-row__emoji">🧱</span>
+          <img class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-trincas.png" alt="" />
           <span class="use-row__txt"><span class="use-row__title">Trincas e microfissuras</span><span class="use-row__desc">Sela aberturas em paredes, pisos e lajes</span></span>
-          <span class="use-row__arrow">→</span>
+          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
         </button>
         <button class="use-row" type="button" data-name="Frestas de janela" data-desc="Impermeabiliza juntas entre caixilhos e alvenaria, bloqueando a entrada de água.">
-          <span class="use-row__emoji">🪟</span>
+          <img class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-frestas.png" alt="" />
           <span class="use-row__txt"><span class="use-row__title">Frestas de janela</span><span class="use-row__desc">Impermeabiliza juntas entre caixilhos e alvenaria</span></span>
-          <span class="use-row__arrow">→</span>
+          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
         </button>
         <button class="use-row" type="button" data-name="Canos e tubulações" data-desc="Estanca vazamentos em tubos e conexões expostas, mesmo em superfícies úmidas.">
-          <span class="use-row__emoji">🚿</span>
+          <img class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-canos.png" alt="" />
           <span class="use-row__txt"><span class="use-row__title">Canos e tubulações</span><span class="use-row__desc">Estanca vazamentos em tubos e conexões expostas</span></span>
-          <span class="use-row__arrow">→</span>
+          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
         </button>
         <button class="use-row" type="button" data-name="Telhados e calhas" data-desc="Repara infiltrações em pontos críticos do telhado com resistência ao tempo.">
-          <span class="use-row__emoji">🏠</span>
+          <img class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-telhados.png" alt="" />
           <span class="use-row__txt"><span class="use-row__title">Telhados e calhas</span><span class="use-row__desc">Repara infiltrações em pontos críticos do telhado</span></span>
-          <span class="use-row__arrow">→</span>
+          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
         </button>
         <button class="use-row" type="button" data-name="Rejuntes deteriorados" data-desc="Fecha frestas em rejuntes de áreas molhadas, sem precisar refazer o rejunte.">
-          <span class="use-row__emoji">⬛</span>
+          <img class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-rejuntes.png" alt="" />
           <span class="use-row__txt"><span class="use-row__title">Rejuntes deteriorados</span><span class="use-row__desc">Fecha frestas em rejuntes de áreas molhadas</span></span>
-          <span class="use-row__arrow">→</span>
+          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
         </button>
         <button class="use-row" type="button" data-name="Paredes externas" data-desc="Proteção contra infiltração em fachadas e muros expostos à chuva.">
-          <span class="use-row__emoji">🌧️</span>
+          <img class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-paredes.png" alt="" />
           <span class="use-row__txt"><span class="use-row__title">Paredes externas</span><span class="use-row__desc">Proteção contra infiltração em fachadas e muros</span></span>
-          <span class="use-row__arrow">→</span>
+          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
         </button>
       </div>
     </div>
