@@ -152,7 +152,7 @@ select,input{font-family:inherit;}
 }
 
 /* ─── FAIXA CRISTAL ──────────────────────────────────────────────────── */
-.cristal{position:relative;width:100%;aspect-ratio:1440 / 162;overflow:hidden;}
+.cristal{position:relative;width:100%;aspect-ratio:1440 / 162;overflow:hidden;background:#7a3f91;}
 .cristal__wave{position:absolute;top:0;left:0;width:100%;height:auto;}
 .cristal__logo{
   position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);
@@ -485,24 +485,10 @@ select,input{font-family:inherit;}
 
 /* ─── CTA FINAL ─────────────────────────────────────────────────────── */
 .cta{
-  position:relative;overflow:hidden;
-  border-radius:25px 25px 0 0;
-  background:
-    radial-gradient(700px 420px at 80% 10%, rgba(167,139,250,.35), transparent 60%),
-    radial-gradient(540px 380px at 10% 95%, rgba(255,204,0,.18), transparent 55%),
-    linear-gradient(120deg, var(--vioD) 0%, var(--vio-card) 22%, var(--vio) 42%, var(--vioL) 55%, var(--vio) 70%, var(--vio-card) 85%, var(--vioD) 100%);
-  background-size:100% 100%, 100% 100%, 300% 300%;
-  background-position:0% 0%, 0% 0%, 0% 50%;
-  animation:umiCtaGradient 16s ease-in-out infinite;
-  padding:clamp(72px,9vw,130px) clamp(20px,4.5vw,64px);
+  position:relative;
+  background:#7a3f91;
+  padding:clamp(56px,7vw,84px) clamp(20px,4.5vw,64px);
   display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center;
-}
-@keyframes umiCtaGradient{
-  0%,100%{background-position:0% 0%, 0% 0%, 0% 50%;}
-  50%{background-position:0% 0%, 0% 0%, 100% 50%;}
-}
-@media (prefers-reduced-motion: reduce){
-  .cta{animation:none;}
 }
 .cta .sec-title{color:#fff;max-width:1100px;}
 .cta .sec-title .yel{color:var(--yellow);}
