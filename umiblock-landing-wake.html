@@ -174,6 +174,12 @@
   position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);
   width:15.3%;height:auto;
 }
+/* mobile: faixa fica baixa demais (aspect estica fino) — fixa altura e a onda preenche */
+@media (max-width:760px){
+  #umi-root .cristal{aspect-ratio:auto;height:clamp(78px,13vw,100px);}
+  #umi-root .cristal__wave{height:100%;}
+  #umi-root .cristal__logo{width:30%;top:42%;}
+}
 
 /* ─── SEÇÕES (títulos) ───────────────────────────────────────────────── */
 #umi-root .section{padding:clamp(56px,7vw,100px) clamp(20px,4.5vw,64px);display:flex;flex-direction:column;gap:48px;}
