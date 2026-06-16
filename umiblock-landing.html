@@ -134,12 +134,13 @@ select,input{font-family:inherit;}
 }
 .hero__actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
 .hero-btn{
-  display:inline-flex;align-items:center;justify-content:center;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:8px 12px;border-radius:8px;border:none;text-decoration:none;
   font-weight:600;font-size:16px;
   transition:transform .15s,box-shadow .2s,filter .2s;
 }
 .hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(29,29,27,.18);}
+.hero-btn__ic{width:18px;height:18px;flex:0 0 auto;}
 .hero-btn--vio{background:var(--vio);color:#fff;}
 .hero-btn--gold{background:var(--brand-primary);color:var(--black);}
 
@@ -549,8 +550,8 @@ select,input{font-family:inherit;}
         <h1 class="hero__title">O bloqueio <span class="acc">definitivo</span> <span class="light">contra a umidade.</span></h1>
         <p class="hero__desc">Polímeros modificados com silano, incolor e pronto para uso. Repara trincas, tubulações e telhados — seca com a própria umidade do ar.</p>
         <div class="hero__actions">
-          <a class="hero-btn hero-btn--vio" href="#beneficios">Conhecer o produto ↓</a>
-          <a class="hero-btn hero-btn--gold" href="#cta">Comprar o produto →</a>
+          <a class="hero-btn hero-btn--vio" href="#beneficios">Conhecer o produto <svg class="hero-btn__ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 16.175V4H11V16.175L5.4 10.575L4 12L12 20L20 12L18.6 10.575L13 16.175Z"/></svg></a>
+          <a class="hero-btn hero-btn--gold" href="#cta">Comprar o produto <svg class="hero-btn__ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg></a>
         </div>
       </div>
     </div>
