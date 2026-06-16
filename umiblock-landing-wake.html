@@ -477,8 +477,10 @@
 #umi-root .navtabs__panel h2{font-weight:900;font-size:clamp(30px,5vw,52px);}
 #umi-root .navtabs__panel .lbl{font-weight:700;font-size:14px;}
 #umi-root .navtabs__panel p{font-weight:400;font-size:14px;line-height:1.6;}
+#umi-root .navtabs__hint{display:none;}
+@keyframes navHint{0%,100%{transform:translateY(-50%) translateX(0);}50%{transform:translateY(-50%) translateX(5px);}}
 @media (max-width:760px){
-  #umi-root .navtabs{flex-direction:column;gap:20px;}
+  #umi-root .navtabs{flex-direction:column;gap:20px;position:relative;}
   /* abas = tira de passos rolavel horizontal */
   #umi-root .navtabs__nav{width:100%;flex-direction:row;flex-wrap:nowrap;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   #umi-root .navtabs__nav::-webkit-scrollbar{display:none;}
@@ -488,7 +490,19 @@
   #umi-root .navtabs__content{flex:0 1 auto;display:flex;flex-direction:row;flex-wrap:nowrap;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   #umi-root .navtabs__content::-webkit-scrollbar{display:none;}
   #umi-root .navtabs__panel{display:flex!important;flex:0 0 100%;min-width:0;scroll-snap-align:start;}
+  /* seta discreta: dica de arrastar pra ver mais */
+  #umi-root .navtabs__hint{
+    display:flex;align-items:center;justify-content:center;
+    position:absolute;right:6px;top:62%;transform:translateY(-50%);
+    width:30px;height:30px;border-radius:50%;
+    background:rgba(122,63,145,.12);color:rgba(122,63,145,.85);
+    pointer-events:none;z-index:2;
+    animation:navHint 1.5s ease-in-out infinite;
+  }
+  #umi-root .navtabs__hint svg{width:15px;height:15px;}
+  #umi-root .navtabs.is-scrolled .navtabs__hint{opacity:0;transition:opacity .35s ease;}
 }
+@media (prefers-reduced-motion: reduce){ #umi-root .navtabs__hint{animation:none;} }
 
 /* ─── CTA FINAL ─────────────────────────────────────────────────────── */
 #umi-root .cta{
@@ -807,6 +821,7 @@
           <p>Polímeros modificados com silano, em formulação monocomponente. Líquido transparente, densidade 1,08 kg/L a 25°C, não inflamável. Validade de 12 meses a partir da fabricação. Disponível em 250ml, 500ml, 1L e 3,6L.</p>
         </div>
       </div>
+      <span class="navtabs__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </div>
   </section>
 
@@ -868,6 +883,7 @@
     var navTimer;
     navContent.addEventListener('scroll', function(){
       if(!navCarousel()) return;
+      navContent.parentElement.classList.add('is-scrolled');
       clearTimeout(navTimer);
       navTimer = setTimeout(function(){
         var cl = navContent.getBoundingClientRect().left, best = null, bestD = 1e9;
