@@ -525,8 +525,8 @@ select,input{font-family:inherit;}
 .gthumb:hover{transform:translateY(-2px);} .gthumb:hover::after{opacity:.4;}
 .gthumb.is-active{border-color:var(--vio);} .gthumb.is-active::after{opacity:0;}
 /* card de compra */
-.buy__kicker{font-family:var(--coco-pro);font-weight:700;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--vio);margin-bottom:8px;}
-.buy__name{font-family:var(--coco);font-weight:800;font-size:clamp(30px,3.6vw,40px);line-height:1.05;color:var(--black);}
+.buy__brand{height:26px;width:auto;align-self:flex-start;margin-bottom:14px;}
+.buy__logo{height:62px;width:auto;align-self:flex-start;margin-bottom:2px;}
 .buy__sub{font-size:clamp(15px,1.8vw,18px);color:var(--gray);line-height:1.45;margin-top:14px;}
 .buy__sub b{font-weight:700;color:var(--black);}
 .buy__feats{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;}
@@ -849,7 +849,7 @@ select,input{font-family:inherit;}
   </section>
 
   <!-- ============ EXPERIÊNCIA / LOJA (fechamento) ============ -->
-  <section class="section shop" id="cta" aria-label="Comprar Umi Block">
+  <section class="section container shop" id="cta" aria-label="Comprar Umi Block">
     <div class="sec-head rv">
       <h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Chega de conviver com <span class="vio">infiltração.</span></h2>
       <p class="sec-sub">Veja o Umi Block em ação e garanta o seu — pronto para usar, cura em 24 horas.</p>
@@ -882,8 +882,8 @@ select,input{font-family:inherit;}
       </div>
 
       <div class="shop__buy rv" style="--d:.1s">
-        <p class="buy__kicker">Linha Cristal</p>
-        <p class="buy__name">Umi Block</p>
+        <img class="buy__brand" src="Assets/LOGO_CRISTAL_ROXO.svg" alt="Linha Cristal"/>
+        <img class="buy__logo" src="Assets/logo-umiblock.png" alt="Umi Block"/>
         <p class="buy__sub"><b>Impermeabilizante incolor</b> da Linha Cristal. Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.</p>
         <ul class="buy__feats">
           <li>Incolor — não altera o acabamento da superfície</li>
