@@ -534,7 +534,7 @@ select,input{font-family:inherit;}
 .buy__feats li::before{content:"✓";position:absolute;left:0;top:0;color:var(--vio);font-weight:800;}
 .buy__lbl{font-family:var(--coco-pro);font-weight:700;font-size:15px;color:var(--black);margin:24px 0 12px;}
 .size-opts{display:flex;gap:12px;flex-wrap:wrap;}
-.size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:default;}
+.size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:pointer;}
 .size-btn.is-active{border-color:var(--vio);background:var(--vio);color:#fff;}
 .buy__cta{padding-top:28px;margin-top:auto;}
 .addcart{display:inline-flex;align-items:center;gap:8px;background:var(--brand-primary);color:var(--black);border:none;cursor:pointer;padding:15px 32px;border-radius:10px;font-weight:800;font-size:17px;transition:transform .15s,box-shadow .2s;box-shadow:0 16px 40px -12px rgba(150,85,156,.45);}
@@ -891,7 +891,10 @@ select,input{font-family:inherit;}
           <li>Cura em 24 horas</li>
         </ul>
         <p class="buy__lbl">Embalagem</p>
-        <div class="size-opts"><span class="size-btn is-active">Balde 3,6L</span></div>
+        <div class="size-opts">
+          <span class="size-btn" data-variant="">Balde 3,6L</span>
+          <span class="size-btn is-active" data-variant="269381">500mL c/ Bico</span>
+        </div>
         <div class="buy__cta"><button class="addcart" type="button">Comprar agora →</button></div>
         <p class="buy__foot">Umi Block · Impermeabilizante incolor · Linha Cristal — FDS disponível em <a href="https://www.linhacristal.com.br" target="_blank" rel="noopener">linhacristal.com.br</a></p>
       </div>
@@ -1123,6 +1126,25 @@ select,input{font-family:inherit;}
       if(!paused){ elapsed += dt; if(prog) prog.style.width = Math.min(100, elapsed / DUR * 100) + '%'; if(elapsed >= DUR) show(idx + 1); }
       requestAnimationFrame(loop); }
     requestAnimationFrame(loop);
+  })();
+
+  // ---------- Embalagem: seleção de tamanho ----------
+  (function(){
+    var btns = document.querySelectorAll('.size-btn');
+    var buyBtn = document.querySelector('.addcart');
+    var activeVariant = '269381';
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        activeVariant = btn.dataset.variant || '';
+      });
+    });
+    if(buyBtn){
+      buyBtn.addEventListener('click', function(){
+        if(activeVariant) window.location.href = '/produto?sku=' + activeVariant;
+      });
+    }
   })();
 </script>
 </body>

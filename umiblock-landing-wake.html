@@ -542,7 +542,7 @@
 #umi-root .buy__feats li::before{content:"✓";position:absolute;left:0;top:0;color:var(--vio);font-weight:800;}
 #umi-root .buy__lbl{font-family:var(--coco-pro);font-weight:700;font-size:15px;color:var(--black);margin:24px 0 12px;}
 #umi-root .size-opts{display:flex;gap:12px;flex-wrap:wrap;}
-#umi-root .size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:default;}
+#umi-root .size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:pointer;}
 #umi-root .size-btn.is-active{border-color:var(--vio);background:var(--vio);color:#fff;}
 #umi-root .buy__cta{padding-top:28px;margin-top:auto;}
 #umi-root .addcart{display:inline-flex;align-items:center;gap:8px;background:var(--brand-primary);color:var(--black);border:none;cursor:pointer;padding:15px 32px;border-radius:10px;font-weight:800;font-size:17px;transition:transform .15s,box-shadow .2s;box-shadow:0 16px 40px -12px rgba(150,85,156,.45);}
@@ -889,7 +889,6 @@
       </div>
 
       <div class="shop__buy rv" style="--d:.1s">
-        <img class="buy__brand" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/LOGO_CRISTAL_ROXO.svg" alt="Linha Cristal"/>
         <img class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/logo-umiblock.png" alt="Umi Block"/>
         <p class="buy__sub"><b>Impermeabilizante incolor</b> da Linha Cristal. Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.</p>
         <ul class="buy__feats">
@@ -898,7 +897,10 @@
           <li>Cura em 24 horas</li>
         </ul>
         <p class="buy__lbl">Embalagem</p>
-        <div class="size-opts"><span class="size-btn is-active">Balde 3,6L</span></div>
+        <div class="size-opts">
+          <span class="size-btn" data-variant="">Balde 3,6L</span>
+          <span class="size-btn is-active" data-variant="269381">500mL c/ Bico</span>
+        </div>
         <div class="buy__cta"><button class="addcart" type="button">Comprar agora →</button></div>
         <p class="buy__foot">Umi Block · Impermeabilizante incolor · Linha Cristal — FDS disponível em <a href="https://www.linhacristal.com.br" target="_blank" rel="noopener">linhacristal.com.br</a></p>
       </div>
@@ -961,6 +963,37 @@
       if(!paused){ elapsed += dt; if(prog) prog.style.width = Math.min(100, elapsed / DUR * 100) + '%'; if(elapsed >= DUR) show(idx + 1); }
       requestAnimationFrame(loop); }
     requestAnimationFrame(loop);
+  })();
+
+  // ---------- Embalagem: seleção de tamanho + add-to-cart ----------
+  (function(){
+    var shop = root.querySelector('.shop');
+    if(!shop) return;
+    var btns = shop.querySelectorAll('.size-btn');
+    var buyBtn = shop.querySelector('.addcart');
+    var activeVariant = '269381';
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        activeVariant = btn.dataset.variant || '';
+      });
+    });
+    if(buyBtn){
+      buyBtn.addEventListener('click', function(){
+        if(!activeVariant) return;
+        var vid = Number(activeVariant);
+        try {
+          if(window.WAKE && window.WAKE.cart && typeof window.WAKE.cart.addItem === 'function'){
+            window.WAKE.cart.addItem({ productVariantId: vid, quantity: 1 }); return;
+          }
+          if(window.WAKE && typeof window.WAKE.addToCart === 'function'){
+            window.WAKE.addToCart({ variantId: vid, quantity: 1 }); return;
+          }
+        } catch(e){}
+        document.dispatchEvent(new CustomEvent('addToCart', { bubbles: true, detail: { productVariantId: vid, quantity: 1 } }));
+      });
+    }
   })();
 
   // ---------- Informações: navtabs ----------
