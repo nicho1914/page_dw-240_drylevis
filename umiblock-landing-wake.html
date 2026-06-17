@@ -146,7 +146,7 @@
   font-weight:600;font-size:16px;
   transition:transform .15s,box-shadow .2s,filter .2s;
 }
-#umi-root .hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(29,29,27,.18);}
+#umi-root .hero-btn:hover{transform:translateY(-2px);}
 #umi-root .hero-btn__ic{width:18px;height:18px;flex:0 0 auto;}
 #umi-root .hero-btn--vio{background:var(--vio);color:#fff;}
 #umi-root .hero-btn--gold{background:var(--brand-primary);color:var(--black);}
@@ -411,7 +411,7 @@
   font-weight:800;font-size:15px;
   transition:transform .15s,box-shadow .2s;
 }
-#umi-root .calc__buy:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(29,29,27,.2);}
+#umi-root .calc__buy:hover{transform:translateY(-2px);}
 @media (max-width:860px){
   #umi-root .calc__grid{grid-template-columns:1fr;gap:34px;}
   #umi-root .calc__divider{display:none;}
@@ -538,15 +538,18 @@
 #umi-root .buy__sub{font-size:clamp(15px,1.8vw,18px);color:var(--gray);line-height:1.45;margin-top:14px;}
 #umi-root .buy__sub b{font-weight:700;color:var(--black);}
 #umi-root .buy__feats{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;}
-#umi-root .buy__feats li{position:relative;padding-left:26px;font-size:15px;color:var(--black);line-height:1.3;}
-#umi-root .buy__feats li::before{content:"✓";position:absolute;left:0;top:0;color:var(--vio);font-weight:800;}
+#umi-root .buy__feats li{position:relative;padding-left:30px;font-size:15px;color:var(--black);line-height:1.4;}
+#umi-root .buy__feats li::before{content:"";position:absolute;left:0;top:1px;width:19px;height:19px;background:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/verificar.svg') no-repeat center/contain;}
 #umi-root .buy__lbl{font-family:var(--coco-pro);font-weight:700;font-size:15px;color:var(--black);margin:24px 0 12px;}
 #umi-root .size-opts{display:flex;gap:12px;flex-wrap:wrap;}
 #umi-root .size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:pointer;}
 #umi-root .size-btn.is-active{border-color:var(--vio);background:var(--vio);color:#fff;}
+#umi-root .size-btn:not(.is-active):hover{border-color:var(--vio);color:var(--vio);}
 #umi-root .buy__cta{padding-top:28px;margin-top:auto;}
-#umi-root .addcart{display:inline-flex;align-items:center;gap:8px;background:var(--brand-primary);color:var(--black);border:none;cursor:pointer;padding:15px 32px;border-radius:10px;font-weight:800;font-size:17px;transition:transform .15s,box-shadow .2s;box-shadow:0 16px 40px -12px rgba(150,85,156,.45);}
-#umi-root .addcart:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 22px 50px -12px rgba(150,85,156,.55);}
+#umi-root .addcart{display:inline-flex;align-items:center;gap:8px;background:var(--brand-primary);color:var(--black);border:none;cursor:pointer;padding:15px 32px;border-radius:10px;font-weight:800;font-size:17px;transition:transform .15s,filter .2s;}
+#umi-root .addcart__ic{width:18px;height:18px;flex:0 0 auto;transition:transform .15s;}
+#umi-root .addcart:hover{transform:translateY(-2px);filter:brightness(1.04);}
+#umi-root .addcart:hover .addcart__ic{transform:translateX(3px);}
 #umi-root .buy__foot{margin-top:22px;font-size:12px;color:#9a8fb0;line-height:1.5;}
 #umi-root .buy__foot a{color:var(--vio);}
 @media (max-width:900px){#umi-root .shop__buy{max-width:none;}}
@@ -891,7 +894,7 @@
         <img class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/logo-umiblock.png" alt="Umi Block"/>
         <p class="buy__sub"><b>Impermeabilizante incolor</b> da Linha Cristal. Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.</p>
         <ul class="buy__feats">
-          <li>Incolor, não altera o acabamento da superfície</li>
+          <li>Incolor — não altera o acabamento da superfície</li>
           <li>Pronto para usar, sem mistura</li>
           <li>Cura em 24 horas</li>
         </ul>
@@ -902,7 +905,7 @@
           <span class="size-btn" data-variant="269096">1L</span>
           <span class="size-btn" data-variant="269010">3,6L</span>
         </div>
-        <div class="buy__cta"><button class="addcart" type="button">Comprar agora →</button></div>
+        <div class="buy__cta"><button class="addcart" type="button">Comprar agora <svg class="addcart__ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg></button></div>
         <p class="buy__foot">Umi Block · Impermeabilizante incolor · Linha Cristal — FDS disponível em <a href="https://www.linhacristal.com.br" target="_blank" rel="noopener">linhacristal.com.br</a></p>
       </div>
     </div>
