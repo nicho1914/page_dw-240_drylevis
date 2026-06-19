@@ -1,7 +1,7 @@
 <!-- ============================================================================
      BLOCO LANDING PAGE - NEX FLOOR (LINHA PROPISO / CRISTAL) - RESPONSIVO
      Cole TUDO isto num bloco de conte&uacute;do HTML do Wake (modo c&oacute;digo-fonte).
-     - Sem <html>/<head>/<body> (e um fragmento Wake).
+     - Sem <html>/<head>/<body> (&eacute; um fragmento Wake).
      - CSS escopado em #nxf-root (nao afeta o tema da loja).
      - Acentos como entidades HTML; JS (quando houver) em ASCII puro.
      - Fontes: AmsiPro Cond via @font-face (trocar src quando os arquivos
@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet" />
 
 <div id="nxf-root">
-<style type="text/css">
+<style>
 
 /* ---- AmsiPro Cond — trocar os src pelos arquivos reais quando chegarem.
         Ate la, o fallback condensado abaixo assume. ---- */
@@ -94,7 +94,10 @@
   display: flex;
   align-items: center;
   /* Fallback gradient: keeps headline legible even if bg img 404s */
-  background: linear-gradient(135deg, #1a0e2b 0%, #2d1a4a 40%, #1c1c3a 100%);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--roxo) 28%, var(--ink)) 0%,
+    color-mix(in srgb, var(--roxo) 48%, var(--ink)) 40%,
+    color-mix(in srgb, var(--azul) 12%, var(--ink)) 100%);
   overflow: hidden;
 }
 
@@ -149,7 +152,7 @@
   gap: 8px;
   background: rgba(255,255,255,.12);
   border: 1px solid rgba(255,255,255,.25);
-  color: #fff;
+  color: var(--branco);
   font-family: var(--body);
   font-size: clamp(11px, 1.2vw, 13px);
   font-weight: 500;
@@ -425,7 +428,7 @@
 #nxf-root .nxf-gallery__sub {
   font-family: var(--body);
   font-size: clamp(14px, 1.6vw, 18px);
-  color: rgba(31,31,31,.65);
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
   max-width: 560px;
 }
 
@@ -682,10 +685,10 @@
   height: 44px;
 }
 
-/* Friso 3: círculo pequeno no meio */
+/* Friso 3: círculo pequeno — offset intencional, nunca totalmente oculto */
 #nxf-root .nxf-friso--3 {
   top: 44%;
-  left: -18px;
+  left: clamp(-10px, -1vw, 0px);
   width: 36px;
   height: 36px;
 }
@@ -1364,12 +1367,12 @@
 /* WhatsApp button — green modifier on .nxf-cta */
 #nxf-root .nxf-cta--whatsapp {
   background: #25D366;
-  color: #fff;
+  color: var(--branco);
 }
 
 #nxf-root .nxf-cta--whatsapp:hover {
   background: #1ebe5d;
-  color: #fff;
+  color: var(--branco);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0,0,0,.28);
 }
@@ -1416,6 +1419,7 @@
   width: 100%;
   line-height: 0; /* collapse inline SVG gap */
   overflow: hidden;
+  background: var(--roxo); /* flush join: SVG transparent areas match footer body */
 }
 
 #nxf-root .nxf-footer__wave svg {
@@ -1459,7 +1463,7 @@
   font-size: clamp(28px, 4vw, 40px);
   text-transform: uppercase;
   letter-spacing: .06em;
-  color: #fff;
+  color: var(--branco);
 }
 
 #nxf-root .nxf-footer__logo-swoosh {
@@ -2173,7 +2177,7 @@
               </a>
             </li>
             <li>
-              <span>Av. Casa Grande, 52<br>Diadema / SP</span>
+              <span>Av. Casa Grande 52 &mdash; Diadema/SP</span>
             </li>
           </ul>
         </div>
@@ -2183,7 +2187,7 @@
           <p class="nxf-footer__col-title">Cat&aacute;logo</p>
           <ul class="nxf-footer__links">
             <!-- URLs reais a preencher -->
-            <li><a href="#">Baixe nosso cat&aacute;logo</a></li>
+            <li><a href="#">Baixe cat&aacute;logo</a></li>
             <li><a href="#">Siga nas redes sociais</a></li>
           </ul>
         </div>
