@@ -21,6 +21,7 @@ Copiado verbatim do spec (`docs/superpowers/specs/2026-06-19-nexfloor-landing-de
 - **Idioma:** pt-BR apenas.
 - **Responsivo:** sem largura/altura fixas de canvas; reflow real. Container `.wrap{max-width:1432px;margin-inline:auto;padding-inline:clamp(16px,4vw,60px)}`.
 - **Reduced motion:** animações respeitam `@media (prefers-reduced-motion:reduce)`.
+- **Staging restrito (CRÍTICO):** o working tree contém alterações NÃO relacionadas (hold-stone-pro-wake.html, umiblock-landing.html, Assets/*.svg, *.png de verificação). Em TODO commit, fazer staging APENAS de `nexfloor-landing-wake.html` (+ `.gitignore` na Task 1). **Nunca** usar `git add -A`, `git add .` ou `git commit -am`. Comando padrão: `git add nexfloor-landing-wake.html && git commit -m "..."`.
 
 ## Verificação (vale para todas as tasks)
 
