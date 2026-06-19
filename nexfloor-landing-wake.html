@@ -395,6 +395,122 @@
   to { transform: translateX(-50%); }
 }
 
+/* ================================================================
+   GALERIA DE ACABAMENTOS
+   ================================================================ */
+
+/* Shared section heading — reutilizado nas seções 4, 6 e 7 */
+#nxf-root .nxf-h2 {
+  font-family: var(--title);
+  text-transform: uppercase;
+  font-size: clamp(30px, 5vw, 64px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+
+#nxf-root .nxf-gallery {
+  padding-block: clamp(48px, 7vw, 96px);
+  background: var(--branco);
+}
+
+#nxf-root .nxf-gallery__header {
+  margin-bottom: clamp(28px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#nxf-root .nxf-gallery__sub {
+  font-family: var(--body);
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: rgba(31,31,31,.65);
+  max-width: 560px;
+}
+
+/* Grid de cards */
+#nxf-root .nxf-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+
+@media (max-width: 900px) {
+  #nxf-root .nxf-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  #nxf-root .nxf-gallery__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Card base */
+#nxf-root .nxf-acab {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  transition: transform .22s ease, box-shadow .22s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,.10);
+}
+
+#nxf-root .nxf-acab:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
+}
+
+/* Fallback background por card — gradientes variados derivados dos tokens */
+#nxf-root .nxf-acab:nth-child(1) {
+  background: linear-gradient(160deg, #2d1a4a 0%, #1f1f1f 100%);
+}
+
+#nxf-root .nxf-acab:nth-child(2) {
+  background: linear-gradient(160deg, #3a3a52 0%, #5a5a7a 100%);
+}
+
+#nxf-root .nxf-acab:nth-child(3) {
+  background: linear-gradient(160deg, #599ad5 0%, #7B529F 100%);
+}
+
+#nxf-root .nxf-acab:nth-child(4) {
+  background: linear-gradient(160deg, #af619e 0%, #d4b8e0 100%);
+}
+
+/* Imagem — 3:4, cobre o card; atrás da label pill */
+#nxf-root .nxf-acab__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  /* assegura que o aspecto se mantém mesmo com 404 */
+  min-height: 0;
+}
+
+/* Label pill — ancorada no canto inferior esquerdo */
+#nxf-root .nxf-acab__lbl {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(255, 255, 255, .88);
+  color: var(--ink);
+  font-family: var(--title);
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 7px 16px;
+  border-radius: 100px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 </style>
 
 <!-- ---- Topbar ---- -->
@@ -511,6 +627,61 @@
   </div>
 
 </section><!-- /.nxf-marquee -->
+
+<!-- ================================================================
+     GALERIA DE ACABAMENTOS
+     ================================================================ -->
+<section class="nxf-gallery" id="nxf-acabamentos">
+  <div class="wrap">
+
+    <header class="nxf-gallery__header">
+      <h2 class="nxf-h2">Escolha seu acabamento</h2>
+      <p class="nxf-gallery__sub">
+        Quatro padr&otilde;es de granito decorativo &mdash; mesmo visual nobre, sem o peso e o custo da pedra natural.
+      </p>
+    </header>
+
+    <div class="nxf-gallery__grid">
+
+      <!-- Granito Preto -->
+      <article class="nxf-acab">
+        <img
+          class="nxf-acab__img"
+          src="nexfloor-acab-1.png"
+          alt="Acabamento Granito Preto &mdash; Nex Floor Cristal" />
+        <span class="nxf-acab__lbl">Granito Preto</span>
+      </article>
+
+      <!-- Granito Cinza -->
+      <article class="nxf-acab">
+        <img
+          class="nxf-acab__img"
+          src="nexfloor-acab-2.png"
+          alt="Acabamento Granito Cinza &mdash; Nex Floor Cristal" />
+        <span class="nxf-acab__lbl">Granito Cinza</span>
+      </article>
+
+      <!-- Granito Bege -->
+      <article class="nxf-acab">
+        <img
+          class="nxf-acab__img"
+          src="nexfloor-acab-3.png"
+          alt="Acabamento Granito Bege &mdash; Nex Floor Cristal" />
+        <span class="nxf-acab__lbl">Granito Bege</span>
+      </article>
+
+      <!-- Granito Branco -->
+      <article class="nxf-acab">
+        <img
+          class="nxf-acab__img"
+          src="nexfloor-acab-4.png"
+          alt="Acabamento Granito Branco &mdash; Nex Floor Cristal" />
+        <span class="nxf-acab__lbl">Granito Branco</span>
+      </article>
+
+    </div><!-- /.nxf-gallery__grid -->
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-gallery -->
 
 </div><!-- /#nxf-root -->
 
