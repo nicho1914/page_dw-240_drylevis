@@ -318,6 +318,83 @@
   }
 }
 
+/* ================================================================
+   MARQUEE DE BENEFICIOS — 2 fileiras rolando em direcoes opostas
+   ================================================================ */
+
+#nxf-root .nxf-marquee {
+  background: var(--creme);
+  padding-block: clamp(28px, 5vw, 56px);
+  overflow: hidden;
+}
+
+#nxf-root .nxf-marquee__row {
+  overflow: hidden;
+}
+
+#nxf-root .nxf-marquee__row + .nxf-marquee__row {
+  margin-top: 14px;
+}
+
+#nxf-root .nxf-marquee__track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: nxf-scroll 32s linear infinite;
+  list-style: none;
+}
+
+#nxf-root .nxf-marquee__row--reverse .nxf-marquee__track {
+  animation-direction: reverse;
+}
+
+#nxf-root .nxf-marquee__row:hover .nxf-marquee__track {
+  animation-play-state: paused;
+}
+
+/* Pills: alternating roxo / amarelo / azul by nth-child(3n) pattern */
+#nxf-root .nxf-marquee__track li {
+  font-family: var(--title);
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 100px;
+  white-space: nowrap;
+  font-size: clamp(13px, 1.4vw, 16px);
+  font-weight: 600;
+  letter-spacing: .04em;
+  flex-shrink: 0;
+}
+
+/* roxo pill — default (1st, 4th, 7th...) */
+#nxf-root .nxf-marquee__track li:nth-child(3n+1) {
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+/* amarelo pill (2nd, 5th, 8th...) */
+#nxf-root .nxf-marquee__track li:nth-child(3n+2) {
+  background: var(--friso-1);
+  color: var(--ink);
+}
+
+/* azul pill (3rd, 6th, 9th...) */
+#nxf-root .nxf-marquee__track li:nth-child(3n) {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+/* Reduced motion: show as static wrapped list */
+@media (prefers-reduced-motion: reduce) {
+  #nxf-root .nxf-marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+  }
+}
+
+@keyframes nxf-scroll {
+  to { transform: translateX(-50%); }
+}
+
 </style>
 
 <!-- ---- Topbar ---- -->
@@ -400,6 +477,66 @@
   </div><!-- /.wrap.nxf-hero__grid -->
 </section><!-- /.nxf-hero -->
 
-<!-- secoes entram aqui -->
+<!-- ================================================================
+     MARQUEE DE BENEFICIOS
+     ================================================================ -->
+<section class="nxf-marquee" aria-label="Beneficios Nex Floor">
+
+  <!-- Fileira 1: rola para a esquerda (direcao padrao) -->
+  <div class="nxf-marquee__row">
+    <ul class="nxf-marquee__track">
+      <li>Acabamento granito</li>
+      <li>Autonivelante</li>
+      <li>Alta resist&ecirc;ncia</li>
+      <li>Monol&iacute;tico</li>
+      <li>Baixa espessura</li>
+      <li>F&aacute;cil limpeza</li>
+      <li>Decorativo</li>
+      <li>Resiste a intemp&eacute;ries</li>
+    </ul>
+  </div>
+
+  <!-- Fileira 2: rola para a direita (animation-direction: reverse) -->
+  <div class="nxf-marquee__row nxf-marquee__row--reverse">
+    <ul class="nxf-marquee__track">
+      <li>Acabamento granito</li>
+      <li>Autonivelante</li>
+      <li>Alta resist&ecirc;ncia</li>
+      <li>Monol&iacute;tico</li>
+      <li>Baixa espessura</li>
+      <li>F&aacute;cil limpeza</li>
+      <li>Decorativo</li>
+      <li>Resiste a intemp&eacute;ries</li>
+    </ul>
+  </div>
+
+</section><!-- /.nxf-marquee -->
 
 </div><!-- /#nxf-root -->
+
+<script>
+(function () {
+  function nxfInitMarquee() {
+    var tracks = document.querySelectorAll('#nxf-root .nxf-marquee__track');
+    if (!tracks || tracks.length === 0) return;
+    for (var i = 0; i < tracks.length; i++) {
+      var track = tracks[i];
+      var items = track.children;
+      if (!items || items.length === 0) continue;
+      var clones = [];
+      for (var j = 0; j < items.length; j++) {
+        clones.push(items[j].cloneNode(true));
+      }
+      for (var k = 0; k < clones.length; k++) {
+        track.appendChild(clones[k]);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', nxfInitMarquee);
+  } else {
+    nxfInitMarquee();
+  }
+})();
+</script>
