@@ -1397,6 +1397,164 @@
   }
 }
 
+/* ================================================================
+   FOOTER CRISTAL — onda amarela + bloco roxo + colunas de links
+   ================================================================ */
+
+#nxf-root {
+  --footer-ink: #ededed;
+}
+
+/* ---- Wave container: sits above the purple block ---- */
+#nxf-root .nxf-footer {
+  position: relative;
+  margin-top: 0;
+}
+
+#nxf-root .nxf-footer__wave {
+  display: block;
+  width: 100%;
+  line-height: 0; /* collapse inline SVG gap */
+  overflow: hidden;
+}
+
+#nxf-root .nxf-footer__wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Purple block ---- */
+#nxf-root .nxf-footer__body {
+  background: var(--roxo);
+  color: var(--footer-ink);
+  padding-block: clamp(40px, 6vw, 72px) clamp(32px, 4vw, 52px);
+}
+
+/* ---- Inner layout: logo top-left, columns grid ---- */
+#nxf-root .nxf-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 48px);
+}
+
+/* Logo row */
+#nxf-root .nxf-footer__logo-row {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo placeholder */
+#nxf-root .nxf-footer__logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  line-height: 1;
+}
+
+#nxf-root .nxf-footer__logo-word {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 40px);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #fff;
+}
+
+#nxf-root .nxf-footer__logo-swoosh {
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--friso-1);
+}
+
+/* ---- Link columns grid: 4 → 2 → 1 ---- */
+#nxf-root .nxf-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+}
+
+#nxf-root .nxf-footer__col-title {
+  font-family: var(--title);
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--friso-1);
+  margin-bottom: 14px;
+}
+
+#nxf-root .nxf-footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#nxf-root .nxf-footer__links a {
+  font-family: var(--body);
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: var(--footer-ink);
+  text-decoration: none;
+  opacity: .82;
+  transition: opacity .18s ease, text-decoration .18s ease;
+}
+
+#nxf-root .nxf-footer__links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Address & phone: plain text, no hover change */
+#nxf-root .nxf-footer__links span {
+  font-family: var(--body);
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: var(--footer-ink);
+  opacity: .7;
+  display: block;
+  line-height: 1.5;
+}
+
+/* ---- Bottom bar ---- */
+#nxf-root .nxf-footer__bottom {
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-top: clamp(16px, 2vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#nxf-root .nxf-footer__copy {
+  font-family: var(--body);
+  font-size: clamp(11px, 1vw, 13px);
+  color: var(--footer-ink);
+  opacity: .55;
+}
+
+/* ---- Responsive: 2 cols at 768px ---- */
+@media (max-width: 820px) {
+  #nxf-root .nxf-footer__cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---- Responsive: 1 col at 480px ---- */
+@media (max-width: 480px) {
+  #nxf-root .nxf-footer__cols {
+    grid-template-columns: 1fr;
+  }
+  #nxf-root .nxf-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 </style>
 
 <!-- ---- Topbar ---- -->
@@ -1944,6 +2102,105 @@
   </div><!-- /.wrap -->
 
 </section><!-- /.nxf-lead #nxf-comprar -->
+
+<!-- ================================================================
+     FOOTER CRISTAL — onda amarela friso + bloco roxo institucional
+     ================================================================ -->
+<footer class="nxf-footer" aria-label="Rodapé Cristal">
+
+  <!-- Yellow wavy band — brand "friso" sits atop the purple block -->
+  <div class="nxf-footer__wave" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 72" preserveAspectRatio="none">
+      <path
+        d="M0,0 L0,40 C120,72 240,72 360,48 C480,24 600,0 720,12 C840,24 960,56 1080,60 C1200,64 1320,48 1440,32 L1440,0 Z"
+        fill="var(--friso-1)"
+      />
+      <path
+        d="M0,0 L0,28 C120,56 240,64 360,44 C480,24 600,4 720,16 C840,28 960,52 1080,56 C1200,60 1320,44 1440,28 L1440,0 Z"
+        fill="var(--friso-2)"
+        opacity="0.6"
+      />
+    </svg>
+  </div><!-- /.nxf-footer__wave -->
+
+  <!-- Purple body -->
+  <div class="nxf-footer__body">
+    <div class="wrap nxf-footer__inner">
+
+      <!-- Logo Cristal placeholder — swap for real SVG when available -->
+      <div class="nxf-footer__logo-row">
+        <!-- logo Cristal placeholder -->
+        <div class="nxf-footer__logo" aria-label="Cristal Tintas">
+          <span class="nxf-footer__logo-word">Cristal</span>
+          <span class="nxf-footer__logo-swoosh" aria-hidden="true"></span>
+        </div>
+        <!-- /logo Cristal placeholder -->
+      </div><!-- /.nxf-footer__logo-row -->
+
+      <!-- Link columns grid -->
+      <div class="nxf-footer__cols">
+
+        <!-- Col 1: Cristal e você -->
+        <div class="nxf-footer__col">
+          <p class="nxf-footer__col-title">Cristal e voc&ecirc;</p>
+          <ul class="nxf-footer__links">
+            <!-- URLs reais a preencher -->
+            <li><a href="#">Sobre a Cristal</a></li>
+            <li><a href="#">Fale Conosco</a></li>
+            <li><a href="#">Home</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Produtos -->
+        <div class="nxf-footer__col">
+          <p class="nxf-footer__col-title">Produtos</p>
+          <ul class="nxf-footer__links">
+            <!-- URLs reais a preencher -->
+            <li><a href="#">Propiso</a></li>
+            <li><a href="#">Tintas e Acess&oacute;rios</a></li>
+            <li><a href="#">Umi Block</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contato -->
+        <div class="nxf-footer__col">
+          <p class="nxf-footer__col-title">Contato</p>
+          <ul class="nxf-footer__links">
+            <li>
+              <!-- URLs reais a preencher -->
+              <a href="https://wa.me/551140666262" target="_blank" rel="noopener noreferrer">
+                WhatsApp / Telefone<br>(11) 4066-6262
+              </a>
+            </li>
+            <li>
+              <span>Av. Casa Grande, 52<br>Diadema / SP</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Catálogo -->
+        <div class="nxf-footer__col">
+          <p class="nxf-footer__col-title">Cat&aacute;logo</p>
+          <ul class="nxf-footer__links">
+            <!-- URLs reais a preencher -->
+            <li><a href="#">Baixe nosso cat&aacute;logo</a></li>
+            <li><a href="#">Siga nas redes sociais</a></li>
+          </ul>
+        </div>
+
+      </div><!-- /.nxf-footer__cols -->
+
+      <!-- Bottom bar -->
+      <div class="nxf-footer__bottom">
+        <p class="nxf-footer__copy">
+          &copy; 2024 Cristal Tintas. Todos os direitos reservados.
+        </p>
+      </div>
+
+    </div><!-- /.wrap .nxf-footer__inner -->
+  </div><!-- /.nxf-footer__body -->
+
+</footer><!-- /.nxf-footer -->
 
 </div><!-- /#nxf-root -->
 
