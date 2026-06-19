@@ -511,6 +511,245 @@
   pointer-events: none;
 }
 
+/* ================================================================
+   SPLIT LIFESTYLE — texto + colagem de fotos com frisos amarelos
+   ================================================================ */
+
+#nxf-root .nxf-split {
+  background: var(--creme);
+  padding-block: clamp(56px, 8vw, 112px);
+  overflow: hidden;
+}
+
+#nxf-root .nxf-split__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+/* ---- Coluna de texto ---- */
+#nxf-root .nxf-split__text {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+#nxf-root .nxf-split__eyebrow {
+  display: inline-block;
+  font-family: var(--title);
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--roxo);
+}
+
+#nxf-root .nxf-split__title {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(34px, 5.5vw, 72px);
+  line-height: .95;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+#nxf-root .nxf-split__title .acc {
+  /* Friso accent: fundo amarelo inline block */
+  color: var(--roxo);
+  background: var(--friso-1);
+  padding: 0 .12em;
+  border-radius: 4px;
+  display: inline;
+}
+
+#nxf-root .nxf-split__body {
+  font-family: var(--body);
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+  max-width: 440px;
+}
+
+#nxf-root .nxf-split__cta-wrap {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Variante de CTA secundário — contorno */
+#nxf-root .nxf-cta--outline {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+#nxf-root .nxf-cta--outline:hover {
+  background: var(--ink);
+  color: var(--branco);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+
+/* ---- Coluna de colagem ---- */
+#nxf-root .nxf-split__collage {
+  position: relative;
+  /* Altura fixa para o container — fotos se posicionam absolutas dentro */
+  height: clamp(380px, 52vw, 620px);
+  /* overflow visible para deixar as fotos "sangrar" levemente */
+}
+
+/* Cada foto da colagem */
+#nxf-root .nxf-split__photo {
+  position: absolute;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,.22);
+  /* Fallback: blocos de cor enquanto fotos não chegam */
+}
+
+/* Imagem dentro do card — cobre tudo sem distorcer */
+#nxf-root .nxf-split__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Foto 1 — principal, centro-baixo, sem rotação */
+#nxf-root .nxf-split__photo--1 {
+  width: 62%;
+  aspect-ratio: 3 / 4;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--azul) 55%, #fff) 0%,
+    color-mix(in srgb, var(--roxo) 60%, #000) 100%);
+}
+
+/* Foto 2 — canto superior esquerdo, leve rotação anti-horária */
+#nxf-root .nxf-split__photo--2 {
+  width: 46%;
+  aspect-ratio: 4 / 3;
+  top: 0;
+  left: -4%;
+  transform: rotate(-5deg);
+  z-index: 2;
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--roxo) 70%, #000) 0%,
+    color-mix(in srgb, var(--ink) 80%, var(--azul)) 100%);
+}
+
+/* Foto 3 — canto superior direito, leve rotação horária */
+#nxf-root .nxf-split__photo--3 {
+  width: 44%;
+  aspect-ratio: 5 / 4;
+  top: 6%;
+  right: -2%;
+  transform: rotate(4deg);
+  z-index: 1;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--friso-1) 40%, var(--creme)) 0%,
+    color-mix(in srgb, var(--azul) 50%, #fff) 100%);
+}
+
+/* ---- Frisos amarelos — stickers decorativos ---- */
+#nxf-root .nxf-friso {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+}
+
+/* Friso 1: zig-zag superior esquerdo */
+#nxf-root .nxf-friso--1 {
+  top: -12px;
+  left: 10%;
+  width: 56px;
+  height: 56px;
+}
+
+/* Friso 2: bloco retangular inferior direito */
+#nxf-root .nxf-friso--2 {
+  bottom: 12%;
+  right: -14px;
+  width: 44px;
+  height: 44px;
+}
+
+/* Friso 3: círculo pequeno no meio */
+#nxf-root .nxf-friso--3 {
+  top: 44%;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+}
+
+/* ================================================================
+   SPLIT — RESPONSIVO (≤860px): empilha, remove rotações absolutas
+   ================================================================ */
+@media (max-width: 860px) {
+  #nxf-root .nxf-split__inner {
+    grid-template-columns: 1fr;
+  }
+
+  /* No mobile, a colagem vira uma linha horizontal de fotos empilhadas — sem rotação */
+  #nxf-root .nxf-split__collage {
+    /* altura auto: deixa o conteúdo determinar */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: visible;
+  }
+
+  #nxf-root .nxf-split__photo {
+    position: static;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    transform: none !important;
+    border-radius: 14px;
+  }
+
+  /* Foto 1 mantém proporção retrato no mobile */
+  #nxf-root .nxf-split__photo--1 {
+    aspect-ratio: 4 / 3;
+    transform: none !important;
+  }
+
+  /* Ocultar foto 3 no mobile para não sobrecarregar */
+  #nxf-root .nxf-split__photo--3 {
+    display: none;
+  }
+
+  /* Frisos: reposicionar para não saírem da viewport */
+  #nxf-root .nxf-friso--1 {
+    top: auto;
+    bottom: -8px;
+    left: auto;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  #nxf-root .nxf-friso--2 {
+    display: none;
+  }
+
+  #nxf-root .nxf-friso--3 {
+    display: none;
+  }
+
+  #nxf-root .nxf-split__body {
+    max-width: 100%;
+  }
+}
+
 </style>
 
 <!-- ---- Topbar ---- -->
@@ -682,6 +921,109 @@
     </div><!-- /.nxf-gallery__grid -->
   </div><!-- /.wrap -->
 </section><!-- /.nxf-gallery -->
+
+<!-- ================================================================
+     SPLIT LIFESTYLE — "Um piso inteiro. Sem rejunte, sem emenda."
+     ================================================================ -->
+<section class="nxf-split" id="nxf-lifestyle">
+  <div class="wrap nxf-split__inner">
+
+    <!-- Coluna esquerda: texto editorial -->
+    <div class="nxf-split__text">
+
+      <span class="nxf-split__eyebrow">Piso epóxi decorativo</span>
+
+      <h2 class="nxf-split__title">
+        Um piso<br>
+        inteiro.<br>
+        <span class="acc">Sem rejunte,</span><br>
+        sem emenda.
+      </h2>
+
+      <p class="nxf-split__body">
+        O Nex Floor Cristal forma uma superf&iacute;cie monol&iacute;tica &mdash;
+        uma &uacute;nica camada cont&iacute;nua que cobre rachaduras, desn&iacute;veis
+        e juntas. Resultado: visual de granito nobre, f&aacute;cil limpeza e
+        durabilidade que dura anos, em qualquer ambiente.
+      </p>
+
+      <div class="nxf-split__cta-wrap">
+        <a class="nxf-cta" href="#nxf-comprar">
+          Quero aplicar
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Z"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.5 10h5M10.5 7.5 13 10l-2.5 2.5"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="nxf-cta nxf-cta--outline" href="#nxf-acabamentos">Ver acabamentos</a>
+      </div>
+
+    </div><!-- /.nxf-split__text -->
+
+    <!-- Coluna direita: colagem de fotos + frisos -->
+    <div class="nxf-split__collage">
+
+      <!-- Friso sticker 1 — zig-zag SVG amarelo, topo esquerdo -->
+      <span class="nxf-friso nxf-friso--1" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,16 8,0 16,16 24,0 32,16 40,0 48,16 56,0 56,10 48,26 40,10 32,26 24,10 16,26 8,10 0,26"
+                   fill="var(--friso-1)"/>
+          <polygon points="0,30 8,14 16,30 24,14 32,30 40,14 48,30 56,14 56,24 48,40 40,24 32,40 24,24 16,40 8,24 0,40"
+                   fill="var(--friso-2)" opacity=".7"/>
+        </svg>
+      </span>
+
+      <!-- Friso sticker 2 — bloco retangular, inferior direito -->
+      <span class="nxf-friso nxf-friso--2" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="44" height="44" rx="6"
+                fill="var(--friso-1)" transform="rotate(12 22 22)"/>
+          <rect x="8" y="8" width="28" height="28" rx="4"
+                fill="var(--friso-2)" transform="rotate(12 22 22)"/>
+        </svg>
+      </span>
+
+      <!-- Friso sticker 3 — círculo, esquerda meio -->
+      <span class="nxf-friso nxf-friso--3" aria-hidden="true">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="18" fill="var(--friso-1)"/>
+          <circle cx="18" cy="18" r="10" fill="var(--friso-2)"/>
+        </svg>
+      </span>
+
+      <!-- Foto 2 — ambiente, peeking no topo esquerdo -->
+      <div class="nxf-split__photo nxf-split__photo--2">
+        <img
+          src="nexfloor-colagem-2.png"
+          alt="Ambiente com piso Nex Floor &mdash; textura granito" />
+      </div>
+
+      <!-- Foto 3 — detalhe de textura, peeking no topo direito -->
+      <div class="nxf-split__photo nxf-split__photo--3">
+        <img
+          src="nexfloor-colagem-3.png"
+          alt="Detalhe da textura Nex Floor Cristal" />
+      </div>
+
+      <!-- Foto 1 — principal, em destaque na frente -->
+      <div class="nxf-split__photo nxf-split__photo--1">
+        <img
+          src="nexfloor-colagem-1.png"
+          alt="Aplica&ccedil;&atilde;o do Nex Floor em ambiente residencial" />
+      </div>
+
+    </div><!-- /.nxf-split__collage -->
+
+  </div><!-- /.wrap.nxf-split__inner -->
+</section><!-- /.nxf-split -->
 
 </div><!-- /#nxf-root -->
 
