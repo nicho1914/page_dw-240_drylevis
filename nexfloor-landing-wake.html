@@ -829,6 +829,187 @@
 }
 
 /* ================================================================
+   BENTO DE BENEFICIOS
+   ================================================================ */
+
+#nxf-root .nxf-bento {
+  background: var(--creme);
+  padding-block: clamp(56px, 8vw, 112px);
+}
+
+#nxf-root .nxf-bento__header {
+  margin-bottom: clamp(32px, 5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#nxf-root .nxf-bento__pill {
+  display: inline-block;
+  font-family: var(--title);
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--roxo);
+  background: color-mix(in srgb, var(--roxo) 12%, var(--branco));
+  border: 1.5px solid color-mix(in srgb, var(--roxo) 30%, var(--branco));
+  padding: 5px 16px;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+/* Grid assimétrico — 3 colunas, linhas auto-sizing */
+#nxf-root .nxf-bento__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+/* ---- Cell base ---- */
+#nxf-root .nxf-bento__cell {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(20px, 2.4vw, 28px);
+  min-height: 180px;
+}
+
+/* ---- Color modifiers ---- */
+#nxf-root .nxf-bento__cell--roxo {
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+#nxf-root .nxf-bento__cell--amarelo {
+  background: var(--friso-1);
+  color: var(--ink);
+}
+
+#nxf-root .nxf-bento__cell--azul {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+/* Photo cells — fallback color per slot so 404 looks intentional */
+#nxf-root .nxf-bento__cell--foto {
+  background: color-mix(in srgb, var(--azul) 35%, color-mix(in srgb, var(--roxo) 40%, var(--ink)));
+  padding: 0;
+  justify-content: flex-start;
+}
+
+#nxf-root .nxf-bento__cell--foto-2 {
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--roxo) 55%, var(--ink)) 0%,
+    color-mix(in srgb, var(--azul) 50%, var(--ink)) 100%);
+}
+
+#nxf-root .nxf-bento__cell--foto-3 {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--friso-1) 30%, var(--ink)) 0%,
+    color-mix(in srgb, var(--roxo) 60%, var(--ink)) 100%);
+}
+
+#nxf-root .nxf-bento__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* ---- Span variants ---- */
+#nxf-root .nxf-bento__cell--col2 {
+  grid-column: span 2;
+}
+
+#nxf-root .nxf-bento__cell--row2 {
+  grid-row: span 2;
+}
+
+/* ---- Text inside solid cells ---- */
+#nxf-root .nxf-bento__title {
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(20px, 2.4vw, 32px);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  margin-bottom: 8px;
+}
+
+#nxf-root .nxf-bento__desc {
+  font-family: var(--body);
+  font-size: clamp(13px, 1.3vw, 15px);
+  line-height: 1.55;
+  opacity: .82;
+  max-width: 320px;
+}
+
+/* Friso sticker inside bento — uses the base .nxf-friso class */
+#nxf-root .nxf-bento .nxf-friso {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Bento-specific friso placement */
+#nxf-root .nxf-bento__cell .nxf-friso--bento {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  z-index: 2;
+}
+
+/* ================================================================
+   BENTO — RESPONSIVO
+   ================================================================ */
+
+/* Tablet: 2 colunas, células com col-span mantidas onde cabem */
+@media (max-width: 820px) {
+  #nxf-root .nxf-bento__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Solta o col-span 2 nas células que ficam sozinhas */
+  #nxf-root .nxf-bento__cell--col2 {
+    grid-column: span 1;
+  }
+
+  /* row-span 2 mantém no tablet — ainda faz ritmo bom */
+}
+
+/* Mobile: 1 coluna, sem spans, sem buracos */
+@media (max-width: 520px) {
+  #nxf-root .nxf-bento__grid {
+    grid-template-columns: 1fr;
+  }
+
+  #nxf-root .nxf-bento__cell--col2,
+  #nxf-root .nxf-bento__cell--row2 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  #nxf-root .nxf-bento__cell {
+    min-height: 200px;
+  }
+
+  #nxf-root .nxf-bento__cell--foto,
+  #nxf-root .nxf-bento__cell--foto-2,
+  #nxf-root .nxf-bento__cell--foto-3 {
+    min-height: 240px;
+  }
+}
+
+/* ================================================================
    SPLIT — RESPONSIVO (≤860px): empilha, remove rotações absolutas
    ================================================================ */
 @media (max-width: 860px) {
@@ -1252,6 +1433,93 @@
 
   </div><!-- /.wrap -->
 </section><!-- /.nxf-system -->
+
+<!-- ================================================================
+     BENTO DE BENEFICIOS — "Por que Nex Floor"
+     Célula layout (3 colunas desktop):
+       [A: roxo tall — Alta resist.]  [B: foto-1 wide — span 2 col]
+       [A continua span2 row]         [C: azul — Monolítico]     [D: foto-2]
+       [E: amarelo — Fácil aplic.]    [F: foto-3 span2col]       [friso cell]
+     ================================================================ -->
+<section class="nxf-bento" id="nxf-beneficios">
+  <div class="wrap">
+
+    <header class="nxf-bento__header">
+      <span class="nxf-bento__pill">Benef&iacute;cios</span>
+      <h2 class="nxf-h2">Por que Nex Floor</h2>
+    </header>
+
+    <div class="nxf-bento__grid">
+
+      <!-- Célula A: Roxo, tall (row-span 2) — Alta resistência -->
+      <div class="nxf-bento__cell nxf-bento__cell--roxo nxf-bento__cell--row2">
+        <!-- Friso sticker decorativo no topo direito da célula -->
+        <span class="nxf-friso nxf-friso--bento" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <polygon
+              points="0,14 7,0 14,14 21,0 28,14 35,0 42,14 48,0 48,9 41,23 34,9 27,23 20,9 13,23 6,9 0,23"
+              fill="var(--friso-1)"/>
+            <polygon
+              points="0,26 7,12 14,26 21,12 28,26 35,12 42,26 48,12 48,21 41,35 34,21 27,35 20,21 13,35 6,21 0,35"
+              fill="var(--friso-2)" opacity=".65"/>
+          </svg>
+        </span>
+        <p class="nxf-bento__title">Alta resist&ecirc;ncia</p>
+        <p class="nxf-bento__desc">Suporta tr&aacute;fego intenso e impactos. Formulado para pisos residenciais e comerciais exigentes.</p>
+      </div>
+
+      <!-- Célula B: Foto lifestyle (col-span 2) — cobre dois terços da primeira linha -->
+      <div class="nxf-bento__cell nxf-bento__cell--foto nxf-bento__cell--col2">
+        <img
+          src="nexfloor-bento-1.png"
+          alt="Ambiente com piso Nex Floor &mdash; acabamento granito decorativo" />
+      </div>
+
+      <!-- Célula C: Azul — Acabamento granito -->
+      <div class="nxf-bento__cell nxf-bento__cell--azul">
+        <p class="nxf-bento__title">Acabamento granito</p>
+        <p class="nxf-bento__desc">Decorativo, sofisticado e sem repetir. Cada aplica&ccedil;&atilde;o &eacute; &uacute;nica.</p>
+      </div>
+
+      <!-- Célula D: Foto 2 -->
+      <div class="nxf-bento__cell nxf-bento__cell--foto nxf-bento__cell--foto-2">
+        <img
+          src="nexfloor-bento-2.png"
+          alt="Detalhe do acabamento granito Nex Floor Cristal" />
+      </div>
+
+      <!-- Célula E: Amarelo — Monolítico -->
+      <div class="nxf-bento__cell nxf-bento__cell--amarelo">
+        <p class="nxf-bento__title">Monol&iacute;tico</p>
+        <p class="nxf-bento__desc">Sem rejunte, sem emenda, f&aacute;cil de limpar. Uma superf&iacute;cie &uacute;nica e cont&iacute;nua.</p>
+      </div>
+
+      <!-- Célula F: Foto 3 (col-span 2) — cobre dois terços da última linha -->
+      <div class="nxf-bento__cell nxf-bento__cell--foto nxf-bento__cell--foto-3 nxf-bento__cell--col2">
+        <img
+          src="nexfloor-bento-3.png"
+          alt="Aplica&ccedil;&atilde;o f&aacute;cil do Nex Floor &mdash; autonivelante e baixa espessura" />
+        <!-- Bento text overlay sobre foto — Fácil aplicação -->
+        <div style="
+          position:absolute;
+          inset:0;
+          background:linear-gradient(to top, rgba(31,31,31,.72) 0%, rgba(31,31,31,.08) 55%);
+          display:flex;
+          flex-direction:column;
+          justify-content:flex-end;
+          padding:clamp(20px,2.4vw,28px);
+          z-index:2;
+        ">
+          <p class="nxf-bento__title" style="color:var(--branco);">F&aacute;cil aplica&ccedil;&atilde;o</p>
+          <p class="nxf-bento__desc" style="color:var(--branco);">Autonivelante, baixa espessura. Voc&ecirc; mesmo aplica, em qualquer piso existente.</p>
+        </div>
+      </div>
+
+    </div><!-- /.nxf-bento__grid -->
+
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-bento -->
 
 </div><!-- /#nxf-root -->
 
