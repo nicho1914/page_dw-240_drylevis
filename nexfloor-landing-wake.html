@@ -691,6 +691,144 @@
 }
 
 /* ================================================================
+   SISTEMA — PREPARA → APLICA → RESULTADO (3 passos)
+   ================================================================ */
+
+#nxf-root .nxf-system {
+  background: var(--branco);
+  padding-block: clamp(56px, 8vw, 112px);
+}
+
+#nxf-root .nxf-system__header {
+  margin-bottom: clamp(40px, 6vw, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#nxf-root .nxf-system__sub {
+  font-family: var(--body);
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
+  max-width: 540px;
+}
+
+/* Step grid — 3 cols desktop, 1 col mobile */
+#nxf-root .nxf-system__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 36px);
+  position: relative;
+}
+
+/* Connector arrow between cards — desktop only, via ::after on wrapper items */
+#nxf-root .nxf-step-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Arrow: sits in the gap between step-wrap 1→2 and 2→3 */
+#nxf-root .nxf-step-wrap:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: clamp(40px, 5vw, 64px); /* align with the big number */
+  right: calc(-1 * clamp(10px, 1.5vw, 18px));
+  width: clamp(20px, 3vw, 36px);
+  height: clamp(20px, 3vw, 36px);
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+  clip-path: polygon(0 30%, 60% 30%, 60% 15%, 100% 50%, 60% 85%, 60% 70%, 0 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Step card */
+#nxf-root .nxf-step {
+  background: var(--creme);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Number — huge, condensed title font, step-specific color */
+#nxf-root .nxf-step__num {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(72px, 8vw, 120px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  padding: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 32px) 0;
+  user-select: none;
+  /* color set per-step below */
+}
+
+/* Step image — fixed aspect, token-derived fallback */
+#nxf-root .nxf-step__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  margin-block: clamp(16px, 2.5vw, 28px);
+  /* fallback color — overridden per step */
+  background: color-mix(in srgb, var(--creme) 60%, var(--azul));
+}
+
+/* Text area */
+#nxf-root .nxf-step__body {
+  padding: 0 clamp(20px, 3vw, 32px) clamp(24px, 3.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+#nxf-root .nxf-step__title {
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+
+#nxf-root .nxf-step__desc {
+  font-family: var(--body);
+  font-size: clamp(13px, 1.4vw, 16px);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--ink) 68%, transparent);
+}
+
+/* ---- Per-step accent colors & image fallbacks ---- */
+
+/* Step 1 — Azul */
+#nxf-root .nxf-step--1 .nxf-step__num { color: var(--azul); }
+#nxf-root .nxf-step--1 .nxf-step__img {
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--azul) 70%, #fff) 0%,
+    color-mix(in srgb, var(--azul) 40%, var(--creme)) 100%);
+}
+
+/* Step 2 — Roxo */
+#nxf-root .nxf-step--2 .nxf-step__num { color: var(--roxo); }
+#nxf-root .nxf-step--2 .nxf-step__img {
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--roxo) 55%, #fff) 0%,
+    color-mix(in srgb, var(--roxo-claro) 50%, var(--creme)) 100%);
+}
+
+/* Step 3 — Friso amarelo */
+#nxf-root .nxf-step--3 .nxf-step__num { color: var(--friso-1); }
+#nxf-root .nxf-step--3 .nxf-step__img {
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--friso-1) 55%, var(--ink)) 0%,
+    color-mix(in srgb, var(--friso-1) 30%, var(--creme)) 100%);
+}
+
+/* ================================================================
    SPLIT — RESPONSIVO (≤860px): empilha, remove rotações absolutas
    ================================================================ */
 @media (max-width: 860px) {
@@ -747,6 +885,25 @@
 
   #nxf-root .nxf-split__body {
     max-width: 100%;
+  }
+}
+
+/* ================================================================
+   SISTEMA — RESPONSIVO (≤820px): 1 coluna, sem conectores
+   ================================================================ */
+@media (max-width: 820px) {
+  #nxf-root .nxf-system__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 5vw, 40px);
+  }
+
+  /* Hide connector arrows when stacked */
+  #nxf-root .nxf-step-wrap:not(:last-child)::after {
+    display: none;
+  }
+
+  #nxf-root .nxf-step__num {
+    font-size: clamp(64px, 14vw, 96px);
   }
 }
 
@@ -1024,6 +1181,77 @@
 
   </div><!-- /.wrap.nxf-split__inner -->
 </section><!-- /.nxf-split -->
+
+<!-- ================================================================
+     SISTEMA — PREPARA → APLICA → RESULTADO
+     ================================================================ -->
+<section class="nxf-system" id="nxf-sistema">
+  <div class="wrap">
+
+    <header class="nxf-system__header">
+      <h2 class="nxf-h2">Como funciona o sistema Nex Floor</h2>
+      <p class="nxf-system__sub">
+        Tr&ecirc;s etapas. Um resultado monol&iacute;tico que reproduz o granito.
+      </p>
+    </header>
+
+    <div class="nxf-system__grid">
+
+      <!-- Passo 1 -->
+      <div class="nxf-step-wrap">
+        <article class="nxf-step nxf-step--1">
+          <span class="nxf-step__num" aria-hidden="true">01</span>
+          <img
+            class="nxf-step__img"
+            src="nexfloor-sistema-1.png"
+            alt="Aplica&ccedil;&atilde;o do primer Nex Floor &mdash; prepara&ccedil;&atilde;o do piso" />
+          <div class="nxf-step__body">
+            <h3 class="nxf-step__title">Nivela &amp; Primer</h3>
+            <p class="nxf-step__desc">
+              Prepara: promotor de ader&ecirc;ncia, barreira de vapor, regulariza o piso.
+            </p>
+          </div>
+        </article>
+      </div><!-- /.nxf-step-wrap -->
+
+      <!-- Passo 2 -->
+      <div class="nxf-step-wrap">
+        <article class="nxf-step nxf-step--2">
+          <span class="nxf-step__num" aria-hidden="true">02</span>
+          <img
+            class="nxf-step__img"
+            src="nexfloor-sistema-2.png"
+            alt="Aplica&ccedil;&atilde;o do Granito L&iacute;quido Nex Floor" />
+          <div class="nxf-step__body">
+            <h3 class="nxf-step__title">Granito L&iacute;quido</h3>
+            <p class="nxf-step__desc">
+              Aplica: autonivelante, acabamento granito.
+            </p>
+          </div>
+        </article>
+      </div><!-- /.nxf-step-wrap -->
+
+      <!-- Passo 3 -->
+      <div class="nxf-step-wrap">
+        <article class="nxf-step nxf-step--3">
+          <span class="nxf-step__num" aria-hidden="true">03</span>
+          <img
+            class="nxf-step__img"
+            src="nexfloor-sistema-3.png"
+            alt="Resultado final &mdash; piso Nex Floor com acabamento granito" />
+          <div class="nxf-step__body">
+            <h3 class="nxf-step__title">Resultado</h3>
+            <p class="nxf-step__desc">
+              Piso monol&iacute;tico pronto, decorativo e resistente.
+            </p>
+          </div>
+        </article>
+      </div><!-- /.nxf-step-wrap -->
+
+    </div><!-- /.nxf-system__grid -->
+
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-system -->
 
 </div><!-- /#nxf-root -->
 
