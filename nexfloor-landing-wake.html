@@ -895,11 +895,15 @@
   color: var(--branco);
 }
 
-/* Photo cells — fallback color per slot so 404 looks intentional */
+/* Photo cells — shared base behaviour: no padding, image covers cell */
 #nxf-root .nxf-bento__cell--foto {
-  background: color-mix(in srgb, var(--azul) 35%, color-mix(in srgb, var(--roxo) 40%, var(--ink)));
   padding: 0;
   justify-content: flex-start;
+}
+
+/* Per-slot fallback gradients (one modifier per cell, no competition) */
+#nxf-root .nxf-bento__cell--foto-1 {
+  background: color-mix(in srgb, var(--azul) 35%, color-mix(in srgb, var(--roxo) 40%, var(--ink)));
 }
 
 #nxf-root .nxf-bento__cell--foto-2 {
@@ -912,6 +916,28 @@
   background: linear-gradient(135deg,
     color-mix(in srgb, var(--friso-1) 30%, var(--ink)) 0%,
     color-mix(in srgb, var(--roxo) 60%, var(--ink)) 100%);
+}
+
+/* Cell-F overlay — text over dark gradient on photo */
+#nxf-root .nxf-bento__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--ink) 72%, transparent) 0%,
+    color-mix(in srgb, var(--ink) 8%, transparent) 55%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(20px,2.4vw,28px);
+  z-index: 2;
+}
+
+#nxf-root .nxf-bento__overlay .nxf-bento__title {
+  color: var(--branco);
+}
+
+#nxf-root .nxf-bento__overlay .nxf-bento__desc {
+  color: color-mix(in srgb, var(--branco) 85%, transparent);
 }
 
 #nxf-root .nxf-bento__cell img {
@@ -1002,9 +1028,7 @@
     min-height: 200px;
   }
 
-  #nxf-root .nxf-bento__cell--foto,
-  #nxf-root .nxf-bento__cell--foto-2,
-  #nxf-root .nxf-bento__cell--foto-3 {
+  #nxf-root .nxf-bento__cell--foto {
     min-height: 240px;
   }
 }
@@ -1445,7 +1469,7 @@
   <div class="wrap">
 
     <header class="nxf-bento__header">
-      <span class="nxf-bento__pill">Benef&iacute;cios</span>
+      <span class="nxf-bento__pill">BENEF&Iacute;CIOS</span>
       <h2 class="nxf-h2">Por que Nex Floor</h2>
     </header>
 
@@ -1470,7 +1494,7 @@
       </div>
 
       <!-- Célula B: Foto lifestyle (col-span 2) — cobre dois terços da primeira linha -->
-      <div class="nxf-bento__cell nxf-bento__cell--foto nxf-bento__cell--col2">
+      <div class="nxf-bento__cell nxf-bento__cell--foto nxf-bento__cell--foto-1 nxf-bento__cell--col2">
         <img
           src="nexfloor-bento-1.png"
           alt="Ambiente com piso Nex Floor &mdash; acabamento granito decorativo" />
@@ -1501,18 +1525,9 @@
           src="nexfloor-bento-3.png"
           alt="Aplica&ccedil;&atilde;o f&aacute;cil do Nex Floor &mdash; autonivelante e baixa espessura" />
         <!-- Bento text overlay sobre foto — Fácil aplicação -->
-        <div style="
-          position:absolute;
-          inset:0;
-          background:linear-gradient(to top, rgba(31,31,31,.72) 0%, rgba(31,31,31,.08) 55%);
-          display:flex;
-          flex-direction:column;
-          justify-content:flex-end;
-          padding:clamp(20px,2.4vw,28px);
-          z-index:2;
-        ">
-          <p class="nxf-bento__title" style="color:var(--branco);">F&aacute;cil aplica&ccedil;&atilde;o</p>
-          <p class="nxf-bento__desc" style="color:var(--branco);">Autonivelante, baixa espessura. Voc&ecirc; mesmo aplica, em qualquer piso existente.</p>
+        <div class="nxf-bento__overlay">
+          <p class="nxf-bento__title">F&aacute;cil aplica&ccedil;&atilde;o</p>
+          <p class="nxf-bento__desc">Autonivelante, baixa espessura. Voc&ecirc; mesmo aplica, em qualquer piso existente.</p>
         </div>
       </div>
 
