@@ -83,6 +83,241 @@
   #nxf-root .nxf-topbar__seal { display: none; }
 }
 
+/* ================================================================
+   HERO — SHOWROOM
+   ================================================================ */
+
+/* --- Hero wrapper: full-bleed, dark branded fallback behind bg img --- */
+#nxf-root .nxf-hero {
+  position: relative;
+  min-height: clamp(560px, 82vh, 820px);
+  display: flex;
+  align-items: center;
+  /* Fallback gradient: keeps headline legible even if bg img 404s */
+  background: linear-gradient(135deg, #1a0e2b 0%, #2d1a4a 40%, #1c1c3a 100%);
+  overflow: hidden;
+}
+
+/* Background photo — absolute, behind everything */
+#nxf-root .nxf-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Dark overlay for legibility — over bg, under content */
+#nxf-root .nxf-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(27, 12, 48, .82) 0%,
+    rgba(27, 12, 48, .62) 55%,
+    rgba(27, 12, 48, .30) 100%
+  );
+  z-index: 1;
+}
+
+/* Grid wrapper — sits above overlay */
+#nxf-root .nxf-hero__grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding-block: clamp(64px, 9vh, 96px);
+}
+
+/* ---- Content column ---- */
+#nxf-root .nxf-hero__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 2.4vw, 28px);
+}
+
+/* Social-proof chip */
+#nxf-root .nxf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-family: var(--body);
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 500;
+  letter-spacing: .03em;
+  padding: 6px 14px 6px 6px;
+  border-radius: 100px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Avatar dot on the chip */
+#nxf-root .nxf-chip__av {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--roxo);
+  border: 2px solid rgba(255,255,255,.45);
+  flex-shrink: 0;
+}
+
+/* Giant headline — MANA-style condensed dominator */
+#nxf-root .nxf-hero__title {
+  font-family: var(--title);
+  font-weight: 900;
+  line-height: .92;
+  text-transform: uppercase;
+  font-size: clamp(44px, 8.5vw, 118px);
+  color: var(--branco);
+  letter-spacing: -.01em;
+}
+
+/* Accent: highlight key words with the yellow friso */
+#nxf-root .nxf-hero__title .acc {
+  color: var(--friso-1);
+}
+
+/* Subheadline */
+#nxf-root .nxf-hero__sub {
+  font-family: var(--body);
+  font-size: clamp(15px, 2vw, 22px);
+  line-height: 1.5;
+  color: rgba(255,255,255,.85);
+  max-width: 480px;
+}
+
+/* ---- CTA pill — reusable (.nxf-cta) ---- */
+#nxf-root .nxf-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--friso-1);
+  color: var(--ink);
+  font-family: var(--title);
+  font-size: clamp(14px, 1.4vw, 17px);
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: .04em;
+  padding: 14px 26px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background .18s, transform .18s, box-shadow .18s;
+  text-decoration: none;
+}
+
+#nxf-root .nxf-cta:hover {
+  background: var(--friso-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+#nxf-root .nxf-cta svg {
+  flex-shrink: 0;
+  display: block;
+}
+
+/* ---- Product column ---- */
+#nxf-root .nxf-hero__product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-height: 340px; /* reserve space even if img 404s */
+}
+
+/* Oversized watermark behind the product image — Fresh&press-style */
+#nxf-root .nxf-hero__wm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(72px, 12vw, 164px);
+  text-transform: uppercase;
+  color: rgba(255,255,255,.07);
+  white-space: nowrap;
+  letter-spacing: -.02em;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Product image — floats over the watermark */
+#nxf-root .nxf-hero__product > img {
+  position: relative;
+  z-index: 1;
+  max-height: clamp(240px, 38vh, 480px);
+  width: auto;
+  object-fit: contain;
+  /* subtle drop-shadow to "lift" product */
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.45));
+}
+
+/* Product tags — pill badges to the side */
+#nxf-root .nxf-hero__tags {
+  position: relative;
+  z-index: 2;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+#nxf-root .nxf-hero__tags li {
+  font-family: var(--body);
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--branco);
+  border: 1.5px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.08);
+  padding: 5px 13px;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ================================================================
+   HERO — RESPONSIVE (≤860px): stack to single centered column
+   ================================================================ */
+@media (max-width: 860px) {
+  #nxf-root .nxf-hero__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  #nxf-root .nxf-hero__col {
+    align-items: center;
+  }
+
+  #nxf-root .nxf-hero__sub {
+    max-width: 540px;
+    margin-inline: auto;
+  }
+
+  #nxf-root .nxf-hero__product {
+    min-height: 260px;
+  }
+}
+
 </style>
 
 <!-- ---- Topbar ---- -->
@@ -90,6 +325,80 @@
   <span>Linha Propiso &bull; Cristal</span>
   <span class="nxf-topbar__seal">Piso decorativo que reproduz granito</span>
 </div></div>
+
+<!-- ---- Hero: Showroom ---- -->
+<section class="nxf-hero">
+  <img
+    class="nxf-hero__bg"
+    src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-hero-bg.png"
+    alt="Piso Nex Floor com acabamento granito" />
+
+  <div class="wrap nxf-hero__grid">
+
+    <!-- Coluna esquerda: conteúdo -->
+    <div class="nxf-hero__col">
+
+      <!-- Chip de prova social -->
+      <div class="nxf-chip">
+        <span class="nxf-chip__av"></span>
+        Quem conhece usa e recomenda
+      </div>
+
+      <!-- Headline gigante — estilo MANA -->
+      <h1 class="nxf-hero__title">
+        O granito<br>
+        que se<br>
+        <span class="acc">aplica</span><br>
+        como tinta.
+      </h1>
+
+      <!-- Subhead -->
+      <p class="nxf-hero__sub">
+        Piso ep&oacute;xi autonivelante que reproduz o granito.
+        Acabamento monol&iacute;tico, decorativo e de alta
+        resist&ecirc;ncia &mdash; sem precisar de m&atilde;o-de-obra especializada.
+      </p>
+
+      <!-- CTA pill reutilizável (.nxf-cta) -->
+      <a class="nxf-cta" href="#nxf-comprar">
+        Onde comprar
+        <!-- Seta circular inline SVG -->
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Z"
+                stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.5 10h5M10.5 7.5 13 10l-2.5 2.5"
+                stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+    </div><!-- /.nxf-hero__col -->
+
+    <!-- Coluna direita: produto flutuante -->
+    <div class="nxf-hero__product">
+
+      <!-- Watermark por trás — Fresh&press style -->
+      <span class="nxf-hero__wm" aria-hidden="true">GRANITO</span>
+
+      <!-- Balde do produto -->
+      <img
+        src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde.png"
+        alt="Balde Nex Floor &mdash; Linha Cristal" />
+
+      <!-- Tags / bullets de atributos -->
+      <ul class="nxf-hero__tags">
+        <li>Ep&oacute;xi bicomponente</li>
+        <li>Autonivelante</li>
+        <li>Granito decorativo</li>
+        <li>Alta resist&ecirc;ncia</li>
+      </ul>
+
+    </div><!-- /.nxf-hero__product -->
+
+  </div><!-- /.wrap.nxf-hero__grid -->
+</section><!-- /.nxf-hero -->
 
 <!-- secoes entram aqui -->
 
