@@ -995,6 +995,141 @@
 }
 
 /* ================================================================
+   BANDA PROMESSA — bloco roxo com headline central + CTA
+   ================================================================ */
+
+#nxf-root .nxf-band {
+  background: var(--roxo);
+  color: var(--branco);
+  border-radius: clamp(20px, 3vw, 40px);
+  padding: clamp(40px, 7vw, 96px);
+  margin-block: clamp(48px, 8vw, 110px);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Dark-shade underlay for depth */
+#nxf-root .nxf-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--roxo) 80%, var(--ink)) 0%,
+    var(--roxo) 50%,
+    color-mix(in srgb, var(--roxo-claro) 70%, var(--roxo)) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Friso accent arc — decorative stripe at top edge */
+#nxf-root .nxf-band__friso {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--friso-1) 0%, var(--friso-2) 50%, var(--friso-1) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Watermark text behind content */
+#nxf-root .nxf-band__wm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(80px, 18vw, 260px);
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--branco) 6%, transparent);
+  white-space: nowrap;
+  letter-spacing: -.03em;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content wrapper — sits above bg layers */
+#nxf-root .nxf-band__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3vw, 32px);
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+/* Eyebrow pill */
+#nxf-root .nxf-band__eyebrow {
+  display: inline-block;
+  font-family: var(--title);
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--friso-1);
+  border: 1.5px solid color-mix(in srgb, var(--friso-1) 55%, transparent);
+  padding: 5px 18px;
+  border-radius: 100px;
+}
+
+/* Main headline */
+#nxf-root .nxf-band__title {
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(34px, 6vw, 80px);
+  line-height: .93;
+  letter-spacing: -.02em;
+  color: var(--branco);
+}
+
+/* Accent word — friso underline highlight */
+#nxf-root .nxf-band__title .acc {
+  color: var(--friso-1);
+}
+
+/* Supporting body line */
+#nxf-root .nxf-band__sub {
+  font-family: var(--body);
+  font-size: clamp(15px, 1.8vw, 20px);
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--branco) 78%, transparent);
+  max-width: 480px;
+}
+
+/* Side product images — purely decorative; transparent on 404 */
+#nxf-root .nxf-band__side {
+  position: absolute;
+  bottom: 0;
+  width: clamp(140px, 18vw, 260px);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  /* no background — pure transparency; 404 = invisible */
+}
+
+#nxf-root .nxf-band__side--left  { left: clamp(-20px, -1vw, 0px);  }
+#nxf-root .nxf-band__side--right { right: clamp(-20px, -1vw, 0px); transform: scaleX(-1); }
+
+#nxf-root .nxf-band__side img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom;
+  /* drop-shadow only when image loads */
+  filter: drop-shadow(0 12px 32px color-mix(in srgb, var(--ink) 40%, transparent));
+}
+
+/* ================================================================
    BENTO — RESPONSIVO
    ================================================================ */
 
@@ -1090,6 +1225,16 @@
 
   #nxf-root .nxf-split__body {
     max-width: 100%;
+  }
+}
+
+/* ================================================================
+   BANDA PROMESSA — RESPONSIVO
+   ================================================================ */
+/* Hide side images on small screens — no overflow, no broken boxes */
+@media (max-width: 720px) {
+  #nxf-root .nxf-band__side {
+    display: none;
   }
 }
 
@@ -1535,6 +1680,65 @@
 
   </div><!-- /.wrap -->
 </section><!-- /.nxf-bento -->
+
+<!-- ================================================================
+     BANDA PROMESSA — CTA roxo (ref: MANA "Turning fantasies into reality")
+     ================================================================ -->
+<section class="nxf-band" id="nxf-comprar" aria-label="Onde comprar Nex Floor">
+  <div class="wrap">
+
+    <!-- Friso accent stripe at top edge -->
+    <div class="nxf-band__friso" aria-hidden="true"></div>
+
+    <!-- Watermark text behind content -->
+    <span class="nxf-band__wm" aria-hidden="true">GRANITO</span>
+
+    <!-- Side product image — left (purely decorative, invisible on 404) -->
+    <div class="nxf-band__side nxf-band__side--left" aria-hidden="true">
+      <img
+        src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde.png"
+        alt="" />
+    </div>
+
+    <!-- Side product image — right (mirror of left, purely decorative) -->
+    <div class="nxf-band__side nxf-band__side--right" aria-hidden="true">
+      <img
+        src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde.png"
+        alt="" />
+    </div>
+
+    <!-- Central content -->
+    <div class="nxf-band__inner">
+
+      <span class="nxf-band__eyebrow">Nex Floor &bull; Linha Cristal</span>
+
+      <h2 class="nxf-band__title">
+        Transforme qualquer<br>
+        piso em <span class="acc">granito.</span>
+      </h2>
+
+      <p class="nxf-band__sub">
+        Ep&oacute;xi autonivelante com acabamento decorativo que reproduz o granito &mdash;
+        voc&ecirc; mesmo aplica, em qualquer piso existente.
+      </p>
+
+      <a class="nxf-cta" href="#nxf-acabamentos">
+        Onde comprar
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Z"
+                stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.5 10h5M10.5 7.5 13 10l-2.5 2.5"
+                stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+    </div><!-- /.nxf-band__inner -->
+
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-band -->
 
 </div><!-- /#nxf-root -->
 
