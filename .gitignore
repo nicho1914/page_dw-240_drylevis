@@ -4,6 +4,9 @@ node_modules/
 # Local tooling / editor
 .claude/
 
+# Renders headless (nunca commitar)
+render/
+
 # OS files
 Thumbs.db
 .DS_Store
