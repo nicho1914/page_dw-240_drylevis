@@ -1140,6 +1140,7 @@
 @media (max-width: 820px) {
   #nxf-root .nxf-bento__grid {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: dense;
   }
 
   /* Solta o col-span 2 nas células que ficam sozinhas */
@@ -1147,7 +1148,10 @@
     grid-column: span 1;
   }
 
-  /* row-span 2 mantém no tablet — ainda faz ritmo bom */
+  /* Solta o row-span 2 no tablet para evitar buraco no grid 2-col */
+  #nxf-root .nxf-bento__cell--row2 {
+    grid-row: span 1;
+  }
 }
 
 /* Mobile: 1 coluna, sem spans, sem buracos */
@@ -1572,7 +1576,8 @@
   <img
     class="nxf-hero__bg"
     src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-hero-bg.png"
-    alt="Piso Nex Floor com acabamento granito" />
+    alt=""
+    aria-hidden="true" />
 
   <div class="wrap nxf-hero__grid">
 
@@ -1657,6 +1662,7 @@
       <li>F&aacute;cil limpeza</li>
       <li>Decorativo</li>
       <li>Resiste a intemp&eacute;ries</li>
+      <li>Sem rejunte</li>
     </ul>
   </div>
 
@@ -1671,6 +1677,7 @@
       <li>F&aacute;cil limpeza</li>
       <li>Decorativo</li>
       <li>Resiste a intemp&eacute;ries</li>
+      <li>Baixa manuten&ccedil;&atilde;o</li>
     </ul>
   </div>
 
@@ -1740,7 +1747,7 @@
     <!-- Coluna esquerda: texto editorial -->
     <div class="nxf-split__text">
 
-      <span class="nxf-split__eyebrow">Piso epóxi decorativo</span>
+      <span class="nxf-split__eyebrow">Piso ep&oacute;xi decorativo</span>
 
       <h2 class="nxf-split__title">
         Um piso<br>
@@ -2110,7 +2117,7 @@
 <!-- ================================================================
      FOOTER CRISTAL — onda amarela friso + bloco roxo institucional
      ================================================================ -->
-<footer class="nxf-footer" aria-label="Rodapé Cristal">
+<footer class="nxf-footer" aria-label="Rodap&eacute; Cristal">
 
   <!-- Yellow wavy band — brand "friso" sits atop the purple block -->
   <div class="nxf-footer__wave" aria-hidden="true">
@@ -2197,7 +2204,7 @@
       <!-- Bottom bar -->
       <div class="nxf-footer__bottom">
         <p class="nxf-footer__copy">
-          &copy; 2024 Cristal Tintas. Todos os direitos reservados.
+          &copy; 2026 Cristal Tintas. Todos os direitos reservados.
         </p>
       </div>
 
