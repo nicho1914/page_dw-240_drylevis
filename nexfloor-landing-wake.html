@@ -395,6 +395,288 @@
 }
 
 /* ================================================================
+   R4 — PDP block
+   ================================================================ */
+
+#nxf-root .nxf-pdp {
+  display: grid;
+  grid-template-columns: minmax(0,1.32fr) minmax(0,1fr);
+  gap: clamp(24px,3.5vw,53px);
+  max-width: 1380px;
+  margin-block: clamp(48px,7vw,96px);
+  margin-inline: auto;
+}
+
+/* LEFT — gallery */
+#nxf-root .nxf-pdp__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px,1.2vw,14px);
+}
+
+#nxf-root .nxf-pdp__main {
+  border-radius: 20px;
+  height: clamp(360px,40vw,562px);
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--roxo) 55%, var(--ink));
+}
+
+#nxf-root .nxf-pdp__main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* bottom-up gradient overlay */
+#nxf-root .nxf-pdp__main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.18) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* slide counter top-right */
+#nxf-root .nxf-pdp__count {
+  position: absolute;
+  top: clamp(12px,1.4vw,20px);
+  right: clamp(12px,1.4vw,20px);
+  background: rgba(0,0,0,.42);
+  color: var(--branco);
+  font-family: var(--body);
+  font-size: clamp(13px,1.2vw,16px);
+  padding: 5px 14px;
+  border-radius: 999px;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+
+/* prev/next buttons */
+#nxf-root .nxf-pdp__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: clamp(36px,3.6vw,48px);
+  height: clamp(36px,3.6vw,48px);
+  border-radius: 50%;
+  background: rgba(0,0,0,.44);
+  color: var(--branco);
+  border: 0;
+  font-size: clamp(16px,1.6vw,22px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: background .15s;
+}
+#nxf-root .nxf-pdp__nav:hover { background: rgba(0,0,0,.65); }
+#nxf-root .nxf-pdp__prev { left: clamp(10px,1.2vw,16px); }
+#nxf-root .nxf-pdp__next { right: clamp(10px,1.2vw,16px); }
+
+/* bottom-left caption */
+#nxf-root .nxf-pdp__cap {
+  position: absolute;
+  bottom: clamp(16px,2vw,28px);
+  left: clamp(16px,2vw,28px);
+  right: clamp(60px,6vw,88px);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#nxf-root .nxf-pdp__cap-h {
+  font-family: var(--title);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--branco);
+  font-size: clamp(24px,2.6vw,37px);
+  line-height: 1;
+}
+
+#nxf-root .nxf-pdp__cap-t {
+  font-family: var(--body);
+  color: color-mix(in srgb, var(--branco) 88%, transparent);
+  font-size: clamp(15px,1.5vw,20px);
+  line-height: 1.3;
+}
+
+/* thumbnails row */
+#nxf-root .nxf-pdp__thumbs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(6px,.8vw,10px);
+}
+
+#nxf-root .nxf-pdp__thumb {
+  border-radius: 12px;
+  aspect-ratio: 1 / 1;
+  border: 2px solid transparent;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+
+#nxf-root .nxf-pdp__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#nxf-root .nxf-pdp__thumb.active {
+  border-color: var(--roxo);
+}
+
+/* RIGHT — product info */
+#nxf-root .nxf-pdp__info {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px,1.6vw,16px);
+  justify-content: center;
+}
+
+#nxf-root .nxf-pdp__name {
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--ink2);
+  font-size: clamp(30px,3.4vw,44px);
+  line-height: 1;
+}
+
+#nxf-root .nxf-pdp__desc {
+  font-family: var(--body);
+  color: var(--gray);
+  font-size: clamp(16px,1.7vw,21px);
+  line-height: 1.4;
+}
+
+#nxf-root .nxf-pdp__desc strong {
+  color: var(--ink2);
+}
+
+/* check items */
+#nxf-root .nxf-pdp__items {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px,1vw,12px);
+}
+
+#nxf-root .nxf-pdp__item {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(10px,1vw,14px);
+  font-family: var(--body);
+  color: var(--ink);
+  font-size: clamp(15px,1.5vw,18px);
+  line-height: 1.35;
+}
+
+#nxf-root .nxf-pdp__check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--roxo) 14%, transparent);
+  color: var(--roxo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Embalagem label */
+#nxf-root .nxf-pdp__emb-label {
+  font-family: var(--body);
+  font-weight: 700;
+  color: var(--ink2);
+  font-size: clamp(15px,1.5vw,18px);
+}
+
+/* packaging chips */
+#nxf-root .nxf-pdp__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(8px,.8vw,10px);
+}
+
+#nxf-root .nxf-pdp__pchip {
+  font-family: var(--body);
+  font-size: clamp(14px,1.3vw,16px);
+  padding: 8px 18px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(0,0,0,.12);
+  background: var(--branco);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+#nxf-root .nxf-pdp__pchip.active,
+#nxf-root .nxf-pdp__pchip:hover {
+  background: var(--roxo);
+  color: var(--branco);
+  border-color: var(--roxo);
+}
+
+/* buy button */
+#nxf-root .nxf-pdp__buy {
+  background: var(--roxo);
+  color: var(--branco);
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(17px,1.7vw,22px);
+  padding: 16px 37px;
+  border-radius: 16px;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  transition: background .15s;
+}
+
+#nxf-root .nxf-pdp__buy:hover {
+  background: color-mix(in srgb, var(--roxo) 85%, #000);
+}
+
+/* FDS note */
+#nxf-root .nxf-pdp__fds {
+  font-family: var(--body);
+  color: color-mix(in srgb, var(--ink) 45%, var(--branco));
+  font-size: clamp(13px,1.2vw,16px);
+  line-height: 1.45;
+}
+
+/* stack at <=900px */
+@media (max-width: 900px) {
+  #nxf-root .nxf-pdp {
+    grid-template-columns: 1fr;
+  }
+  #nxf-root .nxf-pdp__main {
+    height: clamp(280px,52vw,420px);
+  }
+  #nxf-root .nxf-pdp__info {
+    padding-bottom: 8px;
+  }
+}
+
+/* thumbs: collapse to 3-col at very narrow */
+@media (max-width: 520px) {
+  #nxf-root .nxf-pdp__thumbs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ================================================================
    R3 — Big title + Bento mosaic
    ================================================================ */
 
@@ -618,6 +900,122 @@
 <!-- secoes -->
 
 <!-- ================================================================
+     R4 — PDP block (Nex Floor Granito Liquido)
+     ================================================================ -->
+<div class="wrap">
+<div class="nxf-pdp" id="nxf-pdp">
+
+  <!-- LEFT: gallery -->
+  <div class="nxf-pdp__gallery">
+
+    <!-- main image area -->
+    <div class="nxf-pdp__main" id="nxf-pdp-main">
+      <img class="nxf-pdp__main-img" id="nxf-pdp-img"
+           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-1.png"
+           alt="" aria-hidden="true" />
+      <span class="nxf-pdp__count" id="nxf-pdp-count">01 / 06</span>
+      <button class="nxf-pdp__nav nxf-pdp__prev" id="nxf-pdp-prev" aria-label="Slide anterior">&#8249;</button>
+      <button class="nxf-pdp__nav nxf-pdp__next" id="nxf-pdp-next" aria-label="Pr&oacute;ximo slide">&#8250;</button>
+      <div class="nxf-pdp__cap">
+        <span class="nxf-pdp__cap-h" id="nxf-pdp-caph">Sala de estar</span>
+        <span class="nxf-pdp__cap-t" id="nxf-pdp-capt">Acabamento granito monol&iacute;tico, sem emendas, com brilho.</span>
+      </div>
+    </div>
+
+    <!-- 6 thumbnails — data-* carry caption text as HTML entities in source -->
+    <div class="nxf-pdp__thumbs" id="nxf-pdp-thumbs">
+      <div class="nxf-pdp__thumb active" tabindex="0" role="button" aria-label="Slide 1"
+           data-cap-h="Sala de estar"
+           data-cap-t="Acabamento granito monol&#237;tico, sem emendas, com brilho."
+           data-bg="color-mix(in srgb, #7b529f 55%, #1f1f1f)">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-1.png"
+             alt="" aria-hidden="true" />
+      </div>
+      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 2"
+           data-cap-h="Cozinha"
+           data-cap-t="Superf&#237;cie f&#225;cil de limpar, resistente a manchas e tr&#225;fego."
+           data-bg="color-mix(in srgb, #253161 60%, #1f1f1f)">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-2.png"
+             alt="" aria-hidden="true" />
+      </div>
+      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 3"
+           data-cap-h="&Aacute;rea gourmet"
+           data-cap-t="Visual de granito sob medida, do piso &agrave; bancada."
+           data-bg="color-mix(in srgb, #878787 50%, #1f1f1f)">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-3.png"
+             alt="" aria-hidden="true" />
+      </div>
+      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 4"
+           data-cap-h="Varanda"
+           data-cap-t="Alta resist&#234;ncia a intemp&#233;ries e ao sol."
+           data-bg="color-mix(in srgb, #ffcc00 30%, #242424)">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-4.png"
+             alt="" aria-hidden="true" />
+      </div>
+      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 5"
+           data-cap-h="Espa&ccedil;o comercial"
+           data-cap-t="Aguenta tr&#225;fego intenso sem perder o acabamento."
+           data-bg="color-mix(in srgb, #7b529f 40%, #253161)">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-5.png"
+             alt="" aria-hidden="true" />
+      </div>
+      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 6"
+           data-cap-h="Banheiro"
+           data-cap-t="Imperme&#225;vel e com toque antiderrapante quando texturizado."
+           data-bg="color-mix(in srgb, #242424 70%, #7b529f)">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-6.png"
+             alt="" aria-hidden="true" />
+      </div>
+    </div>
+
+  </div><!-- /gallery -->
+
+  <!-- RIGHT: product info -->
+  <div class="nxf-pdp__info">
+
+    <div class="nxf-pdp__name">NEX<br>FLOOR</div>
+
+    <p class="nxf-pdp__desc">
+      <strong>Piso ep&oacute;xi decorativo</strong> que reproduz o granito.
+      Acabamento monol&iacute;tico, alta resist&ecirc;ncia e aplica&ccedil;&atilde;o em baixa espessura.
+    </p>
+
+    <div class="nxf-pdp__items">
+      <div class="nxf-pdp__item">
+        <span class="nxf-pdp__check">&#10003;</span>
+        <span>Reproduz o granito com brilho e profundidade</span>
+      </div>
+      <div class="nxf-pdp__item">
+        <span class="nxf-pdp__check">&#10003;</span>
+        <span>Autonivelante e monol&iacute;tico (sem emendas)</span>
+      </div>
+      <div class="nxf-pdp__item">
+        <span class="nxf-pdp__check">&#10003;</span>
+        <span>Alta resist&ecirc;ncia e f&aacute;cil limpeza</span>
+      </div>
+    </div>
+
+    <p class="nxf-pdp__emb-label">Embalagem</p>
+
+    <div class="nxf-pdp__chips">
+      <button class="nxf-pdp__pchip active">Prep Piso 3,5 kg</button>
+      <button class="nxf-pdp__pchip">Nivela &amp; Primer 4 kg</button>
+      <button class="nxf-pdp__pchip">Gran&iacute;to L&iacute;quido 4 kg</button>
+    </div>
+
+    <button class="nxf-pdp__buy">&#128722; Comprar agora</button>
+
+    <p class="nxf-pdp__fds">
+      Nex Floor &middot; Granito L&iacute;quido &middot; Linha Cristal &mdash;
+      FDS dispon&iacute;vel em linhacristal.com.br
+    </p>
+
+  </div><!-- /info -->
+
+</div><!-- /nxf-pdp -->
+</div><!-- /wrap -->
+
+<!-- ================================================================
      R3 — Título grande + Bento mosaico
      ================================================================ -->
 <div class="wrap">
@@ -654,5 +1052,133 @@
   </div>
 
 </div><!-- /wrap bento -->
+
+<script>
+/* ================================================================
+   NXF JS - ASCII-only, scoped, guard clauses
+   ================================================================ */
+
+/* ---- PDP carousel ---- */
+function nxfInitPdpCarousel() {
+  var root    = document.getElementById('nxf-pdp');
+  if (!root) return;
+  var mainEl  = document.getElementById('nxf-pdp-main');
+  var imgEl   = document.getElementById('nxf-pdp-img');
+  var countEl = document.getElementById('nxf-pdp-count');
+  var caphEl  = document.getElementById('nxf-pdp-caph');
+  var captEl  = document.getElementById('nxf-pdp-capt');
+  var prevBtn = document.getElementById('nxf-pdp-prev');
+  var nextBtn = document.getElementById('nxf-pdp-next');
+  var thumbsC = document.getElementById('nxf-pdp-thumbs');
+  if (!mainEl || !countEl || !caphEl || !captEl || !prevBtn || !nextBtn || !thumbsC) return;
+
+  var thumbs = thumbsC.querySelectorAll('.nxf-pdp__thumb');
+  if (!thumbs || thumbs.length === 0) return;
+
+  var TOTAL = thumbs.length;
+  var cur   = 0;
+
+  function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+
+  function goTo(idx) {
+    var next = ((idx % TOTAL) + TOTAL) % TOTAL;
+    /* deactivate old thumb */
+    thumbs[cur].classList.remove('active');
+    cur = next;
+    thumbs[cur].classList.add('active');
+
+    /* update counter */
+    countEl.textContent = pad(cur + 1) + ' / ' + pad(TOTAL);
+
+    /* update caption from data-* (HTML was already entity-decoded by the browser) */
+    caphEl.textContent = thumbs[cur].getAttribute('data-cap-h') || '';
+    captEl.textContent = thumbs[cur].getAttribute('data-cap-t') || '';
+
+    /* update main fallback background */
+    var bg = thumbs[cur].getAttribute('data-bg') || '';
+    if (bg) mainEl.style.background = bg;
+
+    /* update main image src from thumb img */
+    var thumbImg = thumbs[cur].querySelector('img');
+    if (imgEl && thumbImg) {
+      imgEl.src = thumbImg.src;
+    }
+  }
+
+  prevBtn.addEventListener('click', function() { goTo(cur - 1); });
+  nextBtn.addEventListener('click', function() { goTo(cur + 1); });
+
+  thumbs.forEach(function(th, i) {
+    th.addEventListener('click', function() { goTo(i); });
+    th.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(i); }
+    });
+  });
+
+  /* packaging chips - active toggle */
+  var pchips = root.querySelectorAll('.nxf-pdp__pchip');
+  pchips.forEach(function(ch) {
+    ch.addEventListener('click', function() {
+      pchips.forEach(function(c) { c.classList.remove('active'); });
+      ch.classList.add('active');
+    });
+  });
+}
+
+/* ---- Showcase dots (2-slide) ---- */
+function nxfInitShowcase() {
+  var showMain = document.querySelector('.nxf-show__main');
+  var dots     = document.querySelectorAll('.nxf-show__dots span');
+  if (!showMain || !dots || dots.length < 2) return;
+
+  var BG = [
+    '#d9d9d9',
+    'color-mix(in srgb, #7b529f 40%, #253161)'
+  ];
+  var cur    = 0;
+  var timer  = null;
+  var paused = false;
+  var reduced = (typeof window !== 'undefined' && window.matchMedia &&
+                 window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function goTo(idx) {
+    var next = ((idx % 2) + 2) % 2;
+    dots[cur].classList.remove('active');
+    cur = next;
+    dots[cur].classList.add('active');
+    showMain.style.background = BG[cur];
+  }
+
+  dots.forEach(function(d, i) {
+    d.addEventListener('click', function() { goTo(i); });
+  });
+
+  if (!reduced) {
+    showMain.addEventListener('mouseenter', function() { paused = true; });
+    showMain.addEventListener('mouseleave', function() { paused = false; });
+    timer = setInterval(function() {
+      if (!paused) goTo(cur + 1);
+    }, 6000);
+  }
+
+  /* expose for potential cleanup */
+  return { stop: function() { if (timer) clearInterval(timer); } };
+}
+
+/* boot */
+(function() {
+  function boot() {
+    nxfInitPdpCarousel();
+    nxfInitShowcase();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
 
 </div><!-- #nxf-root -->
