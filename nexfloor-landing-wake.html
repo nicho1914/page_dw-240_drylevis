@@ -192,6 +192,136 @@
   }
 }
 
+/* ================================================================
+   FB — SECTION TITLE + MOSAIC GALLERY
+   Figma node 920:1666 (mosaic region)
+   ================================================================ */
+
+/* Section title */
+#nxf-root .nxf-mosaic-section {
+  padding-block: clamp(56px, 7vw, 100px) clamp(48px, 6vw, 80px);
+  background: var(--branco);
+}
+
+#nxf-root .nxf-mosaic-section__title {
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--roxo);
+  font-size: clamp(28px, 4.5vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  text-align: center;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+
+/* Mosaic grid — 3 cols × 3 rows, base-row ~292px */
+#nxf-root .nxf-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, clamp(180px, 20.3vw, 292px));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+/* Each mosaic block */
+#nxf-root .nxf-mosaic__block {
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+}
+
+#nxf-root .nxf-mosaic__block img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tall blocks (span 2 rows) */
+#nxf-root .nxf-mosaic__block--tall {
+  grid-row: span 2;
+}
+
+/* Color fallbacks (token-derived, no raw opaque hex outside tokens) */
+
+/* Explicit grid placement — guarantees masonry rhythm regardless of auto-flow */
+
+/* Col 1, row 1 — short, neutral gray */
+#nxf-root .nxf-mosaic__block--c1r1 {
+  grid-column: 1;
+  grid-row: 1;
+  background: color-mix(in srgb, var(--ink) 35%, var(--branco));
+}
+
+/* Col 1, rows 2-3 — TALL, navy */
+#nxf-root .nxf-mosaic__block--c1r2 {
+  grid-column: 1;
+  grid-row: 2 / span 2;
+  background: var(--navy);
+}
+
+/* Col 2, row 1 — short, yellow (friso-1) — prominent accent */
+#nxf-root .nxf-mosaic__block--c2r1 {
+  grid-column: 2;
+  grid-row: 1;
+  background: var(--friso-1);
+}
+
+/* Col 2, row 2 — short, purple mix */
+#nxf-root .nxf-mosaic__block--c2r2 {
+  grid-column: 2;
+  grid-row: 2;
+  background: color-mix(in srgb, var(--roxo) 70%, var(--lilas));
+}
+
+/* Col 2, row 3 — short, light neutral */
+#nxf-root .nxf-mosaic__block--c2r3 {
+  grid-column: 2;
+  grid-row: 3;
+  background: color-mix(in srgb, var(--ink) 20%, var(--branco));
+}
+
+/* Col 3, rows 1-2 — TALL, roxo */
+#nxf-root .nxf-mosaic__block--c3r1 {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  background: var(--roxo);
+}
+
+/* Col 3, row 3 — short, azul mix */
+#nxf-root .nxf-mosaic__block--c3r3 {
+  grid-column: 3;
+  grid-row: 3;
+  background: color-mix(in srgb, var(--azul) 65%, var(--navy));
+}
+
+/* Reflow: 2 cols ≤820px — reset explicit placement, drop spans to avoid holes */
+@media (max-width: 820px) {
+  #nxf-root .nxf-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: clamp(160px, 28vw, 260px);
+    grid-auto-flow: row;
+  }
+
+  #nxf-root .nxf-mosaic__block {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  #nxf-root .nxf-mosaic__block--tall {
+    grid-row: auto !important;
+  }
+}
+
+/* Reflow: 1 col ≤520px */
+@media (max-width: 520px) {
+  #nxf-root .nxf-mosaic {
+    grid-template-columns: 1fr;
+    grid-auto-rows: clamp(180px, 52vw, 280px);
+  }
+}
+
 </style>
 
 <!-- secoes Nex Floor (Figma) -->
@@ -244,5 +374,88 @@
 
   </div><!-- /.wrap -->
 </section><!-- /.nxf-hero -->
+
+<!-- ================================================================
+     FB — T&Iacute;TULO DE SE&Ccedil;&Atilde;O + GALERIA MOSAICO
+     Figma node 920:1666 (mosaic region)
+     ================================================================ -->
+<section class="nxf-mosaic-section">
+  <div class="wrap">
+
+    <h2 class="nxf-mosaic-section__title">
+      Beleza de pedra, resist&ecirc;ncia de obra.
+    </h2>
+
+    <!--
+      Layout: 3 colunas, 3 linhas de base (~292px cada).
+      Bloco ALTO (tall = span 2 linhas): c1r2 (col1, linhas 2-3) e c3r1 (col3, linhas 1-2).
+      Ordem DOM: col por col para que grid-auto-flow:row os posicione corretamente.
+
+      Col 1:
+        .c1r1  → curto  (1u)  — cinza neutro
+        .c1r2  → ALTO   (2u)  — navy       [tall]
+      Col 2:
+        .c2r1  → curto  (1u)  — AMARELO (friso-1, destaque central)
+        .c2r2  → curto  (1u)  — roxo
+        .c2r3  → curto  (1u)  — cinza claro
+      Col 3:
+        .c3r1  → ALTO   (2u)  — roxo       [tall]
+        .c3r3  → curto  (1u)  — azul/navy
+    -->
+    <div class="nxf-mosaic">
+
+      <!-- Coluna 1 -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--c1r1">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-1.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+      <!-- Coluna 2, linha 1 — amarelo, destaque central -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--c2r1">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-2.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+      <!-- Coluna 3, linhas 1-2 — TALL, roxo -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--tall nxf-mosaic__block--c3r1">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-3.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+      <!-- Coluna 1, linhas 2-3 — TALL, navy -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--tall nxf-mosaic__block--c1r2">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-4.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+      <!-- Coluna 2, linha 2 — roxo mix -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--c2r2">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-5.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+      <!-- Coluna 3, linha 3 — azul/navy -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--c3r3">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-6.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+      <!-- Coluna 2, linha 3 — cinza claro -->
+      <div class="nxf-mosaic__block nxf-mosaic__block--c2r3">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-7.png"
+          alt="" aria-hidden="true" />
+      </div>
+
+    </div><!-- /.nxf-mosaic -->
+
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-mosaic-section -->
 
 </div><!-- /#nxf-root -->
