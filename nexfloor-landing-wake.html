@@ -581,6 +581,18 @@
   height: 8px;
   border-radius: 50%;
   display: block;
+  /* button reset — dots are now <button> for keyboard access */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  /* expand tap target without changing visual size */
+  position: relative;
+}
+
+#nxf-root .nxf-showcase__dot::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
 }
 
 #nxf-root .nxf-showcase__dot--active {
@@ -1328,10 +1340,11 @@
   <div class="wrap">
     <div class="nxf-showcase__row">
 
-      <!-- Área principal da imagem -->
-      <div class="nxf-showcase__main">
+      <!-- Area principal da imagem — JS troca src e background entre 2 slides -->
+      <div class="nxf-showcase__main" id="nxf-showcase-main">
         <img
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase.png"
+          id="nxf-showcase-img"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase-1.png"
           alt="" aria-hidden="true" onerror="this.style.display='none'" />
         <span class="nxf-showcase__label" aria-hidden="true">Imagem com produto</span>
       </div>
@@ -1341,10 +1354,18 @@
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase-side.png"
           alt="" aria-hidden="true" onerror="this.style.display='none'" />
-        <!-- Dots de carrossel -->
-        <div class="nxf-showcase__dots">
-          <span class="nxf-showcase__dot nxf-showcase__dot--active"></span>
-          <span class="nxf-showcase__dot nxf-showcase__dot--inactive"></span>
+        <!-- Dots de carrossel — data-slide-idx indica qual slide ativa; data-slide-bg: fallback -->
+        <div class="nxf-showcase__dots" id="nxf-showcase-dots">
+          <button class="nxf-showcase__dot nxf-showcase__dot--active" type="button"
+                  aria-label="Slide 1"
+                  data-slide-idx="0"
+                  data-slide-img="nexfloor-showcase-1.png"
+                  data-slide-bg="color-mix(in srgb,#7B529F 55%,#23286b)"></button>
+          <button class="nxf-showcase__dot nxf-showcase__dot--inactive" type="button"
+                  aria-label="Slide 2"
+                  data-slide-idx="1"
+                  data-slide-img="nexfloor-showcase-2.png"
+                  data-slide-bg="color-mix(in srgb,#599ad5 45%,#23286b)"></button>
         </div>
       </div>
 
@@ -1443,8 +1464,8 @@
             src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-1.png"
             alt="" aria-hidden="true" onerror="this.style.display='none'" />
 
-          <!-- Badge contador de slides -->
-          <span class="nxf-pdp__badge" aria-hidden="true">02 / 06</span>
+          <!-- Badge contador de slides — JS atualiza para slide atual / 06 -->
+          <span class="nxf-pdp__badge" aria-hidden="true">01 / 06</span>
 
           <!-- Seta anterior -->
           <button class="nxf-pdp__arrow nxf-pdp__arrow--prev" type="button" aria-label="Imagem anterior">&#8249;</button>
@@ -1461,13 +1482,38 @@
         </div><!-- /.nxf-pdp__hero -->
 
         <!-- Miniaturas: 6 blocos, 1 ativo -->
+        <!-- data-slide-img: filename stem; data-slide-head / data-slide-sub: caption (accents as HTML entities) -->
         <div class="nxf-pdp__thumbs" role="list" aria-label="Miniaturas da galeria">
-          <div class="nxf-pdp__thumb nxf-pdp__thumb--active" role="listitem" aria-current="true"></div>
-          <div class="nxf-pdp__thumb" role="listitem"></div>
-          <div class="nxf-pdp__thumb" role="listitem"></div>
-          <div class="nxf-pdp__thumb" role="listitem"></div>
-          <div class="nxf-pdp__thumb" role="listitem"></div>
-          <div class="nxf-pdp__thumb" role="listitem"></div>
+          <div class="nxf-pdp__thumb nxf-pdp__thumb--active" role="listitem" aria-current="true"
+               data-slide-img="nexfloor-pdp-1.png"
+               data-slide-bg="color-mix(in srgb,#7B529F 45%,#1f1f1f)"
+               data-slide-head="Sala de estar"
+               data-slide-sub="Acabamento granito monol&iacute;tico, sem emendas, com brilho."></div>
+          <div class="nxf-pdp__thumb" role="listitem"
+               data-slide-img="nexfloor-pdp-2.png"
+               data-slide-bg="color-mix(in srgb,#599ad5 50%,#23286b)"
+               data-slide-head="Cozinha"
+               data-slide-sub="Superf&iacute;cie f&aacute;cil de limpar, resistente a manchas e tr&aacute;fego."></div>
+          <div class="nxf-pdp__thumb" role="listitem"
+               data-slide-img="nexfloor-pdp-3.png"
+               data-slide-bg="color-mix(in srgb,#7B529F 30%,#f4eff8)"
+               data-slide-head="&Aacute;rea gourmet"
+               data-slide-sub="Visual de granito sob medida, do piso &agrave; bancada."></div>
+          <div class="nxf-pdp__thumb" role="listitem"
+               data-slide-img="nexfloor-pdp-4.png"
+               data-slide-bg="color-mix(in srgb,#23286b 70%,#1f1f1f)"
+               data-slide-head="Varanda"
+               data-slide-sub="Alta resist&ecirc;ncia a intemp&eacute;ries e ao sol."></div>
+          <div class="nxf-pdp__thumb" role="listitem"
+               data-slide-img="nexfloor-pdp-5.png"
+               data-slide-bg="color-mix(in srgb,#1f1f1f 40%,#fff)"
+               data-slide-head="Espa&ccedil;o comercial"
+               data-slide-sub="Aguenta tr&aacute;fego intenso sem perder o acabamento."></div>
+          <div class="nxf-pdp__thumb" role="listitem"
+               data-slide-img="nexfloor-pdp-6.png"
+               data-slide-bg="color-mix(in srgb,#599ad5 35%,#f4eff8)"
+               data-slide-head="Banheiro"
+               data-slide-sub="Imperme&aacute;vel e com toque antiderrapante quando texturizado."></div>
         </div>
 
       </div><!-- /.nxf-pdp__gallery -->
@@ -1525,5 +1571,196 @@
     </div><!-- /.nxf-pdp__grid -->
   </div><!-- /.wrap -->
 </section><!-- /.nxf-pdp -->
+
+
+<script>
+/* ================================================================
+   NEX FLOOR — CARROSSEL FUNCIONAL (vanilla JS, ASCII-only)
+   1) nxfInitPdpCarousel()  — galeria PDP 6 slides
+   2) nxfInitShowcase()     — showcase band 2 dots/slides
+   Runs after DOM is ready; all functions have guard clauses.
+   Respects prefers-reduced-motion for auto-advance.
+   ================================================================ */
+(function () {
+  'use strict';
+
+  /* ---- helper: pad index to "01", "02", etc ---- */
+  function nxfPad(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+
+  /* ---- CDN base for slide images ---- */
+  var NXF_CDN = 'https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/';
+
+  /* ================================================================
+     1) PDP GALLERY CAROUSEL — 6 slides
+     ================================================================ */
+  function nxfInitPdpCarousel() {
+    var hero      = document.querySelector('#nxf-root .nxf-pdp__hero');
+    var heroImg   = hero && hero.querySelector('.nxf-pdp__hero-img');
+    var badge     = hero && hero.querySelector('.nxf-pdp__badge');
+    var capTitle  = hero && hero.querySelector('.nxf-pdp__caption-title');
+    var capSub    = hero && hero.querySelector('.nxf-pdp__caption-sub');
+    var btnPrev   = hero && hero.querySelector('.nxf-pdp__arrow--prev');
+    var btnNext   = hero && hero.querySelector('.nxf-pdp__arrow--next');
+    var thumbs    = document.querySelectorAll('#nxf-root .nxf-pdp__thumb');
+
+    /* guard: bail if any critical element is missing */
+    if (!hero || !heroImg || !badge || !capTitle || !capSub || !btnPrev || !btnNext || thumbs.length < 1) {
+      return;
+    }
+
+    var total   = thumbs.length; /* 6 */
+    var current = 0;             /* 0-based index */
+
+    /* ---- apply slide state ---- */
+    function nxfPdpGo(idx) {
+      /* wrap around */
+      current = (idx % total + total) % total;
+
+      var thumb = thumbs[current];
+      if (!thumb) return;
+
+      /* --- image src --- */
+      var imgFile = thumb.getAttribute('data-slide-img') || '';
+      heroImg.src = NXF_CDN + imgFile;
+
+      /* --- fallback background color on hero --- */
+      var bg = thumb.getAttribute('data-slide-bg') || '';
+      hero.style.background = bg;
+
+      /* --- badge "01 / 06" --- */
+      badge.textContent = nxfPad(current + 1) + ' / ' + nxfPad(total);
+
+      /* --- caption: read from data attrs (HTML entities already decoded by browser) --- */
+      var headText = thumb.getAttribute('data-slide-head') || '';
+      var subText  = thumb.getAttribute('data-slide-sub')  || '';
+      capTitle.textContent = headText;
+      capSub.textContent   = subText;
+
+      /* --- aria-label on hero --- */
+      hero.setAttribute('aria-label', 'Ambiente Nex Floor — ' + headText);
+
+      /* --- active thumbnail --- */
+      for (var i = 0; i < thumbs.length; i++) {
+        thumbs[i].classList.remove('nxf-pdp__thumb--active');
+        thumbs[i].removeAttribute('aria-current');
+      }
+      thumb.classList.add('nxf-pdp__thumb--active');
+      thumb.setAttribute('aria-current', 'true');
+    }
+
+    /* ---- wire prev / next ---- */
+    btnPrev.addEventListener('click', function () { nxfPdpGo(current - 1); });
+    btnNext.addEventListener('click', function () { nxfPdpGo(current + 1); });
+
+    /* ---- wire thumbnails ---- */
+    for (var t = 0; t < thumbs.length; t++) {
+      (function (idx) {
+        thumbs[idx].style.cursor = 'pointer';
+        thumbs[idx].addEventListener('click', function () { nxfPdpGo(idx); });
+      })(t);
+    }
+
+    /* ---- keyboard: arrow keys when hero or thumbs are focused ---- */
+    hero.setAttribute('tabindex', '0');
+    hero.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  nxfPdpGo(current - 1);
+      if (e.key === 'ArrowRight') nxfPdpGo(current + 1);
+    });
+
+    /* ---- init: go to slide 0 (fixes badge "02/06" in static HTML) ---- */
+    nxfPdpGo(0);
+  }
+
+  /* ================================================================
+     2) SHOWCASE BAND DOTS — 2 slides
+     ================================================================ */
+  function nxfInitShowcase() {
+    var mainEl  = document.getElementById('nxf-showcase-main');
+    var mainImg = document.getElementById('nxf-showcase-img');
+    var dotsEl  = document.getElementById('nxf-showcase-dots');
+
+    /* guard */
+    if (!mainEl || !mainImg || !dotsEl) return;
+
+    var dots = dotsEl.querySelectorAll('.nxf-showcase__dot');
+    if (dots.length < 1) return;
+
+    var scCurrent = 0;
+
+    /* ---- apply dot/slide state ---- */
+    function nxfScGo(idx) {
+      scCurrent = (idx % dots.length + dots.length) % dots.length;
+
+      var dot = dots[scCurrent];
+      if (!dot) return;
+
+      /* swap main image src */
+      var imgFile = dot.getAttribute('data-slide-img') || '';
+      mainImg.src = NXF_CDN + imgFile;
+      mainImg.style.display = '';
+
+      /* swap main fallback background */
+      var bg = dot.getAttribute('data-slide-bg') || '';
+      mainEl.style.background = bg;
+
+      /* update dot classes */
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('nxf-showcase__dot--active');
+        dots[i].classList.add('nxf-showcase__dot--inactive');
+      }
+      dot.classList.remove('nxf-showcase__dot--inactive');
+      dot.classList.add('nxf-showcase__dot--active');
+    }
+
+    /* ---- wire dots ---- */
+    for (var d = 0; d < dots.length; d++) {
+      (function (idx) {
+        dots[idx].addEventListener('click', function () { nxfScGo(idx); });
+      })(d);
+    }
+
+    /* ---- optional auto-advance ~6s (pauses on hover; skipped if reduced-motion) ---- */
+    var scTimer = null;
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reducedMotion) {
+      var scAdvance    = function () { nxfScGo(scCurrent + 1); };
+      var scStartTimer = function () { scTimer = setInterval(scAdvance, 6000); };
+      var scStopTimer  = function () { clearInterval(scTimer); };
+
+      mainEl.addEventListener('mouseenter', scStopTimer);
+      mainEl.addEventListener('mouseleave', scStartTimer);
+      dotsEl.addEventListener('mouseenter', scStopTimer);
+      dotsEl.addEventListener('mouseleave', scStartTimer);
+
+      /* also pause when a dot is clicked (restart after 8s) */
+      dotsEl.addEventListener('click', function () {
+        scStopTimer();
+        setTimeout(scStartTimer, 8000);
+      });
+
+      scStartTimer();
+    }
+
+    /* ---- init: ensure slide 0 is shown ---- */
+    nxfScGo(0);
+  }
+
+  /* ---- boot both carousels after DOM is ready ---- */
+  function nxfBoot() {
+    try { nxfInitPdpCarousel(); } catch (e) {}
+    try { nxfInitShowcase();    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', nxfBoot);
+  } else {
+    nxfBoot();
+  }
+
+})();
+</script>
 
 </div><!-- /#nxf-root -->
