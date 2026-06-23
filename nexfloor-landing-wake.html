@@ -259,6 +259,141 @@
   }
 }
 
+/* ================================================================
+   CARDS DE PRODUTO (R2)
+   ================================================================ */
+
+#nxf-root .nxf-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 1.5vw, 23px);
+  max-width: 1380px;
+  margin: clamp(48px, 7vw, 96px) auto 0;
+}
+
+#nxf-root .nxf-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top: lilac panel with bucket image */
+#nxf-root .nxf-card__top {
+  background: var(--lilas);
+  border-radius: 24px 24px 0 0;
+  aspect-ratio: 435 / 283;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#nxf-root .nxf-card__top img {
+  width: 56%;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  object-fit: contain;
+  max-width: none;
+}
+
+/* Bottom: white body */
+#nxf-root .nxf-card__body {
+  background: var(--branco);
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 4px .6px rgba(0, 0, 0, .25);
+  padding: clamp(24px, 3vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3.4vw, 45px);
+  flex: 1;
+}
+
+/* Details group */
+#nxf-root .nxf-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, .5vw, 6px);
+}
+
+#nxf-root .nxf-card__label {
+  font-family: var(--body);
+  color: var(--ink2);
+  font-size: clamp(16px, 1.5vw, 19px);
+}
+
+#nxf-root .nxf-card__label--roxo {
+  color: var(--roxo);
+}
+
+#nxf-root .nxf-card__title {
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--ink2);
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1;
+}
+
+#nxf-root .nxf-card__desc {
+  font-family: var(--body);
+  color: var(--gray);
+  font-size: clamp(17px, 1.8vw, 23px);
+  line-height: 1.25;
+}
+
+/* Price + buy row */
+#nxf-root .nxf-card__buy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 2vw, 40px);
+  flex-wrap: wrap;
+}
+
+#nxf-root .nxf-card__price {
+  font-family: var(--title);
+  font-weight: 900;
+  color: var(--ink2);
+  line-height: 1;
+}
+
+#nxf-root .nxf-card__price span:first-child {
+  font-size: clamp(24px, 2.4vw, 30px);
+}
+
+#nxf-root .nxf-card__price span:last-child {
+  font-size: clamp(18px, 1.8vw, 23px);
+  vertical-align: baseline;
+}
+
+#nxf-root .nxf-card__btn {
+  background: var(--roxo);
+  color: var(--branco);
+  font-family: var(--title);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(18px, 1.8vw, 23px);
+  padding: 11px 32px;
+  border-radius: 24px;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+}
+
+#nxf-root .nxf-card__btn:hover {
+  background: color-mix(in srgb, var(--roxo) 85%, #000);
+}
+
+/* Reflow: 3 cols → 1 col under 860px */
+@media (max-width: 860px) {
+  #nxf-root .nxf-cards {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+}
+
 </style>
 
 <!-- ================================================================
@@ -329,6 +464,77 @@
       </div>
 
     </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ================================================================
+     CARDS DE PRODUTO — Passo 01 / 02 / 03
+     ================================================================ -->
+<div class="wrap">
+
+  <div class="nxf-cards">
+
+    <!-- Card 1 — Prep Piso (Aglutinante) -->
+    <div class="nxf-card">
+      <div class="nxf-card__top">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-prep.png"
+             alt="Balde Prep Piso"
+             onerror="this.style.display='none'" />
+      </div>
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label">Passo 01 - Aglutinante</span>
+          <h3 class="nxf-card__title">prep piso</h3>
+          <p class="nxf-card__desc">Sela e aglutina superf&iacute;cies porosas, criando a base ideal. 3,5 kg &middot; rende 12 m&sup2;.</p>
+        </div>
+        <div class="nxf-card__buy">
+          <div class="nxf-card__price"><span>R$ 149,</span><span>90</span></div>
+          <button class="nxf-card__btn">comprar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 — Nivela & Primer (Aderência) -->
+    <div class="nxf-card">
+      <div class="nxf-card__top">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-primer.png"
+             alt="Balde Nivela &amp; Primer"
+             onerror="this.style.display='none'" />
+      </div>
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label">Passo 02 - Ader&ecirc;ncia</span>
+          <h3 class="nxf-card__title">nivela &amp; primer</h3>
+          <p class="nxf-card__desc">Promove ader&ecirc;ncia e autonivela a superf&iacute;cie. 4 kg &middot; rende 12 m&sup2;.</p>
+        </div>
+        <div class="nxf-card__buy">
+          <div class="nxf-card__price"><span>R$ 149,</span><span>90</span></div>
+          <button class="nxf-card__btn">comprar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 — Granito Líquido (Acabamento) — label em roxo -->
+    <div class="nxf-card">
+      <div class="nxf-card__top">
+        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png"
+             alt="Balde Granito L&iacute;quido"
+             onerror="this.style.display='none'" />
+      </div>
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label nxf-card__label--roxo">Passo 03 - Acabamento</span>
+          <h3 class="nxf-card__title">gran&iacute;to l&iacute;quido</h3>
+          <p class="nxf-card__desc">Acabamento ep&oacute;xi que reproduz o granito, com brilho e resist&ecirc;ncia. 4 kg &middot; rende 1,82 m&sup2;.</p>
+        </div>
+        <div class="nxf-card__buy">
+          <div class="nxf-card__price"><span>R$ 149,</span><span>90</span></div>
+          <button class="nxf-card__btn">comprar</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div><!-- /wrap -->
