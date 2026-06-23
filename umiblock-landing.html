@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Umi Block · O Bloqueio Definitivo Contra a Umidade</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<style>
-/* ─── FONTES COCOGOOSE (arquivos trial copiados de Assets/fonts/) ─────
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-hero-balde.png" fetchpriority="high" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" /></noscript>
+<div id="umi-root">
+<style type="text/css">/* --- FONTES COCOGOOSE (arquivos trial copiados de https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/) -----
    ATENCAO: fontes TRIAL — comprar a licenca antes de publicar.        */
 @font-face{
   font-family:'COCOGOOSE';
-  src:url('Assets/fonts/cocogoose_trial.otf') format('opentype');
+  src:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/cocogoose_trial.otf') format('opentype');
   font-weight:400;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:'Cocogoose Pro';
-  src:url('Assets/fonts/Cocogoose-Pro-Regular-trial.ttf') format('truetype');
+  src:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/Cocogoose-Pro-Regular-trial.ttf') format('truetype');
   font-weight:400;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:'Cocogoose Pro';
-  src:url('Assets/fonts/Cocogoose-Pro-Semilight-trial.ttf') format('truetype');
+  src:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/Cocogoose-Pro-Semilight-trial.ttf') format('truetype');
   font-weight:300;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:'Cocogoose Pro';
-  src:url('Assets/fonts/Cocogoose-Pro-Bold-trial.ttf') format('truetype');
+  src:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/Cocogoose-Pro-Bold-trial.ttf') format('truetype');
   font-weight:700;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:'Cocogoose Pro Darkmode';
-  src:url('Assets/fonts/Cocogoose-Pro-Darkmode-trial.ttf') format('truetype');
+  src:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/Cocogoose-Pro-Darkmode-trial.ttf') format('truetype');
   font-weight:400;font-style:normal;font-display:swap;
 }
 
-/* ─── TOKENS (Figma UmiBlock — Landing v2, 2026-06-12) ──────────────── */
-:root{
+/* --- TOKENS (Figma UmiBlock — Landing v2, 2026-06-12) ---------------- */
+#umi-root{
   --black:#1d1d1b;
   --gray:#3c3c3b;
   --vio:#96559C;
@@ -61,144 +58,148 @@
   --coco-dark:'Cocogoose Pro Darkmode','Cocogoose Pro',sans-serif;
 }
 
-/* ─── RESET + BASE ───────────────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
+/* --- RESET + BASE ----------------------------------------------------- */
+#umi-root *,#umi-root *::before,#umi-root *::after{box-sizing:border-box;margin:0;padding:0;}
+#umi-root{scroll-behavior:smooth;}
+#umi-root{
   background:#fff;color:var(--black);
   font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   font-size:16px;line-height:1.6;overflow-x:hidden;
+  /* full-bleed: fura o container do tema da loja e ocupa a viewport inteira */
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
 }
-img{display:block;}
-p{word-break:break-word;}
-button{font-family:inherit;cursor:pointer;}
-select,input{font-family:inherit;}
+#umi-root img{display:block;}
+#umi-root p{word-break:break-word;}
+#umi-root button{font-family:inherit;cursor:pointer;}
+#umi-root select,#umi-root input{font-family:inherit;}
 
-.container{max-width:1440px;margin:0 auto;width:100%;}
+#umi-root .container{max-width:1440px;margin:0 auto;width:100%;}
 
 /* kicker */
-.kicker{
+#umi-root .kicker{
   display:inline-flex;align-items:center;gap:10px;
   font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--vio);
 }
-.kicker::before{content:'';width:22px;height:2px;background:var(--gold);}
+#umi-root .kicker::before{content:'';width:22px;height:2px;background:var(--gold);}
 
-/* ─── REVEAL NO SCROLL ──────────────────────────────────────────────── */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1);transition-delay:var(--d,0s);}
-.rv.in{opacity:1;transform:none;}
+/* --- REVEAL NO SCROLL ------------------------------------------------ */
+#umi-root .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1);transition-delay:var(--d,0s);}
+#umi-root .rv.in{opacity:1;transform:none;}
 @media (prefers-reduced-motion: reduce){
-  .rv{opacity:1;transform:none;transition:none;}
+  #umi-root .rv{opacity:1;transform:none;transition:none;}
 }
 
-/* ─── HERO — PALCO DO PRODUTO (full-bleed como as demais secoes) ────── */
-.hero{
+/* --- HERO — PALCO DO PRODUTO (full-bleed como as demais secoes) ------ */
+#umi-root .hero{
   position:relative;width:100%;overflow:hidden;background:#fff;
 }
-.hero__stage{
+#umi-root .hero__stage{
   position:relative;max-width:1440px;margin:0 auto;min-height:822px;
 }
 /* glow radial atras do produto (Ellipse 6 — #9981A3) */
-.hero__glow{
+#umi-root .hero__glow{
   position:absolute;left:56%;top:90px;width:min(880px,60vw);aspect-ratio:1;border-radius:50%;
   background:#9981A3;
   pointer-events:none;
 }
-.hero__dot{position:absolute;border-radius:50%;pointer-events:none;}
+#umi-root .hero__dot{position:absolute;border-radius:50%;pointer-events:none;}
 
 /* produto — balde publicitario (rotacionado -23.86deg como no Figma) */
-.hero__product{
+#umi-root .hero__product{
   position:absolute;right:-32%;top:0;
   width:90%;max-width:1280px;
   transform:rotate(-23.86deg);
   pointer-events:none;
 }
-.hero__product img{width:100%;height:auto;display:block;}
+#umi-root .hero__product img{width:100%;height:auto;display:block;}
 
 /* copy */
-.hero__copy{
+#umi-root .hero__copy{
   position:absolute;left:70px;top:80px;width:520px;padding:24px;
   display:flex;flex-direction:column;gap:26px;align-items:flex-start;
 }
-.hero__logo{width:309px;max-width:100%;height:auto;}
-.hero__title{
+#umi-root .hero__logo{width:309px;max-width:100%;height:auto;}
+#umi-root .hero__title{
   font-family:var(--coco-pro);
   font-weight:400;font-size:clamp(38px,4vw,58px);line-height:1.04;letter-spacing:-0.025em;
   color:var(--black);
 }
-.hero__title .acc{color:var(--gold);}
-.hero__title .light{font-weight:300;}
-.hero__desc{
+#umi-root .hero__title .acc{color:var(--gold);}
+#umi-root .hero__title .light{font-weight:300;}
+#umi-root .hero__desc{
   font-family:var(--coco-pro);font-weight:300;
   font-size:17px;line-height:1.7;color:var(--gray);
 }
-.hero__actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
-.hero-btn{
+#umi-root .hero__actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+#umi-root .hero-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:8px 12px;border-radius:8px;border:none;text-decoration:none;
   font-weight:600;font-size:16px;
   transition:transform .15s,box-shadow .2s,filter .2s;
 }
-.hero-btn:hover{transform:translateY(-2px);}
-.hero-btn__ic{width:18px;height:18px;flex:0 0 auto;}
-.hero-btn--vio{background:var(--vio);color:#fff;}
-.hero-btn--gold{background:var(--brand-primary);color:var(--black);}
+#umi-root .hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(29,29,27,.18);}
+#umi-root .hero-btn__ic{width:18px;height:18px;flex:0 0 auto;}
+#umi-root .hero-btn--vio{background:var(--vio);color:#fff;}
+#umi-root .hero-btn--gold{background:var(--brand-primary);color:var(--black);}
 
 @media (max-width:980px){
-  .hero{padding-bottom:56px;}
-  .hero__stage{min-height:0;display:flex;flex-direction:column;}
-  .hero__copy{position:static;order:1;width:100%;max-width:560px;margin:24px auto 0;align-items:center;text-align:center;}
+  #umi-root .hero{padding-bottom:56px;}
+  #umi-root .hero__stage{min-height:0;display:flex;flex-direction:column;}
+  #umi-root .hero__copy{position:static;order:1;width:100%;max-width:560px;margin:24px auto 0;align-items:center;text-align:center;}
   /* botoes empilhados em largura cheia (paravam de caber lado a lado) */
-  .hero__actions{flex-direction:column;align-items:stretch;width:min(300px,100%);gap:12px;}
-  .hero-btn{width:100%;padding:13px 18px;}
+  #umi-root .hero__actions{flex-direction:column;align-items:stretch;width:min(300px,100%);gap:12px;}
+  #umi-root .hero-btn{width:100%;padding:13px 18px;}
   /* produto centralizado sobre a elipse (deixa de "flutuar" no branco) */
-  .hero__product{position:relative;right:auto;top:auto;order:2;width:min(380px,80%);margin:30px auto 0;transform:rotate(-8deg);}
-  .hero__product::before{
+  #umi-root .hero__product{position:relative;right:auto;top:auto;order:2;width:min(380px,80%);margin:30px auto 0;transform:rotate(-8deg);}
+  #umi-root .hero__product::before{
     content:'';position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);
     width:72%;aspect-ratio:1;border-radius:50%;background:#9981A3;z-index:-1;
   }
-  .hero__glow,.hero__dot{display:none;}
+  #umi-root .hero__glow,#umi-root .hero__dot{display:none;}
 }
 
-/* ─── SEÇÕES (títulos) ───────────────────────────────────────────────── */
-.section{padding:clamp(56px,7vw,100px) clamp(20px,4.5vw,64px);display:flex;flex-direction:column;gap:48px;}
-.sec-head{display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;width:100%;}
-.sec-title{
-  font-family:var(--coco);
-  font-weight:400;font-size:clamp(32px,4vw,58px);line-height:1.05;
+
+/* --- SEÇÕES (títulos) ------------------------------------------------- */
+#umi-root .section{padding:clamp(56px,7vw,100px) clamp(20px,4.5vw,64px);display:flex;flex-direction:column;gap:48px;}
+#umi-root .sec-head{display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;width:100%;}
+#umi-root .sec-title{
+  font-family:var(--coco-pro);
+  font-weight:300;font-size:clamp(32px,4vw,58px);line-height:1.05;
   letter-spacing:-0.02em;color:var(--black);
 }
-.sec-title .gld{color:var(--gold);}
-.sec-title .yel{color:var(--yellow);}
-.sec-title .vio{color:var(--vio);}
-.sec-sub{font-weight:400;font-size:clamp(17px,2vw,24px);line-height:1.4;color:var(--gray);max-width:690px;}
-.sec-sub--dark{font-family:var(--coco-dark);}
-.sec-sub--coco{font-family:var(--coco);}
+#umi-root .sec-title .gld{color:var(--gold);}
+#umi-root .sec-title .yel{color:var(--yellow);}
+#umi-root .sec-title .vio{color:var(--vio);}
+#umi-root .sec-title .gld,#umi-root .sec-title .yel,#umi-root .sec-title .vio{font-weight:700;}
+#umi-root .sec-sub{font-weight:400;font-size:clamp(17px,2vw,24px);line-height:1.4;color:var(--gray);max-width:690px;}
+#umi-root .sec-sub--dark{font-family:var(--coco-dark);}
+#umi-root .sec-sub--coco{font-family:var(--coco);}
 
-/* ─── BENEFÍCIOS (bento de fotos + arte de ondas) ───────────────────── */
-.benef{position:relative;overflow:hidden;}
-.benef__art{position:absolute;pointer-events:none;}
-.benef__wash{left:50%;bottom:-40px;width:max(1700px,118vw);height:480px;opacity:.06;transform:translateX(-50%) rotate(180deg);}
-.benef__ribbon-y{left:50%;top:46%;width:max(1700px,118vw);height:230px;transform:translateX(-50%);}
-.benef__ribbon-p{left:50%;bottom:-12px;width:max(1600px,115vw);height:70px;transform:translateX(-50%) rotate(2deg);}
-.benef__inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:48px;}
+/* --- BENEFÍCIOS (bento de fotos + arte de ondas) --------------------- */
+#umi-root .benef{position:relative;overflow:hidden;}
+#umi-root .benef__art{position:absolute;pointer-events:none;}
+#umi-root .benef__wash{left:50%;bottom:-40px;width:max(1700px,118vw);height:480px;opacity:.06;transform:translateX(-50%) rotate(180deg);}
+#umi-root .benef__ribbon-y{left:50%;top:46%;width:max(1700px,118vw);height:230px;transform:translateX(-50%);}
+#umi-root .benef__ribbon-p{left:50%;bottom:-12px;width:max(1600px,115vw);height:70px;transform:translateX(-50%) rotate(2deg);}
+#umi-root .benef__inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:48px;}
 
-.bento{display:flex;flex-direction:column;width:100%;}
-.bento__row{display:flex;gap:16px;align-items:stretch;width:100%;padding:24px 10px;}
-.bento-tile{
+#umi-root .bento{display:flex;flex-direction:column;width:100%;}
+#umi-root .bento__row{display:flex;gap:16px;align-items:stretch;width:100%;padding:24px 10px;}
+#umi-root .bento-tile{
   border-radius:20px;position:relative;overflow:hidden;
   box-shadow:0 2px 5px rgba(0,0,0,.25);
   background-size:cover;background-position:center;
   transition:transform .25s cubic-bezier(.22,.8,.3,1),box-shadow .25s;
 }
-.bento-tile:hover{transform:translateY(-6px);box-shadow:0 22px 44px -16px rgba(29,29,27,.35);}
-.bento-tile--produto{flex:1 1 0;min-width:0;min-height:278px;background-image:url("Assets/umi-bento-produto.jpg");}
-.bento-tile--uv{flex:0 0 424px;min-height:278px;background-image:url("Assets/umi-bento-uv.jpg");padding:34px 32px;display:flex;flex-direction:column;justify-content:center;}
-.bento-tile--aderencia{flex:1 1 0;min-width:0;min-height:270px;background-image:url("Assets/umi-bento-aderencia.jpg");}
-.bento-tile--flexivel{flex:1 1 0;min-width:0;min-height:270px;background-image:url("Assets/umi-bento-flexivel.jpg");}
-.bento-tile .icon{width:44px;height:44px;}
+#umi-root .bento-tile:hover{transform:translateY(-6px);box-shadow:0 22px 44px -16px rgba(29,29,27,.35);}
+#umi-root .bento-tile--produto{flex:1 1 0;min-width:0;min-height:278px;background-image:url("https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-bento-produto.jpg");}
+#umi-root .bento-tile--uv{flex:0 0 424px;min-height:278px;background-image:url("https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-bento-uv.jpg");padding:34px 32px;display:flex;flex-direction:column;justify-content:center;}
+#umi-root .bento-tile--aderencia{flex:1 1 0;min-width:0;min-height:270px;background-image:url("https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-bento-aderencia.jpg");}
+#umi-root .bento-tile--flexivel{flex:1 1 0;min-width:0;min-height:270px;background-image:url("https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-bento-flexivel.jpg");}
+#umi-root .bento-tile .icon{width:44px;height:44px;}
 
-.bento-card-4{
+#umi-root .bento-card-4{
   flex:1 1 0;min-width:0;
   background:var(--gray);border-radius:20px;padding:34px 32px;
   display:flex;flex-direction:column;gap:14px;align-items:flex-start;
@@ -206,105 +207,105 @@ select,input{font-family:inherit;}
   font-family:var(--coco);
   transition:transform .25s cubic-bezier(.22,.8,.3,1);
 }
-.bento-card-4:hover{transform:translateY(-6px);}
-.bento-card-4 .big{font-weight:400;font-size:96px;line-height:1;color:var(--gold);}
-.bento-card-4 .t{font-weight:400;font-size:22px;letter-spacing:-.01em;color:#fff;}
-.bento-card-4 .d{font-weight:400;font-size:15px;line-height:1.5;color:var(--text-cream);}
+#umi-root .bento-card-4:hover{transform:translateY(-6px);}
+#umi-root .bento-card-4 .big{font-weight:400;font-size:96px;line-height:1;color:var(--gold);}
+#umi-root .bento-card-4 .t{font-weight:400;font-size:22px;letter-spacing:-.01em;color:#fff;}
+#umi-root .bento-card-4 .d{font-weight:400;font-size:15px;line-height:1.5;color:var(--text-cream);}
 
 @media (max-width:980px){
-  .bento__row{flex-direction:column;}
-  .bento-tile--uv{flex:1 1 auto;}
+  #umi-root .bento__row{flex-direction:column;}
+  #umi-root .bento-tile--uv{flex:1 1 auto;}
 }
 
-/* ─── COMO APLICAR ───────────────────────────────────────────────────── */
-.apply{background:var(--paper);}
-.apply__grid{display:flex;gap:64px;align-items:center;width:100%;}
-.apply__photo{flex:0 0 42%;position:relative;isolation:isolate;}
-.apply__photo img{
+/* --- COMO APLICAR ----------------------------------------------------- */
+#umi-root .apply{background:var(--paper);}
+#umi-root .apply__grid{display:flex;gap:64px;align-items:center;width:100%;}
+#umi-root .apply__photo{flex:0 0 42%;position:relative;isolation:isolate;}
+#umi-root .apply__photo img{
   width:100%;height:auto;border-radius:24px;
   box-shadow:0 30px 60px -20px rgba(29,29,27,.4);
 }
-.apply__photo::before{
+#umi-root .apply__photo::before{
   content:'';position:absolute;inset:0;
   border:3px solid var(--yellow);border-radius:24px;
   transform:translate(16px,16px);z-index:-1;
 }
-.apply__steps{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;}
-.apply__head{display:flex;flex-direction:column;gap:14px;align-items:flex-start;margin-bottom:26px;}
-.apply__head .sec-title{text-align:left;font-size:clamp(30px,3.6vw,52px);}
-.step{
+#umi-root .apply__steps{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;}
+#umi-root .apply__head{display:flex;flex-direction:column;gap:14px;align-items:flex-start;margin-bottom:26px;}
+#umi-root .apply__head .sec-title{text-align:left;font-size:clamp(30px,3.6vw,52px);}
+#umi-root .step{
   display:flex;gap:24px;align-items:flex-start;
   padding:22px 0;border-bottom:1px solid rgba(29,29,27,.08);
 }
-.step:last-of-type{border-bottom:none;}
-.step__num{
+#umi-root .step:last-of-type{border-bottom:none;}
+#umi-root .step__num{
   font-family:var(--coco);
   font-weight:400;font-size:44px;line-height:1;color:transparent;
   -webkit-text-stroke:2px var(--yellow);
   flex:0 0 72px;
 }
-.step__txt{display:flex;flex-direction:column;gap:6px;}
-.step__title{font-family:var(--coco-pro);font-weight:700;font-size:19px;color:var(--black);letter-spacing:-.01em;}
-.step__desc{font-size:15px;line-height:1.7;color:var(--gray);}
-.step__desc b{font-weight:700;color:var(--black);}
-.apply__note{
+#umi-root .step__txt{display:flex;flex-direction:column;gap:6px;}
+#umi-root .step__title{font-family:var(--coco-pro);font-weight:700;font-size:19px;color:var(--black);letter-spacing:-.01em;}
+#umi-root .step__desc{font-size:15px;line-height:1.7;color:var(--gray);}
+#umi-root .step__desc b{font-weight:700;color:var(--black);}
+#umi-root .apply__note{
   margin-top:18px;font-size:13px;color:var(--gray);line-height:1.6;
   background:rgba(255,204,0,.2);border:1px solid rgba(124,58,237,.18);
   border-radius:12px;padding:14px 16px;
 }
 
-/* ─── APLICAÇÕES ─────────────────────────────────────────────────────── */
-.uses{display:flex;gap:64px;align-items:flex-start;width:100%;}
-.uses__panel{
+/* --- APLICAÇÕES ------------------------------------------------------- */
+#umi-root .uses{display:flex;gap:64px;align-items:flex-start;width:100%;}
+#umi-root .uses__panel{
   flex:0 0 380px;width:380px;max-width:100%;height:534px;
   position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--row-border);
   display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:flex-end;
   padding:40px 32px;text-align:center;
 }
-.uses__panel-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
-.uses__panel:hover .uses__panel-img{transform:scale(1.04);}
-.uses__panel::after{
+#umi-root .uses__panel-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+#umi-root .uses__panel:hover .uses__panel-img{transform:scale(1.04);}
+#umi-root .uses__panel::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(to top,#000 0%,rgba(0,0,0,0) 65%);
   pointer-events:none;
 }
-.uses__panel > *:not(.uses__panel-img){position:relative;z-index:1;}
-.uses__kicker{font-weight:800;font-size:11px;letter-spacing:1.54px;color:#fff;}
-.uses__name{font-weight:800;font-size:22px;letter-spacing:-.02em;color:#fff;text-transform:uppercase;}
-.uses__desc{font-size:14px;line-height:1.65;color:#fff;}
+#umi-root .uses__panel > *:not(.uses__panel-img){position:relative;z-index:1;}
+#umi-root .uses__kicker{font-weight:800;font-size:11px;letter-spacing:1.54px;color:#fff;}
+#umi-root .uses__name{font-weight:800;font-size:22px;letter-spacing:-.02em;color:#fff;text-transform:uppercase;}
+#umi-root .uses__desc{font-size:14px;line-height:1.65;color:#fff;}
 
-.uses__list{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px;}
-.use-row{
+#umi-root .uses__list{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px;}
+#umi-root .use-row{
   display:flex;gap:20px;align-items:center;width:100%;
   background:#f1ebf7;border:1px solid transparent;border-radius:14px;
   padding:20px 24px;text-align:left;
   box-shadow:0 5px 4.6px -2px rgba(0,0,0,.11);
   transition:background .2s,color .2s,box-shadow .2s,transform .2s cubic-bezier(.22,.8,.3,1);
 }
-.use-row:hover{transform:translateX(6px);}
-.use-row__emoji{width:38px;height:38px;object-fit:contain;flex:0 0 auto;}
-.use-row__txt{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px;}
-.use-row__title{font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--vio);text-transform:uppercase;}
-.use-row__desc{font-size:13px;color:var(--vio);}
-.use-row__arrow{width:22px;height:22px;color:#96559C;fill:currentColor;flex:0 0 auto;transition:color .2s,transform .2s;}
-.use-row:hover .use-row__arrow{transform:translateX(4px);}
-.use-row.is-active{background:var(--vio);box-shadow:0 4px 4px rgba(0,0,0,.25);}
-.use-row.is-active .use-row__title,
-.use-row.is-active .use-row__desc{color:#fff;}
-.use-row.is-active .use-row__arrow{color:var(--vioL);}
+#umi-root .use-row:hover{transform:translateX(6px);}
+#umi-root .use-row__emoji{width:38px;height:38px;object-fit:contain;flex:0 0 auto;}
+#umi-root .use-row__txt{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px;}
+#umi-root .use-row__title{font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--vio);text-transform:uppercase;}
+#umi-root .use-row__desc{font-size:13px;color:var(--vio);}
+#umi-root .use-row__arrow{width:22px;height:22px;color:#96559C;fill:currentColor;flex:0 0 auto;transition:color .2s,transform .2s;}
+#umi-root .use-row:hover .use-row__arrow{transform:translateX(4px);}
+#umi-root .use-row.is-active{background:var(--vio);box-shadow:0 4px 4px rgba(0,0,0,.25);}
+#umi-root .use-row.is-active .use-row__title,
+#umi-root .use-row.is-active .use-row__desc{color:#fff;}
+#umi-root .use-row.is-active .use-row__arrow{color:var(--vioL);}
 
-/* ─── EMBALAGENS & RENDIMENTO ───────────────────────────────────────── */
-.pack{
+/* --- EMBALAGENS & RENDIMENTO ----------------------------------------- */
+#umi-root .pack{
   position:relative;
   padding:clamp(72px,9vw,140px) clamp(20px,4.5vw,64px);
   background:linear-gradient(180deg, #130c26 0%, #1d1134 50%, #281641 100%);
   display:flex;flex-direction:column;gap:48px;
 }
-.pack .sec-title{color:#fff;}
-.pack .sec-sub{color:var(--card-t1);}
-.pack .kicker{color:var(--gold);}
-.pack__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;}
-.pack-card{
+#umi-root .pack .sec-title{color:#fff;}
+#umi-root .pack .sec-sub{color:var(--card-t1);}
+#umi-root .pack .kicker{color:var(--gold);}
+#umi-root .pack__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;}
+#umi-root .pack-card{
   background:rgba(255,255,255,.07);
   border:1px solid rgba(255,255,255,.16);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
@@ -313,122 +314,143 @@ select,input{font-family:inherit;}
   color:#fff;position:relative;overflow:hidden;
   transition:transform .25s cubic-bezier(.22,.8,.3,1),background .25s,border-color .25s;
 }
-.pack-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);border-color:rgba(255,204,0,.5);}
-.pack-card__size{font-family:var(--coco);font-weight:400;font-size:40px;line-height:1;color:#fff;}
-.pack-card__size small{font-size:18px;font-weight:700;color:var(--gold);}
-.pack-card__yield{font-size:14px;line-height:1.5;color:var(--card-t1);}
-.pack-card__yield b{color:#fff;font-weight:700;font-size:16px;}
-.pack-card__bar{height:6px;border-radius:3px;background:rgba(255,255,255,.15);overflow:hidden;margin-top:8px;}
-.pack-card__bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--vioL),var(--gold));width:var(--w,20%);}
-.pack-card__badge{
+#umi-root .pack-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);border-color:rgba(255,204,0,.5);}
+#umi-root .pack-card__size{font-family:var(--coco);font-weight:400;font-size:40px;line-height:1;color:#fff;}
+#umi-root .pack-card__size small{font-size:18px;font-weight:700;color:var(--gold);}
+#umi-root .pack-card__yield{font-size:14px;line-height:1.5;color:var(--card-t1);}
+#umi-root .pack-card__yield b{color:#fff;font-weight:700;font-size:16px;}
+#umi-root .pack-card__bar{height:6px;border-radius:3px;background:rgba(255,255,255,.15);overflow:hidden;margin-top:8px;}
+#umi-root .pack-card__bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--vioL),var(--gold));width:var(--w,20%);}
+#umi-root .pack-card__badge{
   position:absolute;top:16px;right:16px;
   background:var(--yellow);color:var(--black);
   font-family:var(--coco-dark);font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
   padding:5px 10px;border-radius:99px;
 }
-.pack__note{font-size:13px;color:var(--card-t1);text-align:center;}
-@media (max-width:1100px){.pack__grid{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:560px){.pack__grid{grid-template-columns:1fr;}}
+#umi-root .pack__note{font-size:13px;color:var(--card-t1);text-align:center;}
+@media (max-width:1100px){#umi-root .pack__grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){#umi-root .pack__grid{grid-template-columns:1fr;}}
 
-/* ─── CALCULADORA DE RENDIMENTO ─────────────────────────────────────── */
-.calc{background:#fff;}
-.calc__card{
+/* --- CALCULADORA DE RENDIMENTO --------------------------------------- */
+#umi-root .calc{background:#fff;}
+#umi-root .calc__card{
   width:min(989px,100%);margin:0 auto;background:#fff;
   display:flex;flex-direction:column;gap:0;
 }
-.calc__head{text-align:center;padding-bottom:28px;border-bottom:1px solid rgba(29,29,27,.1);}
-.calc__head h2{font-weight:800;font-size:clamp(24px,3vw,32px);color:var(--black);}
-.calc__head p{font-size:15px;color:#8a8a88;margin-top:6px;}
-.calc__field{padding:28px 0;border-bottom:1px solid rgba(29,29,27,.1);}
-.calc__label{display:block;font-weight:700;font-size:14px;color:var(--black);margin-bottom:10px;}
-.calc__select{
-  width:100%;padding:16px 18px;border:1px solid rgba(29,29,27,.15);border-radius:12px;
-  font-weight:700;font-size:15px;color:var(--black);background:#fff;
-  appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg width='14' height='9' viewBox='0 0 14 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%238a8a88' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 18px center;
-  cursor:pointer;
-}
-.calc__grid{
+#umi-root .calc__head{text-align:center;padding-bottom:28px;border-bottom:1px solid rgba(29,29,27,.1);}
+#umi-root .calc__head h2{font-weight:800;font-size:clamp(24px,3vw,32px);color:var(--black);}
+#umi-root .calc__head p{font-size:15px;color:#8a8a88;margin-top:6px;}
+#umi-root .calc__grid{
   display:grid;grid-template-columns:1fr 1px 1fr;gap:0 40px;
   padding:34px 0;border-bottom:1px solid rgba(29,29,27,.1);
 }
-.calc__divider{background:rgba(29,29,27,.1);}
-.calc__step-h{
+#umi-root .calc__divider{background:rgba(29,29,27,.1);}
+#umi-root .calc__step-h{
   display:flex;gap:10px;align-items:center;justify-content:center;
   font-weight:700;font-size:17px;color:var(--black);margin-bottom:26px;
 }
-.calc__step-h i{
+#umi-root .calc__step-h i{
   width:24px;height:24px;border-radius:50%;background:rgba(29,29,27,.07);
   display:inline-flex;align-items:center;justify-content:center;
   font-style:normal;font-weight:700;font-size:12px;color:#8a8a88;
 }
-.calc__toggle{display:flex;gap:12px;justify-content:center;margin-bottom:26px;flex-wrap:wrap;}
-.calc__tbtn{
+#umi-root .calc__toggle{display:flex;gap:12px;justify-content:center;margin-bottom:26px;flex-wrap:wrap;}
+#umi-root .calc__tbtn{
   display:inline-flex;gap:8px;align-items:center;justify-content:center;
   padding:16px 22px;border-radius:12px;border:1px solid rgba(29,29,27,.15);
   background:#fff;font-weight:700;font-size:15px;color:var(--black);
   transition:background .15s,border-color .15s;
 }
-.calc__tbtn.is-active{background:#ececea;border-color:rgba(29,29,27,.35);}
-.calc__inputs{display:flex;gap:18px;align-items:flex-end;justify-content:center;}
-.calc__ghost{
+#umi-root .calc__tbtn.is-active{background:#ececea;border-color:rgba(29,29,27,.35);}
+#umi-root .calc__ico{flex:0 0 auto;}
+#umi-root .calc__result-txt .calc__ico{vertical-align:-3px;margin-right:5px;}
+#umi-root .calc__inputs{display:flex;gap:18px;align-items:flex-end;justify-content:center;}
+#umi-root .calc__ghost{
   width:110px;border:none;border-bottom:2px solid rgba(29,29,27,.2);
   font-weight:800;font-size:54px;color:#c9c9c7;text-align:center;
   outline:none;background:transparent;
   transition:color .15s,border-color .15s;
 }
-.calc__ghost:focus{color:var(--black);border-color:var(--vio);}
-.calc__ghost::placeholder{color:#d8d8d6;}
-.calc__unit{font-weight:700;font-size:20px;color:var(--black);padding-bottom:14px;}
-.calc__x{font-size:22px;color:#c9c9c7;padding-bottom:16px;}
-.calc__eq{margin-top:14px;text-align:center;font-weight:700;font-size:15px;color:#8a8a88;}
-.calc__hint{margin-top:18px;text-align:center;font-size:13px;color:#8a8a88;line-height:1.5;}
-.calc__bottom{padding:34px 0 0;}
-.calc__surface{display:flex;gap:12px;width:100%;}
-.calc__surface .calc__tbtn{flex:1 1 0;}
-.calc__result{
+#umi-root .calc__ghost:focus{color:var(--black);border-color:var(--vio);}
+#umi-root .calc__ghost:not(:placeholder-shown){color:var(--black);border-color:rgba(29,29,27,.4);}
+#umi-root .calc__ghost::placeholder{color:#d8d8d6;}
+#umi-root .calc__unit{font-weight:700;font-size:20px;color:var(--black);padding-bottom:14px;}
+#umi-root .calc__x{font-size:22px;color:#c9c9c7;padding-bottom:16px;}
+#umi-root .calc__eq{margin-top:14px;text-align:center;font-weight:700;font-size:15px;color:#8a8a88;}
+#umi-root .calc__hint{margin-top:18px;text-align:center;font-size:13px;color:#8a8a88;line-height:1.5;}
+#umi-root .calc__hint.is-warning{color:#b45309;}
+#umi-root .calc__bottom{padding:34px 0 0;}
+#umi-root .calc__surface{display:flex;gap:12px;width:100%;}
+#umi-root .calc__surface .calc__tbtn{flex:1 1 0;}
+#umi-root .calc__result{
   margin-top:28px;border-radius:16px;padding:24px 28px;
   background:linear-gradient(135deg, rgba(124,58,237,.08), rgba(255,204,0,.1));
   border:1px solid rgba(124,58,237,.2);
   display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;
 }
-.calc__result-txt b{font-size:22px;color:var(--black);display:block;}
-.calc__result-txt span{font-size:14px;color:var(--gray);}
-.calc__result-note{font-size:12px;color:#8a8a88;margin-top:12px;text-align:center;}
-.calc__buy{
+#umi-root .calc__result[hidden]{display:none;}
+#umi-root .calc__result-txt b{font-size:22px;color:var(--black);display:block;}
+#umi-root .calc__result-txt span{font-size:14px;color:var(--gray);}
+#umi-root .calc__result-note{font-size:13px;color:#8a8a88;margin-top:12px;text-align:center;}
+#umi-root .calc__buy{
   display:inline-flex;align-items:center;justify-content:center;
   padding:14px 28px;border-radius:10px;border:none;
   background:var(--brand-primary);color:var(--black);
   font-weight:800;font-size:15px;
   transition:transform .15s,box-shadow .2s;
 }
-.calc__buy:hover{transform:translateY(-2px);}
+#umi-root .calc__buy:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(29,29,27,.2);}
 @media (max-width:860px){
-  .calc__grid{grid-template-columns:1fr;gap:34px;}
-  .calc__divider{display:none;}
+  #umi-root .calc__grid{grid-template-columns:1fr;gap:34px;}
+  #umi-root .calc__divider{display:none;}
 }
 
-/* ─── VÍDEOS ─────────────────────────────────────────────────────────── */
-.videos{
+/* --- RECOMENDAÇÃO (calculadora ? CTA) -------------------------------- */
+#umi-root .buy__rec{margin:20px 0 0;display:flex;flex-direction:column;gap:8px;}
+#umi-root .buy__rec-lbl{font-family:var(--coco-pro);font-weight:700;font-size:15px;color:var(--black);margin:24px 0 12px;}
+#umi-root .rec-card{
+  display:flex;align-items:flex-end;flex-wrap:wrap;gap:14px;
+  background:#faf9f7;border:1px solid rgba(29,29,27,.12);border-radius:12px;
+  padding:12px 14px;
+}
+#umi-root .rec-card__thumb{width:56px;height:56px;object-fit:contain;border-radius:8px;flex-shrink:0;background:#fff;align-self:flex-start;}
+#umi-root .rec-card__info{flex:1 1 0;min-width:0;align-self:flex-start;}
+#umi-root .rec-card__name{font-weight:700;font-size:14px;color:var(--black);display:block;}
+#umi-root .rec-card__qty{font-size:12px;color:#8a8a88;display:block;margin-top:2px;}
+#umi-root .rec-card__btn{
+  flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 16px;border-radius:8px;border:none;
+  background:var(--brand-primary);color:var(--black);
+  font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;
+  transition:background .15s,filter .15s;
+  margin-left:auto;
+}
+#umi-root .rec-card__btn:hover{filter:brightness(.92);}
+#umi-root .rec-card__btn:disabled{opacity:.55;cursor:default;}
+@media (max-width:600px){
+  #umi-root .rec-card__btn{width:100%;margin-left:0;margin-top:4px;}
+}
+
+/* --- VÍDEOS ----------------------------------------------------------- */
+#umi-root .videos{
   display:flex;gap:48px;align-items:center;justify-content:center;
   padding:clamp(56px,7vw,100px) clamp(20px,4.5vw,80px);
 }
-.vid-card{
+#umi-root .vid-card{
   flex:0 1 368px;width:368px;max-width:100%;height:514px;
   background:#535353;border-radius:24px;position:relative;overflow:hidden;cursor:pointer;
   transition:transform .25s cubic-bezier(.22,.8,.3,1);
 }
-.vid-card:hover{transform:translateY(-6px);}
-.vid-card__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#535353;}
-.vid-card__play{
+#umi-root .vid-card:hover{transform:translateY(-6px);}
+#umi-root .vid-card__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#535353;}
+#umi-root .vid-card__play{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:68.8px;height:68.8px;pointer-events:none;
   transition:transform .2s,opacity .25s;
 }
-.vid-card:hover .vid-card__play{transform:translate(-50%,-50%) scale(1.1);}
-.vid-card.is-playing .vid-card__play{opacity:0;}
-.vid-card__full{
+#umi-root .vid-card:hover .vid-card__play{transform:translate(-50%,-50%) scale(1.1);}
+#umi-root .vid-card.is-playing .vid-card__play{opacity:0;}
+#umi-root .vid-card__full{
   position:absolute;top:14px;right:14px;z-index:3;
   width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
   background:rgba(0,0,0,.42);color:#fff;
@@ -436,56 +458,56 @@ select,input{font-family:inherit;}
   -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
   transition:background .2s,transform .2s;
 }
-.vid-card__full:hover{background:rgba(0,0,0,.7);transform:scale(1.08);}
-.vid-card__full svg{width:20px;height:20px;display:block;}
+#umi-root .vid-card__full:hover{background:rgba(0,0,0,.7);transform:scale(1.08);}
+#umi-root .vid-card__full svg{width:20px;height:20px;display:block;}
 @media (max-width:920px){
-  .videos{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
+  #umi-root .videos{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
     scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .videos::-webkit-scrollbar{display:none;}
-  .vid-card{flex:0 0 78%;scroll-snap-align:center;}
+  #umi-root .videos::-webkit-scrollbar{display:none;}
+  #umi-root .vid-card{flex:0 0 78%;scroll-snap-align:center;}
 }
 
-/* ─── INFORMAÇÕES (navtabs) ─────────────────────────────────────────── */
-.navtabs-wrap{padding:clamp(56px,7vw,100px) clamp(20px,4.5vw,48px);}
-.navtabs{
+/* --- INFORMAÇÕES (navtabs) ------------------------------------------- */
+#umi-root .navtabs-wrap{padding:clamp(56px,7vw,100px) clamp(20px,4.5vw,48px);}
+#umi-root .navtabs{
   width:100%;max-width:1344px;margin:0 auto;
   background:linear-gradient(70.2deg, #dcdadd 19%, #e6e6e6 91%);
   border-radius:24px;padding:clamp(28px,4vw,56px);
   display:flex;gap:clamp(24px,3vw,48px);align-items:stretch;
 }
-.navtabs__nav{display:flex;flex-direction:column;gap:28px;width:220px;flex:0 0 auto;}
-.navtabs__tab{
+#umi-root .navtabs__nav{display:flex;flex-direction:column;gap:28px;width:220px;flex:0 0 auto;}
+#umi-root .navtabs__tab{
   font-weight:700;font-size:18px;text-align:left;
   color:#2d2d2b;background:none;border:none;width:100%;
   opacity:.5;transition:opacity .15s ease;padding:0;
 }
-.navtabs__tab:hover{opacity:.8;}
-.navtabs__tab.is-active{
+#umi-root .navtabs__tab:hover{opacity:.8;}
+#umi-root .navtabs__tab.is-active{
   opacity:1;background:#7a3f91;color:#eeedee;
   border-radius:100px;padding:12px 20px;
 }
-.navtabs__divider{width:1px;background:#bdbdbd;align-self:stretch;flex:0 0 auto;}
-.navtabs__content{flex:1 1 0;min-width:0;color:#2d2d2b;}
-.navtabs__panel{display:none;flex-direction:column;gap:16px;}
-.navtabs__panel.is-active{display:flex;}
-.navtabs__panel h2{font-weight:900;font-size:clamp(30px,5vw,52px);}
-.navtabs__panel .lbl{font-weight:700;font-size:14px;}
-.navtabs__panel p{font-weight:400;font-size:14px;line-height:1.6;}
-.navtabs__hint{display:none;}
+#umi-root .navtabs__divider{width:1px;background:#bdbdbd;align-self:stretch;flex:0 0 auto;}
+#umi-root .navtabs__content{flex:1 1 0;min-width:0;color:#2d2d2b;}
+#umi-root .navtabs__panel{display:none;flex-direction:column;gap:16px;}
+#umi-root .navtabs__panel.is-active{display:flex;}
+#umi-root .navtabs__panel h2{font-weight:900;font-size:clamp(30px,5vw,52px);}
+#umi-root .navtabs__panel .lbl{font-weight:700;font-size:14px;}
+#umi-root .navtabs__panel p{font-weight:400;font-size:14px;line-height:1.6;}
+#umi-root .navtabs__hint{display:none;}
 @keyframes navHint{0%,100%{transform:translateY(-50%) translateX(0);}50%{transform:translateY(-50%) translateX(5px);}}
 @media (max-width:760px){
-  .navtabs{flex-direction:column;gap:20px;position:relative;}
+  #umi-root .navtabs{flex-direction:column;gap:20px;position:relative;}
   /* abas = tira de passos rolavel horizontal */
-  .navtabs__nav{width:100%;flex-direction:row;flex-wrap:nowrap;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .navtabs__nav::-webkit-scrollbar{display:none;}
-  .navtabs__tab{flex:0 0 auto;width:auto;white-space:nowrap;}
-  .navtabs__divider{width:100%;height:1px;align-self:auto;}
+  #umi-root .navtabs__nav{width:100%;flex-direction:row;flex-wrap:nowrap;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  #umi-root .navtabs__nav::-webkit-scrollbar{display:none;}
+  #umi-root .navtabs__tab{flex:0 0 auto;width:auto;white-space:nowrap;}
+  #umi-root .navtabs__divider{width:100%;height:1px;align-self:auto;}
   /* conteudo = carrossel arrastavel de steps (swipe horizontal) */
-  .navtabs__content{flex:0 1 auto;display:flex;flex-direction:row;flex-wrap:nowrap;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .navtabs__content::-webkit-scrollbar{display:none;}
-  .navtabs__panel{display:flex!important;flex:0 0 100%;min-width:0;scroll-snap-align:start;}
+  #umi-root .navtabs__content{flex:0 1 auto;display:flex;flex-direction:row;flex-wrap:nowrap;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  #umi-root .navtabs__content::-webkit-scrollbar{display:none;}
+  #umi-root .navtabs__panel{display:flex!important;flex:0 0 100%;min-width:0;scroll-snap-align:start;}
   /* seta discreta: dica de arrastar pra ver mais */
-  .navtabs__hint{
+  #umi-root .navtabs__hint{
     display:flex;align-items:center;justify-content:center;
     position:absolute;right:6px;top:62%;transform:translateY(-50%);
     width:30px;height:30px;border-radius:50%;
@@ -493,664 +515,837 @@ select,input{font-family:inherit;}
     pointer-events:none;z-index:2;
     animation:navHint 1.5s ease-in-out infinite;
   }
-  .navtabs__hint svg{width:15px;height:15px;}
-  .navtabs.is-scrolled .navtabs__hint{opacity:0;transition:opacity .35s ease;}
+  #umi-root .navtabs__hint svg{width:15px;height:15px;}
+  #umi-root .navtabs.is-scrolled .navtabs__hint{opacity:0;transition:opacity .35s ease;}
 }
-@media (prefers-reduced-motion: reduce){ .navtabs__hint{animation:none;} }
+@media (prefers-reduced-motion: reduce){ #umi-root .navtabs__hint{animation:none;} }
 
-/* ─── EXPERIÊNCIA / LOJA (fechamento) ───────────────────────────────── */
-.shop__panel{display:flex;gap:clamp(28px,3.5vw,48px);align-items:stretch;flex-wrap:wrap;width:100%;}
-.shop__media{flex:1 1 460px;min-width:0;}
-.shop__buy{flex:1 1 360px;min-width:0;max-width:460px;display:flex;flex-direction:column;}
+/* --- EXPERIÊNCIA / LOJA (fechamento) --------------------------------- */
+#umi-root .shop__panel{display:flex;gap:clamp(28px,3.5vw,48px);align-items:stretch;flex-wrap:wrap;width:100%;}
+#umi-root .shop__media{flex:1 1 460px;min-width:0;}
+#umi-root .shop__buy{flex:1 1 360px;min-width:0;max-width:460px;display:flex;flex-direction:column;}
 /* carrossel */
-.gstage{position:relative;width:100%;aspect-ratio:899/560;border-radius:20px;overflow:hidden;background:#1d1133;}
-.gslide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;}
-.gslide.is-active{opacity:1;}
-.gslide img{width:100%;height:100%;object-fit:cover;}
-.gstage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.1) 42%,rgba(0,0,0,0) 70%);}
-.gbadge{position:absolute;left:24px;top:24px;z-index:3;background:var(--vio);color:#fff;font-weight:700;font-size:13px;padding:7px 16px;border-radius:100px;}
-.gcounter{position:absolute;right:24px;top:24px;z-index:3;color:#fff;font-weight:700;font-size:14px;letter-spacing:1.5px;background:rgba(0,0,0,.32);padding:6px 13px;border-radius:100px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
-.gcap{position:absolute;left:28px;right:90px;bottom:34px;z-index:3;color:#fff;}
-.gcap h4{font-family:var(--coco);font-weight:800;font-size:clamp(22px,2.6vw,30px);line-height:1.05;margin-bottom:8px;}
-.gcap p{font-weight:400;font-size:clamp(14px,1.6vw,16px);color:#e8e8e8;line-height:1.3;}
-.garrow{position:absolute;top:calc(50% - 26px);z-index:4;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.65);background:rgba(0,0,0,.28);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .15s,transform .15s;}
-.garrow:hover{background:rgba(0,0,0,.55);transform:scale(1.07);}
-.garrow--prev{left:20px;} .garrow--next{right:20px;}
-.gprogress{position:absolute;left:0;bottom:0;height:4px;width:100%;background:rgba(255,255,255,.22);z-index:3;}
-.gprogress span{display:block;height:100%;width:0%;background:var(--yellow);}
-.gthumbs{display:flex;gap:14px;margin-top:14px;}
-.gthumb{flex:1;min-width:0;aspect-ratio:210/116;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;border:3px solid transparent;transition:border-color .15s,transform .15s;}
-.gthumb img{width:100%;height:100%;object-fit:cover;}
-.gthumb::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35);transition:opacity .15s;}
-.gthumb:hover{transform:translateY(-2px);} .gthumb:hover::after{opacity:.4;}
-.gthumb.is-active{border-color:var(--vio);} .gthumb.is-active::after{opacity:0;}
+#umi-root .gstage{position:relative;width:100%;aspect-ratio:899/560;border-radius:20px;overflow:hidden;background:#1d1133;}
+#umi-root .gslide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;}
+#umi-root .gslide.is-active{opacity:1;}
+#umi-root .gslide img{width:100%;height:100%;object-fit:cover;}
+#umi-root .gstage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.1) 42%,rgba(0,0,0,0) 70%);}
+#umi-root .gbadge{position:absolute;left:24px;top:24px;z-index:3;background:var(--vio);color:#fff;font-weight:700;font-size:13px;padding:7px 16px;border-radius:100px;}
+#umi-root .gcounter{position:absolute;right:24px;top:24px;z-index:3;color:#fff;font-weight:700;font-size:14px;letter-spacing:1.5px;background:rgba(0,0,0,.32);padding:6px 13px;border-radius:100px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+#umi-root .gcap{position:absolute;left:28px;right:90px;bottom:34px;z-index:3;color:#fff;}
+#umi-root .gcap h4{font-family:var(--coco);font-weight:800;font-size:clamp(22px,2.6vw,30px);line-height:1.05;margin-bottom:8px;}
+#umi-root .gcap p{font-weight:400;font-size:clamp(14px,1.6vw,16px);color:#e8e8e8;line-height:1.3;}
+#umi-root .garrow{position:absolute;top:calc(50% - 26px);z-index:4;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.65);background:rgba(0,0,0,.28);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .15s,transform .15s;}
+#umi-root .garrow:hover{background:rgba(0,0,0,.55);transform:scale(1.07);}
+#umi-root .garrow--prev{left:20px;} #umi-root .garrow--next{right:20px;}
+#umi-root .gprogress{position:absolute;left:0;bottom:0;height:4px;width:100%;background:rgba(255,255,255,.22);z-index:3;}
+#umi-root .gprogress span{display:block;height:100%;width:0%;background:var(--yellow);}
+#umi-root .gthumbs{display:flex;gap:14px;margin-top:14px;}
+#umi-root .gthumb{flex:1;min-width:0;aspect-ratio:210/116;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;border:3px solid transparent;transition:border-color .15s,transform .15s;}
+#umi-root .gthumb img{width:100%;height:100%;object-fit:cover;}
+#umi-root .gthumb::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35);transition:opacity .15s;}
+#umi-root .gthumb:hover{transform:translateY(-2px);} #umi-root .gthumb:hover::after{opacity:.4;}
+#umi-root .gthumb.is-active{border-color:var(--vio);} #umi-root .gthumb.is-active::after{opacity:0;}
 /* card de compra */
-.buy__brand{height:26px;width:auto;align-self:flex-start;margin-bottom:14px;}
-.buy__logo{height:62px;width:auto;align-self:flex-start;margin-bottom:2px;}
-.buy__sub{font-size:clamp(15px,1.8vw,18px);color:var(--gray);line-height:1.45;margin-top:14px;}
-.buy__sub b{font-weight:700;color:var(--black);}
-.buy__feats{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;}
-.buy__feats li{position:relative;padding-left:30px;font-size:15px;color:var(--black);line-height:1.4;}
-.buy__feats li::before{content:"";position:absolute;left:0;top:1px;width:19px;height:19px;background:url('Assets/verificar.svg') no-repeat center/contain;}
-.buy__lbl{font-family:var(--coco-pro);font-weight:700;font-size:15px;color:var(--black);margin:24px 0 12px;}
-.size-opts{display:flex;gap:12px;flex-wrap:wrap;}
-.size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:pointer;}
-.size-btn.is-active{border-color:var(--vio);background:var(--vio);color:#fff;}
-.size-btn:not(.is-active):hover{border-color:var(--vio);color:var(--vio);}
-.buy__cta{padding-top:28px;margin-top:auto;}
-.addcart{display:inline-flex;align-items:center;gap:8px;background:var(--brand-primary);color:var(--black);border:none;cursor:pointer;padding:15px 32px;border-radius:10px;font-weight:800;font-size:17px;transition:transform .15s,filter .2s;}
-.addcart__ic{width:18px;height:18px;flex:0 0 auto;transition:transform .15s;}
-.addcart:hover{transform:translateY(-2px);filter:brightness(1.04);}
-.addcart:hover .addcart__ic{transform:translateX(3px);}
-.buy__foot{margin-top:22px;font-size:12px;color:#9a8fb0;line-height:1.5;}
-.buy__foot a{color:var(--vio);}
-@media (max-width:900px){.shop__buy{max-width:none;}}
+#umi-root .buy__brand{height:26px;width:auto;align-self:flex-start;margin-bottom:14px;}
+#umi-root .buy__logo{height:62px;width:auto;align-self:flex-start;margin-bottom:2px;}
+#umi-root .buy__sub{font-size:clamp(15px,1.8vw,18px);color:var(--gray);line-height:1.45;margin-top:14px;}
+#umi-root .buy__sub b{font-weight:700;color:var(--black);}
+#umi-root .buy__feats{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;}
+#umi-root .buy__feats li{position:relative;padding-left:30px;font-size:15px;color:var(--black);line-height:1.4;}
+#umi-root .buy__feats li::before{content:"";position:absolute;left:0;top:1px;width:19px;height:19px;background:url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/verificar.svg') no-repeat center/contain;}
+#umi-root .buy__lbl{font-family:var(--coco-pro);font-weight:700;font-size:15px;color:var(--black);margin:24px 0 12px;}
+#umi-root .size-opts{display:flex;gap:12px;flex-wrap:wrap;}
+#umi-root .size-btn{border:1.5px solid #ddd3e6;background:#fff;color:var(--vio-card);border-radius:10px;padding:10px 22px;font-weight:700;font-size:15px;cursor:pointer;}
+#umi-root .size-btn.is-active{border-color:var(--vio);background:var(--vio);color:#fff;}
+#umi-root .size-btn:not(.is-active):hover{border-color:var(--vio);color:var(--vio);}
+#umi-root .buy__cta{padding-top:28px;margin-top:auto;}
+#umi-root .addcart{display:inline-flex;align-items:center;gap:8px;background:var(--brand-primary);color:var(--black);border:none;cursor:pointer;padding:15px 32px;border-radius:10px;font-weight:800;font-size:17px;transition:transform .15s,filter .2s;}
+#umi-root .addcart__ic{width:18px;height:18px;flex:0 0 auto;transition:transform .15s;}
+#umi-root .addcart:hover{transform:translateY(-2px);filter:brightness(1.04);}
+#umi-root .addcart:hover .addcart__ic{transform:translateX(3px);}
+#umi-root .buy__foot{margin-top:22px;font-size:12px;color:#9a8fb0;line-height:1.5;}
+#umi-root .buy__foot a{color:var(--vio);}
+@media (max-width:900px){#umi-root .shop__buy{max-width:none;}}
 @media (max-width:760px){
-  .gcap{right:28px;bottom:26px;}
-  .gcap p{display:none;}
-  .garrow{width:42px;height:42px;top:calc(50% - 21px);}
+  #umi-root .gcap{right:28px;bottom:26px;}
+  #umi-root .gcap p{display:none;}
+  #umi-root .garrow{width:42px;height:42px;top:calc(50% - 21px);}
+  /* borda decorativa: reduz offset para não sangrar lateralmente */
+  #umi-root .apply__photo::before{transform:translate(8px,8px);}
 }
 
 /* breakpoints gerais */
-@media (max-width:1100px){.uses{gap:32px;}.apply__grid{gap:36px;}}
+@media (max-width:1100px){#umi-root .uses{gap:32px;}#umi-root .apply__grid{gap:36px;}}
 @media (max-width:920px){
-  .apply__grid{flex-direction:column;}
-  .apply__photo{flex:0 0 auto;width:min(520px,92%);}
-  .apply__head{align-items:center;text-align:center;}
-  .apply__head .sec-title{text-align:center;}
-  .uses{flex-direction:column;align-items:center;}
-  .uses__list{width:100%;}
+  #umi-root .apply__grid{flex-direction:column;}
+  #umi-root .apply__photo{flex:0 0 auto;width:min(520px,92%);}
+  #umi-root .apply__head{align-items:center;text-align:center;}
+  #umi-root .apply__head .sec-title{text-align:center;}
+  #umi-root .uses{flex-direction:column;align-items:center;}
+  #umi-root .uses__list{width:100%;}
 }
+/* --- CORREÇÕES DE RESPONSIVIDADE MOBILE -------------------------------- */
+/* calc: botões de superfície empilham verticalmente em telas estreitas */
+@media (max-width:540px){
+  #umi-root .calc__surface{flex-direction:column;}
+  #umi-root .calc__surface .calc__tbtn{text-align:center;}
+}
+/* shop: botão principal ocupa largura total no mobile */
+@media (max-width:640px){
+  #umi-root .addcart{width:100%;justify-content:center;}
+}
+/* mobile: embalagens em grade 2x2 (evita o 3,6L sozinho na linha de baixo) */
+@media (max-width:480px){
+  #umi-root .size-opts{display:grid;grid-template-columns:1fr 1fr;}
+  #umi-root .size-btn{padding:10px 14px;text-align:center;}
+  /* calc: inputs Largura × Altura transbordam em telas estreitas */
+  #umi-root .calc__ghost{font-size:40px;width:76px;}
+  #umi-root .calc__inputs{gap:8px;}
+  #umi-root .calc__unit{font-size:16px;padding-bottom:10px;}
+  #umi-root .calc__x{font-size:18px;padding-bottom:11px;}
+  /* miniaturas do carrossel ficam inutilizáveis em telas muito estreitas */
+  #umi-root .gthumbs{display:none;}
+  /* toggle de modo: mantém os dois botões lado a lado */
+  #umi-root .calc__toggle{flex-wrap:nowrap;gap:8px;}
+  #umi-root .calc__toggle .calc__tbtn{flex:1 1 0;padding:12px 10px;font-size:13px;}
+}
+/* perf: pula a renderizacao de secoes fora da viewport */
+#umi-root .videos,#umi-root .navtabs-wrap{content-visibility:auto;contain-intrinsic-size:auto 620px;}
 </style>
-</head>
-<body>
+<!-- ============ HERO — PALCO DO PRODUTO ============ -->
+<header class="hero" id="topo">
+<div class="hero__stage">
+<div class="hero__glow">&nbsp;</div>
 
-  <!-- ============ HERO — PALCO DO PRODUTO ============ -->
-  <header class="hero" id="topo">
+<div class="hero__product"><img decoding="async" fetchpriority="high" width="1024" height="1024" alt="Balde Umi Block Cristal 3,6L" draggable="false" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-hero-balde.png" /></div>
 
-    <div class="hero__stage">
-      <div class="hero__glow"></div>
-      <span class="hero__dot" style="left:12.5%;top:120px;width:10px;height:10px;background:var(--gold);"></span>
+<div class="hero__copy"><img decoding="async" alt="Umi Block" class="hero__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-logo.svg" />
+<h1 class="hero__title">O bloqueio <span class="light acc">definitivo</span> contra a umidade.</h1>
 
-      <div class="hero__product">
-        <img src="Assets/umi-hero-balde.png" alt="Balde Umi Block Cristal 3,6L" draggable="false"/>
-      </div>
+<p class="hero__desc">Polímeros modificados com silano, incolor e pronto para uso. Repara trincas, tubulações, telhados e seca com a própria umidade do ar.</p>
 
-      <div class="hero__copy">
-        <img class="hero__logo" src="Assets/umi-logo.svg" alt="Umi Block"/>
-        <h1 class="hero__title">O bloqueio <span class="light acc">definitivo</span> contra a umidade.</h1>
-        <p class="hero__desc">Polímeros modificados com silano, incolor e pronto para uso. Repara trincas, tubulações e telhados — seca com a própria umidade do ar.</p>
-        <div class="hero__actions">
-          <a class="hero-btn hero-btn--vio" href="#beneficios">Conhecer o produto <svg class="hero-btn__ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 16.175V4H11V16.175L5.4 10.575L4 12L12 20L20 12L18.6 10.575L13 16.175Z"/></svg></a>
-          <a class="hero-btn hero-btn--gold" href="#cta">Comprar o produto <svg class="hero-btn__ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </header>
+<div class="hero__actions"><a class="hero-btn hero-btn--vio" href="#beneficios">Conhecer o produto <svg aria-hidden="true" class="hero-btn__ic" fill="currentColor" viewbox="0 0 24 24"><path d="M13 16.175V4H11V16.175L5.4 10.575L4 12L12 20L20 12L18.6 10.575L13 16.175Z"></path></svg></a> <a class="hero-btn hero-btn--gold" href="#cta">Comprar o produto <svg aria-hidden="true" class="hero-btn__ic" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></a></div>
+</div>
+</div>
+</header>
+<!-- ============ BENEFÍCIOS (bento de fotos) ============ -->
 
-  <!-- ============ BENEFÍCIOS (bento de fotos) ============ -->
-  <section class="section benef" id="beneficios" aria-label="Benefícios">
-    <svg class="benef__art benef__wash" viewBox="0 0 1440 333.216" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 32.8445V308.665C209.796 319.409 463.406 313.427 764.893 276.797C984.087 250.302 1213.31 229.179 1440 212.451V33.0887C1440 14.896 1424.63 0 1405.58 0H34.0347C15.2394 0.122098 0 14.7739 0 32.8445Z" fill="#7C3AED"/></svg>
-    <svg class="benef__art benef__ribbon-y" viewBox="0 0 1440 333.216" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 141.878V316.601C197.478 332.107 394.828 325.636 634.85 303.78C976.721 272.523 1242.01 247.859 1440 229.3V135.407L0 141.878Z" fill="#FFCC00"/></svg>
-    <svg class="benef__art benef__ribbon-p" viewBox="0 0 1440 333.216" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 32.8445V308.665C209.796 319.409 463.406 313.427 764.893 276.797C984.087 250.302 1213.31 229.179 1440 212.451V33.0887C1440 14.896 1424.63 0 1405.58 0H34.0347C15.2394 0.122098 0 14.7739 0 32.8445Z" fill="#7A3F91"/></svg>
+<section aria-label="Benefícios" class="section benef" id="beneficios"><svg aria-hidden="true" class="benef__art benef__wash" preserveaspectratio="none" viewbox="0 0 1440 333.216"><path clip-rule="evenodd" d="M0 32.8445V308.665C209.796 319.409 463.406 313.427 764.893 276.797C984.087 250.302 1213.31 229.179 1440 212.451V33.0887C1440 14.896 1424.63 0 1405.58 0H34.0347C15.2394 0.122098 0 14.7739 0 32.8445Z" fill="#7C3AED" fill-rule="evenodd"></path></svg> <svg aria-hidden="true" class="benef__art benef__ribbon-y" preserveaspectratio="none" viewbox="0 0 1440 333.216"><path clip-rule="evenodd" d="M0 141.878V316.601C197.478 332.107 394.828 325.636 634.85 303.78C976.721 272.523 1242.01 247.859 1440 229.3V135.407L0 141.878Z" fill="#FFCC00" fill-rule="evenodd"></path></svg> <svg aria-hidden="true" class="benef__art benef__ribbon-p" preserveaspectratio="none" viewbox="0 0 1440 333.216"><path clip-rule="evenodd" d="M0 32.8445V308.665C209.796 319.409 463.406 313.427 764.893 276.797C984.087 250.302 1213.31 229.179 1440 212.451V33.0887C1440 14.896 1424.63 0 1405.58 0H34.0347C15.2394 0.122098 0 14.7739 0 32.8445Z" fill="#7A3F91" fill-rule="evenodd"></path></svg>
 
-    <div class="container benef__inner">
-    <div class="sec-head rv">
-      <h2 class="sec-title" style="font-size:clamp(30px,3.6vw,52px)">Tecnologia que veda de <span class="yel">verdade.</span></h2>
-      <p class="sec-sub sec-sub--dark">Cada benefício foi pensado para resolver os problemas reais de quem trabalha com impermeabilização no dia a dia.</p>
-    </div>
+<div class="container benef__inner">
+<div class="sec-head rv">
+<h2 class="sec-title" style="font-size:clamp(30px,3.6vw,52px)">Tecnologia que veda de <span class="yel">verdade.</span></h2>
 
-    <div class="bento">
-      <div class="bento__row">
-        <div class="bento-tile bento-tile--produto rv" role="img" aria-label="Umi Block aplicado em obra"></div>
-        <div class="bento-tile bento-tile--uv rv" style="--d:.1s" role="img" aria-label="Resistência UV">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="#FBBF24" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="#FBBF24" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-      </div>
-      <div class="bento__row">
-        <article class="bento-card-4 rv">
-          <p class="big">4%</p>
-          <p class="t">Seca com umidade</p>
-          <p class="d">Cura mesmo com até 4% de umidade no substrato, sem esperar dias de sol.</p>
-        </article>
-        <div class="bento-tile bento-tile--aderencia rv" style="--d:.1s" role="img" aria-label="Ótima aderência"></div>
-        <div class="bento-tile bento-tile--flexivel rv" style="--d:.2s" role="img" aria-label="Super flexível"></div>
-      </div>
-    </div>
-    </div>
-  </section>
+<p class="sec-sub sec-sub--dark">Cada benefício foi pensado para resolver os problemas reais de quem trabalha com impermeabilização no dia a dia.</p>
+</div>
 
-  <!-- ============ COMO APLICAR ============ -->
-  <section class="section apply" aria-label="Como aplicar">
-    <div class="container apply__grid">
-      <div class="apply__photo rv">
-        <img src="Assets/umi-aplicar-foto.png" alt="Aplicação do Umi Block com pincel"/>
-      </div>
-      <div class="apply__steps">
-        <div class="apply__head rv">
-          <h2 class="sec-title">Simples assim: <span class="yel">prepare, aplique, cure.</span></h2>
-        </div>
-        <div class="step rv" style="--d:.05s">
-          <span class="step__num">01</span>
-          <div class="step__txt">
-            <p class="step__title">Prepare a superfície</p>
-            <p class="step__desc">Limpa, firme e <b>seca</b> (até 4% de umidade): sem pó, tintas, óleos, graxa ou partes soltas. É o que garante a aderência total do produto.</p>
-          </div>
-        </div>
-        <div class="step rv" style="--d:.15s">
-          <span class="step__num">02</span>
-          <div class="step__txt">
-            <p class="step__title">Aplique com pincel ou rolo</p>
-            <p class="step__desc">Homogeneíze o produto e aplique de forma uniforme, cobrindo toda a área. <b>Pronto para uso</b> — sem mistura, sem diluição.</p>
-          </div>
-        </div>
-        <div class="step rv" style="--d:.25s">
-          <span class="step__num">03</span>
-          <div class="step__txt">
-            <p class="step__title">Aguarde a cura</p>
-            <p class="step__desc">Aplique <b>2 a 3 demãos</b>, com intervalo de <b>3 horas</b> entre elas. Cura total em <b>24 horas</b>.</p>
-          </div>
-        </div>
-        <p class="apply__note rv" style="--d:.3s">💡 Limpeza das ferramentas: use solvente após o uso — indicado o Aguarrás mineral premium da linha Cristal. Vede bem o frasco: o produto seca em contato com o ar.</p>
-      </div>
-    </div>
-  </section>
+<div class="bento">
+<div class="bento__row">
+<div aria-label="Umi Block aplicado em obra" class="bento-tile bento-tile--produto rv" role="img">&nbsp;</div>
 
-  <!-- ============ APLICAÇÕES ============ -->
-  <section class="section container" aria-label="Aplicações">
-    <div class="sec-head rv">
-      <h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Resolve <span class="vio">qualquer</span> infiltração.</h2>
-      <p class="sec-sub">Do detalhe à área crítica, o Umi Block cobre as situações mais comuns de vazamento e umidade.</p>
-    </div>
+<div aria-label="Resistência UV" class="bento-tile bento-tile--uv rv" role="img" style="--d:.1s"><circle cx="12" cy="12" r="4" stroke="#FBBF24" stroke-width="1.8"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="#FBBF24" stroke-linecap="round" stroke-width="1.8"> </path></circle></div>
+</div>
 
-    <div class="uses">
-      <div class="uses__panel rv">
-        <img class="uses__panel-img" id="useImg" src="Assets/umi-uses-trincas.jpg" alt="Aplicação do Umi Block"/>
-        <p class="uses__kicker">APLICAÇÃO SELECIONADA</p>
-        <p class="uses__name" id="useName">Trincas e microfissuras</p>
-        <p class="uses__desc" id="useDesc">Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.</p>
-      </div>
+<div class="bento__row">
+<article class="bento-card-4 rv">
+<p class="big">4%</p>
 
-      <div class="uses__list rv" style="--d:.1s" role="list">
-        <button class="use-row is-active" type="button" data-img="Assets/umi-uses-trincas.jpg" data-name="Trincas e microfissuras" data-desc="Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.">
-          <img class="use-row__emoji" src="Assets/umi-use-trincas.png" alt="" />
-          <span class="use-row__txt"><span class="use-row__title">Trincas e microfissuras</span><span class="use-row__desc">Sela aberturas em paredes, pisos e lajes</span></span>
-          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
-        </button>
-        <button class="use-row" type="button" data-img="Assets/umi-uses-frestas.jpg" data-name="Frestas de janela" data-desc="Impermeabiliza juntas entre caixilhos e alvenaria, bloqueando a entrada de água.">
-          <img class="use-row__emoji" src="Assets/umi-use-frestas.png" alt="" />
-          <span class="use-row__txt"><span class="use-row__title">Frestas de janela</span><span class="use-row__desc">Impermeabiliza juntas entre caixilhos e alvenaria</span></span>
-          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
-        </button>
-        <button class="use-row" type="button" data-img="Assets/umi-uses-canos.jpg" data-name="Canos e tubulações" data-desc="Estanca vazamentos em tubos e conexões expostas, mesmo em superfícies úmidas.">
-          <img class="use-row__emoji" src="Assets/umi-use-canos.png" alt="" />
-          <span class="use-row__txt"><span class="use-row__title">Canos e tubulações</span><span class="use-row__desc">Estanca vazamentos em tubos e conexões expostas</span></span>
-          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
-        </button>
-        <button class="use-row" type="button" data-img="Assets/umi-uses-telhados.jpg" data-name="Telhados e calhas" data-desc="Repara infiltrações em pontos críticos do telhado com resistência ao tempo.">
-          <img class="use-row__emoji" src="Assets/umi-use-telhados.png" alt="" />
-          <span class="use-row__txt"><span class="use-row__title">Telhados e calhas</span><span class="use-row__desc">Repara infiltrações em pontos críticos do telhado</span></span>
-          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
-        </button>
-        <button class="use-row" type="button" data-img="Assets/umi-uses-rejuntes.jpg" data-name="Rejuntes deteriorados" data-desc="Fecha frestas em rejuntes de áreas molhadas, sem precisar refazer o rejunte.">
-          <img class="use-row__emoji" src="Assets/umi-use-rejuntes.png" alt="" />
-          <span class="use-row__txt"><span class="use-row__title">Rejuntes deteriorados</span><span class="use-row__desc">Fecha frestas em rejuntes de áreas molhadas</span></span>
-          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
-        </button>
-        <button class="use-row" type="button" data-img="Assets/umi-uses-paredes.jpg" data-name="Paredes externas" data-desc="Proteção contra infiltração em fachadas e muros expostos à chuva.">
-          <img class="use-row__emoji" src="Assets/umi-use-paredes.png" alt="" />
-          <span class="use-row__txt"><span class="use-row__title">Paredes externas</span><span class="use-row__desc">Proteção contra infiltração em fachadas e muros</span></span>
-          <svg class="use-row__arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
+<p class="t">Seca com umidade</p>
 
-  <!-- ============ EMBALAGENS & RENDIMENTO ============ -->
-  <section class="pack" aria-label="Embalagens e rendimento">
-    <div class="container sec-head rv">
-      <h2 class="sec-title" style="font-size:clamp(32px,3.9vw,56px)">Do reparo pontual à <span class="yel">laje inteira.</span></h2>
-      <p class="sec-sub sec-sub--coco">Quatro tamanhos, um para cada obra. Rendimento por demão, aplique no mínimo 2 demãos.</p>
-    </div>
-    <div class="container pack__grid">
-      <article class="pack-card rv" style="--d:.05s">
-        <p class="pack-card__size">250<small>ml</small></p>
-        <p class="pack-card__yield"><b>0,6 a 1m²</b> por demão<br/>Reparos pontuais e retoques</p>
-        <span class="pack-card__bar"><i style="--w:8%"></i></span>
-      </article>
-      <article class="pack-card rv" style="--d:.15s">
-        <p class="pack-card__size">500<small>ml</small></p>
-        <p class="pack-card__yield"><b>2 a 3m²</b> por demão<br/>Frestas, rejuntes e peitoris</p>
-        <span class="pack-card__bar"><i style="--w:18%"></i></span>
-      </article>
-      <article class="pack-card rv" style="--d:.25s">
-        <p class="pack-card__size">1<small>L</small></p>
-        <p class="pack-card__yield"><b>4 a 6m²</b> por demão<br/>Banheiros, lavanderias e sacadas</p>
-        <span class="pack-card__bar"><i style="--w:38%"></i></span>
-      </article>
-      <article class="pack-card rv" style="--d:.35s">
-        <span class="pack-card__badge">Maior rendimento</span>
-        <p class="pack-card__size">3,6<small>L</small></p>
-        <p class="pack-card__yield"><b>14 a 24m²</b> por demão<br/>Lajes, telhados e varandas</p>
-        <span class="pack-card__bar"><i style="--w:100%"></i></span>
-      </article>
-    </div>
-    <p class="container pack__note rv" style="--d:.4s">* Rendimento pode variar conforme a porosidade da superfície e o método de aplicação.</p>
-  </section>
+<p class="d">Cura mesmo com até 4% de umidade no substrato, sem esperar dias de sol.</p>
+</article>
 
-  <!-- ============ CALCULADORA DE RENDIMENTO ============ -->
-  <section class="section calc" aria-label="Calculadora de rendimento">
-    <div class="calc__card rv">
-      <div class="calc__head">
-        <h2>Calculadora de Rendimento</h2>
-        <p>Impermeabilizante Umi Block · Incolor · Pronto para uso</p>
-      </div>
+<div aria-label="Ótima aderência" class="bento-tile bento-tile--aderencia rv" role="img" style="--d:.1s">&nbsp;</div>
 
-      <div class="calc__field">
-        <label class="calc__label" for="calcArea">Área de Uso</label>
-        <select class="calc__select" id="calcArea">
-          <option value="">Selecione</option>
-          <option>Laje ou varanda</option>
-          <option>Telhado e calhas</option>
-          <option>Banheiro ou área molhada</option>
-          <option>Parede externa</option>
-          <option>Trincas e reparos pontuais</option>
-        </select>
-      </div>
+<div aria-label="Super flexível" class="bento-tile bento-tile--flexivel rv" role="img" style="--d:.2s">&nbsp;</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ COMO APLICAR ============ -->
 
-      <div class="calc__grid">
-        <div>
-          <p class="calc__step-h"><i>1</i> Área do ambiente</p>
-          <div class="calc__toggle">
-            <button class="calc__tbtn is-active" type="button" id="modeDim">📐 Tamanho do ambiente</button>
-            <button class="calc__tbtn" type="button" id="modeM2">◳ Metros quadrados</button>
-          </div>
-          <div class="calc__inputs" id="inputsDim">
-            <input class="calc__ghost" id="dimW" type="number" min="0" step="0.1" placeholder="5"/>
-            <span class="calc__unit">m</span>
-            <span class="calc__x">×</span>
-            <input class="calc__ghost" id="dimH" type="number" min="0" step="0.1" placeholder="6"/>
-            <span class="calc__unit">m</span>
-          </div>
-          <div class="calc__inputs" id="inputsM2" style="display:none">
-            <input class="calc__ghost" id="m2" type="number" min="0" step="0.5" placeholder="30" style="width:160px"/>
-            <span class="calc__unit">m²</span>
-          </div>
-          <p class="calc__eq" id="eqM2">= — m²</p>
-        </div>
-        <div class="calc__divider"></div>
-        <div>
-          <p class="calc__step-h"><i>2</i> Demãos</p>
-          <div class="calc__inputs">
-            <input class="calc__ghost" id="demaos" type="number" min="2" max="3" step="1" value="2" style="width:90px"/>
-            <span class="calc__unit">demãos</span>
-          </div>
-          <p class="calc__hint">A ficha técnica recomenda no mínimo 2 demãos, com intervalo de 3 horas entre elas.</p>
-        </div>
-      </div>
+<section aria-label="Como aplicar" class="section apply">
+<div class="container apply__grid">
+<div class="apply__photo rv"><img loading="lazy" decoding="async" width="610" height="742" alt="Aplicação do Umi Block com pincel" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-aplicar-foto.png" /></div>
 
-      <div class="calc__bottom">
-        <p class="calc__step-h"><i>3</i> Como é a superfície?</p>
-        <div class="calc__surface">
-          <button class="calc__tbtn is-active" type="button" id="surfLisa">🏠 Lisa ou pouco porosa</button>
-          <button class="calc__tbtn" type="button" id="surfPorosa">🧱 Muito porosa</button>
-        </div>
+<div class="apply__steps">
+<div class="apply__head rv">
+<h2 class="sec-title">Simples assim: <span class="yel">prepare, aplique, cure.</span></h2>
+</div>
 
-        <div class="calc__result" id="calcResult" hidden>
-          <div class="calc__result-txt">
-            <b id="resLitros">—</b>
-            <span id="resPacks">—</span>
-          </div>
-          <a class="calc__buy" href="#cta">Comprar agora →</a>
-        </div>
-        <p class="calc__result-note">Estimativa com base no consumo de 150–250mL por m²/demão da ficha técnica. O rendimento varia com a porosidade e o método de aplicação.</p>
-      </div>
-    </div>
-  </section>
+<div class="step rv" style="--d:.05s"><span class="step__num">01</span>
 
-  <!-- ============ VÍDEOS ============ -->
-  <section class="videos container" aria-label="Vídeos">
-    <div class="vid-card rv"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_BANCO_DE_MADEIRA.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/><button class="vid-card__full" type="button" aria-label="Maximizar vídeo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button></div>
-    <div class="vid-card rv" style="--d:.1s"><video class="vid-card__media" src="Assets/CRISTAL_UMI_BLOCK_UMIDADE-ASCENDENTE.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/><button class="vid-card__full" type="button" aria-label="Maximizar vídeo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button></div>
-    <div class="vid-card rv" style="--d:.2s"><video class="vid-card__media" src="Assets/Umi Block - Banco de madeira.mp4#t=0.1" preload="metadata" playsinline></video><img class="vid-card__play" src="Assets/umi-play.svg" alt=""/><button class="vid-card__full" type="button" aria-label="Maximizar vídeo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button></div>
-  </section>
+<div class="step__txt">
+<p class="step__title">Prepare a superfície</p>
 
-  <!-- ============ INFORMAÇÕES (navtabs) ============ -->
-  <section class="navtabs-wrap" aria-label="Informações do produto">
-    <div class="navtabs rv">
-      <nav class="navtabs__nav">
-        <button class="navtabs__tab is-active" data-tab="oque">O que é</button>
-        <button class="navtabs__tab" data-tab="beneficios">Benefícios</button>
-        <button class="navtabs__tab" data-tab="modo">Modo de Uso</button>
-        <button class="navtabs__tab" data-tab="composicao">Composição</button>
-      </nav>
-      <div class="navtabs__divider"></div>
-      <div class="navtabs__content">
-        <div class="navtabs__panel is-active" data-panel="oque">
-          <h2>Informações</h2>
-          <p class="lbl">O que é</p>
-          <p>O Umi Block é um impermeabilizante flexível incolor de alto desempenho, formulado com polímeros modificados com silano, que seca com a presença de umidade. Pronto para uso, possui ótima resistência UV e a intempéries. Indicado para reparo em áreas com vazamentos e infiltrações como lajes, varandas, sacadas, lavanderias, banheiros e peitoris, em locais de tráfego leve.</p>
-        </div>
-        <div class="navtabs__panel" data-panel="beneficios">
-          <h2>Benefícios</h2>
-          <p class="lbl">Por que usar</p>
-          <p>Alta resistência a intempéries e raios UV; pronto para uso, sem mistura; excelente flexibilidade — acompanha a estrutura sem trincar; ótima aderência em superfícies cimentícias; fácil aplicação com pincel ou rolo; e seca na presença de até 4% de umidade no substrato, sem esperar dias de sol.</p>
-        </div>
-        <div class="navtabs__panel" data-panel="modo">
-          <h2>Modo de Uso</h2>
-          <p class="lbl">Como aplicar</p>
-          <p>Prepare a superfície: limpa, firme, seca (até 4% de umidade) e livre de pó, tintas, óleos e partes soltas. Homogeneíze o produto e aplique com pincel ou rolo de forma uniforme, cobrindo toda a área. Aplique de 2 a 3 demãos, com intervalo de 3 horas entre elas; cura total em 24 horas. Limpe as ferramentas com solvente (indicado o Aguarrás mineral premium da linha Cristal) e vede bem o frasco após o uso.</p>
-        </div>
-        <div class="navtabs__panel" data-panel="composicao">
-          <h2>Composição</h2>
-          <p class="lbl">O que contém</p>
-          <p>Polímeros modificados com silano, em formulação monocomponente. Líquido transparente, densidade 1,08 kg/L a 25°C, não inflamável. Validade de 12 meses a partir da fabricação. Disponível em 250ml, 500ml, 1L e 3,6L.</p>
-        </div>
-      </div>
-      <span class="navtabs__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </div>
-  </section>
+<p class="step__desc">Limpa, firme e <b>seca</b> (até 4% de umidade): sem pó, tintas, óleos, graxa ou partes soltas. É o que garante a aderência total do produto.</p>
+</div>
+</div>
 
-  <!-- ============ EXPERIÊNCIA / LOJA (fechamento) ============ -->
-  <section class="section container shop" id="cta" aria-label="Comprar Umi Block">
-    <div class="sec-head rv">
-      <h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Chega de conviver com <span class="vio">infiltração.</span></h2>
-      <p class="sec-sub">Veja o Umi Block em ação e garanta o seu — pronto para usar, cura em 24 horas.</p>
-    </div>
+<div class="step rv" style="--d:.15s"><span class="step__num">02</span>
 
-    <div class="shop__panel">
-      <div class="shop__media rv">
-        <div class="gstage">
-          <div class="gslide is-active"><img src="Assets/umi-uses-trincas.jpg" alt="Trincas e microfissuras"/></div>
-          <div class="gslide"><img src="Assets/umi-uses-frestas.jpg" alt="Frestas de janela"/></div>
-          <div class="gslide"><img src="Assets/umi-uses-canos.jpg" alt="Canos e tubulações"/></div>
-          <div class="gslide"><img src="Assets/umi-uses-telhados.jpg" alt="Telhados e calhas"/></div>
-          <div class="gslide"><img src="Assets/umi-uses-rejuntes.jpg" alt="Rejuntes deteriorados"/></div>
-          <div class="gslide"><img src="Assets/umi-uses-paredes.jpg" alt="Paredes externas"/></div>
-          <span class="gbadge">Aplicações</span>
-          <span class="gcounter">01 / 06</span>
-          <div class="gcap"><h4 data-cap-title>Trincas e microfissuras</h4><p data-cap-text>Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.</p></div>
-          <button class="garrow garrow--prev" aria-label="Anterior"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 4l-8 8 8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="garrow garrow--next" aria-label="Próximo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 4l8 8-8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="gprogress"><span></span></div>
-        </div>
-        <div class="gthumbs">
-          <div class="gthumb is-active" data-title="Trincas e microfissuras" data-text="Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade."><img src="Assets/umi-uses-trincas.jpg" alt=""/></div>
-          <div class="gthumb" data-title="Frestas de janela" data-text="Impermeabiliza juntas entre caixilhos e alvenaria, bloqueando a entrada de água."><img src="Assets/umi-uses-frestas.jpg" alt=""/></div>
-          <div class="gthumb" data-title="Canos e tubulações" data-text="Estanca vazamentos em tubos e conexões expostas, mesmo em superfícies úmidas."><img src="Assets/umi-uses-canos.jpg" alt=""/></div>
-          <div class="gthumb" data-title="Telhados e calhas" data-text="Repara infiltrações em pontos críticos do telhado com resistência ao tempo."><img src="Assets/umi-uses-telhados.jpg" alt=""/></div>
-          <div class="gthumb" data-title="Rejuntes deteriorados" data-text="Fecha frestas em rejuntes de áreas molhadas, sem precisar refazer o rejunte."><img src="Assets/umi-uses-rejuntes.jpg" alt=""/></div>
-          <div class="gthumb" data-title="Paredes externas" data-text="Proteção contra infiltração em fachadas e muros expostos à chuva."><img src="Assets/umi-uses-paredes.jpg" alt=""/></div>
-        </div>
-      </div>
+<div class="step__txt">
+<p class="step__title">Aplique com pincel ou rolo</p>
 
-      <div class="shop__buy rv" style="--d:.1s">
-        <img class="buy__brand" src="Assets/LOGO_CRISTAL_ROXO.svg" alt="Linha Cristal"/>
-        <img class="buy__logo" src="Assets/logo-umiblock.png" alt="Umi Block"/>
-        <p class="buy__sub"><b>Impermeabilizante incolor</b> da Linha Cristal. Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.</p>
-        <ul class="buy__feats">
-          <li>Incolor — não altera o acabamento da superfície</li>
-          <li>Pronto para usar, sem mistura</li>
-          <li>Cura em 24 horas</li>
-        </ul>
-        <p class="buy__lbl">Embalagem</p>
-        <div class="size-opts">
-          <span class="size-btn" data-variant="268746">250mL</span>
-          <span class="size-btn is-active" data-variant="269381">500mL c/ Bico</span>
-          <span class="size-btn" data-variant="269096">1L</span>
-          <span class="size-btn" data-variant="269010">3,6L</span>
-        </div>
-        <div class="buy__cta"><button class="addcart" type="button">Comprar agora <svg class="addcart__ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"/></svg></button></div>
-        <p class="buy__foot">Umi Block · Impermeabilizante incolor · Linha Cristal — FDS disponível em <a href="https://www.linhacristal.com.br" target="_blank" rel="noopener">linhacristal.com.br</a></p>
-      </div>
-    </div>
-  </section>
+<p class="step__desc">Homogeneíze o produto e aplique de forma uniforme, cobrindo toda a área. <b>Pronto para uso</b> sem mistura, sem diluição.</p>
+</div>
+</div>
 
+<div class="step rv" style="--d:.25s"><span class="step__num">03</span>
+
+<div class="step__txt">
+<p class="step__title">Aguarde a cura</p>
+
+<p class="step__desc">Aplique <b>2 a 3 demãos</b>, com intervalo de <b>3 horas</b> entre elas. Cura total em <b>24 horas</b>.</p>
+</div>
+</div>
+
+<p class="apply__note rv" style="--d:.3s">Limpeza das ferramentas: use solvente após o uso indicado o Aguarrás mineral premium da linha Cristal. Vede bem o frasco: o produto seca em contato com o ar.</p>
+</div>
+</div>
+</section>
+<!-- ============ APLICAÇÕES ============ -->
+
+<section aria-label="Aplicações" class="section container">
+<div class="sec-head rv">
+<h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Resolve <span class="vio">qualquer</span> infiltração.</h2>
+
+<p class="sec-sub">Do detalhe à área crítica, o Umi Block cobre as situações mais comuns de vazamento e umidade.</p>
+</div>
+
+<div class="uses">
+<div class="uses__panel rv"><img loading="lazy" decoding="async" alt="Aplicação do Umi Block" class="uses__panel-img" id="useImg" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-trincas.jpg" />
+<p class="uses__kicker">APLICAÇÃO SELECIONADA</p>
+
+<p class="uses__name" id="useName">Trincas e microfissuras</p>
+
+<p class="uses__desc" id="useDesc">Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.</p>
+</div>
+
+<div class="uses__list rv" role="list" style="--d:.1s"><button class="use-row is-active" data-desc="Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade." data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-trincas.jpg" data-name="Trincas e microfissuras" type="button"><img loading="lazy" decoding="async" alt="" class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-trincas.png" /> <span class="use-row__txt"><span class="use-row__title">Trincas e microfissuras</span><span class="use-row__desc">Sela aberturas em paredes, pisos e lajes</span></span> <svg aria-hidden="true" class="use-row__arrow" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></button><button class="use-row" data-desc="Impermeabiliza juntas entre caixilhos e alvenaria, bloqueando a entrada de água." data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-frestas.jpg" data-name="Frestas de janela" type="button"><img loading="lazy" decoding="async" alt="" class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-frestas.png" /> <span class="use-row__txt"><span class="use-row__title">Frestas de janela</span><span class="use-row__desc">Impermeabiliza juntas entre caixilhos e alvenaria</span></span> <svg aria-hidden="true" class="use-row__arrow" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></button><button class="use-row" data-desc="Estanca vazamentos em tubos e conexões expostas, mesmo em superfícies úmidas." data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-canos.jpg" data-name="Canos e tubulações" type="button"><img loading="lazy" decoding="async" alt="" class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-canos.png" /> <span class="use-row__txt"><span class="use-row__title">Canos e tubulações</span><span class="use-row__desc">Estanca vazamentos em tubos e conexões expostas</span></span> <svg aria-hidden="true" class="use-row__arrow" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></button><button class="use-row" data-desc="Repara infiltrações em pontos críticos do telhado com resistência ao tempo." data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-telhados.jpg" data-name="Telhados e calhas" type="button"><img loading="lazy" decoding="async" alt="" class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-telhados.png" /> <span class="use-row__txt"><span class="use-row__title">Telhados e calhas</span><span class="use-row__desc">Repara infiltrações em pontos críticos do telhado</span></span> <svg aria-hidden="true" class="use-row__arrow" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></button><button class="use-row" data-desc="Fecha frestas em rejuntes de áreas molhadas, sem precisar refazer o rejunte." data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-rejuntes.jpg" data-name="Rejuntes deteriorados" type="button"><img loading="lazy" decoding="async" alt="" class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-rejuntes.png" /> <span class="use-row__txt"><span class="use-row__title">Rejuntes deteriorados</span><span class="use-row__desc">Fecha frestas em rejuntes de áreas molhadas</span></span> <svg aria-hidden="true" class="use-row__arrow" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></button><button class="use-row" data-desc="Proteção contra infiltração em fachadas e muros expostos à chuva." data-img="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-paredes.jpg" data-name="Paredes externas" type="button"><img loading="lazy" decoding="async" alt="" class="use-row__emoji" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-use-paredes.png" /> <span class="use-row__txt"><span class="use-row__title">Paredes externas</span><span class="use-row__desc">Proteção contra infiltração em fachadas e muros</span></span> <svg aria-hidden="true" class="use-row__arrow" fill="currentColor" viewbox="0 0 24 24"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z"></path></svg></button></div>
+</div>
+</section>
+<!-- ============ EMBALAGENS & RENDIMENTO ============ -->
+
+<section aria-label="Embalagens e rendimento" class="pack">
+<div class="container sec-head rv">
+<h2 class="sec-title" style="font-size:clamp(32px,3.9vw,56px)">Do reparo pontual à <span class="yel">laje inteira.</span></h2>
+
+<p class="sec-sub sec-sub--coco">Quatro tamanhos, um para cada obra. Rendimento por demão, aplique no mínimo 2 demãos.</p>
+</div>
+
+<div class="container pack__grid">
+<article class="pack-card rv" style="--d:.05s">
+<p class="pack-card__size">250<small>ml</small></p>
+
+<p class="pack-card__yield"><b>0,6 a 1m²</b> por demão<br />
+Reparos pontuais e retoques</p>
+</article>
+
+<article class="pack-card rv" style="--d:.15s">
+<p class="pack-card__size">500<small>ml</small></p>
+
+<p class="pack-card__yield"><b>2 a 3m²</b> por demão<br />
+Frestas, rejuntes e peitoris</p>
+</article>
+
+<article class="pack-card rv" style="--d:.25s">
+<p class="pack-card__size">1<small>L</small></p>
+
+<p class="pack-card__yield"><b>4 a 6m²</b> por demão<br />
+Banheiros, lavanderias e sacadas</p>
+</article>
+
+<article class="pack-card rv" style="--d:.35s"><span class="pack-card__badge">Maior rendimento</span>
+
+<p class="pack-card__size">3,6<small>L</small></p>
+
+<p class="pack-card__yield"><b>14 a 24m²</b> por demão<br />
+Lajes, telhados e varandas</p>
+</article>
+</div>
+
+<p class="container pack__note rv" style="--d:.4s">* Rendimento pode variar conforme a porosidade da superfície e o método de aplicação.</p>
+</section>
+<!-- ============ CALCULADORA DE RENDIMENTO ============ -->
+
+<section aria-label="Calculadora de rendimento" class="section calc">
+<div class="calc__card rv">
+<div class="calc__head">
+<h2>Calculadora de Rendimento</h2>
+
+<p>Impermeabilizante Umi Block · Incolor · Pronto para uso</p>
+</div>
+
+<div class="calc__grid">
+<div>
+<p class="calc__step-h"><i>1</i> Área do ambiente</p>
+
+<div class="calc__toggle"><button class="calc__tbtn is-active" id="modeDim" type="button"><svg class="calc__ico" viewBox="0 0 128 128" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="m72 93v-33a4 4 0 0 0 -4-4h-33v4h33v33z"/><path d="m124 97h-93v-93a4 4 0 0 0 -4-4h-23a4 4 0 0 0 -4 4v120a4 4 0 0 0 4 4h120a4 4 0 0 0 4-4v-23a4 4 0 0 0 -4-4zm0 27h-120v-120h4v114a2.0001 2.0001 0 0 0 2 2h114zm0-8h-112v-112h15v4h-9a2 2 0 0 0 0 4h9v4h-4a2 2 0 0 0 0 4h4v4h-4a2 2 0 0 0 0 4h4v4h-9a2 2 0 0 0 0 4h9v4h-5a2 2 0 0 0 0 4h5v4h-5a2 2 0 0 0 0 4h5v4h-9a2 2 0 0 0 0 4h9v4h-5a2 2 0 0 0 0 4h5v4h-5a2 2 0 0 0 0 4h5v4h-9a2 2 0 0 0 0 4h9v4h-5a2 2 0 0 0 0 4h5v9h9v4a2 2 0 0 0 4 0v-4h4v4a2 2 0 0 0 4 0v-4h4v9a2 2 0 0 0 4 0v-9h4v5a2 2 0 0 0 4 0v-5h4v5a2 2 0 0 0 4 0v-5h4v9a2 2 0 0 0 4 0v-9h4v5a2 2 0 0 0 4 0v-5h4v5a2 2 0 0 0 4 0v-5h4z"/></svg> Largura × Altura</button><button class="calc__tbtn" id="modeM2" type="button"><svg class="calc__ico" viewBox="0 0 682.66669 682.66669" width="18" height="18" aria-hidden="true"><defs><clipPath clipPathUnits="userSpaceOnUse" id="umiAreaClip"><path d="M 0,512 H 512 V 0 H 0 Z"/></clipPath></defs><mask id="umiAreaMask"><rect x="0" y="0" width="100%" height="100%" fill="white"/><g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)"><path transform="matrix(1,0,0,1,472,452)" d="m 0,0 v -260 c 0,-11.017 8.91,-19.959 19.926,-20 h 0.001 C 31.001,-280.041 40,-271.074 40,-260 V 0 c 0,33.137 -26.863,60 -60,60 h -259 c -11.074,0 -20.041,-8.999 -20,-20.073 C -298.959,28.909 -290.017,20 -279,20 H -20 C -8.954,20 0,11.046 0,0" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"/></g></mask><g mask="url(#umiAreaMask)"><g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)"><g clip-path="url(#umiAreaClip)"><g transform="translate(476.4941,74)"><path d="m 0,0 h -342.494 c -33.137,0 -60,26.863 -60,60 v 333" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(20,450)"><path d="m 0,0 33.787,33.332 c 11.715,11.558 30.711,11.558 42.426,0 L 110,0" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(449,130)"><path d="m 0,0 34.213,-33.787 c 11.716,-11.716 11.716,-30.71 0,-42.426 L 0,-110" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(472,452)"><path d="m 0,0 v -260 c 0,-11.017 8.91,-19.959 19.926,-20 h 0.001 C 31.001,-280.041 40,-271.074 40,-260 V 0 c 0,33.137 -26.863,60 -60,60 h -259 c -11.074,0 -20.041,-8.999 -20,-20.073 C -298.959,28.909 -290.017,20 -279,20 H -20 C -8.954,20 0,11.046 0,0" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"/></g><g transform="translate(154,278.125)"><path d="M 0,0 C 0,19.33 15.67,35 35,35 54.33,35 70,19.33 70,0 v -89.125" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(154,189)"><path d="M 0,0 V 125" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(224,278.125)"><path d="M 0,0 C 0,19.33 15.67,35 35,35 54.33,35 70,19.33 70,0 v -89.016" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(412,288)"><path d="m 0,0 h -54 c 0,0 52.877,48 52.877,69.818 0,14.4 -11.758,26.182 -26.129,26.182" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g><g transform="translate(358,357.8184)"><path d="M 0,0 C 0,14.399 11.758,26.182 26.129,26.182" style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"/></g></g></g></g></svg> Já sei a área</button></div>
+
+<div class="calc__inputs" id="inputsDim"><input class="calc__ghost" id="dimW" min="0" placeholder="5" step="0.1" type="number" /> <span class="calc__unit">m</span> <span class="calc__x">×</span> <input class="calc__ghost" id="dimH" min="0" placeholder="6" step="0.1" type="number" /> <span class="calc__unit">m</span></div>
+
+<div class="calc__inputs" id="inputsM2" style="display:none"><input class="calc__ghost" id="m2" min="0" placeholder="30" step="0.5" style="width:160px" type="number" /> <span class="calc__unit">m²</span></div>
+
+<p class="calc__eq" id="eqM2">= — m²</p>
+</div>
+
+<div class="calc__divider">&nbsp;</div>
+
+<div>
+<p class="calc__step-h"><i>2</i> Demãos</p>
+
+<div class="calc__inputs"><input class="calc__ghost" id="demaos" placeholder="2" step="1" style="width:90px" type="number" /> <span class="calc__unit">demãos</span></div>
+
+<p class="calc__hint" id="demaosHint">A ficha técnica recomenda no mínimo 2 demãos, com intervalo de 3 horas entre elas.</p>
+</div>
+</div>
+
+<div class="calc__bottom">
+<p class="calc__step-h"><i>3</i> Como é a superfície?</p>
+
+<div class="calc__surface"><button class="calc__tbtn is-active" id="surfLisa" type="button">Lisa ou pouco porosa (Ex: Azulejo)</button><button class="calc__tbtn" id="surfPorosa" type="button">Muito porosa (Ex: Cimento ou madeira)</button></div>
+
+<div class="calc__result" hidden="" id="calcResult">
+<div class="calc__result-txt"><b id="resLitros">—</b> <span id="resPacks">—</span></div>
+<a class="calc__buy" href="#cta">EU QUERO! </a></div>
+
+<p class="calc__result-note">Cálculo baseado na ficha técnica do produto, com 10% de margem de segurança incluída. O rendimento também varia com a porosidade e o método de aplicação.</p>
+</div>
+</div>
+</section>
+<!-- ============ VÍDEOS ============ -->
+
+<section aria-label="Vídeos" class="videos container">
+<div class="vid-card rv">
+<video class="vid-card__media" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/CRISTAL_UMI_BLOCK_BANCO_DE_MADEIRA.mp4#t=0.1">&nbsp;</video>
+<img loading="lazy" decoding="async" alt="" class="vid-card__play" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-play.svg" /><button aria-label="Maximizar vídeo" class="vid-card__full" type="button"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg></button></div>
+
+<div class="vid-card rv" style="--d:.1s">
+<video class="vid-card__media" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/CRISTAL_UMI_BLOCK_UMIDADE-ASCENDENTE.mp4#t=0.1">&nbsp;</video>
+<img loading="lazy" decoding="async" alt="" class="vid-card__play" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-play.svg" /><button aria-label="Maximizar vídeo" class="vid-card__full" type="button"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg></button></div>
+
+<div class="vid-card rv" style="--d:.2s">
+<video class="vid-card__media" playsinline="" preload="metadata" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/Umi%20Block%20-%20Banco%20de%20madeira.mp4#t=0.1">&nbsp;</video>
+<img loading="lazy" decoding="async" alt="" class="vid-card__play" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-play.svg" /><button aria-label="Maximizar vídeo" class="vid-card__full" type="button"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg></button></div>
+</section>
+<!-- ============ INFORMAÇÕES (navtabs) ============ -->
+
+<section aria-label="Informações do produto" class="navtabs-wrap">
+<div class="navtabs rv">
+<nav class="navtabs__nav"><button class="navtabs__tab is-active" data-tab="oque">O que é</button><button class="navtabs__tab" data-tab="beneficios">Benefícios</button><button class="navtabs__tab" data-tab="modo">Modo de Uso</button><button class="navtabs__tab" data-tab="composicao">Composição</button></nav>
+
+<div class="navtabs__divider">&nbsp;</div>
+
+<div class="navtabs__content">
+<div class="navtabs__panel is-active" data-panel="oque">
+<h2>Informações</h2>
+
+<p class="lbl">O que é</p>
+
+<p>O Umi Block é um impermeabilizante flexível incolor de alto desempenho, formulado com polímeros modificados com silano, que seca com a presença de umidade. Pronto para uso, possui ótima resistência UV e a intempéries. Indicado para reparo em áreas com vazamentos e infiltrações como lajes, varandas, sacadas, lavanderias, banheiros e peitoris, em locais de tráfego leve.</p>
+</div>
+
+<div class="navtabs__panel" data-panel="beneficios">
+<h2>Benefícios</h2>
+
+<p class="lbl">Por que usar</p>
+
+<p>Alta resistência a intempéries e raios UV; pronto para uso, sem mistura; excelente flexibilidade — acompanha a estrutura sem trincar; ótima aderência em superfícies cimentícias; fácil aplicação com pincel ou rolo; e seca na presença de até 4% de umidade no substrato, sem esperar dias de sol.</p>
+</div>
+
+<div class="navtabs__panel" data-panel="modo">
+<h2>Modo de Uso</h2>
+
+<p class="lbl">Como aplicar</p>
+
+<p>Prepare a superfície: limpa, firme, seca (até 4% de umidade) e livre de pó, tintas, óleos e partes soltas. Homogeneíze o produto e aplique com pincel ou rolo de forma uniforme, cobrindo toda a área. Aplique de 2 a 3 demãos, com intervalo de 3 horas entre elas; cura total em 24 horas. Limpe as ferramentas com solvente (indicado o Aguarrás mineral premium da linha Cristal) e vede bem o frasco após o uso.</p>
+</div>
+
+<div class="navtabs__panel" data-panel="composicao">
+<h2>Composição</h2>
+
+<p class="lbl">O que contém</p>
+
+<p>Polímeros modificados com silano, em formulação monocomponente. Líquido transparente, densidade 1,08 kg/L a 25°C, não inflamável. Validade de 12 meses a partir da fabricação. Disponível em 250ml, 500ml, 1L e 3,6L.</p>
+</div>
+</div>
+<span aria-hidden="true" class="navtabs__hint"><svg fill="none" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"></path></svg></span></div>
+</section>
+<!-- ============ EXPERIÊNCIA / LOJA (fechamento) ============ -->
+
+<section aria-label="Comprar Umi Block" class="section container shop" id="cta">
+<div class="sec-head rv">
+<h2 class="sec-title" style="font-size:clamp(34px,4.4vw,64px)">Chega de conviver com <span class="vio">infiltração.</span></h2>
+
+<p class="sec-sub">Veja o Umi Block em ação e garanta o seu pronto para usar, cura em 24 horas.</p>
+</div>
+
+<div class="shop__panel">
+<div class="shop__media rv">
+<div class="gstage">
+<div class="gslide is-active"><img loading="lazy" decoding="async" alt="Trincas e microfissuras" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-trincas.jpg" /></div>
+
+<div class="gslide"><img loading="lazy" decoding="async" alt="Frestas de janela" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-frestas.jpg" /></div>
+
+<div class="gslide"><img loading="lazy" decoding="async" alt="Canos e tubulações" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-canos.jpg" /></div>
+
+<div class="gslide"><img loading="lazy" decoding="async" alt="Telhados e calhas" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-telhados.jpg" /></div>
+
+<div class="gslide"><img loading="lazy" decoding="async" alt="Rejuntes deteriorados" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-rejuntes.jpg" /></div>
+
+<div class="gslide"><img loading="lazy" decoding="async" alt="Paredes externas" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-paredes.jpg" /></div>
+<span class="gcounter">01 / 06</span>
+
+<div class="gcap">
+<h4 data-cap-title="">Trincas e microfissuras</h4>
+
+<p data-cap-text="">Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade.</p>
+</div>
+<button aria-label="Anterior" class="garrow garrow--prev"><svg fill="none" height="22" viewbox="0 0 24 24" width="22"><path d="M15 4l-8 8 8 8" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg></button><button aria-label="Próximo" class="garrow garrow--next"><svg fill="none" height="22" viewbox="0 0 24 24" width="22"><path d="M9 4l8 8-8 8" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg></button>
+
+<div class="gprogress">&nbsp;</div>
+</div>
+
+<div class="gthumbs">
+<div class="gthumb is-active" data-text="Sela aberturas em paredes, pisos e lajes com eficiência e durabilidade." data-title="Trincas e microfissuras"><img loading="lazy" decoding="async" alt="" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-trincas.jpg" /></div>
+
+<div class="gthumb" data-text="Impermeabiliza juntas entre caixilhos e alvenaria, bloqueando a entrada de água." data-title="Frestas de janela"><img loading="lazy" decoding="async" alt="" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-frestas.jpg" /></div>
+
+<div class="gthumb" data-text="Estanca vazamentos em tubos e conexões expostas, mesmo em superfícies úmidas." data-title="Canos e tubulações"><img loading="lazy" decoding="async" alt="" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-canos.jpg" /></div>
+
+<div class="gthumb" data-text="Repara infiltrações em pontos críticos do telhado com resistência ao tempo." data-title="Telhados e calhas"><img loading="lazy" decoding="async" alt="" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-telhados.jpg" /></div>
+
+<div class="gthumb" data-text="Fecha frestas em rejuntes de áreas molhadas, sem precisar refazer o rejunte." data-title="Rejuntes deteriorados"><img loading="lazy" decoding="async" alt="" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-rejuntes.jpg" /></div>
+
+<div class="gthumb" data-text="Proteção contra infiltração em fachadas e muros expostos à chuva." data-title="Paredes externas"><img loading="lazy" decoding="async" alt="" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/umi-uses-paredes.jpg" /></div>
+</div>
+</div>
+
+<div class="shop__buy rv" style="--d:.1s"><img loading="lazy" decoding="async" width="321" height="181" alt="Umi Block" class="buy__logo" src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/logo-umiblock.png" />
+<p class="buy__sub"><b>Impermeabilizante incolor</b> da Linha Cristal. Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.</p>
+
+<ul class="buy__feats">
+	<li>Incolor, não altera o acabamento da superfície</li>
+	<li>Pronto para usar, sem mistura</li>
+	<li>Cura em 24 horas</li>
+</ul>
+
+<div id="buyDefault">
+<p class="buy__lbl">Embalagem</p>
+
+<div class="size-opts"><span class="size-btn" data-variant="268746">250mL</span> <span class="size-btn is-active" data-variant="269381">500mL c/ Bico</span> <span class="size-btn" data-variant="269096">1L</span> <span class="size-btn" data-variant="269010">3,6L</span></div>
+
+<div class="buy__cta"><button class="addcart" type="button">Comprar agora <svg class="addcart__ic" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="m30.352 6.137a2.987 2.987 0 0 0 -2.352-1.137h-20.267l-.759-3.229a1 1 0 0 0 -.974-.771h-4a1 1 0 0 0 0 2h3.208l3.535 15.026a2.992 2.992 0 0 0 .257 5.974h17a1 1 0 0 0 0-2h-17a1 1 0 0 1 0-2h16.882a2.99 2.99 0 0 0 2.92-2.313l2.119-9a2.986 2.986 0 0 0 -.569-2.55z"/><circle cx="23" cy="28" r="3"/><circle cx="12" cy="28" r="3"/></svg></button></div>
+</div>
+
+<div class="buy__rec" id="ctaRec" style="display:none">
+<p class="buy__rec-lbl">COM BASE NO SEU CÁLCULO:</p>
+
+<div id="ctaRecList">&nbsp;</div>
+</div>
+
+<p class="buy__foot">Umi Block · Impermeabilizante incolor · Linha Cristal — FDS disponível em <a href="https://www.linhacristal.com.br" rel="noopener" target="_blank">linhacristal.com.br</a></p>
+</div>
+</div>
+</section>
 <script>
-  // ---------- Aplicações: linha selecionada -> painel ----------
-  var rows = document.querySelectorAll('.use-row');
-  var useName = document.getElementById('useName');
-  var useDesc = document.getElementById('useDesc');
-  var useImg = document.getElementById('useImg');
-  rows.forEach(function(row){
-    row.addEventListener('click', function(){
-      rows.forEach(function(r){ r.classList.remove('is-active'); });
-      row.classList.add('is-active');
-      useName.textContent = row.getAttribute('data-name');
-      useDesc.textContent = row.getAttribute('data-desc');
-      var img = row.getAttribute('data-img');
-      if(useImg && img) useImg.src = img;
-    });
-  });
+(function () {
+  'use strict';
 
-  // ---------- Informações: navtabs ----------
-  var tabs = document.querySelectorAll('.navtabs__tab');
-  var panels = document.querySelectorAll('.navtabs__panel');
-  var navContent = document.querySelector('.navtabs__content');
-  function navCarousel(){ return navContent && navContent.scrollWidth > navContent.clientWidth + 4; }
-  function navActivate(key, scrollTab){
-    tabs.forEach(function(t){
-      var on = t.getAttribute('data-tab') === key;
-      t.classList.toggle('is-active', on);
-      if(on && scrollTab && navCarousel()) t.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
-    });
-    panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-panel') === key); });
-  }
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      var key = tab.getAttribute('data-tab');
-      navActivate(key, true);
-      if(navCarousel()){
-        panels.forEach(function(p){ if(p.getAttribute('data-panel') === key) p.scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' }); });
-      }
-    });
-  });
-  if(navContent){
-    var navTimer;
-    navContent.addEventListener('scroll', function(){
-      if(!navCarousel()) return;
-      navContent.parentElement.classList.add('is-scrolled');
-      clearTimeout(navTimer);
-      navTimer = setTimeout(function(){
-        var cl = navContent.getBoundingClientRect().left, best = null, bestD = 1e9;
-        panels.forEach(function(p){ var d = Math.abs(p.getBoundingClientRect().left - cl); if(d < bestD){ bestD = d; best = p; } });
-        if(best) navActivate(best.getAttribute('data-panel'), true);
-      }, 80);
-    }, { passive:true });
-  }
+  function init() {
+    var root = document.getElementById('umi-root');
+    if (!root) return;
 
-  // ---------- Calculadora de rendimento ----------
-  (function(){
-    var modeDim = document.getElementById('modeDim');
-    var modeM2 = document.getElementById('modeM2');
-    var inputsDim = document.getElementById('inputsDim');
-    var inputsM2 = document.getElementById('inputsM2');
-    var dimW = document.getElementById('dimW');
-    var dimH = document.getElementById('dimH');
-    var m2 = document.getElementById('m2');
-    var eqM2 = document.getElementById('eqM2');
-    var demaos = document.getElementById('demaos');
-    var surfLisa = document.getElementById('surfLisa');
-    var surfPorosa = document.getElementById('surfPorosa');
-    var resultBox = document.getElementById('calcResult');
-    var resLitros = document.getElementById('resLitros');
-    var resPacks = document.getElementById('resPacks');
-
-    var useDim = true;
-    var porosa = false;
-    var PACKS = [[3.6, 'galão 3,6L'], [1, 'frasco 1L'], [0.5, 'frasco 500ml'], [0.25, 'frasco 250ml']];
-
-    function area(){
-      if(useDim){
-        var w = parseFloat(dimW.value), h = parseFloat(dimH.value);
-        return (w > 0 && h > 0) ? w * h : 0;
-      }
-      var a = parseFloat(m2.value);
-      return a > 0 ? a : 0;
-    }
-    function fmt(n, dec){ return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: dec === undefined ? 1 : dec }); }
-
-    function packCombo(litros){
-      var combo = {}, rest = litros;
-      for(var i = 0; i < PACKS.length; i++){
-        var size = PACKS[i][0], name = PACKS[i][1];
-        if(i === PACKS.length - 1){
-          var n = Math.ceil(rest / size - 0.0001);
-          if(n > 0) combo[name] = (combo[name] || 0) + n;
-          rest = 0;
+    // ---------- Carrinho ------------------------------------------------
+    async function addToUmiCart(btn, variantId, qty) {
+      var vid = Number(variantId);
+      if (!vid) return;
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Adicionando…';
+      try {
+        var input = [{ productVariantId: vid, quantity: qty }];
+        var existing = await client.checkout.get();
+        if (existing && existing.data && existing.data.checkoutId) {
+          await client.checkout.add(input);
         } else {
-          var c = Math.floor(rest / size);
-          // se o que sobra ja cabe num pack menor, nao force mais um grande
-          if(c > 0){ combo[name] = c; rest -= c * size; }
-          // se o resto for maior que o proximo pack inteiro vezes 2, melhor mais um grande
-          if(rest > size * 0.85){ combo[name] = (combo[name] || 0) + 1; rest = 0; }
+          await client.checkout.create(input);
         }
-        if(rest <= 0.0001) break;
-      }
-      return Object.keys(combo).map(function(k){ return combo[k] + '× ' + k; }).join(' + ');
-    }
-
-    function update(){
-      var a = area();
-      eqM2.textContent = a > 0 ? '= ' + fmt(a) + ' m²' : '= — m²';
-      var d = Math.min(3, Math.max(2, parseInt(demaos.value || '2', 10)));
-      var consumo = porosa ? 0.25 : 0.15; // L por m² por demao (ficha: 150-250mL)
-      var litros = a * d * consumo;
-      if(a > 0){
-        resultBox.hidden = false;
-        resLitros.textContent = '≈ ' + fmt(litros) + ' litros no total';
-        resPacks.textContent = 'Sugestão: ' + packCombo(litros) + ' · ' + fmt(a) + ' m² × ' + d + ' demãos';
-      } else {
-        resultBox.hidden = true;
+        window.dispatchEvent(new CustomEvent('productAddedToCart', { detail: { products: input } }));
+        if (typeof loadMiniCart  === 'function') await loadMiniCart();
+        if (typeof cartMouseOver === 'function') cartMouseOver();
+        btn.textContent = '? Adicionado!';
+        setTimeout(function () { btn.textContent = label; btn.disabled = false; }, 2200);
+      } catch (e) {
+        console.warn('[lp-umi-block] cart error', e);
+        btn.textContent = label;
+        btn.disabled = false;
       }
     }
 
-    modeDim.addEventListener('click', function(){
-      useDim = true;
-      modeDim.classList.add('is-active'); modeM2.classList.remove('is-active');
-      inputsDim.style.display = ''; inputsM2.style.display = 'none';
-      update();
-    });
-    modeM2.addEventListener('click', function(){
-      useDim = false;
-      modeM2.classList.add('is-active'); modeDim.classList.remove('is-active');
-      inputsDim.style.display = 'none'; inputsM2.style.display = '';
-      update();
-    });
-    surfLisa.addEventListener('click', function(){
-      porosa = false;
-      surfLisa.classList.add('is-active'); surfPorosa.classList.remove('is-active');
-      update();
-    });
-    surfPorosa.addEventListener('click', function(){
-      porosa = true;
-      surfPorosa.classList.add('is-active'); surfLisa.classList.remove('is-active');
-      update();
-    });
-    [dimW, dimH, m2, demaos].forEach(function(el){ el.addEventListener('input', update); });
-  })();
-
-  // ---------- Reveal no scroll ----------
-  var reveals = document.querySelectorAll('.rv');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    // ---------- Aplicações: linha selecionada ? painel -----------------
+    var rows    = root.querySelectorAll('.use-row');
+    var useName = root.querySelector('#useName');
+    var useDesc = root.querySelector('#useDesc');
+    var useImg  = root.querySelector('#useImg');
+    rows.forEach(function (row) {
+      row.addEventListener('click', function () {
+        rows.forEach(function (r) { r.classList.remove('is-active'); });
+        row.classList.add('is-active');
+        useName.textContent = row.getAttribute('data-name');
+        useDesc.textContent = row.getAttribute('data-desc');
+        var img = row.getAttribute('data-img');
+        if (useImg && img) useImg.src = img;
       });
-    }, { threshold: 0.15 });
-    reveals.forEach(function(el){ io.observe(el); });
-  } else {
-    reveals.forEach(function(el){ el.classList.add('in'); });
+    });
+
+    // ---------- Experiência: carrossel de aplicações -------------------
+    (function () {
+      var scope = root.querySelector('.shop');
+      if (!scope) return;
+      var slides  = scope.querySelectorAll('.gslide');
+      var thumbs  = scope.querySelectorAll('.gthumb');
+      if (!slides.length) return;
+      var counter = scope.querySelector('.gcounter');
+      var prog    = scope.querySelector('.gprogress span');
+      var capT    = scope.querySelector('[data-cap-title]');
+      var capX    = scope.querySelector('[data-cap-text]');
+      var stage   = scope.querySelector('.gstage');
+      var n = slides.length, idx = 0, elapsed = 0, last = null, paused = false, DUR = 5000;
+      var total = (n < 10 ? '0' : '') + n;
+      function pad(i) { return (i + 1 < 10 ? '0' : '') + (i + 1); }
+      function show(i) {
+        idx = (i + n) % n;
+        slides.forEach(function (s, k) { s.classList.toggle('is-active', k === idx); });
+        thumbs.forEach(function (t, k) { t.classList.toggle('is-active', k === idx); });
+        var th = thumbs[idx];
+        if (capT && th) capT.textContent = th.getAttribute('data-title');
+        if (capX && th) capX.textContent = th.getAttribute('data-text');
+        if (counter) counter.textContent = pad(idx) + ' / ' + total;
+        elapsed = 0; if (prog) prog.style.width = '0%';
+      }
+      thumbs.forEach(function (t, k) { t.addEventListener('click', function () { show(k); }); });
+      var prev = scope.querySelector('.garrow--prev');
+      var next = scope.querySelector('.garrow--next');
+      if (prev) prev.addEventListener('click', function () { show(idx - 1); });
+      if (next) next.addEventListener('click', function () { show(idx + 1); });
+      if (stage) {
+        stage.addEventListener('mouseenter', function () { paused = true; });
+        stage.addEventListener('mouseleave', function () { paused = false; });
+      }
+      function loop(ts) {
+        if (last === null) last = ts;
+        var dt = ts - last; last = ts;
+        if (!paused) {
+          elapsed += dt;
+          if (prog) prog.style.width = Math.min(100, elapsed / DUR * 100) + '%';
+          if (elapsed >= DUR) show(idx + 1);
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
+
+    // ---------- Embalagem: seleção de tamanho + add-to-cart ------------
+    (function () {
+      var shop = root.querySelector('.shop');
+      if (!shop) return;
+      var btns          = shop.querySelectorAll('.size-btn');
+      var buyBtn        = shop.querySelector('.addcart');
+      var activeVariant = '269381';
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btns.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          activeVariant = btn.dataset.variant || '';
+        });
+      });
+      if (buyBtn) {
+        buyBtn.addEventListener('click', function () {
+          addToUmiCart(buyBtn, activeVariant, 1);
+        });
+      }
+    })();
+
+    // ---------- Informações: navtabs -----------------------------------
+    var tabs       = root.querySelectorAll('.navtabs__tab');
+    var panels     = root.querySelectorAll('.navtabs__panel');
+    var navContent = root.querySelector('.navtabs__content');
+    function navCarousel() { return navContent && navContent.scrollWidth > navContent.clientWidth + 4; }
+    function navActivate(key, scrollTab) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-tab') === key;
+        t.classList.toggle('is-active', on);
+        if (on && scrollTab && navCarousel()) t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      });
+      panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === key); });
+    }
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var key = tab.getAttribute('data-tab');
+        navActivate(key, true);
+        if (navCarousel()) {
+          panels.forEach(function (p) {
+            if (p.getAttribute('data-panel') === key) p.scrollIntoView({ block: 'nearest', inline: 'start', behavior: 'smooth' });
+          });
+        }
+      });
+    });
+    if (navContent) {
+      var navTimer;
+      navContent.addEventListener('scroll', function () {
+        if (!navCarousel()) return;
+        navContent.parentElement.classList.add('is-scrolled');
+        clearTimeout(navTimer);
+        navTimer = setTimeout(function () {
+          var cl = navContent.getBoundingClientRect().left, best = null, bestD = 1e9;
+          panels.forEach(function (p) {
+            var d = Math.abs(p.getBoundingClientRect().left - cl);
+            if (d < bestD) { bestD = d; best = p; }
+          });
+          if (best) navActivate(best.getAttribute('data-panel'), true);
+        }, 80);
+      }, { passive: true });
+    }
+
+    // ---------- Calculadora de rendimento ------------------------------
+    (function () {
+      var modeDim    = root.querySelector('#modeDim');
+      var modeM2     = root.querySelector('#modeM2');
+      var inputsDim  = root.querySelector('#inputsDim');
+      var inputsM2   = root.querySelector('#inputsM2');
+      var dimW       = root.querySelector('#dimW');
+      var dimH       = root.querySelector('#dimH');
+      var m2         = root.querySelector('#m2');
+      var eqM2       = root.querySelector('#eqM2');
+      var demaos     = root.querySelector('#demaos');
+      var surfLisa   = root.querySelector('#surfLisa');
+      var surfPorosa = root.querySelector('#surfPorosa');
+      var resultBox   = root.querySelector('#calcResult');
+      var resLitros   = root.querySelector('#resLitros');
+      var resPacks    = root.querySelector('#resPacks');
+      var demaosHint  = root.querySelector('#demaosHint');
+      var HINT_DEFAULT = demaosHint ? demaosHint.textContent : '';
+
+      var useDim = true, porosa = false;
+
+      var PACKS = [
+        { liters: 3.6,  label: 'Galão 3,6L',           variantId: 269010, price: 939.40, img: 'https://escutaoveio.fbitsstatic.net/img/p/impermeabilizante-umi-block-cristal-3-6l-incolor-varandas-e-sacadas-resistente-uv-82435/269010-5.jpg?w=300&h=300' },
+        { liters: 1,    label: 'Frasco 1L',             variantId: 269096, price: 375.76, img: 'https://escutaoveio.fbitsstatic.net/img/p/impermeabilizante-umi-block-cristal-1l-incolor-trincas-e-infiltracoes-facil-aplicacao-82521/269096-4.jpg?w=300&h=300' },
+        { liters: 0.5,  label: 'Frasco 500mL c/ Bico',  variantId: 269381, price: 262.20, img: 'https://escutaoveio.fbitsstatic.net/img/p/impermeabilizante-umi-block-cristal-500ml-incolor-lajes-e-banheiros-flexivel-82720/269381-1.jpg?w=300&h=300' },
+        { liters: 0.25, label: 'Frasco 250mL',           variantId: 268746, price: 159.60, img: 'https://escutaoveio.fbitsstatic.net/img/p/impermeabilizante-umi-block-cristal-250ml-incolor-pequenos-reparos-pronto-para-uso-82191/268746-1.jpg?w=300&h=300' }
+      ];
+
+      function area() {
+        if (useDim) {
+          var w = parseFloat(dimW.value), h = parseFloat(dimH.value);
+          return (w > 0 && h > 0) ? w * h : 0;
+        }
+        var a = parseFloat(m2.value);
+        return a > 0 ? a : 0;
+      }
+      function fmt(n, dec) {
+        return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: dec === undefined ? 1 : dec });
+      }
+
+      function calcPacks(litros) {
+        if (litros <= 0) return [];
+        var gal   = PACKS[0];
+        var small = PACKS.slice(1); // [1L, 500mL, 250mL]
+
+        // Finds the cheapest combination of small packs that covers `need` liters.
+        // Iterates all (a, b) pairs and computes the minimum c analytically ? O(maxA × maxB).
+        function bestSmall(need) {
+          if (need <= 0.0001) return { cost: 0, items: [] };
+          var best = null;
+          var maxA = Math.ceil(need / small[0].liters);
+          var maxB = Math.ceil(need / small[1].liters);
+          for (var a = 0; a <= maxA; a++) {
+            for (var b = 0; b <= maxB; b++) {
+              var covered = a * small[0].liters + b * small[1].liters;
+              var cNeed   = need - covered;
+              var c       = cNeed <= 0.0001 ? 0 : Math.ceil(cNeed / small[2].liters - 0.0001);
+              var cost    = a * small[0].price + b * small[1].price + c * small[2].price;
+              if (!best || cost < best.cost) best = { cost: cost, a: a, b: b, c: c };
+            }
+          }
+          var items = [];
+          if (best.a > 0) items.push({ pack: small[0], qty: best.a });
+          if (best.b > 0) items.push({ pack: small[1], qty: best.b });
+          if (best.c > 0) items.push({ pack: small[2], qty: best.c });
+          return { cost: best.cost, items: items };
+        }
+
+        var nGal      = Math.floor(litros / gal.liters);
+        var remainder = litros - nGal * gal.liters;
+        var cover     = bestSmall(remainder);
+        var costA     = nGal * gal.price + cover.cost;   // nGal galões + small packs
+        var costB     = (nGal + 1) * gal.price;          // arredondar para +1 galão
+
+        if (costA <= costB) {
+          var result = nGal > 0 ? [{ pack: gal, qty: nGal }] : [];
+          return result.concat(cover.items);
+        }
+        return [{ pack: gal, qty: nGal + 1 }];
+      }
+
+      function renderCtaRec(items) {
+        var wrap       = root.querySelector('#ctaRec');
+        var list       = root.querySelector('#ctaRecList');
+        var buyDefault = root.querySelector('#buyDefault');
+        if (!wrap || !list) return;
+        list.innerHTML = '';
+        var hasItems = items && items.length > 0;
+        wrap.style.display      = hasItems ? '' : 'none';
+        if (buyDefault) buyDefault.style.display = hasItems ? 'none' : '';
+        if (!hasItems) return;
+        items.forEach(function (item) {
+          var card = document.createElement('div');
+          card.className = 'rec-card';
+          if (item.pack.img) {
+            var thumb = document.createElement('img');
+            thumb.className = 'rec-card__thumb'; thumb.loading = 'lazy';
+            thumb.src = item.pack.img;
+            thumb.alt = item.pack.label;
+            card.appendChild(thumb);
+          }
+          var info = document.createElement('div');
+          info.className = 'rec-card__info';
+          var name = document.createElement('span');
+          name.className = 'rec-card__name';
+          name.textContent = 'Umi Block ' + item.pack.label;
+          var qty = document.createElement('span');
+          qty.className = 'rec-card__qty';
+          qty.textContent = item.qty + (item.qty === 1 ? ' unidade' : ' unidades');
+          info.appendChild(name);
+          info.appendChild(qty);
+          var btn = document.createElement('button');
+          btn.className = 'rec-card__btn';
+          btn.type = 'button';
+          btn.textContent = 'Adicionar ao carrinho';
+          (function (b, vid, q) {
+            b.addEventListener('click', function () { addToUmiCart(b, vid, q); });
+          })(btn, item.pack.variantId, item.qty);
+          card.appendChild(info);
+          card.appendChild(btn);
+          list.appendChild(card);
+        });
+      }
+
+      function update() {
+        var a = area();
+        eqM2.textContent = a > 0 ? '= ' + fmt(a) + ' m²' : '= — m²';
+        var d = parseInt(demaos.value, 10);
+        if (demaosHint) { demaosHint.textContent = HINT_DEFAULT; demaosHint.classList.remove('is-warning'); }
+        if (demaos.value === '' || isNaN(d)) {
+          resultBox.hidden = true;
+          renderCtaRec([]);
+          return;
+        }
+        if (d < 2) {
+          if (demaosHint) { demaosHint.textContent = 'O mínimo é 2 demãos. Por favor, corrija o valor.'; demaosHint.classList.add('is-warning'); }
+          resultBox.hidden = true;
+          renderCtaRec([]);
+          return;
+        }
+        var consumo = porosa ? 0.25 : 0.15;
+        var litros = a * d * consumo * 1.10;
+        if (a > 0) {
+          resultBox.hidden = false;
+          var items = calcPacks(litros);
+          resLitros.textContent = 'Você vai precisar de aproximadamente: '  + fmt(litros) + ' L';
+          resPacks.innerHTML  = '<svg class="calc__ico" viewBox="0 0 64 64" width="16" height="16" aria-hidden="true"><path d="m60.05 12.81a5.11 5.11 0 0 0 -3.64-1.59 5 5 0 0 0 -3.7 1.44l-30.38 29.16a1.82 1.82 0 0 1 -1.52.5 1.87 1.87 0 0 1 -1.35-.85l-7.36-11.73a5.2 5.2 0 1 0 -8.8 5.54l7.43 11.82a12.06 12.06 0 0 0 8.8 5.59 12.88 12.88 0 0 0 1.5.1 12.1 12.1 0 0 0 8.4-3.39l30.47-29.24a5.19 5.19 0 0 0 .15-7.35z" fill="#5f8d4e"/></svg>Opção mais econômica: ' + items.map(function (i) { return i.qty + '× ' + i.pack.label; }).join(' + ');
+          renderCtaRec(items);
+        } else {
+          resultBox.hidden = true;
+          renderCtaRec([]);
+        }
+      }
+
+      modeDim.addEventListener('click', function () {
+        useDim = true;
+        modeDim.classList.add('is-active'); modeM2.classList.remove('is-active');
+        inputsDim.style.display = ''; inputsM2.style.display = 'none';
+        update();
+      });
+      modeM2.addEventListener('click', function () {
+        useDim = false;
+        modeM2.classList.add('is-active'); modeDim.classList.remove('is-active');
+        inputsDim.style.display = 'none'; inputsM2.style.display = '';
+        update();
+      });
+      surfLisa.addEventListener('click', function () {
+        porosa = false;
+        surfLisa.classList.add('is-active'); surfPorosa.classList.remove('is-active');
+        update();
+      });
+      surfPorosa.addEventListener('click', function () {
+        porosa = true;
+        surfPorosa.classList.add('is-active'); surfLisa.classList.remove('is-active');
+        update();
+      });
+      [dimW, dimH, m2, demaos].forEach(function (el) {
+        el.addEventListener('input', update);
+        el.addEventListener('change', update);
+      });
+    })();
+
+    // ---------- Reveal no scroll ---------------------------------------
+    var reveals = root.querySelectorAll('.rv');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // ---------- Vídeos: player clique-pra-tocar + botão maximizar ------
+    root.querySelectorAll('.vid-card').forEach(function (card) {
+      var media = card.querySelector('.vid-card__media');
+      if (!media || media.tagName !== 'VIDEO') return;
+      card.addEventListener('click', function () {
+        if (media.paused) {
+          root.querySelectorAll('.vid-card__media').forEach(function (m) {
+            if (m !== media && m.tagName === 'VIDEO') m.pause();
+          });
+          media.play();
+        } else {
+          media.pause();
+        }
+      });
+      media.addEventListener('play',  function () { card.classList.add('is-playing'); });
+      media.addEventListener('pause', function () { card.classList.remove('is-playing'); });
+      media.addEventListener('ended', function () { card.classList.remove('is-playing'); media.currentTime = 0; });
+      var full = card.querySelector('.vid-card__full');
+      if (full) full.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if      (media.requestFullscreen)       { media.setAttribute('controls', ''); media.requestFullscreen(); }
+        else if (media.webkitRequestFullscreen) { media.setAttribute('controls', ''); media.webkitRequestFullscreen(); }
+        else if (media.webkitEnterFullscreen)   { media.webkitEnterFullscreen(); }
+        else if (media.msRequestFullscreen)     { media.setAttribute('controls', ''); media.msRequestFullscreen(); }
+        var p = media.play(); if (p && p.catch) p.catch(function () {});
+      });
+    });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (ev) {
+      document.addEventListener(ev, function () {
+        if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
+          root.querySelectorAll('.vid-card__media').forEach(function (m) { m.removeAttribute('controls'); });
+        }
+      });
+    });
   }
 
-  // ---------- Vídeos: player clique-pra-tocar + botão maximizar ----------
-  document.querySelectorAll('.vid-card').forEach(function(card){
-    var media = card.querySelector('.vid-card__media');
-    if(!media || media.tagName !== 'VIDEO') return;
-    card.addEventListener('click', function(){
-      if(media.paused){
-        document.querySelectorAll('.vid-card__media').forEach(function(m){ if(m!==media && m.tagName==='VIDEO') m.pause(); });
-        media.play();
-      } else {
-        media.pause();
-      }
-    });
-    media.addEventListener('play', function(){ card.classList.add('is-playing'); });
-    media.addEventListener('pause', function(){ card.classList.remove('is-playing'); });
-    media.addEventListener('ended', function(){ card.classList.remove('is-playing'); media.currentTime = 0; });
-    var full = card.querySelector('.vid-card__full');
-    if(full) full.addEventListener('click', function(e){
-      e.stopPropagation();
-      if(media.requestFullscreen){ media.setAttribute('controls',''); media.requestFullscreen(); }
-      else if(media.webkitRequestFullscreen){ media.setAttribute('controls',''); media.webkitRequestFullscreen(); }
-      else if(media.webkitEnterFullscreen){ media.webkitEnterFullscreen(); }
-      else if(media.msRequestFullscreen){ media.setAttribute('controls',''); media.msRequestFullscreen(); }
-      var p = media.play(); if(p && p.catch) p.catch(function(){});
-    });
-  });
-  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){
-    document.addEventListener(ev, function(){
-      if(!(document.fullscreenElement || document.webkitFullscreenElement)){
-        document.querySelectorAll('.vid-card__media').forEach(function(m){ m.removeAttribute('controls'); });
-      }
-    });
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 
-  // ---------- Experiência: carrossel de aplicações ----------
-  (function(){
-    var scope = document.querySelector('.shop');
-    if(!scope) return;
-    var slides = scope.querySelectorAll('.gslide');
-    var thumbs = scope.querySelectorAll('.gthumb');
-    if(!slides.length) return;
-    var counter = scope.querySelector('.gcounter');
-    var prog = scope.querySelector('.gprogress span');
-    var capT = scope.querySelector('[data-cap-title]');
-    var capX = scope.querySelector('[data-cap-text]');
-    var stage = scope.querySelector('.gstage');
-    var n = slides.length, idx = 0, elapsed = 0, last = null, paused = false, DUR = 5000;
-    var total = (n < 10 ? '0' : '') + n;
-    function pad(i){ return (i + 1 < 10 ? '0' : '') + (i + 1); }
-    function show(i){
-      idx = (i + n) % n;
-      slides.forEach(function(s, k){ s.classList.toggle('is-active', k === idx); });
-      thumbs.forEach(function(t, k){ t.classList.toggle('is-active', k === idx); });
-      var th = thumbs[idx];
-      if(capT && th) capT.textContent = th.getAttribute('data-title');
-      if(capX && th) capX.textContent = th.getAttribute('data-text');
-      if(counter) counter.textContent = pad(idx) + ' / ' + total;
-      elapsed = 0; if(prog) prog.style.width = '0%';
-    }
-    thumbs.forEach(function(t, k){ t.addEventListener('click', function(){ show(k); }); });
-    var prev = scope.querySelector('.garrow--prev');
-    var next = scope.querySelector('.garrow--next');
-    if(prev) prev.addEventListener('click', function(){ show(idx - 1); });
-    if(next) next.addEventListener('click', function(){ show(idx + 1); });
-    if(stage){ stage.addEventListener('mouseenter', function(){ paused = true; }); stage.addEventListener('mouseleave', function(){ paused = false; }); }
-    function loop(ts){ if(last === null) last = ts; var dt = ts - last; last = ts;
-      if(!paused){ elapsed += dt; if(prog) prog.style.width = Math.min(100, elapsed / DUR * 100) + '%'; if(elapsed >= DUR) show(idx + 1); }
-      requestAnimationFrame(loop); }
-    requestAnimationFrame(loop);
-  })();
-
-  // ---------- Embalagem: seleção de tamanho ----------
-  (function(){
-    var btns = document.querySelectorAll('.size-btn');
-    var buyBtn = document.querySelector('.addcart');
-    var activeVariant = '269381';
-    btns.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        btns.forEach(function(b){ b.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-        activeVariant = btn.dataset.variant || '';
-      });
-    });
-    if(buyBtn){
-      buyBtn.addEventListener('click', function(){
-        if(activeVariant) window.location.href = '/produto?sku=' + activeVariant;
-      });
-    }
-  })();
-</script>
-</body>
-</html>
+</script></div>
