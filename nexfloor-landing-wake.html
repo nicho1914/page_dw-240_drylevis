@@ -9,6 +9,7 @@
      - Assets de imagem/video via CDN externo; nunca .mp4 direto no Wake.
 ============================================================================ -->
 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet" />
 
 <div id="nxf-root">
@@ -73,7 +74,7 @@
 
 #nxf-root .nxf-hero {
   background: var(--branco);
-  padding-block: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 56px);
+  padding-block: clamp(40px, 6vw, 72px) clamp(48px, 6vw, 80px);
 }
 
 /* Top row: headline left / Propiso badge right */
@@ -174,7 +175,8 @@
   }
 
   #nxf-root .nxf-hero__title {
-    font-size: clamp(28px, 9vw, 48px);
+    font-size: clamp(22px, 8.5vw, 48px);
+    overflow-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
   }
@@ -199,7 +201,7 @@
 
 /* Section title */
 #nxf-root .nxf-mosaic-section {
-  padding-block: clamp(56px, 7vw, 100px) clamp(48px, 6vw, 80px);
+  padding-block: clamp(56px, 7vw, 96px) clamp(48px, 6vw, 80px);
   background: var(--branco);
 }
 
@@ -208,10 +210,13 @@
   font-weight: 900;
   text-transform: uppercase;
   color: var(--roxo);
-  font-size: clamp(28px, 4.5vw, 60px);
+  font-size: clamp(22px, 4.5vw, 60px);
   line-height: 1.08;
   letter-spacing: -.01em;
   text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
   margin-bottom: clamp(36px, 5vw, 64px);
 }
 
@@ -676,7 +681,7 @@
    ================================================================ */
 
 #nxf-root .nxf-pdp {
-  padding-block: 0 clamp(72px, 9vw, 120px);
+  padding-block: 0 clamp(56px, 7vw, 96px);
   background: var(--branco);
 }
 
@@ -1032,19 +1037,19 @@
       <div class="nxf-hero__img nxf-hero__img--1">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-hero-1.png"
-          alt="Ambiente com piso Nex Floor &mdash; linha Propiso" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <div class="nxf-hero__img nxf-hero__img--2">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-hero-2.png"
-          alt="Detalhe do acabamento Nex Floor Cristal" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <div class="nxf-hero__img nxf-hero__img--3">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-hero-3.png"
-          alt="Aplica&ccedil;&atilde;o Nex Floor &mdash; resist&ecirc;ncia e beleza" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
     </div><!-- /.nxf-hero__imgs -->
@@ -1085,49 +1090,49 @@
       <div class="nxf-mosaic__block nxf-mosaic__block--c1r1">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-1.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <!-- Coluna 2, linha 1 — amarelo, destaque central -->
       <div class="nxf-mosaic__block nxf-mosaic__block--c2r1">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-2.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <!-- Coluna 3, linhas 1-2 — TALL, roxo -->
       <div class="nxf-mosaic__block nxf-mosaic__block--tall nxf-mosaic__block--c3r1">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-3.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <!-- Coluna 1, linhas 2-3 — TALL, navy -->
       <div class="nxf-mosaic__block nxf-mosaic__block--tall nxf-mosaic__block--c1r2">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-4.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <!-- Coluna 2, linha 2 — roxo mix -->
       <div class="nxf-mosaic__block nxf-mosaic__block--c2r2">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-5.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <!-- Coluna 3, linha 3 — azul/navy -->
       <div class="nxf-mosaic__block nxf-mosaic__block--c3r3">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-6.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
       <!-- Coluna 2, linha 3 — cinza claro -->
       <div class="nxf-mosaic__block nxf-mosaic__block--c2r3">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-mosaic-7.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
       </div>
 
     </div><!-- /.nxf-mosaic -->
@@ -1181,7 +1186,7 @@
       <div class="nxf-showcase__main">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
         <span class="nxf-showcase__label" aria-hidden="true">Imagem com produto</span>
       </div>
 
@@ -1189,7 +1194,7 @@
       <div class="nxf-showcase__side" aria-hidden="true">
         <img
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase-side.png"
-          alt="" aria-hidden="true" />
+          alt="" aria-hidden="true" onerror="this.style.display='none'" />
         <!-- Dots de carrossel -->
         <div class="nxf-showcase__dots">
           <span class="nxf-showcase__dot nxf-showcase__dot--active"></span>
@@ -1214,7 +1219,7 @@
         <div class="nxf-prod__img">
           <img
             src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde.png"
-            alt="" aria-hidden="true" />
+            alt="" aria-hidden="true" onerror="this.style.display='none'" />
         </div>
         <div class="nxf-prod__body">
           <div class="nxf-prod__info">
@@ -1234,7 +1239,7 @@
         <div class="nxf-prod__img">
           <img
             src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde.png"
-            alt="" aria-hidden="true" />
+            alt="" aria-hidden="true" onerror="this.style.display='none'" />
         </div>
         <div class="nxf-prod__body">
           <div class="nxf-prod__info">
@@ -1254,7 +1259,7 @@
         <div class="nxf-prod__img">
           <img
             src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde.png"
-            alt="" aria-hidden="true" />
+            alt="" aria-hidden="true" onerror="this.style.display='none'" />
         </div>
         <div class="nxf-prod__body">
           <div class="nxf-prod__info">
@@ -1290,7 +1295,7 @@
           <img
             class="nxf-pdp__hero-img"
             src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-1.png"
-            alt="" aria-hidden="true" />
+            alt="" aria-hidden="true" onerror="this.style.display='none'" />
 
           <!-- Badge contador de slides -->
           <span class="nxf-pdp__badge" aria-hidden="true">02 / 06</span>
