@@ -322,6 +322,207 @@
   }
 }
 
+/* ================================================================
+   FC — BENEFÍCIOS | INDICAÇÃO  (.nxf-bi)
+   Figma node 920:1666
+   ================================================================ */
+
+#nxf-root .nxf-bi {
+  padding-block: clamp(56px, 7vw, 96px);
+  background: var(--branco);
+}
+
+/* Outer 2-column grid: Benefícios (~60%) | Indicação (~40%) */
+#nxf-root .nxf-bi__grid {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+
+/* Panel label */
+#nxf-root .nxf-bi__label {
+  font-family: var(--title);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--roxo);
+  font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: .02em;
+  line-height: 1.1;
+  margin-bottom: clamp(20px, 2.4vw, 32px);
+}
+
+/* Chip grid — Benefícios: 3 cols × 2 rows */
+#nxf-root .nxf-chips--beneficios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+/* Chip grid — Indicação: 1 col, 2 rows */
+#nxf-root .nxf-chips--indicacao {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+/* Individual chip card */
+#nxf-root .nxf-chip {
+  background: color-mix(in srgb, var(--roxo) 6%, var(--branco));
+  border-radius: 16px;
+  padding: clamp(18px, 2vw, 24px);
+  min-height: clamp(96px, 10vw, 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--body);
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 500;
+  color: var(--ink2);
+  line-height: 1.35;
+}
+
+/* Indicação chips get the creme bg for contrast */
+#nxf-root .nxf-chips--indicacao .nxf-chip {
+  background: var(--creme);
+  min-height: clamp(110px, 12vw, 144px);
+}
+
+/* Reflow: stack panels at ≤860px */
+@media (max-width: 860px) {
+  #nxf-root .nxf-bi__grid {
+    grid-template-columns: 1fr;
+  }
+
+  #nxf-root .nxf-chips--beneficios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Reflow: chips 1 col at ≤480px */
+@media (max-width: 480px) {
+  #nxf-root .nxf-chips--beneficios {
+    grid-template-columns: 1fr;
+  }
+
+  #nxf-root .nxf-chips--indicacao {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================
+   FC — "IMAGEM COM PRODUTO" SHOWCASE BAND  (.nxf-showcase)
+   Figma Group 252
+   ================================================================ */
+
+#nxf-root .nxf-showcase {
+  padding-block: 0 clamp(56px, 7vw, 96px);
+  background: var(--branco);
+}
+
+/* Outer flex row: main image + side strip */
+#nxf-root .nxf-showcase__row {
+  display: flex;
+  gap: clamp(12px, 1.6vw, 20px);
+  align-items: stretch;
+  height: clamp(360px, 40vw, 528px);
+}
+
+/* Main wide image area */
+#nxf-root .nxf-showcase__main {
+  flex: 1 1 0;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  background: color-mix(in srgb, var(--roxo) 55%, var(--navy));
+}
+
+#nxf-root .nxf-showcase__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Faint helper label overlay (placeholder text) */
+#nxf-root .nxf-showcase__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--body);
+  font-size: clamp(13px, 1.2vw, 16px);
+  color: color-mix(in srgb, var(--branco) 70%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Narrow side strip ~15% width */
+#nxf-root .nxf-showcase__side {
+  flex: 0 0 clamp(80px, 15%, 180px);
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  background: color-mix(in srgb, var(--roxo) 30%, var(--navy));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: clamp(14px, 2vw, 24px);
+}
+
+#nxf-root .nxf-showcase__side img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Carousel dots */
+#nxf-root .nxf-showcase__dots {
+  position: relative; /* above img */
+  z-index: 1;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+#nxf-root .nxf-showcase__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
+}
+
+#nxf-root .nxf-showcase__dot--active {
+  background: var(--roxo);
+}
+
+#nxf-root .nxf-showcase__dot--inactive {
+  background: color-mix(in srgb, var(--ink) 25%, var(--branco));
+}
+
+/* Reflow: side strip drops below (or hides) at ≤720px */
+@media (max-width: 720px) {
+  #nxf-root .nxf-showcase__row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #nxf-root .nxf-showcase__main {
+    height: clamp(240px, 52vw, 380px);
+    flex: none;
+  }
+
+  #nxf-root .nxf-showcase__side {
+    display: none; /* hide thumbnail on mobile; band stays clean */
+  }
+}
+
 </style>
 
 <!-- secoes Nex Floor (Figma) -->
@@ -457,5 +658,71 @@
 
   </div><!-- /.wrap -->
 </section><!-- /.nxf-mosaic-section -->
+
+<!-- ================================================================
+     FC — BENEF&Iacute;CIOS | INDICA&Ccedil;&Atilde;O
+     Figma node 920:1666
+     ================================================================ -->
+<section class="nxf-bi">
+  <div class="wrap">
+    <div class="nxf-bi__grid">
+
+      <!-- Esquerda: Benefícios -->
+      <div class="nxf-bi__col">
+        <h2 class="nxf-bi__label">Benef&iacute;cios</h2>
+        <div class="nxf-chips nxf-chips--beneficios">
+          <div class="nxf-chip">Aplica&ccedil;&atilde;o com baixa espessura</div>
+          <div class="nxf-chip">Autonivelante</div>
+          <div class="nxf-chip">F&aacute;cil aplica&ccedil;&atilde;o</div>
+          <div class="nxf-chip">Ideal para pisos monol&iacute;ticos</div>
+          <div class="nxf-chip">Alta resist&ecirc;ncia</div>
+          <div class="nxf-chip">F&aacute;cil limpeza</div>
+        </div>
+      </div>
+
+      <!-- Direita: Indicação -->
+      <div class="nxf-bi__col">
+        <h2 class="nxf-bi__label">Indica&ccedil;&atilde;o</h2>
+        <div class="nxf-chips nxf-chips--indicacao">
+          <div class="nxf-chip">Prepara&ccedil;&atilde;o para aplica&ccedil;&atilde;o de Pisos Granito L&iacute;quido Nex Floor.</div>
+          <div class="nxf-chip">Alta resist&ecirc;ncia &agrave; intemp&eacute;ries</div>
+        </div>
+      </div>
+
+    </div><!-- /.nxf-bi__grid -->
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-bi -->
+
+<!-- ================================================================
+     FC — IMAGEM COM PRODUTO — SHOWCASE BAND
+     Figma Group 252
+     ================================================================ -->
+<section class="nxf-showcase">
+  <div class="wrap">
+    <div class="nxf-showcase__row">
+
+      <!-- Área principal da imagem -->
+      <div class="nxf-showcase__main">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase.png"
+          alt="" aria-hidden="true" />
+        <span class="nxf-showcase__label" aria-hidden="true">Imagem com produto</span>
+      </div>
+
+      <!-- Faixa lateral (thumbnail / next-preview) -->
+      <div class="nxf-showcase__side" aria-hidden="true">
+        <img
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-showcase-side.png"
+          alt="" aria-hidden="true" />
+        <!-- Dots de carrossel -->
+        <div class="nxf-showcase__dots">
+          <span class="nxf-showcase__dot nxf-showcase__dot--active"></span>
+          <span class="nxf-showcase__dot nxf-showcase__dot--inactive"></span>
+        </div>
+      </div>
+
+    </div><!-- /.nxf-showcase__row -->
+  </div><!-- /.wrap -->
+</section><!-- /.nxf-showcase -->
 
 </div><!-- /#nxf-root -->
