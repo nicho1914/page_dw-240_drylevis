@@ -1564,6 +1564,294 @@
 <!-- secoes-fim -->
 
 <!-- ============================================================
+     S6 — INFORMAÇÕES (abas funcionais)
+     ============================================================ -->
+<style>
+
+/* ================================================================
+   S6 — INFORMACOES (navTabs)
+   ================================================================ */
+#nxf-root .nxf-info {
+  background: var(--branco);
+  width: 100%;
+  overflow-x: hidden;
+  padding-top:    clamp(48px, 7vw, 96px);
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+/* Rounded panel — gradient from Figma */
+#nxf-root .nxf-info__panel {
+  background: linear-gradient(70.2deg, #dcdadd 19.33%, #e6e6e6 90.73%);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 56px);
+  display: flex;
+  gap: clamp(28px, 3.5vw, 48px);
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+/* ---- LEFT: vertical tab nav ---- */
+#nxf-root .nxf-info__nav {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.2vw, 28px);
+  flex-shrink: 0;
+  width: clamp(160px, 16vw, 220px);
+}
+
+#nxf-root .nxf-info__tab {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: clamp(10px, 1vw, 12px) clamp(14px, 1.5vw, 20px);
+  border-radius: 100px;
+  color: #2d2d2b;
+  opacity: 0.5;
+  transition: opacity 0.18s, background 0.18s, color 0.18s;
+  width: 100%;
+}
+
+#nxf-root .nxf-info__tab[aria-selected="true"] {
+  background: var(--roxo);
+  color: #eeedee;
+  opacity: 1;
+}
+
+#nxf-root .nxf-info__tab:focus-visible {
+  outline: 2px solid var(--roxo);
+  outline-offset: 2px;
+}
+
+/* ---- Divider ---- */
+#nxf-root .nxf-info__divider {
+  width: 1px;
+  background: #bdbdbd;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* ---- RIGHT: content area ---- */
+#nxf-root .nxf-info__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.4vw, 16px);
+}
+
+#nxf-root .nxf-info__panel-content {
+  display: none;
+  flex-direction: column;
+  gap: clamp(10px, 1.4vw, 16px);
+}
+
+#nxf-root .nxf-info__panel-content[data-active="true"] {
+  display: flex;
+}
+
+/* Heading "Informa&ccedil;&otilde;es" */
+#nxf-root .nxf-info__heading {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1;
+  color: #2d2d2b;
+}
+
+/* Sub-heading (bold small) */
+#nxf-root .nxf-info__subheading {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(13px, 1.2vw, 14px);
+  line-height: 1.2;
+  color: #2d2d2b;
+}
+
+/* Body copy */
+#nxf-root .nxf-info__body {
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: clamp(13px, 1.2vw, 14px);
+  line-height: 1.6;
+  color: var(--gray);
+}
+
+/* Body list (used in Beneficios, Composicao) */
+#nxf-root .nxf-info__list {
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: clamp(13px, 1.2vw, 14px);
+  line-height: 1.6;
+  color: var(--gray);
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ================================================================
+   RESPONSIVE: <=720px — abas viram linha rolavel acima do conteudo
+   ================================================================ */
+@media (max-width: 720px) {
+  #nxf-root .nxf-info__panel {
+    flex-direction: column;
+    gap: clamp(20px, 4vw, 32px);
+  }
+
+  #nxf-root .nxf-info__nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    gap: clamp(8px, 2vw, 12px);
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  #nxf-root .nxf-info__nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  #nxf-root .nxf-info__tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  #nxf-root .nxf-info__divider {
+    display: none;
+  }
+}
+
+</style>
+
+<section class="nxf-info" aria-label="Informa&ccedil;&otilde;es do produto">
+  <div class="wrap">
+
+    <div class="nxf-info__panel" role="tabpanel">
+
+      <!-- LEFT: tab nav -->
+      <nav class="nxf-info__nav" aria-label="Abas de informa&ccedil;&atilde;o" role="tablist">
+
+        <button
+          class="nxf-info__tab"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-tab="o-que-sao"
+        >O que s&atilde;o</button>
+
+        <button
+          class="nxf-info__tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-tab="beneficios"
+        >Benef&iacute;cios</button>
+
+        <button
+          class="nxf-info__tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-tab="modo-de-uso"
+        >Modo de Uso</button>
+
+        <button
+          class="nxf-info__tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-tab="composicao"
+        >Composi&ccedil;&atilde;o</button>
+
+      </nav>
+
+      <!-- DIVIDER -->
+      <div class="nxf-info__divider" aria-hidden="true"></div>
+
+      <!-- RIGHT: content panels -->
+      <div class="nxf-info__content">
+
+        <!-- Panel: O que são (REAL copy from Figma) -->
+        <div class="nxf-info__panel-content" data-panel="o-que-sao" data-active="true" role="tabpanel" aria-label="O que s&atilde;o">
+          <p class="nxf-info__heading">Informa&ccedil;&otilde;es</p>
+          <p class="nxf-info__subheading">Informa&ccedil;&otilde;es</p>
+          <p class="nxf-info__body">O Selante DW240 da Drylevis &eacute; um selante adesivo com alto desempenho para tratamento de juntas de dilata&ccedil;&atilde;o e de preenchimento. J&aacute; vem pronto para uso, al&eacute;m de vedar e aderir &agrave; superf&iacute;cie com rapidez e elasticidade. Possui &oacute;tima resist&ecirc;ncia &agrave; &aacute;gua, a raios UV, a vibra&ccedil;&otilde;es, a movimenta&ccedil;&otilde;es e &agrave; a&ccedil;&atilde;o do tempo. Pode ser utilizado tamb&eacute;m para fixa&ccedil;&atilde;o e veda&ccedil;&atilde;o de diversos materiais, como pedras, concretos, vidros, esquadrias de alum&iacute;nio etc.</p>
+        </div>
+
+        <!-- Panel: Benefícios (fill — aguardando copy real) -->
+        <div class="nxf-info__panel-content" data-panel="beneficios" data-active="false" role="tabpanel" aria-label="Benef&iacute;cios">
+          <p class="nxf-info__heading">Benef&iacute;cios</p>
+          <ul class="nxf-info__list">
+            <li>Aplica&ccedil;&atilde;o com baixa espessura</li>
+            <li>Autonivelante</li>
+            <li>F&aacute;cil aplica&ccedil;&atilde;o</li>
+            <li>Ideal para pisos monol&iacute;ticos</li>
+            <li>Alta resist&ecirc;ncia</li>
+            <li>F&aacute;cil limpeza</li>
+          </ul>
+        </div>
+
+        <!-- Panel: Modo de Uso (fill — aguardando copy real) -->
+        <div class="nxf-info__panel-content" data-panel="modo-de-uso" data-active="false" role="tabpanel" aria-label="Modo de Uso">
+          <p class="nxf-info__heading">Modo de Uso</p>
+          <p class="nxf-info__body">Prepare a superf&iacute;cie, garantindo que esteja limpa, seca e sem gordura. Aplique o Prep Piso como aglutinante e aguarde a cura. Em seguida, aplique o Nivela &amp; Primer para autonivelamento e ader&ecirc;ncia. Por fim, aplique o Gran&iacute;to L&iacute;quido com rodo dentado e rolo quebra-bolhas. Aguarde o tempo de cura indicado antes de transitar sobre a superf&iacute;cie.</p>
+        </div>
+
+        <!-- Panel: Composição (fill — aguardando copy real) -->
+        <div class="nxf-info__panel-content" data-panel="composicao" data-active="false" role="tabpanel" aria-label="Composi&ccedil;&atilde;o">
+          <p class="nxf-info__heading">Composi&ccedil;&atilde;o</p>
+          <p class="nxf-info__body">Base &agrave; agua, com pigmentos minerais e res&iacute;nas espec&iacute;ficas para revestimentos de alto desempenho. Isento de solventes org&acirc;nicos. Consulte a ficha t&eacute;cnica completa do produto para detalhes de formula&ccedil;&atilde;o.</p>
+        </div>
+
+      </div><!-- /nxf-info__content -->
+
+    </div><!-- /nxf-info__panel -->
+
+  </div><!-- /wrap -->
+</section>
+
+<script>
+(function() {
+  var root = document.getElementById('nxf-root');
+  if (!root) return;
+
+  function nxfInitInfoTabs() {
+    var tabs    = root.querySelectorAll('.nxf-info__tab');
+    var panels  = root.querySelectorAll('.nxf-info__panel-content');
+    if (!tabs.length || !panels.length) return;
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var target = tab.getAttribute('data-tab');
+        if (!target) return;
+
+        // Deactivate all tabs
+        tabs.forEach(function(t) { t.setAttribute('aria-selected', 'false'); });
+        // Activate clicked tab
+        tab.setAttribute('aria-selected', 'true');
+
+        // Hide all panels
+        panels.forEach(function(p) { p.setAttribute('data-active', 'false'); });
+        // Show matching panel
+        var active = root.querySelector('.nxf-info__panel-content[data-panel="' + target + '"]');
+        if (active) { active.setAttribute('data-active', 'true'); }
+      });
+    });
+  }
+
+  nxfInitInfoTabs();
+})();
+</script>
+
+<!-- ============================================================
      S5 — 3 CARDS DE PRODUTO (fundo branco, fora da banda roxa)
      ============================================================ -->
 <style>
