@@ -514,7 +514,270 @@
 <!-- secoes -->
 
 <!-- ============================================================
-     S2 — BENEFÍCIOS | INDICAÇÃO — sobre banda roxa
+     S3 — SLOGAN 96 PX + BENTO (cards de texto + fotos reais)
+     ============================================================ -->
+<style>
+
+/* ================================================================
+   S3 — TITULO GRANDE + BENTO MOSAICO
+   ================================================================ */
+
+/* Seção S3 continua sobre a banda roxa (sem bg próprio — herda do .nxf-purple wrapper) */
+#nxf-root .nxf-s3 {
+  padding-top:    clamp(56px, 7vw, 100px);
+  padding-bottom: clamp(56px, 7vw, 100px);
+}
+
+/* ---- Big slogan title ---- */
+#nxf-root .nxf-bigtitle {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(40px, 6.4vw, 96px);
+  line-height:    1.02;
+  text-transform: uppercase;
+  color:          var(--branco);
+  text-align:     center;
+  margin-bottom:  clamp(40px, 5.5vw, 80px);
+}
+
+/* ---- Bento grid — 3 cols × 3 rows ---- */
+#nxf-root .nxf-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows:    clamp(200px, 20vw, 300px) clamp(200px, 20vw, 300px) clamp(200px, 20vw, 300px);
+  gap: clamp(12px, 1.6vw, 18px);
+  width: 100%;
+}
+
+/* ---- Shared cell base ---- */
+#nxf-root .nxf-bento__cell {
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---- Grid placement ---- */
+/* Col 1 / Row 1 — Prep Piso text card (navy) */
+#nxf-root .nxf-bento__cell--prep {
+  grid-column: 1;
+  grid-row: 1;
+  background: #253161; /* --navy2 */
+}
+
+/* Col 1 / Rows 2-3 — Photo A (tall) */
+#nxf-root .nxf-bento__cell--photo-a {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  background: #253161;
+}
+
+/* Col 2 / Row 1 — Nivela & Primer text card (cinza) */
+#nxf-root .nxf-bento__cell--nivela {
+  grid-column: 2;
+  grid-row: 1;
+  background: #878787; /* --cinza */
+}
+
+/* Col 2 / Row 2 — Photo B (short) */
+#nxf-root .nxf-bento__cell--photo-b {
+  grid-column: 2;
+  grid-row: 2;
+  background: #7b529f;
+}
+
+/* Col 2 / Row 3 — Granito Líquido text card (roxo) */
+#nxf-root .nxf-bento__cell--granito {
+  grid-column: 2;
+  grid-row: 3;
+  background: #7b529f; /* --roxo */
+}
+
+/* Col 3 / Rows 1-2 — Photo C (tall) */
+#nxf-root .nxf-bento__cell--photo-c {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  background: #253161;
+}
+
+/* Col 3 / Row 3 — Photo D (short) */
+#nxf-root .nxf-bento__cell--photo-d {
+  grid-column: 3;
+  grid-row: 3;
+  background: #878787;
+}
+
+/* ---- Photo cells — img fills cell ---- */
+#nxf-root .nxf-bento__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ---- Text card inner layout ---- */
+#nxf-root .nxf-bento__textcard {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.2vw, 16px);
+  padding: clamp(28px, 3.5vw, 52px) clamp(20px, 2.8vw, 40px);
+  text-align: center;
+}
+
+#nxf-root .nxf-bento__name {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(22px, 2.4vw, 36px);
+  line-height:    1;
+  text-transform: uppercase;
+  color:          var(--branco);
+}
+
+#nxf-root .nxf-bento__desc {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size:   clamp(13px, 1.3vw, 18px);
+  line-height: 1.35;
+  color:       #c3c3c3;
+}
+
+/* ================================================================
+   RESPONSIVE — ≤820px: 2 cols, spans drop; ≤520px: 1 col
+   ================================================================ */
+@media (max-width: 820px) {
+  #nxf-root .nxf-bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  /* Reset all placements to auto (natural flow) */
+  #nxf-root .nxf-bento__cell--prep,
+  #nxf-root .nxf-bento__cell--photo-a,
+  #nxf-root .nxf-bento__cell--nivela,
+  #nxf-root .nxf-bento__cell--photo-b,
+  #nxf-root .nxf-bento__cell--granito,
+  #nxf-root .nxf-bento__cell--photo-c,
+  #nxf-root .nxf-bento__cell--photo-d {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* Uniform height for all cells in tablet mode */
+  #nxf-root .nxf-bento__cell {
+    min-height: clamp(180px, 32vw, 280px);
+  }
+}
+
+@media (max-width: 520px) {
+  #nxf-root .nxf-bento {
+    grid-template-columns: 1fr;
+  }
+
+  #nxf-root .nxf-bento__cell {
+    min-height: clamp(200px, 60vw, 320px);
+  }
+
+  #nxf-root .nxf-bigtitle {
+    font-size: clamp(32px, 8.5vw, 56px);
+  }
+}
+
+</style>
+
+<!-- S3 + S2 share the purple gradient band — opened here, closed after S2 -->
+<section class="nxf-purple" aria-label="Linha Propiso e Benef&iacute;cios">
+<div class="nxf-s3">
+  <div class="wrap">
+
+    <!-- Big slogan title -->
+    <h2 class="nxf-bigtitle">
+      Beleza de pedra,<br>resist&ecirc;ncia de obra.
+    </h2>
+
+    <!-- Bento mosaico -->
+    <div class="nxf-bento" role="list" aria-label="Linha Propiso">
+
+      <!-- Col 1 / Row 1 — Prep Piso (navy) -->
+      <div class="nxf-bento__cell nxf-bento__cell--prep" role="listitem">
+        <div class="nxf-bento__textcard">
+          <p class="nxf-bento__name">Prep Piso</p>
+          <p class="nxf-bento__desc">Para aplica&ccedil;&atilde;o como autonivelante, rodo dentado, rolo quebra bolhas, sapato de prego esp&aacute;tula.</p>
+        </div>
+      </div>
+
+      <!-- Col 2 / Row 1 — Nivela & Primer (cinza) -->
+      <div class="nxf-bento__cell nxf-bento__cell--nivela" role="listitem">
+        <div class="nxf-bento__textcard">
+          <p class="nxf-bento__name">Nivela &amp; Primer</p>
+          <p class="nxf-bento__desc">Para aplica&ccedil;&atilde;o como autonivelante, rodo dentado, rolo quebra bolhas, sapato de prego esp&aacute;tula.</p>
+        </div>
+      </div>
+
+      <!-- Col 3 / Rows 1-2 — Photo C (tall) -->
+      <div class="nxf-bento__cell nxf-bento__cell--photo-c" role="listitem">
+        <img
+          class="nxf-bento__img"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-3.png"
+          alt="Aplica&ccedil;&atilde;o Nex Floor Propiso"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Col 1 / Rows 2-3 — Photo A (tall) -->
+      <div class="nxf-bento__cell nxf-bento__cell--photo-a" role="listitem">
+        <img
+          class="nxf-bento__img"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-1.png"
+          alt="Piso acabado Nex Floor"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Col 2 / Row 2 — Photo B (short) -->
+      <div class="nxf-bento__cell nxf-bento__cell--photo-b" role="listitem">
+        <img
+          class="nxf-bento__img"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-2.png"
+          alt="Detalhe Nex Floor Nivela &amp; Primer"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Col 2 / Row 3 — Granito Líquido (roxo) -->
+      <div class="nxf-bento__cell nxf-bento__cell--granito" role="listitem">
+        <div class="nxf-bento__textcard">
+          <p class="nxf-bento__name">Gran&iacute;to L&iacute;quido</p>
+          <p class="nxf-bento__desc">Para aplica&ccedil;&atilde;o como autonivelante, rodo dentado, rolo quebra bolhas, sapato de prego esp&aacute;tula.</p>
+        </div>
+      </div>
+
+      <!-- Col 3 / Row 3 — Photo D (short) -->
+      <div class="nxf-bento__cell nxf-bento__cell--photo-d" role="listitem">
+        <img
+          class="nxf-bento__img"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-4.png"
+          alt="Granito L&iacute;quido Nex Floor aplicado"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+    </div><!-- /nxf-bento -->
+
+  </div><!-- /wrap -->
+</div><!-- /nxf-s3 -->
+
+<!-- ============================================================
+     S2 — BENEFÍCIOS | INDICAÇÃO — continua sobre a mesma banda roxa
      ============================================================ -->
 <style>
 
@@ -524,7 +787,7 @@
 }
 
 /* ================================================================
-   BANDA ROXA — container que agrupa S2 + S3 + S4 (visual continuo)
+   BANDA ROXA — container que agrupa S3 + S2 (visual continuo)
    ================================================================ */
 #nxf-root .nxf-purple {
   background: var(--grad-roxo);
@@ -629,8 +892,8 @@
 
 </style>
 
-<section class="nxf-purple" aria-label="Benef&iacute;cios e Indica&ccedil;&atilde;o">
-  <div class="nxf-benfind">
+<!-- S2 benfind — dentro da nxf-purple já aberta acima por S3 -->
+<div class="nxf-benfind" role="region" aria-label="Benef&iacute;cios e Indica&ccedil;&atilde;o">
     <div class="wrap nxf-benfind__inner">
 
       <!-- LEFT — BENEFÍCIOS -->
@@ -683,7 +946,7 @@
 
     </div><!-- /wrap -->
   </div><!-- /nxf-benfind -->
-</section><!-- /nxf-purple -->
+</section><!-- /nxf-purple — fecha a banda roxa que engloba S3 + S2 -->
 
 <script>
 (function() {
