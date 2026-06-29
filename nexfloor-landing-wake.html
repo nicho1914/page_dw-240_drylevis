@@ -984,559 +984,6 @@
 })();
 </script>
 
-<!-- secoes -->
-
-<!-- ============================================================
-     PDP — CONTEUDO (galeria + info produto) — node 966:694
-     ============================================================ -->
-<style>
-
-/* ================================================================
-   PDP — CONTEUDO
-   ================================================================ */
-#nxf-root .nxf-pdp {
-  background: var(--branco);
-  width: 100%;
-  overflow-x: hidden;
-  padding-top:    clamp(56px, 7vw, 100px);
-  padding-bottom: clamp(56px, 7vw, 100px);
-}
-
-/* Two-column grid matching Figma minmax(0,1.32fr) minmax(0,1fr) */
-#nxf-root .nxf-pdp__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
-  gap: clamp(24px, 3.5vw, 53px);
-  align-items: start;
-}
-
-/* ----  LEFT COLUMN: gallery  ---- */
-#nxf-root .nxf-pdp__gallery {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 1.6vw, 19px);
-  position: relative;
-}
-
-/* Main image area */
-#nxf-root .nxf-pdp__main {
-  position: relative;
-  width: 100%;
-  height: clamp(320px, 40vw, 562px);
-  border-radius: clamp(12px, 1.6vw, 20px);
-  overflow: hidden;
-  background: linear-gradient(135deg, #7b529f 0%, #253161 45%, #3c4233 100%);
-  flex-shrink: 0;
-}
-
-#nxf-root .nxf-pdp__slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-#nxf-root .nxf-pdp__slide[data-active="true"] {
-  opacity: 1;
-}
-
-/* Bottom gradient */
-#nxf-root .nxf-pdp__grad {
-  position: absolute;
-  inset: 45% 0 0 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.72));
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Count badge top-right */
-#nxf-root .nxf-pdp__count {
-  position: absolute;
-  top: clamp(14px, 1.8vw, 21px);
-  right: clamp(14px, 1.8vw, 20px);
-  background: rgba(20,20,20,0.55);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  border-radius: 1000px;
-  padding: 5px 12px;
-  z-index: 3;
-  font-family: var(--body);
-  font-weight: 600;
-  font-size: clamp(12px, 1.1vw, 17px);
-  color: var(--branco);
-  line-height: 1;
-  white-space: nowrap;
-}
-
-/* Nav arrows */
-#nxf-root .nxf-pdp__arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(44px, 5vw, 64px);
-  height: clamp(44px, 5vw, 64px);
-  border-radius: clamp(20px, 2.5vw, 32px);
-  background: rgba(40,40,40,0.45);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: none;
-  color: var(--branco);
-  font-size: clamp(18px, 2vw, 27px);
-  font-family: var(--body);
-  font-weight: 400;
-  line-height: 1;
-  z-index: 3;
-  transition: background 0.18s;
-}
-
-#nxf-root .nxf-pdp__arrow:hover { background: rgba(40,40,40,0.72); }
-#nxf-root .nxf-pdp__arrow--prev { left: clamp(12px, 1.8vw, 21px); }
-#nxf-root .nxf-pdp__arrow--next { right: clamp(12px, 1.8vw, 21px); }
-
-/* Thumbnail strip */
-#nxf-root .nxf-pdp__thumbs {
-  display: flex;
-  gap: clamp(4px, 0.5vw, 6px);
-  align-items: center;
-  justify-content: center;
-}
-
-#nxf-root .nxf-pdp__thumb {
-  width: clamp(32px, 4vw, 48px);
-  height: clamp(32px, 4vw, 48px);
-  border-radius: 8px;
-  border: 2.5px solid transparent;
-  overflow: hidden;
-  cursor: pointer;
-  flex-shrink: 0;
-  background: #e0d8ea;
-  transition: border-color 0.18s;
-  padding: 0;
-}
-
-#nxf-root .nxf-pdp__thumb[aria-current="true"] {
-  border-color: var(--roxo);
-}
-
-#nxf-root .nxf-pdp__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Dot strip (matches Figma 4-dot indicator) */
-#nxf-root .nxf-pdp__dots {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-}
-
-#nxf-root .nxf-pdp__dot {
-  border-radius: 10px;
-  height: 9px;
-  background: #e0d8ea;
-  transition: width 0.25s, background 0.25s;
-  width: 9px;
-  flex-shrink: 0;
-}
-
-#nxf-root .nxf-pdp__dot[data-active="true"] {
-  background: var(--roxo);
-  width: 27px;
-}
-
-/* ----  RIGHT COLUMN: product info  ---- */
-#nxf-root .nxf-pdp__info {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 1.6vw, 16px);
-  padding-top: 4px;
-}
-
-/* Product name */
-#nxf-root .nxf-pdp__name {
-  font-family: var(--title);
-  font-weight: 900;
-  font-size: clamp(22px, 2.4vw, 30px);
-  line-height: 0.9;
-  text-transform: uppercase;
-  color: #2b2b2b;
-  letter-spacing: 0.02em;
-}
-
-/* Description */
-#nxf-root .nxf-pdp__desc {
-  padding-top: clamp(4px, 0.5vw, 7px);
-  font-family: var(--body);
-  font-size: clamp(14px, 1.4vw, 21px);
-  line-height: 1.55;
-  color: #3a3a42;
-}
-
-#nxf-root .nxf-pdp__desc strong {
-  font-weight: 700;
-  color: #272730;
-}
-
-/* Check list */
-#nxf-root .nxf-pdp__checks {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 1.5vw, 16px);
-  padding-top: clamp(10px, 1.2vw, 13px);
-}
-
-#nxf-root .nxf-pdp__check {
-  display: flex;
-  align-items: flex-end;
-  gap: clamp(10px, 1.2vw, 13px);
-}
-
-#nxf-root .nxf-pdp__check-icon {
-  flex-shrink: 0;
-  width: clamp(22px, 2.2vw, 30px);
-  height: auto;
-  display: block;
-}
-
-#nxf-root .nxf-pdp__check-icon--badge {
-  width: clamp(18px, 1.8vw, 24px);
-  height: clamp(18px, 1.8vw, 24px);
-  border-radius: 12px;
-  background: rgba(147,86,171,0.14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(10px, 1vw, 15px);
-  color: #3a3a42;
-  font-weight: 700;
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-#nxf-root .nxf-pdp__check-text {
-  font-family: var(--body);
-  font-size: clamp(14px, 1.4vw, 20px);
-  color: #3a3a42;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-/* Embalagem label */
-#nxf-root .nxf-pdp__emb-label {
-  font-family: var(--body);
-  font-weight: 700;
-  font-size: clamp(15px, 1.5vw, 19px);
-  color: #272730;
-  padding-top: clamp(14px, 1.8vw, 19px);
-}
-
-/* Size chips row */
-#nxf-root .nxf-pdp__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(6px, 0.8vw, 13px);
-}
-
-#nxf-root .nxf-pdp__chip {
-  background: var(--branco);
-  border: 1.5px solid #e4e4e4;
-  border-radius: clamp(10px, 1.2vw, 16px);
-  padding: clamp(10px, 1.3vw, 16px) clamp(14px, 1.6vw, 21px);
-  font-family: var(--body);
-  font-weight: 600;
-  font-size: clamp(13px, 1.3vw, 19px);
-  color: #3a3a42;
-  cursor: pointer;
-  transition: border-color 0.18s, background 0.18s;
-  white-space: nowrap;
-  border: none;
-}
-
-#nxf-root .nxf-pdp__chip[aria-pressed="true"] {
-  background: var(--branco);
-  box-shadow: 0 0 0 2.5px var(--roxo);
-  color: var(--roxo);
-}
-
-/* Comprar agora button */
-#nxf-root .nxf-pdp__buy {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1vw, 14px);
-  background: var(--roxo);
-  border: none;
-  border-radius: 15px;
-  padding: clamp(16px, 1.8vw, 24px);
-  cursor: pointer;
-  width: 100%;
-  transition: filter 0.18s;
-}
-
-#nxf-root .nxf-pdp__buy:hover { filter: brightness(1.12); }
-
-#nxf-root .nxf-pdp__buy-label {
-  font-family: var(--body);
-  font-weight: 700;
-  font-size: clamp(16px, 1.6vw, 21px);
-  color: var(--branco);
-  text-align: center;
-  white-space: nowrap;
-}
-
-#nxf-root .nxf-pdp__buy-icon {
-  width: clamp(18px, 1.6vw, 22px);
-  height: auto;
-  display: block;
-  flex-shrink: 0;
-  filter: brightness(0) invert(1);
-}
-
-/* FDS footer note */
-#nxf-root .nxf-pdp__fds {
-  font-family: var(--body);
-  font-size: clamp(12px, 1.1vw, 17px);
-  color: #9a9aa2;
-  line-height: 1.5;
-  padding-top: clamp(4px, 0.5vw, 7px);
-  padding-bottom: clamp(2px, 0.3vw, 4px);
-}
-
-/* ================================================================
-   RESPONSIVE <=900px — stack
-   ================================================================ */
-@media (max-width: 900px) {
-  #nxf-root .nxf-pdp__inner {
-    grid-template-columns: 1fr;
-  }
-
-  #nxf-root .nxf-pdp__check-text {
-    white-space: normal;
-  }
-}
-
-</style>
-
-<section class="nxf-pdp" id="nxf-pdp" aria-label="Nex Floor Gran&iacute;to L&iacute;quido &mdash; Conte&uacute;do">
-  <div class="wrap nxf-pdp__inner">
-
-    <!-- LEFT: gallery -->
-    <div class="nxf-pdp__gallery" aria-label="Galeria de imagens do produto">
-
-      <!-- Main image area -->
-      <div class="nxf-pdp__main" id="nxf-pdp-main" aria-live="polite" aria-atomic="true">
-
-        <!-- 6 slides — slide 1 starts active; slides 2-6 use placeholder bg color -->
-        <img
-          class="nxf-pdp__slide"
-          data-active="true"
-          data-idx="0"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-slide-1.png"
-          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 1"
-          loading="lazy"
-          decoding="async"
-          data-caption="Gran&iacute;to L&iacute;quido"
-          data-desc="Acabamento &eacute;pico que reproduz a pedra com brilho e resist&ecirc;ncia total."
-        />
-        <img
-          class="nxf-pdp__slide"
-          data-active="false"
-          data-idx="1"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-1.png"
-          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 2"
-          loading="lazy"
-          decoding="async"
-          data-caption="Piso Acabado"
-          data-desc="Superf&iacute;cie uniforme, f&aacute;cil limpeza e alta resist&ecirc;ncia."
-        />
-        <img
-          class="nxf-pdp__slide"
-          data-active="false"
-          data-idx="2"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-2.png"
-          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 3"
-          loading="lazy"
-          decoding="async"
-          data-caption="Nivela &amp; Primer"
-          data-desc="Base autonivelante que garante a ader&ecirc;ncia perfeita."
-        />
-        <img
-          class="nxf-pdp__slide"
-          data-active="false"
-          data-idx="3"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-3.png"
-          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 4"
-          loading="lazy"
-          decoding="async"
-          data-caption="Aplica&ccedil;&atilde;o"
-          data-desc="Aplica&ccedil;&atilde;o simples com rodo dentado e rolo quebra-bolhas."
-        />
-        <img
-          class="nxf-pdp__slide"
-          data-active="false"
-          data-idx="4"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-4.png"
-          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 5"
-          loading="lazy"
-          decoding="async"
-          data-caption="Detalhe de Textura"
-          data-desc="Textura que imita granito natural com acabamento de alta resist&ecirc;ncia."
-        />
-        <img
-          class="nxf-pdp__slide"
-          data-active="false"
-          data-idx="5"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png"
-          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 6"
-          loading="lazy"
-          decoding="async"
-          data-caption="Balde Gran&iacute;to L&iacute;quido"
-          data-desc="Disponível em embalagens de 250&nbsp;mL, 500&nbsp;mL&nbsp;c/&nbsp;Bico, 1&nbsp;L e 3,6&nbsp;L."
-        />
-
-        <!-- Bottom gradient -->
-        <div class="nxf-pdp__grad" aria-hidden="true"></div>
-
-        <!-- Count badge top-right -->
-        <span class="nxf-pdp__count" id="nxf-pdp-count" aria-label="Imagem atual">01&nbsp;/&nbsp;06</span>
-
-        <!-- Arrows -->
-        <button
-          class="nxf-pdp__arrow nxf-pdp__arrow--prev"
-          id="nxf-pdp-prev"
-          type="button"
-          aria-label="Imagem anterior"
-        >&#8249;</button>
-
-        <button
-          class="nxf-pdp__arrow nxf-pdp__arrow--next"
-          id="nxf-pdp-next"
-          type="button"
-          aria-label="Pr&oacute;xima imagem"
-        >&#8250;</button>
-
-      </div><!-- /nxf-pdp__main -->
-
-      <!-- 6 thumbnails -->
-      <div class="nxf-pdp__thumbs" role="list" aria-label="Miniaturas">
-        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="true" data-thumb="0" aria-label="Imagem 1">
-          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-slide-1.png" alt="" loading="lazy" decoding="async" />
-        </button>
-        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="1" aria-label="Imagem 2">
-          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-1.png" alt="" loading="lazy" decoding="async" />
-        </button>
-        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="2" aria-label="Imagem 3">
-          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-2.png" alt="" loading="lazy" decoding="async" />
-        </button>
-        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="3" aria-label="Imagem 4">
-          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-3.png" alt="" loading="lazy" decoding="async" />
-        </button>
-        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="4" aria-label="Imagem 5">
-          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-4.png" alt="" loading="lazy" decoding="async" />
-        </button>
-        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="5" aria-label="Imagem 6">
-          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png" alt="" loading="lazy" decoding="async" />
-        </button>
-      </div><!-- /thumbs -->
-
-      <!-- Dot indicator (matches Figma 4-dot) -->
-      <div class="nxf-pdp__dots" id="nxf-pdp-dots" aria-hidden="true">
-        <span class="nxf-pdp__dot" data-dot="0" data-active="true"></span>
-        <span class="nxf-pdp__dot" data-dot="1"></span>
-        <span class="nxf-pdp__dot" data-dot="2"></span>
-        <span class="nxf-pdp__dot" data-dot="3"></span>
-        <span class="nxf-pdp__dot" data-dot="4"></span>
-        <span class="nxf-pdp__dot" data-dot="5"></span>
-      </div>
-
-    </div><!-- /nxf-pdp__gallery -->
-
-    <!-- RIGHT: product info -->
-    <div class="nxf-pdp__info">
-
-      <!-- Product name — VERBATIM from Figma -->
-      <p class="nxf-pdp__name">NEX<br>FLOOR</p>
-
-      <!-- Description — VERBATIM from Figma (note: still contains "Impermeabilizante incolor" copy — flagged) -->
-      <p class="nxf-pdp__desc">
-        <strong>Impermeabilizante incolor</strong> da Linha Cristal.<br>
-        Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.
-      </p>
-
-      <!-- 3 check items — VERBATIM from Figma -->
-      <div class="nxf-pdp__checks">
-
-        <!-- Item 1: uses Layer 19 SVG (verificar.svg) -->
-        <div class="nxf-pdp__check">
-          <img
-            class="nxf-pdp__check-icon"
-            src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/verificar.svg"
-            alt=""
-            aria-hidden="true"
-            onerror="this.style.display='none'"
-          />
-          <span class="nxf-pdp__check-text">Incolor, n&atilde;o altera o acabamento da superf&iacute;cie</span>
-        </div>
-
-        <!-- Item 2: roxo badge check -->
-        <div class="nxf-pdp__check">
-          <span class="nxf-pdp__check-icon--badge" aria-hidden="true">&#10003;</span>
-          <span class="nxf-pdp__check-text">Pronto para usar, sem mistura</span>
-        </div>
-
-        <!-- Item 3: roxo badge check -->
-        <div class="nxf-pdp__check">
-          <span class="nxf-pdp__check-icon--badge" aria-hidden="true">&#10003;</span>
-          <span class="nxf-pdp__check-text">Cura em 24 horas</span>
-        </div>
-
-      </div><!-- /checks -->
-
-      <!-- Embalagem label + size chips -->
-      <p class="nxf-pdp__emb-label">Embalagem</p>
-
-      <div class="nxf-pdp__chips" role="group" aria-label="Tamanho de embalagem">
-        <button class="nxf-pdp__chip" type="button" aria-pressed="false">250mL</button>
-        <button class="nxf-pdp__chip" type="button" aria-pressed="true">500mL c/ Bico</button>
-        <button class="nxf-pdp__chip" type="button" aria-pressed="false">1L</button>
-        <button class="nxf-pdp__chip" type="button" aria-pressed="false">3,6L</button>
-      </div>
-
-      <!-- Comprar agora button -->
-      <button class="nxf-pdp__buy" type="button" aria-label="Comprar agora">
-        <span class="nxf-pdp__buy-label">Comprar agora</span>
-        <img
-          class="nxf-pdp__buy-icon"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/carrinho-carrinho.svg"
-          alt=""
-          aria-hidden="true"
-          onerror="this.style.display='none'"
-        />
-      </button>
-
-      <!-- FDS footer note — VERBATIM from Figma -->
-      <p class="nxf-pdp__fds">
-        Nex Floor &middot; Granito L&iacute;quido &middot; Linha Cristal &mdash; FDS<br>
-        dispon&iacute;vel em linhacristal.com.br
-      </p>
-
-    </div><!-- /nxf-pdp__info -->
-
-  </div><!-- /wrap -->
-</section><!-- /nxf-pdp -->
 
 <!-- ============================================================
      S4 — CALCULADORA DE RENDIMENTO (banda roxa continua)
@@ -2113,7 +1560,253 @@
 })();
 </script>
 
-<!-- secoes-fim -->
+<!-- ============================================================
+     S5 — 3 CARDS DE PRODUTO (fundo branco, fora da banda roxa)
+     ============================================================ -->
+<style>
+
+/* ================================================================
+   S5 — CARDS DE PRODUTO
+   ================================================================ */
+#nxf-root .nxf-cards {
+  background: var(--branco);
+  width: 100%;
+  overflow-x: hidden;
+  padding-top:    clamp(48px, 7vw, 96px);
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+#nxf-root .nxf-cards__grid {
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 1.5vw, 23px);
+}
+
+/* ---- Single card ---- */
+#nxf-root .nxf-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ---- Card top — lilac bucket area ---- */
+#nxf-root .nxf-card__top {
+  background: var(--lilas);
+  border-radius: 24px 24px 0 0;
+  aspect-ratio: 435 / 283;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#nxf-root .nxf-card__bucket {
+  width: 56%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  object-fit: contain;
+  display: block;
+}
+
+/* ---- Card body — white ---- */
+#nxf-root .nxf-card__body {
+  background: var(--branco);
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 4px .6px rgba(0, 0, 0, .25);
+  padding: clamp(24px, 3vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3.4vw, 45px);
+  flex: 1;
+}
+
+/* ---- Details block ---- */
+#nxf-root .nxf-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#nxf-root .nxf-card__label {
+  font-family: var(--body);
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.2;
+  color: var(--ink2);
+}
+
+#nxf-root .nxf-card__label--accent {
+  color: var(--roxo);
+}
+
+#nxf-root .nxf-card__name {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+
+#nxf-root .nxf-card__desc {
+  font-family: var(--body);
+  font-size: clamp(17px, 1.8vw, 23px);
+  line-height: 1.25;
+  color: var(--gray);
+}
+
+/* ---- Price + button row ---- */
+#nxf-root .nxf-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 2vw, 40px);
+  flex-wrap: wrap;
+}
+
+#nxf-root .nxf-card__price {
+  font-family: var(--title);
+  font-weight: 900;
+  color: var(--ink2);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#nxf-root .nxf-card__price-main {
+  font-size: clamp(24px, 2.4vw, 30px);
+}
+
+#nxf-root .nxf-card__price-cents {
+  font-size: clamp(18px, 1.8vw, 23px);
+}
+
+#nxf-root .nxf-card__btn {
+  background: var(--roxo);
+  color: var(--branco);
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(18px, 1.8vw, 23px);
+  text-transform: uppercase;
+  padding: 11px 32px;
+  border-radius: 24px;
+  border: 0;
+  cursor: pointer;
+  transition: filter 0.18s;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#nxf-root .nxf-card__btn:hover {
+  filter: brightness(0.85);
+}
+
+/* ================================================================
+   RESPONSIVE ≤860px — 1 col
+   ================================================================ */
+@media (max-width: 860px) {
+  #nxf-root .nxf-cards__grid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+  }
+}
+
+</style>
+
+<section class="nxf-cards" aria-label="Produtos Nex Floor">
+  <div class="nxf-cards__grid">
+
+    <!-- Card 1 — Prep Piso (Aglutinante) -->
+    <article class="nxf-card" aria-label="Passo 01 - Aglutinante: Prep Piso">
+
+      <div class="nxf-card__top">
+        <img
+          class="nxf-card__bucket"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-prep.png"
+          alt="Balde Nex Floor Prep Piso"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label">Passo 01 - Aglutinante</span>
+          <p class="nxf-card__name">Prep Piso</p>
+          <p class="nxf-card__desc">Sela e aglutina superf&iacute;cies porosas, criando a base ideal. 3,5&nbsp;kg &middot; rende 12&nbsp;m&sup2;.</p>
+        </div>
+        <div class="nxf-card__footer">
+          <p class="nxf-card__price">
+            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
+          </p>
+          <button class="nxf-card__btn" type="button">Comprar</button>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Card 2 — Nivela & Primer (Aderência) -->
+    <article class="nxf-card" aria-label="Passo 02 - Ader&ecirc;ncia: Nivela &amp; Primer">
+
+      <div class="nxf-card__top">
+        <img
+          class="nxf-card__bucket"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-primer.png"
+          alt="Balde Nex Floor Nivela &amp; Primer"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label">Passo 02 - Ader&ecirc;ncia</span>
+          <p class="nxf-card__name">Nivela &amp; Primer</p>
+          <p class="nxf-card__desc">Promove ader&ecirc;ncia e autonivela a superf&iacute;cie. 4&nbsp;kg &middot; rende 12&nbsp;m&sup2;.</p>
+        </div>
+        <div class="nxf-card__footer">
+          <p class="nxf-card__price">
+            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
+          </p>
+          <button class="nxf-card__btn" type="button">Comprar</button>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Card 3 — Granito Líquido (Acabamento) -->
+    <article class="nxf-card" aria-label="Passo 03 - Acabamento: Gran&iacute;to L&iacute;quido">
+
+      <div class="nxf-card__top">
+        <img
+          class="nxf-card__bucket"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png"
+          alt="Balde Nex Floor Gran&iacute;to L&iacute;quido"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label nxf-card__label--accent">Passo 03 - Acabamento</span>
+          <p class="nxf-card__name">Gran&iacute;to L&iacute;quido</p>
+          <p class="nxf-card__desc">Acabamento ep&oacute;xi que reproduz o granito, com brilho e resist&ecirc;ncia. 4&nbsp;kg &middot; rende 1,82&nbsp;m&sup2;.</p>
+        </div>
+        <div class="nxf-card__footer">
+          <p class="nxf-card__price">
+            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
+          </p>
+          <button class="nxf-card__btn" type="button">Comprar</button>
+        </div>
+      </div>
+
+    </article>
+
+  </div><!-- /nxf-cards__grid -->
+</section><!-- /nxf-cards -->
 
 <!-- ============================================================
      S6 — INFORMAÇÕES (abas funcionais)
@@ -2404,252 +2097,556 @@
 </script>
 
 <!-- ============================================================
-     S5 — 3 CARDS DE PRODUTO (fundo branco, fora da banda roxa)
+     PDP — CONTEUDO (galeria + info produto) — node 966:694
      ============================================================ -->
 <style>
 
 /* ================================================================
-   S5 — CARDS DE PRODUTO
+   PDP — CONTEUDO
    ================================================================ */
-#nxf-root .nxf-cards {
+#nxf-root .nxf-pdp {
   background: var(--branco);
   width: 100%;
   overflow-x: hidden;
-  padding-top:    clamp(48px, 7vw, 96px);
-  padding-bottom: clamp(48px, 7vw, 96px);
+  padding-top:    clamp(56px, 7vw, 100px);
+  padding-bottom: clamp(56px, 7vw, 100px);
 }
 
-#nxf-root .nxf-cards__grid {
-  max-width: 1380px;
-  margin-inline: auto;
-  padding-inline: clamp(16px, 4vw, 48px);
+/* Two-column grid matching Figma minmax(0,1.32fr) minmax(0,1fr) */
+#nxf-root .nxf-pdp__inner {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 1.5vw, 23px);
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
+  gap: clamp(24px, 3.5vw, 53px);
+  align-items: start;
 }
 
-/* ---- Single card ---- */
-#nxf-root .nxf-card {
+/* ----  LEFT COLUMN: gallery  ---- */
+#nxf-root .nxf-pdp__gallery {
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
-  overflow: hidden;
+  gap: clamp(14px, 1.6vw, 19px);
+  position: relative;
 }
 
-/* ---- Card top — lilac bucket area ---- */
-#nxf-root .nxf-card__top {
-  background: var(--lilas);
-  border-radius: 24px 24px 0 0;
-  aspect-ratio: 435 / 283;
+/* Main image area */
+#nxf-root .nxf-pdp__main {
   position: relative;
+  width: 100%;
+  height: clamp(320px, 40vw, 562px);
+  border-radius: clamp(12px, 1.6vw, 20px);
+  overflow: hidden;
+  background: linear-gradient(135deg, #7b529f 0%, #253161 45%, #3c4233 100%);
   flex-shrink: 0;
 }
 
-#nxf-root .nxf-card__bucket {
-  width: 56%;
+#nxf-root .nxf-pdp__slide {
   position: absolute;
-  left: 50%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+#nxf-root .nxf-pdp__slide[data-active="true"] {
+  opacity: 1;
+}
+
+/* Bottom gradient */
+#nxf-root .nxf-pdp__grad {
+  position: absolute;
+  inset: 45% 0 0 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.72));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Count badge top-right */
+#nxf-root .nxf-pdp__count {
+  position: absolute;
+  top: clamp(14px, 1.8vw, 21px);
+  right: clamp(14px, 1.8vw, 20px);
+  background: rgba(20,20,20,0.55);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-radius: 1000px;
+  padding: 5px 12px;
+  z-index: 3;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: clamp(12px, 1.1vw, 17px);
+  color: var(--branco);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Nav arrows */
+#nxf-root .nxf-pdp__arrow {
+  position: absolute;
   top: 50%;
-  transform: translate(-50%, -48%);
-  object-fit: contain;
+  transform: translateY(-50%);
+  width: clamp(44px, 5vw, 64px);
+  height: clamp(44px, 5vw, 64px);
+  border-radius: clamp(20px, 2.5vw, 32px);
+  background: rgba(40,40,40,0.45);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  color: var(--branco);
+  font-size: clamp(18px, 2vw, 27px);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1;
+  z-index: 3;
+  transition: background 0.18s;
+}
+
+#nxf-root .nxf-pdp__arrow:hover { background: rgba(40,40,40,0.72); }
+#nxf-root .nxf-pdp__arrow--prev { left: clamp(12px, 1.8vw, 21px); }
+#nxf-root .nxf-pdp__arrow--next { right: clamp(12px, 1.8vw, 21px); }
+
+/* Thumbnail strip */
+#nxf-root .nxf-pdp__thumbs {
+  display: flex;
+  gap: clamp(4px, 0.5vw, 6px);
+  align-items: center;
+  justify-content: center;
+}
+
+#nxf-root .nxf-pdp__thumb {
+  width: clamp(32px, 4vw, 48px);
+  height: clamp(32px, 4vw, 48px);
+  border-radius: 8px;
+  border: 2.5px solid transparent;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: #e0d8ea;
+  transition: border-color 0.18s;
+  padding: 0;
+}
+
+#nxf-root .nxf-pdp__thumb[aria-current="true"] {
+  border-color: var(--roxo);
+}
+
+#nxf-root .nxf-pdp__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-/* ---- Card body — white ---- */
-#nxf-root .nxf-card__body {
-  background: var(--branco);
-  border-radius: 0 0 24px 24px;
-  box-shadow: 0 4px .6px rgba(0, 0, 0, .25);
-  padding: clamp(24px, 3vw, 48px);
+/* Dot strip (matches Figma 4-dot indicator) */
+#nxf-root .nxf-pdp__dots {
   display: flex;
-  flex-direction: column;
-  gap: clamp(28px, 3.4vw, 45px);
-  flex: 1;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
 }
 
-/* ---- Details block ---- */
-#nxf-root .nxf-card__details {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+#nxf-root .nxf-pdp__dot {
+  border-radius: 10px;
+  height: 9px;
+  background: #e0d8ea;
+  transition: width 0.25s, background 0.25s;
+  width: 9px;
+  flex-shrink: 0;
 }
 
-#nxf-root .nxf-card__label {
+#nxf-root .nxf-pdp__dot[data-active="true"] {
+  background: var(--roxo);
+  width: 27px;
+}
+
+/* ----  RIGHT COLUMN: product info  ---- */
+#nxf-root .nxf-pdp__info {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 16px);
+  padding-top: 4px;
+}
+
+/* Product name */
+#nxf-root .nxf-pdp__name {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #2b2b2b;
+  letter-spacing: 0.02em;
+}
+
+/* Description */
+#nxf-root .nxf-pdp__desc {
+  padding-top: clamp(4px, 0.5vw, 7px);
   font-family: var(--body);
-  font-size: clamp(16px, 1.5vw, 19px);
-  line-height: 1.2;
-  color: var(--ink2);
+  font-size: clamp(14px, 1.4vw, 21px);
+  line-height: 1.55;
+  color: #3a3a42;
 }
 
-#nxf-root .nxf-card__label--accent {
+#nxf-root .nxf-pdp__desc strong {
+  font-weight: 700;
+  color: #272730;
+}
+
+/* Check list */
+#nxf-root .nxf-pdp__checks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 16px);
+  padding-top: clamp(10px, 1.2vw, 13px);
+}
+
+#nxf-root .nxf-pdp__check {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(10px, 1.2vw, 13px);
+}
+
+#nxf-root .nxf-pdp__check-icon {
+  flex-shrink: 0;
+  width: clamp(22px, 2.2vw, 30px);
+  height: auto;
+  display: block;
+}
+
+#nxf-root .nxf-pdp__check-icon--badge {
+  width: clamp(18px, 1.8vw, 24px);
+  height: clamp(18px, 1.8vw, 24px);
+  border-radius: 12px;
+  background: rgba(147,86,171,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(10px, 1vw, 15px);
+  color: #3a3a42;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+#nxf-root .nxf-pdp__check-text {
+  font-family: var(--body);
+  font-size: clamp(14px, 1.4vw, 20px);
+  color: #3a3a42;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Embalagem label */
+#nxf-root .nxf-pdp__emb-label {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: clamp(15px, 1.5vw, 19px);
+  color: #272730;
+  padding-top: clamp(14px, 1.8vw, 19px);
+}
+
+/* Size chips row */
+#nxf-root .nxf-pdp__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(6px, 0.8vw, 13px);
+}
+
+#nxf-root .nxf-pdp__chip {
+  background: var(--branco);
+  border: 1.5px solid #e4e4e4;
+  border-radius: clamp(10px, 1.2vw, 16px);
+  padding: clamp(10px, 1.3vw, 16px) clamp(14px, 1.6vw, 21px);
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: clamp(13px, 1.3vw, 19px);
+  color: #3a3a42;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+  white-space: nowrap;
+  border: none;
+}
+
+#nxf-root .nxf-pdp__chip[aria-pressed="true"] {
+  background: var(--branco);
+  box-shadow: 0 0 0 2.5px var(--roxo);
   color: var(--roxo);
 }
 
-#nxf-root .nxf-card__name {
-  font-family: var(--title);
-  font-weight: 900;
-  font-size: clamp(28px, 3vw, 38px);
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--ink2);
-}
-
-#nxf-root .nxf-card__desc {
-  font-family: var(--body);
-  font-size: clamp(17px, 1.8vw, 23px);
-  line-height: 1.25;
-  color: var(--gray);
-}
-
-/* ---- Price + button row ---- */
-#nxf-root .nxf-card__footer {
+/* Comprar agora button */
+#nxf-root .nxf-pdp__buy {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(12px, 2vw, 40px);
-  flex-wrap: wrap;
-}
-
-#nxf-root .nxf-card__price {
-  font-family: var(--title);
-  font-weight: 900;
-  color: var(--ink2);
-  line-height: 1;
-  white-space: nowrap;
-}
-
-#nxf-root .nxf-card__price-main {
-  font-size: clamp(24px, 2.4vw, 30px);
-}
-
-#nxf-root .nxf-card__price-cents {
-  font-size: clamp(18px, 1.8vw, 23px);
-}
-
-#nxf-root .nxf-card__btn {
+  justify-content: center;
+  gap: clamp(8px, 1vw, 14px);
   background: var(--roxo);
-  color: var(--branco);
-  font-family: var(--title);
-  font-weight: 900;
-  font-size: clamp(18px, 1.8vw, 23px);
-  text-transform: uppercase;
-  padding: 11px 32px;
-  border-radius: 24px;
-  border: 0;
+  border: none;
+  border-radius: 15px;
+  padding: clamp(16px, 1.8vw, 24px);
   cursor: pointer;
+  width: 100%;
   transition: filter 0.18s;
-  line-height: 1;
+}
+
+#nxf-root .nxf-pdp__buy:hover { filter: brightness(1.12); }
+
+#nxf-root .nxf-pdp__buy-label {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 21px);
+  color: var(--branco);
+  text-align: center;
   white-space: nowrap;
 }
 
-#nxf-root .nxf-card__btn:hover {
-  filter: brightness(0.85);
+#nxf-root .nxf-pdp__buy-icon {
+  width: clamp(18px, 1.6vw, 22px);
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+}
+
+/* FDS footer note */
+#nxf-root .nxf-pdp__fds {
+  font-family: var(--body);
+  font-size: clamp(12px, 1.1vw, 17px);
+  color: #9a9aa2;
+  line-height: 1.5;
+  padding-top: clamp(4px, 0.5vw, 7px);
+  padding-bottom: clamp(2px, 0.3vw, 4px);
 }
 
 /* ================================================================
-   RESPONSIVE ≤860px — 1 col
+   RESPONSIVE <=900px — stack
    ================================================================ */
-@media (max-width: 860px) {
-  #nxf-root .nxf-cards__grid {
+@media (max-width: 900px) {
+  #nxf-root .nxf-pdp__inner {
     grid-template-columns: 1fr;
-    max-width: 540px;
+  }
+
+  #nxf-root .nxf-pdp__check-text {
+    white-space: normal;
   }
 }
 
 </style>
 
-<section class="nxf-cards" aria-label="Produtos Nex Floor">
-  <div class="nxf-cards__grid">
+<section class="nxf-pdp" id="nxf-pdp" aria-label="Nex Floor Gran&iacute;to L&iacute;quido &mdash; Conte&uacute;do">
+  <div class="wrap nxf-pdp__inner">
 
-    <!-- Card 1 — Prep Piso (Aglutinante) -->
-    <article class="nxf-card" aria-label="Passo 01 - Aglutinante: Prep Piso">
+    <!-- LEFT: gallery -->
+    <div class="nxf-pdp__gallery" aria-label="Galeria de imagens do produto">
 
-      <div class="nxf-card__top">
+      <!-- Main image area -->
+      <div class="nxf-pdp__main" id="nxf-pdp-main" aria-live="polite" aria-atomic="true">
+
+        <!-- 6 slides — slide 1 starts active; slides 2-6 use placeholder bg color -->
         <img
-          class="nxf-card__bucket"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-prep.png"
-          alt="Balde Nex Floor Prep Piso"
+          class="nxf-pdp__slide"
+          data-active="true"
+          data-idx="0"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-slide-1.png"
+          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 1"
           loading="lazy"
           decoding="async"
+          data-caption="Gran&iacute;to L&iacute;quido"
+          data-desc="Acabamento &eacute;pico que reproduz a pedra com brilho e resist&ecirc;ncia total."
         />
-      </div>
-
-      <div class="nxf-card__body">
-        <div class="nxf-card__details">
-          <span class="nxf-card__label">Passo 01 - Aglutinante</span>
-          <p class="nxf-card__name">Prep Piso</p>
-          <p class="nxf-card__desc">Sela e aglutina superf&iacute;cies porosas, criando a base ideal. 3,5&nbsp;kg &middot; rende 12&nbsp;m&sup2;.</p>
-        </div>
-        <div class="nxf-card__footer">
-          <p class="nxf-card__price">
-            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
-          </p>
-          <button class="nxf-card__btn" type="button">Comprar</button>
-        </div>
-      </div>
-
-    </article>
-
-    <!-- Card 2 — Nivela & Primer (Aderência) -->
-    <article class="nxf-card" aria-label="Passo 02 - Ader&ecirc;ncia: Nivela &amp; Primer">
-
-      <div class="nxf-card__top">
         <img
-          class="nxf-card__bucket"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-primer.png"
-          alt="Balde Nex Floor Nivela &amp; Primer"
+          class="nxf-pdp__slide"
+          data-active="false"
+          data-idx="1"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-1.png"
+          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 2"
           loading="lazy"
           decoding="async"
+          data-caption="Piso Acabado"
+          data-desc="Superf&iacute;cie uniforme, f&aacute;cil limpeza e alta resist&ecirc;ncia."
         />
-      </div>
-
-      <div class="nxf-card__body">
-        <div class="nxf-card__details">
-          <span class="nxf-card__label">Passo 02 - Ader&ecirc;ncia</span>
-          <p class="nxf-card__name">Nivela &amp; Primer</p>
-          <p class="nxf-card__desc">Promove ader&ecirc;ncia e autonivela a superf&iacute;cie. 4&nbsp;kg &middot; rende 12&nbsp;m&sup2;.</p>
-        </div>
-        <div class="nxf-card__footer">
-          <p class="nxf-card__price">
-            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
-          </p>
-          <button class="nxf-card__btn" type="button">Comprar</button>
-        </div>
-      </div>
-
-    </article>
-
-    <!-- Card 3 — Granito Líquido (Acabamento) -->
-    <article class="nxf-card" aria-label="Passo 03 - Acabamento: Gran&iacute;to L&iacute;quido">
-
-      <div class="nxf-card__top">
         <img
-          class="nxf-card__bucket"
+          class="nxf-pdp__slide"
+          data-active="false"
+          data-idx="2"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-2.png"
+          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 3"
+          loading="lazy"
+          decoding="async"
+          data-caption="Nivela &amp; Primer"
+          data-desc="Base autonivelante que garante a ader&ecirc;ncia perfeita."
+        />
+        <img
+          class="nxf-pdp__slide"
+          data-active="false"
+          data-idx="3"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-3.png"
+          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 4"
+          loading="lazy"
+          decoding="async"
+          data-caption="Aplica&ccedil;&atilde;o"
+          data-desc="Aplica&ccedil;&atilde;o simples com rodo dentado e rolo quebra-bolhas."
+        />
+        <img
+          class="nxf-pdp__slide"
+          data-active="false"
+          data-idx="4"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-4.png"
+          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 5"
+          loading="lazy"
+          decoding="async"
+          data-caption="Detalhe de Textura"
+          data-desc="Textura que imita granito natural com acabamento de alta resist&ecirc;ncia."
+        />
+        <img
+          class="nxf-pdp__slide"
+          data-active="false"
+          data-idx="5"
           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png"
-          alt="Balde Nex Floor Gran&iacute;to L&iacute;quido"
+          alt="Nex Floor Gran&iacute;to L&iacute;quido &mdash; vista 6"
           loading="lazy"
           decoding="async"
+          data-caption="Balde Gran&iacute;to L&iacute;quido"
+          data-desc="Disponível em embalagens de 250&nbsp;mL, 500&nbsp;mL&nbsp;c/&nbsp;Bico, 1&nbsp;L e 3,6&nbsp;L."
         />
+
+        <!-- Bottom gradient -->
+        <div class="nxf-pdp__grad" aria-hidden="true"></div>
+
+        <!-- Count badge top-right -->
+        <span class="nxf-pdp__count" id="nxf-pdp-count" aria-label="Imagem atual">01&nbsp;/&nbsp;06</span>
+
+        <!-- Arrows -->
+        <button
+          class="nxf-pdp__arrow nxf-pdp__arrow--prev"
+          id="nxf-pdp-prev"
+          type="button"
+          aria-label="Imagem anterior"
+        >&#8249;</button>
+
+        <button
+          class="nxf-pdp__arrow nxf-pdp__arrow--next"
+          id="nxf-pdp-next"
+          type="button"
+          aria-label="Pr&oacute;xima imagem"
+        >&#8250;</button>
+
+      </div><!-- /nxf-pdp__main -->
+
+      <!-- 6 thumbnails -->
+      <div class="nxf-pdp__thumbs" role="list" aria-label="Miniaturas">
+        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="true" data-thumb="0" aria-label="Imagem 1">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-slide-1.png" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="1" aria-label="Imagem 2">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-1.png" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="2" aria-label="Imagem 3">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-2.png" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="3" aria-label="Imagem 4">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-3.png" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="4" aria-label="Imagem 5">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-bento-4.png" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="nxf-pdp__thumb" type="button" role="listitem" aria-current="false" data-thumb="5" aria-label="Imagem 6">
+          <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png" alt="" loading="lazy" decoding="async" />
+        </button>
+      </div><!-- /thumbs -->
+
+      <!-- Dot indicator (matches Figma 4-dot) -->
+      <div class="nxf-pdp__dots" id="nxf-pdp-dots" aria-hidden="true">
+        <span class="nxf-pdp__dot" data-dot="0" data-active="true"></span>
+        <span class="nxf-pdp__dot" data-dot="1"></span>
+        <span class="nxf-pdp__dot" data-dot="2"></span>
+        <span class="nxf-pdp__dot" data-dot="3"></span>
+        <span class="nxf-pdp__dot" data-dot="4"></span>
+        <span class="nxf-pdp__dot" data-dot="5"></span>
       </div>
 
-      <div class="nxf-card__body">
-        <div class="nxf-card__details">
-          <span class="nxf-card__label nxf-card__label--accent">Passo 03 - Acabamento</span>
-          <p class="nxf-card__name">Gran&iacute;to L&iacute;quido</p>
-          <p class="nxf-card__desc">Acabamento ep&oacute;xi que reproduz o granito, com brilho e resist&ecirc;ncia. 4&nbsp;kg &middot; rende 1,82&nbsp;m&sup2;.</p>
+    </div><!-- /nxf-pdp__gallery -->
+
+    <!-- RIGHT: product info -->
+    <div class="nxf-pdp__info">
+
+      <!-- Product name — VERBATIM from Figma -->
+      <p class="nxf-pdp__name">NEX<br>FLOOR</p>
+
+      <!-- Description — VERBATIM from Figma (note: still contains "Impermeabilizante incolor" copy — flagged) -->
+      <p class="nxf-pdp__desc">
+        <strong>Impermeabilizante incolor</strong> da Linha Cristal.<br>
+        Pronto para usar, resolve da trinca ao telhado e bloqueia a umidade de uma vez.
+      </p>
+
+      <!-- 3 check items — VERBATIM from Figma -->
+      <div class="nxf-pdp__checks">
+
+        <!-- Item 1: uses Layer 19 SVG (verificar.svg) -->
+        <div class="nxf-pdp__check">
+          <img
+            class="nxf-pdp__check-icon"
+            src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/verificar.svg"
+            alt=""
+            aria-hidden="true"
+            onerror="this.style.display='none'"
+          />
+          <span class="nxf-pdp__check-text">Incolor, n&atilde;o altera o acabamento da superf&iacute;cie</span>
         </div>
-        <div class="nxf-card__footer">
-          <p class="nxf-card__price">
-            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
-          </p>
-          <button class="nxf-card__btn" type="button">Comprar</button>
+
+        <!-- Item 2: roxo badge check -->
+        <div class="nxf-pdp__check">
+          <span class="nxf-pdp__check-icon--badge" aria-hidden="true">&#10003;</span>
+          <span class="nxf-pdp__check-text">Pronto para usar, sem mistura</span>
         </div>
+
+        <!-- Item 3: roxo badge check -->
+        <div class="nxf-pdp__check">
+          <span class="nxf-pdp__check-icon--badge" aria-hidden="true">&#10003;</span>
+          <span class="nxf-pdp__check-text">Cura em 24 horas</span>
+        </div>
+
+      </div><!-- /checks -->
+
+      <!-- Embalagem label + size chips -->
+      <p class="nxf-pdp__emb-label">Embalagem</p>
+
+      <div class="nxf-pdp__chips" role="group" aria-label="Tamanho de embalagem">
+        <button class="nxf-pdp__chip" type="button" aria-pressed="false">250mL</button>
+        <button class="nxf-pdp__chip" type="button" aria-pressed="true">500mL c/ Bico</button>
+        <button class="nxf-pdp__chip" type="button" aria-pressed="false">1L</button>
+        <button class="nxf-pdp__chip" type="button" aria-pressed="false">3,6L</button>
       </div>
 
-    </article>
+      <!-- Comprar agora button -->
+      <button class="nxf-pdp__buy" type="button" aria-label="Comprar agora">
+        <span class="nxf-pdp__buy-label">Comprar agora</span>
+        <img
+          class="nxf-pdp__buy-icon"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/carrinho-carrinho.svg"
+          alt=""
+          aria-hidden="true"
+          onerror="this.style.display='none'"
+        />
+      </button>
 
-  </div><!-- /nxf-cards__grid -->
-</section><!-- /nxf-cards -->
+      <!-- FDS footer note — VERBATIM from Figma -->
+      <p class="nxf-pdp__fds">
+        Nex Floor &middot; Granito L&iacute;quido &middot; Linha Cristal &mdash; FDS<br>
+        dispon&iacute;vel em linhacristal.com.br
+      </p>
+
+    </div><!-- /nxf-pdp__info -->
+
+  </div><!-- /wrap -->
+</section><!-- /nxf-pdp -->
 
 <!-- ============================================================
      BARRA DE COMPRA FIXA — node 1032:129 (Frame 2105)
