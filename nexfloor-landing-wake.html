@@ -986,4 +986,581 @@
 
 <!-- secoes -->
 
+<!-- ============================================================
+     S4 — CALCULADORA DE RENDIMENTO (banda roxa continua)
+     ============================================================ -->
+<style>
+
+/* ================================================================
+   S4 — CALCULADORA DE RENDIMENTO
+   ================================================================ */
+#nxf-root .nxf-calc {
+  background: var(--grad-roxo);
+  width: 100%;
+  overflow-x: hidden;
+  padding-top:    clamp(64px, 8vw, 120px);
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+
+/* ---- Title ---- */
+#nxf-root .nxf-calc__title {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(34px, 6.4vw, 96px);
+  line-height:    1;
+  text-transform: uppercase;
+  color:          var(--branco);
+  text-align:     center;
+  margin-bottom:  clamp(48px, 6vw, 88px);
+}
+
+/* ---- Step row (badge + label) ---- */
+#nxf-root .nxf-calc__step-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 20px);
+  margin-bottom: clamp(20px, 2.4vw, 32px);
+}
+
+#nxf-root .nxf-calc__badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #8a76a2;
+  border-radius: 49px;
+  padding: 4px 20px;
+  min-width: clamp(44px, 4vw, 60px);
+  height: clamp(44px, 4vw, 60px);
+}
+
+#nxf-root .nxf-calc__badge-num {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(20px, 2.1vw, 32px);
+  line-height:    1;
+  color:          var(--branco);
+  text-align:     center;
+}
+
+#nxf-root .nxf-calc__step-label {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(22px, 2.1vw, 32px);
+  line-height:    1;
+  color:          var(--branco);
+  text-transform: uppercase;
+}
+
+/* ---- Toggle pill group ---- */
+#nxf-root .nxf-calc__toggle {
+  display: flex;
+  gap: clamp(12px, 1.4vw, 16px);
+  margin-bottom: clamp(36px, 4.5vw, 60px);
+  flex-wrap: wrap;
+}
+
+#nxf-root .nxf-calc__toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  padding: clamp(14px, 1.4vw, 18px) clamp(20px, 2.4vw, 36px);
+  background: rgba(0,0,0,0.2);
+  border: 0.764px solid rgba(255,255,255,0.1);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+  min-width: clamp(200px, 22vw, 314px);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+}
+
+#nxf-root .nxf-calc__toggle-btn[aria-pressed="true"] {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.45);
+}
+
+#nxf-root .nxf-calc__toggle-icon {
+  flex-shrink: 0;
+  width: clamp(22px, 2vw, 29px);
+  height: clamp(22px, 2vw, 29px);
+  display: block;
+}
+
+#nxf-root .nxf-calc__toggle-label {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(16px, 1.8vw, 27.5px);
+  line-height:    1;
+  color:          var(--branco);
+  text-transform: uppercase;
+  white-space:    nowrap;
+}
+
+/* ---- Input panel ---- */
+#nxf-root .nxf-calc__panel {
+  display: none;
+}
+
+#nxf-root .nxf-calc__panel[data-active="true"] {
+  display: flex;
+  gap: clamp(24px, 4vw, 60px);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+/* ---- Single input group: big number + unit + underline ---- */
+#nxf-root .nxf-calc__input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+#nxf-root .nxf-calc__num-input {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(56px, 8.5vw, 128px);
+  line-height:    1;
+  color:          var(--branco);
+  background:     transparent;
+  border:         none;
+  outline:        none;
+  text-align:     center;
+  width:          clamp(100px, 14vw, 200px);
+  -moz-appearance: textfield;
+  appearance:     textfield;
+  caret-color:    var(--branco);
+}
+
+#nxf-root .nxf-calc__num-input::-webkit-outer-spin-button,
+#nxf-root .nxf-calc__num-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+#nxf-root .nxf-calc__unit {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(14px, 1.8vw, 27.5px);
+  color:          var(--branco);
+  line-height:    1;
+  margin-top:     4px;
+  text-align:     center;
+}
+
+#nxf-root .nxf-calc__underline {
+  width:          100%;
+  height:         2px;
+  background:     var(--branco);
+  margin-top:     clamp(6px, 0.8vw, 10px);
+  border-radius:  1px;
+  opacity:        0.8;
+}
+
+/* ---- Multiplier "x" separator ---- */
+#nxf-root .nxf-calc__sep {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(18px, 1.8vw, 27.5px);
+  color:          var(--branco);
+  padding-bottom: clamp(28px, 3vw, 44px);
+  flex-shrink:    0;
+}
+
+/* ---- Step 2 block ---- */
+#nxf-root .nxf-calc__step2 {
+  margin-top: clamp(48px, 6vw, 80px);
+}
+
+/* helper text below "Demãos" label */
+#nxf-root .nxf-calc__helper {
+  font-family:    var(--body);
+  font-weight:    700;
+  font-size:      clamp(13px, 1.3vw, 20px);
+  line-height:    1.3;
+  color:          rgba(255,255,255,0.8);
+  text-align:     center;
+  margin-top:     clamp(10px, 1.2vw, 16px);
+  max-width:      540px;
+}
+
+/* ---- Result card ---- */
+#nxf-root .nxf-calc__result {
+  margin-top: clamp(48px, 6vw, 80px);
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 24px;
+  padding: clamp(28px, 3.5vw, 52px) clamp(28px, 4vw, 60px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+#nxf-root .nxf-calc__result-headline {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(20px, 2.2vw, 34px);
+  line-height:    1.1;
+  color:          var(--branco);
+  text-transform: uppercase;
+}
+
+#nxf-root .nxf-calc__result-area {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(28px, 3.6vw, 56px);
+  line-height:    1;
+  color:          var(--branco);
+}
+
+#nxf-root .nxf-calc__result-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+
+#nxf-root .nxf-calc__result-products {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 14px);
+}
+
+#nxf-root .nxf-calc__result-product {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#nxf-root .nxf-calc__result-product-name {
+  font-family:    var(--body);
+  font-weight:    700;
+  font-size:      clamp(14px, 1.4vw, 20px);
+  color:          rgba(255,255,255,0.85);
+  text-transform: uppercase;
+}
+
+#nxf-root .nxf-calc__result-product-qty {
+  font-family:    var(--title);
+  font-weight:    900;
+  font-size:      clamp(18px, 2vw, 30px);
+  color:          var(--branco);
+}
+
+#nxf-root .nxf-calc__result-zero {
+  font-family:    var(--body);
+  font-size:      clamp(14px, 1.4vw, 20px);
+  color:          rgba(255,255,255,0.6);
+  text-align:     center;
+  padding:        clamp(12px,1.5vw,20px) 0;
+}
+
+/* ================================================================
+   RESPONSIVE ≤860px — stacks inputs
+   ================================================================ */
+@media (max-width: 860px) {
+  #nxf-root .nxf-calc__panel[data-active="true"] {
+    justify-content: center;
+  }
+
+  #nxf-root .nxf-calc__toggle {
+    justify-content: center;
+  }
+
+  #nxf-root .nxf-calc__result {
+    padding: clamp(20px, 5vw, 36px);
+  }
+}
+
+@media (max-width: 520px) {
+  #nxf-root .nxf-calc__toggle-btn {
+    min-width: 0;
+    flex: 1 1 140px;
+  }
+
+  #nxf-root .nxf-calc__toggle-label {
+    white-space: normal;
+    text-align:  center;
+  }
+}
+
+</style>
+
+<section class="nxf-calc" aria-label="Calculadora de Rendimento">
+  <div class="wrap">
+
+    <!-- Title -->
+    <h2 class="nxf-calc__title">Calculadora de Rendimento</h2>
+
+    <!-- STEP 1 — Área do ambiente -->
+    <div class="nxf-calc__step-row">
+      <div class="nxf-calc__badge" aria-hidden="true">
+        <span class="nxf-calc__badge-num">1</span>
+      </div>
+      <span class="nxf-calc__step-label">&Aacute;rea do ambiente</span>
+    </div>
+
+    <!-- Toggle: Largura x Altura / Já sei a área -->
+    <div class="nxf-calc__toggle" role="group" aria-label="Modo de entrada de &aacute;rea">
+
+      <button
+        class="nxf-calc__toggle-btn"
+        id="nxf-calc-btn-lxa"
+        type="button"
+        aria-pressed="true"
+        data-mode="lxa"
+      >
+        <img
+          class="nxf-calc__toggle-icon"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/escala.svg"
+          alt=""
+          aria-hidden="true"
+          onerror="this.style.display='none'"
+        />
+        <span class="nxf-calc__toggle-label">Largura x Altura</span>
+      </button>
+
+      <button
+        class="nxf-calc__toggle-btn"
+        id="nxf-calc-btn-area"
+        type="button"
+        aria-pressed="false"
+        data-mode="area"
+      >
+        <img
+          class="nxf-calc__toggle-icon"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/area.svg"
+          alt=""
+          aria-hidden="true"
+          onerror="this.style.display='none'"
+        />
+        <span class="nxf-calc__toggle-label">J&aacute; sei a &aacute;rea</span>
+      </button>
+
+    </div>
+
+    <!-- Panel A: L × A inputs -->
+    <div class="nxf-calc__panel" id="nxf-calc-panel-lxa" data-active="true" aria-hidden="false">
+
+      <!-- Largura -->
+      <div class="nxf-calc__input-group">
+        <label for="nxf-largura" class="nxf-calc__unit" style="margin-bottom:4px">Largura</label>
+        <input
+          class="nxf-calc__num-input"
+          id="nxf-largura"
+          type="number"
+          min="0"
+          step="0.5"
+          value="5"
+          inputmode="decimal"
+          aria-label="Largura em metros"
+        />
+        <span class="nxf-calc__unit">m</span>
+        <div class="nxf-calc__underline"></div>
+      </div>
+
+      <span class="nxf-calc__sep" aria-hidden="true">&times;</span>
+
+      <!-- Altura -->
+      <div class="nxf-calc__input-group">
+        <label for="nxf-altura" class="nxf-calc__unit" style="margin-bottom:4px">Comprimento</label>
+        <input
+          class="nxf-calc__num-input"
+          id="nxf-altura"
+          type="number"
+          min="0"
+          step="0.5"
+          value="6"
+          inputmode="decimal"
+          aria-label="Comprimento em metros"
+        />
+        <span class="nxf-calc__unit">m</span>
+        <div class="nxf-calc__underline"></div>
+      </div>
+
+    </div>
+
+    <!-- Panel B: área direta -->
+    <div class="nxf-calc__panel" id="nxf-calc-panel-area" data-active="false" aria-hidden="true">
+
+      <div class="nxf-calc__input-group">
+        <label for="nxf-area-direta" class="nxf-calc__unit" style="margin-bottom:4px">&Aacute;rea</label>
+        <input
+          class="nxf-calc__num-input"
+          id="nxf-area-direta"
+          type="number"
+          min="0"
+          step="1"
+          value="30"
+          inputmode="decimal"
+          aria-label="&Aacute;rea em metros quadrados"
+        />
+        <span class="nxf-calc__unit">m&sup2;</span>
+        <div class="nxf-calc__underline"></div>
+      </div>
+
+    </div>
+
+    <!-- STEP 2 — Demãos -->
+    <div class="nxf-calc__step2">
+
+      <div class="nxf-calc__step-row">
+        <div class="nxf-calc__badge" aria-hidden="true">
+          <span class="nxf-calc__badge-num">2</span>
+        </div>
+        <span class="nxf-calc__step-label">Dem&atilde;os</span>
+      </div>
+
+      <!-- demãos input -->
+      <div class="nxf-calc__panel" data-active="true" style="justify-content:flex-start">
+        <div class="nxf-calc__input-group">
+          <input
+            class="nxf-calc__num-input"
+            id="nxf-demaos"
+            type="number"
+            min="1"
+            step="1"
+            value="6"
+            inputmode="numeric"
+            aria-label="N&uacute;mero de dem&atilde;os"
+          />
+          <span class="nxf-calc__unit">dem&atilde;os</span>
+          <div class="nxf-calc__underline"></div>
+        </div>
+      </div>
+
+      <p class="nxf-calc__helper">Me&ccedil;a a diferen&ccedil;a de n&iacute;vel no ponto mais baixo do piso.</p>
+
+    </div>
+
+    <!-- Result card -->
+    <div class="nxf-calc__result" id="nxf-calc-result" aria-live="polite" aria-atomic="true">
+      <p class="nxf-calc__result-zero">Preencha os campos acima para ver a estimativa.</p>
+    </div>
+
+  </div><!-- /wrap -->
+</section>
+
+<script>
+(function() {
+  // --- Guard ---
+  var root = document.getElementById('nxf-root');
+  if (!root) return;
+
+  function nxfInitCalc() {
+    // Elements
+    var btnLxa      = root.querySelector('#nxf-calc-btn-lxa');
+    var btnArea     = root.querySelector('#nxf-calc-btn-area');
+    var panelLxa    = root.querySelector('#nxf-calc-panel-lxa');
+    var panelArea   = root.querySelector('#nxf-calc-panel-area');
+    var inLargura   = root.querySelector('#nxf-largura');
+    var inAltura    = root.querySelector('#nxf-altura');
+    var inAreaDir   = root.querySelector('#nxf-area-direta');
+    var inDemaos    = root.querySelector('#nxf-demaos');
+    var resultEl    = root.querySelector('#nxf-calc-result');
+
+    if (!btnLxa || !btnArea || !panelLxa || !panelArea || !inLargura || !inAltura || !inAreaDir || !inDemaos || !resultEl) return;
+
+    var modo = 'lxa'; // 'lxa' | 'area'
+
+    // Yields (m2 por balde): INTERPRETACAO — confirmar com fabricante
+    var YIELDS = [
+      { nome: 'Granito Líquido (4&nbsp;kg)',   yield_m2: 1.82  },
+      { nome: 'Nivela &amp; Primer (18&nbsp;kg)',    yield_m2: 12    },
+      { nome: 'Prep Piso (18&nbsp;kg)',              yield_m2: 12    }
+    ];
+
+    function parseNum(el) {
+      var v = parseFloat(el.value);
+      return (isNaN(v) || v < 0) ? 0 : v;
+    }
+
+    function recompute() {
+      var largura   = parseNum(inLargura);
+      var altura    = parseNum(inAltura);
+      var areaDiret = parseNum(inAreaDir);
+      var demaos    = parseNum(inDemaos);
+
+      if (demaos < 1) demaos = 1;
+
+      var area = (modo === 'lxa') ? largura * altura : areaDiret;
+      var aplicar = area * demaos;
+
+      if (area <= 0) {
+        resultEl.innerHTML = '<p class="nxf-calc__result-zero">Preencha os campos acima para ver a estimativa.</p>';
+        return;
+      }
+
+      var areaFmt   = area.toFixed(2).replace('.', ',');
+      var aplicFmt  = aplicar.toFixed(2).replace('.', ',');
+
+      var html = '';
+      html += '<p class="nxf-calc__result-headline">&Aacute;rea total a aplicar</p>';
+      html += '<p class="nxf-calc__result-area">' + aplicFmt + ' m&sup2;</p>';
+
+      if (demaos > 1) {
+        html += '<p style="font-family:var(--body);font-size:clamp(12px,1.2vw,16px);color:rgba(255,255,255,0.65)">(' + areaFmt + ' m&sup2; &times; ' + demaos + ' dem&atilde;os)</p>';
+      }
+
+      html += '<div class="nxf-calc__result-divider"></div>';
+      html += '<div class="nxf-calc__result-products">';
+
+      for (var i = 0; i < YIELDS.length; i++) {
+        var prod   = YIELDS[i];
+        var baldes = Math.ceil(aplicar / prod.yield_m2);
+        html += '<div class="nxf-calc__result-product">';
+        html += '<span class="nxf-calc__result-product-name">' + prod.nome + '</span>';
+        html += '<span class="nxf-calc__result-product-qty">~' + baldes + ' balde' + (baldes !== 1 ? 's' : '') + '</span>';
+        html += '</div>';
+      }
+
+      html += '</div>';
+      html += '<p style="font-family:var(--body);font-size:clamp(11px,1.1vw,14px);color:rgba(255,255,255,0.45);margin-top:4px">* Estimativa. Confirme o rendimento exato com o fabricante antes de comprar.</p>';
+
+      resultEl.innerHTML = html;
+    }
+
+    function setModo(m) {
+      modo = m;
+      if (m === 'lxa') {
+        btnLxa.setAttribute('aria-pressed', 'true');
+        btnArea.setAttribute('aria-pressed', 'false');
+        panelLxa.setAttribute('data-active', 'true');
+        panelLxa.setAttribute('aria-hidden', 'false');
+        panelArea.setAttribute('data-active', 'false');
+        panelArea.setAttribute('aria-hidden', 'true');
+      } else {
+        btnArea.setAttribute('aria-pressed', 'true');
+        btnLxa.setAttribute('aria-pressed', 'false');
+        panelArea.setAttribute('data-active', 'true');
+        panelArea.setAttribute('aria-hidden', 'false');
+        panelLxa.setAttribute('data-active', 'false');
+        panelLxa.setAttribute('aria-hidden', 'true');
+      }
+      recompute();
+    }
+
+    // Wire toggle buttons
+    btnLxa.addEventListener('click', function() { setModo('lxa'); });
+    btnArea.addEventListener('click', function() { setModo('area'); });
+
+    // Wire inputs
+    [inLargura, inAltura, inAreaDir, inDemaos].forEach(function(el) {
+      el.addEventListener('input', recompute);
+      el.addEventListener('change', recompute);
+    });
+
+    // Initial compute
+    recompute();
+  }
+
+  nxfInitCalc();
+})();
+</script>
+
+<!-- secoes-fim -->
+
 </div>
