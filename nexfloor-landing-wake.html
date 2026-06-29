@@ -8,6 +8,7 @@
        chegarem). Ate la, Oswald + Archivo Narrow (Google Fonts) assumem.
      - Assets de imagem/video via CDN externo; nunca .mp4 direto no Wake.
      Produto: landing Nex Floor / linha Propiso
+     Versao: v3 — S1 reset + hero PDP (banner img + seletor/stepper/comprar)
 ============================================================================ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,6 +41,7 @@
   --branco:    #fff;
   --ink:       #1f1f1f;
   --creme:     #f6f3ef;
+  --verde:     #4f9d43;
   --title: 'Oswald','AmsiPro Cond',system-ui,sans-serif;
   --body:  'Archivo Narrow','AmsiPro Cond',system-ui,sans-serif;
 
@@ -62,7 +64,7 @@
 /* ---- Base rules ---- */
 #nxf-root img    { display: block; max-width: 100%; }
 #nxf-root a      { color: inherit; text-decoration: none; }
-#nxf-root button { font-family: inherit; cursor: pointer; }
+#nxf-root button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
 /* ---- Container ---- */
 #nxf-root .wrap {
@@ -72,1113 +74,483 @@
 }
 
 /* ================================================================
-   HEADER — Propiso logo + subheadline
+   HERO — banner bg + overlay PDP controls (right column)
    ================================================================ */
 
-/* Logo crop: the PNG has a large transparent canvas; these percentages
-   crop exactly to the logo art as per Figma. */
-#nxf-root .nxf-logo {
-  width: clamp(240px, 26vw, 360px);
-  aspect-ratio: 676 / 142;
+#nxf-root .nxf-hero {
   position: relative;
+  width: 100%;
+  aspect-ratio: 1512 / 795;
+  background-color: #1f3f9e;
   overflow: hidden;
-  margin: clamp(28px, 4vw, 56px) auto 0;
 }
 
-#nxf-root .nxf-logo img {
+#nxf-root .nxf-hero__bg {
   position: absolute;
-  width: 171.28%;
-  height: 644.03%;
-  left: -20.36%;
-  top: -271.7%;
-  max-width: none;
-  object-fit: fill;
-}
-
-/* Subheadline */
-#nxf-root .nxf-sub {
-  max-width: clamp(680px, 86vw, 1244px);
-  margin: clamp(18px, 2.6vw, 32px) auto 0;
-  font-family: var(--body);
-  color: var(--sub);
-  font-size: clamp(16px, 2.1vw, 32px);
-  line-height: 1.25;
-  text-align: center;
-}
-
-/* ================================================================
-   SHOWCASE band
-   ================================================================ */
-
-#nxf-root .nxf-show {
-  display: flex;
-  align-items: stretch;
-  gap: clamp(12px, 1.6vw, 24px);
-  margin-top: clamp(28px, 4vw, 56px);
-  height: clamp(320px, 35vw, 528px);
-}
-
-#nxf-root .nxf-show__main {
-  flex: 1 1 84.6%;
-  background: #d9d9d9;
-  border-radius: 30px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  min-width: 0;
-}
-
-#nxf-root .nxf-show__label {
-  color: #9a9a9a;
-  font-family: var(--body);
-  font-size: clamp(16px, 1.6vw, 22px);
-}
-
-#nxf-root .nxf-show__dots {
-  position: absolute;
-  bottom: clamp(16px, 2vw, 28px);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-#nxf-root .nxf-show__dots span {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #555;
 }
 
-#nxf-root .nxf-show__dots span.active {
-  background: var(--roxo);
+/* Right overlay column — sits on top of the banner image */
+#nxf-root .nxf-hero__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 47%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: clamp(20px, 3vw, 56px) clamp(20px, 3.5vw, 64px) clamp(20px, 3vw, 56px) clamp(16px, 2vw, 32px);
 }
 
-#nxf-root .nxf-show__side {
-  flex: 0 0 15.4%;
-  background: var(--navy2);
-  border-radius: 30px;
-  min-width: 0;
+#nxf-root .nxf-hero__col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 22px);
+  width: 100%;
 }
 
-/* On narrow viewports: hide the side strip */
-@media (max-width: 720px) {
-  #nxf-root .nxf-show {
-    height: clamp(240px, 45vw, 360px);
-  }
-  #nxf-root .nxf-show__side {
-    display: none;
-  }
-  #nxf-root .nxf-show__main {
-    flex: 1 1 100%;
-    border-radius: 20px;
-  }
-}
-
-/* ================================================================
-   BENEFÍCIOS | INDICAÇÃO + chips
-   ================================================================ */
-
-#nxf-root .nxf-bi {
-  margin-top: clamp(48px, 7vw, 96px);
-}
-
-/* Two-column outer layout: left ~58% / right ~42% */
-#nxf-root .nxf-bi__cols {
-  display: grid;
-  grid-template-columns: 58fr 42fr;
-  gap: clamp(24px, 3vw, 48px);
-  align-items: start;
-}
-
-/* Section headings */
-#nxf-root .nxf-bi__h {
+/* --- Title block --- */
+#nxf-root .nxf-hero__title {
   font-family: var(--title);
   font-weight: 900;
-  text-transform: uppercase;
-  color: var(--roxo);
-  font-size: clamp(34px, 4.2vw, 64px);
+  font-size: clamp(22px, 3.2vw, 48px);
   line-height: 1;
-  margin-bottom: clamp(16px, 2vw, 28px);
+  text-transform: uppercase;
+  color: var(--branco);
+  text-align: center;
 }
 
-/* 3-col chip grid for Benefícios */
-#nxf-root .nxf-bi__grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(10px, 1.2vw, 16px);
+#nxf-root .nxf-hero__subtitle {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: clamp(11px, 1.6vw, 24px);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--branco);
 }
 
-/* 2-col chip grid for Indicação */
-#nxf-root .nxf-bi__grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(10px, 1.2vw, 16px);
+/* --- Escolha heading --- */
+#nxf-root .nxf-hero__escolha-heading {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(20px, 2.8vw, 48px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--branco);
+  text-align: center;
 }
 
-/* Individual chip */
-#nxf-root .nxf-chip {
-  background: var(--chip-bg);
-  border-radius: 15px;
-  padding: 48px 24px;
+#nxf-root .nxf-hero__escolha-desc {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: clamp(11px, 1.4vw, 24px);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--branco);
+}
+
+/* --- Product option cards --- */
+#nxf-root .nxf-hero__options {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 14px);
+}
+
+#nxf-root .nxf-hero__option {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 21px);
+  padding: clamp(10px, 1.8vw, 26px) clamp(14px, 2.6vw, 39px);
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+#nxf-root .nxf-hero__option[aria-checked="true"] {
+  border-color: var(--branco);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Radio circle */
+#nxf-root .nxf-hero__radio {
+  flex-shrink: 0;
+  width: clamp(14px, 1.4vw, 20px);
+  height: clamp(14px, 1.4vw, 20px);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  min-height: 144px;
+  transition: border-color 0.18s;
+}
+
+#nxf-root .nxf-hero__option[aria-checked="true"] .nxf-hero__radio {
+  border-color: var(--branco);
+}
+
+#nxf-root .nxf-hero__radio-dot {
+  width: 55%;
+  height: 55%;
+  border-radius: 50%;
+  background: var(--branco);
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+
+#nxf-root .nxf-hero__option[aria-checked="true"] .nxf-hero__radio-dot {
+  opacity: 1;
+}
+
+#nxf-root .nxf-hero__option-label {
   font-family: var(--title);
   font-weight: 900;
-  color: var(--chip-ink);
-  font-size: clamp(18px, 1.6vw, 24px);
+  font-size: clamp(12px, 1.6vw, 24px);
   line-height: 1;
-}
-
-/* Stack columns on narrow viewports */
-@media (max-width: 860px) {
-  #nxf-root .nxf-bi__cols {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Collapse chip grids on narrow viewports */
-@media (max-width: 600px) {
-  #nxf-root .nxf-bi__grid-3,
-  #nxf-root .nxf-bi__grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 400px) {
-  #nxf-root .nxf-bi__grid-3,
-  #nxf-root .nxf-bi__grid-2 {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ================================================================
-   CARDS DE PRODUTO (R2)
-   ================================================================ */
-
-#nxf-root .nxf-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 1.5vw, 23px);
-  max-width: 1380px;
-  margin: clamp(48px, 7vw, 96px) auto 0;
-}
-
-#nxf-root .nxf-card {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Top: lilac panel with bucket image */
-#nxf-root .nxf-card__top {
-  background: var(--lilas);
-  border-radius: 24px 24px 0 0;
-  aspect-ratio: 435 / 283;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-#nxf-root .nxf-card__top img {
-  width: 56%;
-  height: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -48%);
-  object-fit: contain;
-  max-width: none;
-}
-
-/* Bottom: white body */
-#nxf-root .nxf-card__body {
-  background: var(--branco);
-  border-radius: 0 0 24px 24px;
-  box-shadow: 0 4px .6px rgba(0, 0, 0, .25);
-  padding: clamp(24px, 3vw, 48px);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(28px, 3.4vw, 45px);
+  text-transform: uppercase;
+  color: var(--branco);
   flex: 1;
+  text-align: center;
 }
 
-/* Details group */
-#nxf-root .nxf-card__details {
+/* --- Stepper + Comprar row --- */
+#nxf-root .nxf-hero__actions {
   display: flex;
-  flex-direction: column;
-  gap: clamp(4px, .5vw, 6px);
+  gap: clamp(8px, 1.2vw, 16px);
+  align-items: stretch;
 }
 
-#nxf-root .nxf-card__label {
-  font-family: var(--body);
-  color: var(--ink2);
-  font-size: clamp(16px, 1.5vw, 19px);
-}
-
-#nxf-root .nxf-card__label--roxo {
-  color: var(--roxo);
-}
-
-#nxf-root .nxf-card__title {
-  font-family: var(--title);
-  font-weight: 900;
-  text-transform: uppercase;
-  color: var(--ink2);
-  font-size: clamp(28px, 3vw, 38px);
-  line-height: 1;
-}
-
-#nxf-root .nxf-card__desc {
-  font-family: var(--body);
-  color: var(--gray);
-  font-size: clamp(17px, 1.8vw, 23px);
-  line-height: 1.25;
-}
-
-/* Price + buy row */
-#nxf-root .nxf-card__buy {
+#nxf-root .nxf-hero__stepper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(12px, 2vw, 40px);
-  flex-wrap: wrap;
-}
-
-#nxf-root .nxf-card__price {
-  font-family: var(--title);
-  font-weight: 900;
-  color: var(--ink2);
-  line-height: 1;
-}
-
-#nxf-root .nxf-card__price span:first-child {
-  font-size: clamp(24px, 2.4vw, 30px);
-}
-
-#nxf-root .nxf-card__price span:last-child {
-  font-size: clamp(18px, 1.8vw, 23px);
-  vertical-align: baseline;
-}
-
-#nxf-root .nxf-card__btn {
-  background: var(--roxo);
-  color: var(--branco);
-  font-family: var(--title);
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(18px, 1.8vw, 23px);
-  padding: 11px 32px;
-  border-radius: 24px;
-  border: 0;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background .15s;
-}
-
-#nxf-root .nxf-card__btn:hover {
-  background: color-mix(in srgb, var(--roxo) 85%, #000);
-}
-
-/* Reflow: 3 cols → 1 col under 860px */
-@media (max-width: 860px) {
-  #nxf-root .nxf-cards {
-    grid-template-columns: 1fr;
-    max-width: 520px;
-  }
-}
-
-/* ================================================================
-   R4 — PDP block
-   ================================================================ */
-
-#nxf-root .nxf-pdp {
-  display: grid;
-  grid-template-columns: minmax(0,1.32fr) minmax(0,1fr);
-  gap: clamp(24px,3.5vw,53px);
-  max-width: 1380px;
-  margin-block: clamp(48px,7vw,96px);
-  margin-inline: auto;
-}
-
-/* LEFT — gallery */
-#nxf-root .nxf-pdp__gallery {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(10px,1.2vw,14px);
-}
-
-#nxf-root .nxf-pdp__main {
-  border-radius: 20px;
-  height: clamp(360px,40vw,562px);
-  position: relative;
-  overflow: hidden;
-  background: color-mix(in srgb, var(--roxo) 55%, var(--ink));
-}
-
-#nxf-root .nxf-pdp__main-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-}
-
-/* bottom-up gradient overlay */
-#nxf-root .nxf-pdp__main::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.18) 50%, transparent 100%);
-  pointer-events: none;
-}
-
-/* slide counter top-right */
-#nxf-root .nxf-pdp__count {
-  position: absolute;
-  top: clamp(12px,1.4vw,20px);
-  right: clamp(12px,1.4vw,20px);
-  background: rgba(0,0,0,.42);
-  color: var(--branco);
-  font-family: var(--body);
-  font-size: clamp(13px,1.2vw,16px);
-  padding: 5px 14px;
-  border-radius: 999px;
-  z-index: 2;
-  backdrop-filter: blur(4px);
-}
-
-/* prev/next buttons */
-#nxf-root .nxf-pdp__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  width: clamp(36px,3.6vw,48px);
-  height: clamp(36px,3.6vw,48px);
-  border-radius: 50%;
-  background: rgba(0,0,0,.44);
-  color: var(--branco);
-  border: 0;
-  font-size: clamp(16px,1.6vw,22px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(4px);
-  transition: background .15s;
-}
-#nxf-root .nxf-pdp__nav:hover { background: rgba(0,0,0,.65); }
-#nxf-root .nxf-pdp__prev { left: clamp(10px,1.2vw,16px); }
-#nxf-root .nxf-pdp__next { right: clamp(10px,1.2vw,16px); }
-
-/* bottom-left caption */
-#nxf-root .nxf-pdp__cap {
-  position: absolute;
-  bottom: clamp(16px,2vw,28px);
-  left: clamp(16px,2vw,28px);
-  right: clamp(60px,6vw,88px);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-#nxf-root .nxf-pdp__cap-h {
-  font-family: var(--title);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--branco);
-  font-size: clamp(24px,2.6vw,37px);
-  line-height: 1;
-}
-
-#nxf-root .nxf-pdp__cap-t {
-  font-family: var(--body);
-  color: color-mix(in srgb, var(--branco) 88%, transparent);
-  font-size: clamp(15px,1.5vw,20px);
-  line-height: 1.3;
-}
-
-/* thumbnails row */
-#nxf-root .nxf-pdp__thumbs {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(6px,.8vw,10px);
-}
-
-#nxf-root .nxf-pdp__thumb {
-  border-radius: 12px;
-  aspect-ratio: 1 / 1;
-  border: 2px solid transparent;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color .15s;
-}
-
-#nxf-root .nxf-pdp__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-#nxf-root .nxf-pdp__thumb.active {
-  border-color: var(--roxo);
-}
-
-/* RIGHT — product info */
-#nxf-root .nxf-pdp__info {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px,1.6vw,16px);
-  justify-content: center;
-}
-
-#nxf-root .nxf-pdp__name {
-  font-family: var(--title);
-  font-weight: 900;
-  text-transform: uppercase;
-  color: var(--ink2);
-  font-size: clamp(30px,3.4vw,44px);
-  line-height: 1;
-}
-
-#nxf-root .nxf-pdp__desc {
-  font-family: var(--body);
-  color: var(--gray);
-  font-size: clamp(16px,1.7vw,21px);
-  line-height: 1.4;
-}
-
-#nxf-root .nxf-pdp__desc strong {
-  color: var(--ink2);
-}
-
-/* check items */
-#nxf-root .nxf-pdp__items {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(8px,1vw,12px);
-}
-
-#nxf-root .nxf-pdp__item {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(10px,1vw,14px);
-  font-family: var(--body);
-  color: var(--ink);
-  font-size: clamp(15px,1.5vw,18px);
-  line-height: 1.35;
-}
-
-#nxf-root .nxf-pdp__check {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  gap: clamp(8px, 1.2vw, 25px);
+  padding: clamp(6px, 0.6vw, 8px) clamp(12px, 1.6vw, 24px);
+  border: 1.5px solid var(--branco);
   border-radius: 8px;
-  background: color-mix(in srgb, var(--roxo) 14%, transparent);
-  color: var(--roxo);
+  flex-shrink: 0;
+}
+
+#nxf-root .nxf-hero__stepper-btn {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(16px, 1.6vw, 24px);
+  color: var(--branco);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 2px;
+  transition: opacity 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#nxf-root .nxf-hero__stepper-btn:hover { opacity: 0.7; }
+
+#nxf-root .nxf-hero__stepper-num {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(16px, 1.6vw, 24px);
+  color: var(--branco);
+  text-transform: uppercase;
+  min-width: clamp(14px, 1.2vw, 20px);
+  text-align: center;
+  line-height: 1;
+}
+
+#nxf-root .nxf-hero__comprar {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
-  font-weight: 700;
-}
-
-/* Embalagem label */
-#nxf-root .nxf-pdp__emb-label {
-  font-family: var(--body);
-  font-weight: 700;
-  color: var(--ink2);
-  font-size: clamp(15px,1.5vw,18px);
-}
-
-/* packaging chips */
-#nxf-root .nxf-pdp__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(8px,.8vw,10px);
-}
-
-#nxf-root .nxf-pdp__pchip {
-  font-family: var(--body);
-  font-size: clamp(14px,1.3vw,16px);
-  padding: 8px 18px;
-  border-radius: 16px;
-  border: 1.5px solid rgba(0,0,0,.12);
-  background: var(--branco);
-  color: var(--ink);
+  gap: clamp(6px, 0.8vw, 12px);
+  flex: 1;
+  padding: clamp(6px, 0.6vw, 8px) clamp(14px, 1.6vw, 24px);
+  background: var(--verde);
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background .15s, color .15s;
+  transition: filter 0.18s;
 }
 
-#nxf-root .nxf-pdp__pchip.active,
-#nxf-root .nxf-pdp__pchip:hover {
-  background: var(--roxo);
-  color: var(--branco);
-  border-color: var(--roxo);
-}
+#nxf-root .nxf-hero__comprar:hover { filter: brightness(1.1); }
 
-/* buy button */
-#nxf-root .nxf-pdp__buy {
-  background: var(--roxo);
-  color: var(--branco);
+#nxf-root .nxf-hero__comprar-label {
   font-family: var(--title);
   font-weight: 900;
+  font-size: clamp(14px, 1.6vw, 24px);
+  line-height: 1;
   text-transform: uppercase;
-  font-size: clamp(17px,1.7vw,22px);
-  padding: 16px 37px;
-  border-radius: 16px;
-  border: 0;
-  cursor: pointer;
-  display: inline-flex;
+  color: var(--branco);
+}
+
+#nxf-root .nxf-hero__comprar-chevron {
+  font-size: clamp(16px, 1.8vw, 26px);
+  color: var(--branco);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* --- Carousel arrow buttons (bottom-right of hero) --- */
+#nxf-root .nxf-hero__arrows {
+  position: absolute;
+  bottom: clamp(14px, 2vw, 28px);
+  right: clamp(16px, 2.5vw, 40px);
+  display: flex;
+  gap: clamp(8px, 0.8vw, 12px);
+  z-index: 10;
+}
+
+#nxf-root .nxf-hero__arrow {
+  width: clamp(32px, 3vw, 44px);
+  height: clamp(32px, 3vw, 44px);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
   align-items: center;
-  gap: 10px;
-  align-self: flex-start;
-  transition: background .15s;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s;
+  color: var(--branco);
+  font-size: clamp(14px, 1.4vw, 20px);
+  font-family: var(--title);
+  font-weight: 900;
+  line-height: 1;
 }
 
-#nxf-root .nxf-pdp__buy:hover {
-  background: color-mix(in srgb, var(--roxo) 85%, #000);
-}
-
-/* FDS note */
-#nxf-root .nxf-pdp__fds {
-  font-family: var(--body);
-  color: color-mix(in srgb, var(--ink) 45%, var(--branco));
-  font-size: clamp(13px,1.2vw,16px);
-  line-height: 1.45;
-}
-
-/* stack at <=900px */
-@media (max-width: 900px) {
-  #nxf-root .nxf-pdp {
-    grid-template-columns: 1fr;
-  }
-  #nxf-root .nxf-pdp__main {
-    height: clamp(280px,52vw,420px);
-  }
-  #nxf-root .nxf-pdp__info {
-    padding-bottom: 8px;
-  }
-}
-
-/* thumbs: collapse to 3-col at very narrow */
-@media (max-width: 520px) {
-  #nxf-root .nxf-pdp__thumbs {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+#nxf-root .nxf-hero__arrow:hover { background: rgba(255,255,255,0.38); }
 
 /* ================================================================
-   R3 — Big title + Bento mosaic
+   RESPONSIVE — mobile stacked layout
    ================================================================ */
-
-/* --- Big section title --- */
-#nxf-root .nxf-bigtitle {
-  font-family: var(--title);
-  font-weight: 900;
-  text-transform: uppercase;
-  color: var(--roxo);
-  text-align: center;
-  font-size: clamp(40px, 6.4vw, 96px);
-  line-height: 1.02;
-  margin: clamp(48px, 8vw, 110px) auto clamp(28px, 4vw, 48px);
-}
-
-/* --- Bento mosaic --- */
-#nxf-root .nxf-bento {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: clamp(150px, 18vw, 292px);
-  gap: clamp(12px, 1.6vw, 18px);
-}
-
-#nxf-root .nxf-bento__block {
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#nxf-root .nxf-bento__lbl {
-  font-family: var(--body);
-  font-size: clamp(18px, 2.1vw, 32px);
-  text-align: center;
-  color: #fff;
-}
-
-/* Explicit placement */
-#nxf-root .nxf-bento__a { grid-column: 1; grid-row: 1; background: var(--navy2); }
-#nxf-root .nxf-bento__b { grid-column: 1; grid-row: 2 / span 2; background: var(--navy2); }
-#nxf-root .nxf-bento__c { grid-column: 2; grid-row: 1; background: var(--cinza); }
-#nxf-root .nxf-bento__d { grid-column: 2; grid-row: 2; background: var(--friso-1); }
-#nxf-root .nxf-bento__e { grid-column: 2; grid-row: 3; background: var(--roxo); }
-#nxf-root .nxf-bento__f { grid-column: 3; grid-row: 1 / span 2; background: var(--navy2); }
-#nxf-root .nxf-bento__g { grid-column: 3; grid-row: 3; background: var(--cinza); }
-
-/* Yellow block: black label */
-#nxf-root .nxf-bento__d .nxf-bento__lbl { color: #000; }
-
-/* Reflow ≤820px → 2 columns, auto-flow */
-@media (max-width: 820px) {
-  #nxf-root .nxf-bento {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: clamp(150px, 22vw, 260px);
+@media (max-width: 860px) {
+  #nxf-root .nxf-hero {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    background-color: #1f3f9e;
+    min-height: 0;
   }
-  #nxf-root .nxf-bento__a,
-  #nxf-root .nxf-bento__b,
-  #nxf-root .nxf-bento__c,
-  #nxf-root .nxf-bento__d,
-  #nxf-root .nxf-bento__e,
-  #nxf-root .nxf-bento__f,
-  #nxf-root .nxf-bento__g {
-    grid-column: unset;
-    grid-row: unset;
-  }
-}
 
-/* Reflow ≤520px → 1 column */
-@media (max-width: 520px) {
-  #nxf-root .nxf-bento {
-    grid-template-columns: 1fr;
-    grid-auto-rows: clamp(140px, 48vw, 220px);
+  #nxf-root .nxf-hero__bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1512 / 795;
+    object-fit: cover;
+    flex-shrink: 0;
+    max-height: 54vw;
+  }
+
+  #nxf-root .nxf-hero__overlay {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    padding: clamp(20px, 5vw, 40px) clamp(16px, 5vw, 32px);
+    background: #1f3f9e;
+    align-items: flex-start;
+  }
+
+  #nxf-root .nxf-hero__col {
+    gap: clamp(14px, 4vw, 24px);
+  }
+
+  #nxf-root .nxf-hero__title {
+    font-size: clamp(24px, 7vw, 38px);
+  }
+
+  #nxf-root .nxf-hero__subtitle {
+    font-size: clamp(13px, 3.5vw, 20px);
+  }
+
+  #nxf-root .nxf-hero__escolha-heading {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+
+  #nxf-root .nxf-hero__escolha-desc {
+    font-size: clamp(12px, 3vw, 18px);
+  }
+
+  #nxf-root .nxf-hero__option {
+    border-radius: 16px;
+    padding: 14px 18px;
+  }
+
+  #nxf-root .nxf-hero__option-label {
+    font-size: clamp(13px, 3.5vw, 20px);
+  }
+
+  #nxf-root .nxf-hero__actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #nxf-root .nxf-hero__stepper {
+    justify-content: center;
+  }
+
+  #nxf-root .nxf-hero__arrows {
+    position: static;
+    justify-content: flex-end;
+    margin-top: 8px;
   }
 }
 
 </style>
 
-<!-- ================================================================
-     HEADER — Propiso logo + subheadline
-     ================================================================ -->
-<div class="wrap">
+<!-- ============================================================
+     HERO — banner PDP com controles sobrepostos
+     ============================================================ -->
+<section class="nxf-hero" aria-label="Nex Floor Nivela &amp; Primer">
 
-  <!-- Logo: PNG has a large transparent canvas; overflow:hidden crops to the art -->
-  <div class="nxf-logo" role="img" aria-label="Linha Propiso">
-    <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-propiso-logo.png"
-         alt="Linha Propiso" />
-  </div>
+  <!-- Banner background image (bucket on left baked into image) -->
+  <img
+    class="nxf-hero__bg"
+    src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-hero-banner.png"
+    alt="Nex Floor Nivela &amp; Primer — balde Cristal sobre fundo azul"
+    loading="eager"
+    decoding="async"
+    width="1512"
+    height="795"
+  />
 
-  <!-- Subheadline -->
-  <p class="nxf-sub">
-    A linha Propiso da Cristal &eacute; a solu&ccedil;&atilde;o completa para quem quer transformar pisos com praticidade e resultado profissional.<br>
-    Seja pra renovar, corrigir imperfei&ccedil;&otilde;es ou criar um novo visual, a Propiso tem o produto certo para voc&ecirc;.
-  </p>
+  <!-- Right overlay — all live PDP controls -->
+  <div class="nxf-hero__overlay">
+    <div class="nxf-hero__col">
 
-</div><!-- /wrap -->
-
-<!-- ================================================================
-     SHOWCASE band
-     ================================================================ -->
-<div class="wrap">
-
-  <div class="nxf-show">
-    <div class="nxf-show__main">
-      <span class="nxf-show__label">Imagem com produto</span>
-      <div class="nxf-show__dots">
-        <span class="active"></span>
-        <span></span>
-      </div>
-    </div>
-    <div class="nxf-show__side" aria-hidden="true"></div>
-  </div>
-
-</div><!-- /wrap -->
-
-<!-- ================================================================
-     BENEFÍCIOS | INDICAÇÃO + chips
-     ================================================================ -->
-<div class="wrap">
-
-  <div class="nxf-bi">
-    <div class="nxf-bi__cols">
-
-      <!-- LEFT: Benefícios (3 cols × 2 rows = 6 chips) -->
+      <!-- 1. Title block -->
       <div>
-        <h2 class="nxf-bi__h">Benef&iacute;cios</h2>
-        <div class="nxf-bi__grid-3">
-          <div class="nxf-chip">Aplica&ccedil;&atilde;o com baixa espessura</div>
-          <div class="nxf-chip">Autonivelante</div>
-          <div class="nxf-chip">F&aacute;cil aplica&ccedil;&atilde;o</div>
-          <div class="nxf-chip">Ideal para pisos monol&iacute;ticos</div>
-          <div class="nxf-chip">Alta resist&ecirc;ncia</div>
-          <div class="nxf-chip">F&aacute;cil limpeza</div>
-        </div>
+        <p class="nxf-hero__title">Nex Flor Nivela &amp; Primer</p>
+        <p class="nxf-hero__subtitle">Nex flor granito l&iacute;quido, Nex flor granito l&iacute;quido, Nex flor granito l&iacute;quido</p>
       </div>
 
-      <!-- RIGHT: Indicação (2 chips) -->
+      <!-- 2. Escolha seu produto heading + desc -->
       <div>
-        <h2 class="nxf-bi__h">Indica&ccedil;&atilde;o</h2>
-        <div class="nxf-bi__grid-2">
-          <div class="nxf-chip">Prepara&ccedil;&atilde;o para aplica&ccedil;&atilde;o de Pisos Granito L&iacute;quido Nex Floor.</div>
-          <div class="nxf-chip">Alta resist&ecirc;ncia &agrave; intemp&eacute;ries</div>
+        <p class="nxf-hero__escolha-heading">Escolha seu produto</p>
+        <p class="nxf-hero__escolha-desc">Voc&ecirc; escolhe seu produto ou kit para aproveitar com desconto toda a solu&ccedil;&atilde;o do nex floor!</p>
+      </div>
+
+      <!-- 3. Product option cards (radiogroup) -->
+      <div class="nxf-hero__options" role="radiogroup" aria-label="Op&ccedil;&atilde;o de produto">
+
+        <button
+          class="nxf-hero__option"
+          role="radio"
+          aria-checked="true"
+          data-option="a"
+          type="button"
+        >
+          <span class="nxf-hero__radio" aria-hidden="true">
+            <span class="nxf-hero__radio-dot"></span>
+          </span>
+          <span class="nxf-hero__option-label">Comprar o Nex Floor Nivela &amp; Primer</span>
+        </button>
+
+        <button
+          class="nxf-hero__option"
+          role="radio"
+          aria-checked="false"
+          data-option="b"
+          type="button"
+        >
+          <span class="nxf-hero__radio" aria-hidden="true">
+            <span class="nxf-hero__radio-dot"></span>
+          </span>
+          <span class="nxf-hero__option-label">Comprar o Kit Nex Floor</span>
+        </button>
+
+      </div>
+
+      <!-- 4. Stepper + Comprar row -->
+      <div class="nxf-hero__actions">
+
+        <div class="nxf-hero__stepper" role="group" aria-label="Quantidade">
+          <button
+            class="nxf-hero__stepper-btn"
+            id="nxf-minus"
+            type="button"
+            aria-label="Diminuir quantidade"
+          >&#8722;</button>
+          <span class="nxf-hero__stepper-num" id="nxf-qty" aria-live="polite" aria-atomic="true">1</span>
+          <button
+            class="nxf-hero__stepper-btn"
+            id="nxf-plus"
+            type="button"
+            aria-label="Aumentar quantidade"
+          >&#43;</button>
         </div>
+
+        <button class="nxf-hero__comprar" type="button" aria-label="Comprar">
+          <span class="nxf-hero__comprar-label">Comprar</span>
+          <span class="nxf-hero__comprar-chevron" aria-hidden="true">&#8250;</span>
+        </button>
+
       </div>
 
     </div>
   </div>
 
-</div><!-- /wrap -->
-
-<!-- ================================================================
-     CARDS DE PRODUTO — Passo 01 / 02 / 03
-     ================================================================ -->
-<div class="wrap">
-
-  <div class="nxf-cards">
-
-    <!-- Card 1 — Prep Piso (Aglutinante) -->
-    <div class="nxf-card">
-      <div class="nxf-card__top">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-prep.png"
-             alt="Balde Prep Piso"
-             onerror="this.style.display='none'" />
-      </div>
-      <div class="nxf-card__body">
-        <div class="nxf-card__details">
-          <span class="nxf-card__label">Passo 01 - Aglutinante</span>
-          <h3 class="nxf-card__title">prep piso</h3>
-          <p class="nxf-card__desc">Sela e aglutina superf&iacute;cies porosas, criando a base ideal. 3,5 kg &middot; rende 12 m&sup2;.</p>
-        </div>
-        <div class="nxf-card__buy">
-          <div class="nxf-card__price"><span>R$ 149,</span><span>90</span></div>
-          <button class="nxf-card__btn">comprar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 — Nivela & Primer (Aderência) -->
-    <div class="nxf-card">
-      <div class="nxf-card__top">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-primer.png"
-             alt="Balde Nivela &amp; Primer"
-             onerror="this.style.display='none'" />
-      </div>
-      <div class="nxf-card__body">
-        <div class="nxf-card__details">
-          <span class="nxf-card__label">Passo 02 - Ader&ecirc;ncia</span>
-          <h3 class="nxf-card__title">nivela &amp; primer</h3>
-          <p class="nxf-card__desc">Promove ader&ecirc;ncia e autonivela a superf&iacute;cie. 4 kg &middot; rende 12 m&sup2;.</p>
-        </div>
-        <div class="nxf-card__buy">
-          <div class="nxf-card__price"><span>R$ 149,</span><span>90</span></div>
-          <button class="nxf-card__btn">comprar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 — Granito Líquido (Acabamento) — label em roxo -->
-    <div class="nxf-card">
-      <div class="nxf-card__top">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png"
-             alt="Balde Granito L&iacute;quido"
-             onerror="this.style.display='none'" />
-      </div>
-      <div class="nxf-card__body">
-        <div class="nxf-card__details">
-          <span class="nxf-card__label nxf-card__label--roxo">Passo 03 - Acabamento</span>
-          <h3 class="nxf-card__title">gran&iacute;to l&iacute;quido</h3>
-          <p class="nxf-card__desc">Acabamento ep&oacute;xi que reproduz o granito, com brilho e resist&ecirc;ncia. 4 kg &middot; rende 1,82 m&sup2;.</p>
-        </div>
-        <div class="nxf-card__buy">
-          <div class="nxf-card__price"><span>R$ 149,</span><span>90</span></div>
-          <button class="nxf-card__btn">comprar</button>
-        </div>
-      </div>
-    </div>
-
+  <!-- Carousel arrows (placeholder — no-op safe) -->
+  <div class="nxf-hero__arrows" aria-hidden="true">
+    <button class="nxf-hero__arrow" type="button" tabindex="-1" aria-label="Anterior">&#8249;</button>
+    <button class="nxf-hero__arrow" type="button" tabindex="-1" aria-label="Pr&oacute;ximo">&#8250;</button>
   </div>
 
-</div><!-- /wrap -->
+</section>
 
 <!-- secoes -->
 
-<!-- ================================================================
-     R3 — Título grande + Bento mosaico
-     ================================================================ -->
-<div class="wrap">
-
-  <h2 class="nxf-bigtitle">Beleza de pedra,<br>resist&ecirc;ncia de obra.</h2>
-
-  <div class="nxf-bento">
-    <!-- Col 1: A (short) + B (tall) -->
-    <div class="nxf-bento__block nxf-bento__a">
-      <span class="nxf-bento__lbl">Texto Prep Piso</span>
-    </div>
-    <div class="nxf-bento__block nxf-bento__b">
-      <span class="nxf-bento__lbl">Imagem</span>
-    </div>
-
-    <!-- Col 2: C + D + E (all short) -->
-    <div class="nxf-bento__block nxf-bento__c">
-      <span class="nxf-bento__lbl">Texto Nivela Primer</span>
-    </div>
-    <div class="nxf-bento__block nxf-bento__d">
-      <span class="nxf-bento__lbl">Imagem</span>
-    </div>
-    <div class="nxf-bento__block nxf-bento__e">
-      <span class="nxf-bento__lbl">Texto Granito L&iacute;quido</span>
-    </div>
-
-    <!-- Col 3: F (tall) + G (short) -->
-    <div class="nxf-bento__block nxf-bento__f">
-      <span class="nxf-bento__lbl">Imagem</span>
-    </div>
-    <div class="nxf-bento__block nxf-bento__g">
-      <span class="nxf-bento__lbl">Imagem</span>
-    </div>
-  </div>
-
-</div><!-- /wrap bento -->
-
-<!-- ================================================================
-     R4 — PDP block (Nex Floor Granito Liquido)
-     ================================================================ -->
-<div class="wrap">
-<div class="nxf-pdp" id="nxf-pdp">
-
-  <!-- LEFT: gallery -->
-  <div class="nxf-pdp__gallery">
-
-    <!-- main image area -->
-    <div class="nxf-pdp__main" id="nxf-pdp-main">
-      <img class="nxf-pdp__main-img" id="nxf-pdp-img"
-           src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-1.png"
-           alt="" aria-hidden="true" />
-      <span class="nxf-pdp__count" id="nxf-pdp-count">01 / 06</span>
-      <button class="nxf-pdp__nav nxf-pdp__prev" id="nxf-pdp-prev" aria-label="Slide anterior">&#8249;</button>
-      <button class="nxf-pdp__nav nxf-pdp__next" id="nxf-pdp-next" aria-label="Pr&oacute;ximo slide">&#8250;</button>
-      <div class="nxf-pdp__cap">
-        <span class="nxf-pdp__cap-h" id="nxf-pdp-caph">Sala de estar</span>
-        <span class="nxf-pdp__cap-t" id="nxf-pdp-capt">Acabamento granito monol&iacute;tico, sem emendas, com brilho.</span>
-      </div>
-    </div>
-
-    <!-- 6 thumbnails — data-* carry caption text as HTML entities in source -->
-    <div class="nxf-pdp__thumbs" id="nxf-pdp-thumbs">
-      <div class="nxf-pdp__thumb active" tabindex="0" role="button" aria-label="Slide 1"
-           data-cap-h="Sala de estar"
-           data-cap-t="Acabamento granito monol&#237;tico, sem emendas, com brilho."
-           data-bg="color-mix(in srgb, #7b529f 55%, #1f1f1f)">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-1.png"
-             alt="" aria-hidden="true" />
-      </div>
-      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 2"
-           data-cap-h="Cozinha"
-           data-cap-t="Superf&#237;cie f&#225;cil de limpar, resistente a manchas e tr&#225;fego."
-           data-bg="color-mix(in srgb, #253161 60%, #1f1f1f)">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-2.png"
-             alt="" aria-hidden="true" />
-      </div>
-      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 3"
-           data-cap-h="&Aacute;rea gourmet"
-           data-cap-t="Visual de granito sob medida, do piso &agrave; bancada."
-           data-bg="color-mix(in srgb, #878787 50%, #1f1f1f)">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-3.png"
-             alt="" aria-hidden="true" />
-      </div>
-      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 4"
-           data-cap-h="Varanda"
-           data-cap-t="Alta resist&#234;ncia a intemp&#233;ries e ao sol."
-           data-bg="color-mix(in srgb, #ffcc00 30%, #242424)">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-4.png"
-             alt="" aria-hidden="true" />
-      </div>
-      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 5"
-           data-cap-h="Espa&ccedil;o comercial"
-           data-cap-t="Aguenta tr&#225;fego intenso sem perder o acabamento."
-           data-bg="color-mix(in srgb, #7b529f 40%, #253161)">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-5.png"
-             alt="" aria-hidden="true" />
-      </div>
-      <div class="nxf-pdp__thumb" tabindex="0" role="button" aria-label="Slide 6"
-           data-cap-h="Banheiro"
-           data-cap-t="Imperme&#225;vel e com toque antiderrapante quando texturizado."
-           data-bg="color-mix(in srgb, #242424 70%, #7b529f)">
-        <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-pdp-6.png"
-             alt="" aria-hidden="true" />
-      </div>
-    </div>
-
-  </div><!-- /gallery -->
-
-  <!-- RIGHT: product info -->
-  <div class="nxf-pdp__info">
-
-    <div class="nxf-pdp__name">NEX<br>FLOOR</div>
-
-    <p class="nxf-pdp__desc">
-      <strong>Piso ep&oacute;xi decorativo</strong> que reproduz o granito.
-      Acabamento monol&iacute;tico, alta resist&ecirc;ncia e aplica&ccedil;&atilde;o em baixa espessura.
-    </p>
-
-    <div class="nxf-pdp__items">
-      <div class="nxf-pdp__item">
-        <span class="nxf-pdp__check">&#10003;</span>
-        <span>Reproduz o granito com brilho e profundidade</span>
-      </div>
-      <div class="nxf-pdp__item">
-        <span class="nxf-pdp__check">&#10003;</span>
-        <span>Autonivelante e monol&iacute;tico (sem emendas)</span>
-      </div>
-      <div class="nxf-pdp__item">
-        <span class="nxf-pdp__check">&#10003;</span>
-        <span>Alta resist&ecirc;ncia e f&aacute;cil limpeza</span>
-      </div>
-    </div>
-
-    <p class="nxf-pdp__emb-label">Embalagem</p>
-
-    <div class="nxf-pdp__chips">
-      <button class="nxf-pdp__pchip active">Prep Piso 3,5 kg</button>
-      <button class="nxf-pdp__pchip">Nivela &amp; Primer 4 kg</button>
-      <button class="nxf-pdp__pchip">Gran&iacute;to L&iacute;quido 4 kg</button>
-    </div>
-
-    <button class="nxf-pdp__buy">&#128722; Comprar agora</button>
-
-    <p class="nxf-pdp__fds">
-      Nex Floor &middot; Granito L&iacute;quido &middot; Linha Cristal &mdash;
-      FDS dispon&iacute;vel em linhacristal.com.br
-    </p>
-
-  </div><!-- /info -->
-
-</div><!-- /nxf-pdp -->
-</div><!-- /wrap -->
-
 <script>
-/* ================================================================
-   NXF JS - ASCII-only, scoped, guard clauses
-   ================================================================ */
-
-/* ---- PDP carousel ---- */
-function nxfInitPdpCarousel() {
-  var root    = document.getElementById('nxf-pdp');
-  if (!root) return;
-  var mainEl  = document.getElementById('nxf-pdp-main');
-  var imgEl   = document.getElementById('nxf-pdp-img');
-  var countEl = document.getElementById('nxf-pdp-count');
-  var caphEl  = document.getElementById('nxf-pdp-caph');
-  var captEl  = document.getElementById('nxf-pdp-capt');
-  var prevBtn = document.getElementById('nxf-pdp-prev');
-  var nextBtn = document.getElementById('nxf-pdp-next');
-  var thumbsC = document.getElementById('nxf-pdp-thumbs');
-  if (!mainEl || !countEl || !caphEl || !captEl || !prevBtn || !nextBtn || !thumbsC) return;
-
-  var thumbs = thumbsC.querySelectorAll('.nxf-pdp__thumb');
-  if (!thumbs || thumbs.length === 0) return;
-
-  var TOTAL = thumbs.length;
-  var cur   = 0;
-
-  function pad(n) {
-    return (n < 10 ? '0' : '') + n;
-  }
-
-  function goTo(idx) {
-    var next = ((idx % TOTAL) + TOTAL) % TOTAL;
-    /* deactivate old thumb */
-    thumbs[cur].classList.remove('active');
-    cur = next;
-    thumbs[cur].classList.add('active');
-
-    /* update counter */
-    countEl.textContent = pad(cur + 1) + ' / ' + pad(TOTAL);
-
-    /* update caption from data-* (HTML was already entity-decoded by the browser) */
-    caphEl.textContent = thumbs[cur].getAttribute('data-cap-h') || '';
-    captEl.textContent = thumbs[cur].getAttribute('data-cap-t') || '';
-
-    /* update main fallback background */
-    var bg = thumbs[cur].getAttribute('data-bg') || '';
-    if (bg) mainEl.style.background = bg;
-
-    /* update main image src from thumb img */
-    var thumbImg = thumbs[cur].querySelector('img');
-    if (imgEl && thumbImg) {
-      imgEl.src = thumbImg.src;
-    }
-  }
-
-  prevBtn.addEventListener('click', function() { goTo(cur - 1); });
-  nextBtn.addEventListener('click', function() { goTo(cur + 1); });
-
-  thumbs.forEach(function(th, i) {
-    th.addEventListener('click', function() { goTo(i); });
-    th.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(i); }
-    });
-  });
-
-  /* packaging chips - active toggle */
-  var pchips = root.querySelectorAll('.nxf-pdp__pchip');
-  pchips.forEach(function(ch) {
-    ch.addEventListener('click', function() {
-      pchips.forEach(function(c) { c.classList.remove('active'); });
-      ch.classList.add('active');
-    });
-  });
-}
-
-/* ---- Showcase dots (2-slide) ---- */
-function nxfInitShowcase() {
-  var showMain = document.querySelector('.nxf-show__main');
-  var dots     = document.querySelectorAll('.nxf-show__dots span');
-  if (!showMain || !dots || dots.length < 2) return;
-
-  var BG = [
-    '#d9d9d9',
-    'color-mix(in srgb, #7b529f 40%, #253161)'
-  ];
-  var cur    = 0;
-  var timer  = null;
-  var paused = false;
-  var reduced = (typeof window !== 'undefined' && window.matchMedia &&
-                 window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-  function goTo(idx) {
-    var next = ((idx % 2) + 2) % 2;
-    dots[cur].classList.remove('active');
-    cur = next;
-    dots[cur].classList.add('active');
-    showMain.style.background = BG[cur];
-  }
-
-  dots.forEach(function(d, i) {
-    d.addEventListener('click', function() { goTo(i); });
-  });
-
-  if (!reduced) {
-    showMain.addEventListener('mouseenter', function() { paused = true; });
-    showMain.addEventListener('mouseleave', function() { paused = false; });
-    timer = setInterval(function() {
-      if (!paused) goTo(cur + 1);
-    }, 6000);
-  }
-
-  /* expose for potential cleanup */
-  return { stop: function() { if (timer) clearInterval(timer); } };
-}
-
-/* boot */
 (function() {
-  function boot() {
-    nxfInitPdpCarousel();
-    nxfInitShowcase();
+  // --- Guard: exit silently if root elements are missing ---
+  var root = document.getElementById('nxf-root');
+  if (!root) return;
+
+  // --- Radio card single-select ---
+  var options = root.querySelectorAll('.nxf-hero__option[role="radio"]');
+  if (options.length) {
+    options.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        options.forEach(function(o) { o.setAttribute('aria-checked', 'false'); });
+        btn.setAttribute('aria-checked', 'true');
+      });
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
+
+  // --- Quantity stepper ---
+  var qtyEl = root.querySelector('#nxf-qty');
+  var minusBtn = root.querySelector('#nxf-minus');
+  var plusBtn = root.querySelector('#nxf-plus');
+  if (qtyEl && minusBtn && plusBtn) {
+    var qty = 1;
+    plusBtn.addEventListener('click', function() {
+      qty += 1;
+      qtyEl.textContent = qty;
+    });
+    minusBtn.addEventListener('click', function() {
+      if (qty > 1) { qty -= 1; qtyEl.textContent = qty; }
+    });
   }
 })();
 </script>
 
-</div><!-- #nxf-root -->
+</div>
