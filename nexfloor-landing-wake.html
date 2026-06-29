@@ -1563,4 +1563,252 @@
 
 <!-- secoes-fim -->
 
+<!-- ============================================================
+     S5 — 3 CARDS DE PRODUTO (fundo branco, fora da banda roxa)
+     ============================================================ -->
+<style>
+
+/* ================================================================
+   S5 — CARDS DE PRODUTO
+   ================================================================ */
+#nxf-root .nxf-cards {
+  background: var(--branco);
+  width: 100%;
+  overflow-x: hidden;
+  padding-top:    clamp(48px, 7vw, 96px);
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+#nxf-root .nxf-cards__grid {
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 1.5vw, 23px);
+}
+
+/* ---- Single card ---- */
+#nxf-root .nxf-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ---- Card top — lilac bucket area ---- */
+#nxf-root .nxf-card__top {
+  background: var(--lilas);
+  border-radius: 24px 24px 0 0;
+  aspect-ratio: 435 / 283;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#nxf-root .nxf-card__bucket {
+  width: 56%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  object-fit: contain;
+  display: block;
+}
+
+/* ---- Card body — white ---- */
+#nxf-root .nxf-card__body {
+  background: var(--branco);
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 4px .6px rgba(0, 0, 0, .25);
+  padding: clamp(24px, 3vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3.4vw, 45px);
+  flex: 1;
+}
+
+/* ---- Details block ---- */
+#nxf-root .nxf-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#nxf-root .nxf-card__label {
+  font-family: var(--body);
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.2;
+  color: var(--ink2);
+}
+
+#nxf-root .nxf-card__label--accent {
+  color: var(--roxo);
+}
+
+#nxf-root .nxf-card__name {
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+
+#nxf-root .nxf-card__desc {
+  font-family: var(--body);
+  font-size: clamp(17px, 1.8vw, 23px);
+  line-height: 1.25;
+  color: var(--gray);
+}
+
+/* ---- Price + button row ---- */
+#nxf-root .nxf-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 2vw, 40px);
+  flex-wrap: wrap;
+}
+
+#nxf-root .nxf-card__price {
+  font-family: var(--title);
+  font-weight: 900;
+  color: var(--ink2);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#nxf-root .nxf-card__price-main {
+  font-size: clamp(24px, 2.4vw, 30px);
+}
+
+#nxf-root .nxf-card__price-cents {
+  font-size: clamp(18px, 1.8vw, 23px);
+}
+
+#nxf-root .nxf-card__btn {
+  background: var(--roxo);
+  color: var(--branco);
+  font-family: var(--title);
+  font-weight: 900;
+  font-size: clamp(18px, 1.8vw, 23px);
+  text-transform: uppercase;
+  padding: 11px 32px;
+  border-radius: 24px;
+  border: 0;
+  cursor: pointer;
+  transition: filter 0.18s;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#nxf-root .nxf-card__btn:hover {
+  filter: brightness(0.85);
+}
+
+/* ================================================================
+   RESPONSIVE ≤860px — 1 col
+   ================================================================ */
+@media (max-width: 860px) {
+  #nxf-root .nxf-cards__grid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+  }
+}
+
+</style>
+
+<section class="nxf-cards" aria-label="Produtos Nex Floor">
+  <div class="nxf-cards__grid">
+
+    <!-- Card 1 — Prep Piso (Aglutinante) -->
+    <article class="nxf-card" aria-label="Passo 01 - Aglutinante: Prep Piso">
+
+      <div class="nxf-card__top">
+        <img
+          class="nxf-card__bucket"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-prep.png"
+          alt="Balde Nex Floor Prep Piso"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label">Passo 01 - Aglutinante</span>
+          <p class="nxf-card__name">Prep Piso</p>
+          <p class="nxf-card__desc">Sela e aglutina superf&iacute;cies porosas, criando a base ideal. 3,5&nbsp;kg &middot; rende 12&nbsp;m&sup2;.</p>
+        </div>
+        <div class="nxf-card__footer">
+          <p class="nxf-card__price">
+            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
+          </p>
+          <button class="nxf-card__btn" type="button">Comprar</button>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Card 2 — Nivela & Primer (Aderência) -->
+    <article class="nxf-card" aria-label="Passo 02 - Ader&ecirc;ncia: Nivela &amp; Primer">
+
+      <div class="nxf-card__top">
+        <img
+          class="nxf-card__bucket"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-primer.png"
+          alt="Balde Nex Floor Nivela &amp; Primer"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label">Passo 02 - Ader&ecirc;ncia</span>
+          <p class="nxf-card__name">Nivela &amp; Primer</p>
+          <p class="nxf-card__desc">Promove ader&ecirc;ncia e autonivela a superf&iacute;cie. 4&nbsp;kg &middot; rende 12&nbsp;m&sup2;.</p>
+        </div>
+        <div class="nxf-card__footer">
+          <p class="nxf-card__price">
+            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
+          </p>
+          <button class="nxf-card__btn" type="button">Comprar</button>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Card 3 — Granito Líquido (Acabamento) -->
+    <article class="nxf-card" aria-label="Passo 03 - Acabamento: Gran&iacute;to L&iacute;quido">
+
+      <div class="nxf-card__top">
+        <img
+          class="nxf-card__bucket"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png"
+          alt="Balde Nex Floor Gran&iacute;to L&iacute;quido"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="nxf-card__body">
+        <div class="nxf-card__details">
+          <span class="nxf-card__label nxf-card__label--accent">Passo 03 - Acabamento</span>
+          <p class="nxf-card__name">Gran&iacute;to L&iacute;quido</p>
+          <p class="nxf-card__desc">Acabamento ep&oacute;xi que reproduz o granito, com brilho e resist&ecirc;ncia. 4&nbsp;kg &middot; rende 1,82&nbsp;m&sup2;.</p>
+        </div>
+        <div class="nxf-card__footer">
+          <p class="nxf-card__price">
+            <span class="nxf-card__price-main">R$&nbsp;149,</span><span class="nxf-card__price-cents">90</span>
+          </p>
+          <button class="nxf-card__btn" type="button">Comprar</button>
+        </div>
+      </div>
+
+    </article>
+
+  </div><!-- /nxf-cards__grid -->
+</section><!-- /nxf-cards -->
+
 </div>
