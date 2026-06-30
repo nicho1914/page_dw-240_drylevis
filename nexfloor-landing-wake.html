@@ -109,16 +109,17 @@
   display: block;
 }
 
-/* Right overlay column — sits on top of the banner image */
+/* Right overlay column — sits on top of the banner image
+   Figma: control col x=881 w=560 of 1512 frame -> left 58.27%, width 37.04% */
 #nxf-root .nxf-hero__overlay {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 47%;
+  left: 58.27%;
+  width: 37.04%;
   height: 100%;
   display: flex;
   align-items: center;
-  padding: clamp(20px, 3vw, 56px) clamp(20px, 3.5vw, 64px) clamp(20px, 3vw, 56px) clamp(16px, 2vw, 32px);
+  padding: clamp(20px, 3vw, 56px) clamp(16px, 2vw, 32px) clamp(20px, 3vw, 56px) 0;
 }
 
 #nxf-root .nxf-hero__col {
@@ -386,7 +387,7 @@
   #nxf-root .nxf-hero__overlay {
     position: relative;
     top: auto;
-    right: auto;
+    left: auto;
     width: 100%;
     height: auto;
     padding: clamp(20px, 5vw, 40px) clamp(16px, 5vw, 32px);
