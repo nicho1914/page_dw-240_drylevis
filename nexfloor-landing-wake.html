@@ -2690,23 +2690,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(10px, 1vw, 16px) clamp(14px, 1.5vw, 24px);
-  border: 2px solid var(--branco);
-  border-radius: 21px;
+  padding: clamp(9px, 0.95vw, 13px) clamp(16px, 1.6vw, 26px);
+  border: 1.5px solid color-mix(in srgb, var(--branco) 70%, transparent);
+  border-radius: 100px;
   font-family: var(--body);
   font-weight: 400;
-  font-size: clamp(12px, 1.1vw, 16px);
+  font-size: clamp(12px, 1.05vw, 15px);
   color: var(--branco);
   white-space: nowrap;
   cursor: pointer;
-  transition: background 0.18s;
+  transition: background 0.18s, border-color 0.18s;
   background: transparent;
   text-decoration: none;
   line-height: 1;
 }
 
 #nxf-root .nxf-stickybar__navlink:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
+  border-color: var(--branco);
 }
 
 /* ---- RIGHT: product + price + button ---- */
@@ -2720,54 +2721,56 @@
 #nxf-root .nxf-stickybar__product {
   display: flex;
   align-items: center;
-  gap: clamp(6px, 0.8vw, 9px);
+  gap: clamp(8px, 1vw, 14px);
   flex-shrink: 0;
 }
 
 #nxf-root .nxf-stickybar__thumb {
-  width: clamp(48px, 5.5vw, 72px);
-  height: clamp(48px, 5.5vw, 72px);
-  object-fit: cover;
+  width: clamp(52px, 5.5vw, 74px);
+  height: clamp(52px, 5.5vw, 74px);
+  object-fit: contain;
   display: block;
   flex-shrink: 0;
+  border-radius: 12px;
 }
 
 #nxf-root .nxf-stickybar__info {
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 0.8vw, 10px);
-  width: clamp(140px, 13vw, 190px);
+  align-items: flex-start;
+  gap: clamp(3px, 0.4vw, 6px);
+  width: clamp(150px, 14vw, 210px);
 }
 
 #nxf-root .nxf-stickybar__pname {
   font-family: var(--title);
-  font-weight: 900;
-  font-size: clamp(13px, 1.3vw, 20px);
+  font-weight: 800;
+  font-size: clamp(14px, 1.35vw, 21px);
   color: var(--branco);
   line-height: 1.1;
-  text-align: center;
-  text-transform: uppercase;
+  text-align: left;
+  text-transform: none;
 }
 
 #nxf-root .nxf-stickybar__price {
   font-family: var(--body);
-  font-weight: 700;
-  font-size: clamp(12px, 1.1vw, 16px);
-  color: var(--branco);
+  font-weight: 400;
+  font-size: clamp(12px, 1.05vw, 16px);
+  color: color-mix(in srgb, var(--branco) 88%, transparent);
   line-height: 1;
+  text-align: left;
 }
 
 /* Green buy button */
 #nxf-root .nxf-stickybar__buy {
   display: flex;
   align-items: center;
-  gap: 0;
-  justify-content: space-between;
+  gap: clamp(8px, 0.9vw, 14px);
+  justify-content: center;
   background: var(--verde);
   border: none;
-  border-radius: 8px;
-  padding: clamp(8px, 0.8vw, 8px) clamp(14px, 1.5vw, 24px);
-  width: clamp(130px, 11vw, 174px);
+  border-radius: 12px;
+  padding: clamp(14px, 1.5vw, 22px) clamp(20px, 2vw, 32px);
   cursor: pointer;
   transition: filter 0.18s;
   flex-shrink: 0;
@@ -2777,17 +2780,17 @@
 
 #nxf-root .nxf-stickybar__buy-label {
   font-family: var(--title);
-  font-weight: 900;
-  font-size: clamp(16px, 1.5vw, 24px);
+  font-weight: 800;
+  font-size: clamp(15px, 1.4vw, 21px);
   color: var(--branco);
   text-transform: uppercase;
+  letter-spacing: 0.02em;
   line-height: 1;
   text-align: center;
-  flex: 1;
 }
 
 #nxf-root .nxf-stickybar__buy-chevron {
-  font-size: clamp(14px, 1.3vw, 18px);
+  font-size: clamp(15px, 1.4vw, 20px);
   color: var(--branco);
   line-height: 1;
   flex-shrink: 0;
