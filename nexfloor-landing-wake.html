@@ -4,26 +4,34 @@
      - Sem <html>/<head>/<body> (é um fragmento Wake).
      - CSS escopado em #nxf-root (nao afeta o tema da loja).
      - Acentos como entidades HTML; JS (quando houver) em ASCII puro.
-     - Fontes: AmsiPro Cond via @font-face (trocar src quando os arquivos
-       chegarem). Ate la, Oswald + Archivo Narrow (Google Fonts) assumem.
+     - Fontes: AmsiPro Cond via @font-face (real, arquivos no jsDelivr).
+       Oswald + Archivo Narrow ficam como fallback. Secao Informacoes
+       (navTabs) usa Inter.
      - Assets de imagem/video via CDN externo; nunca .mp4 direto no Wake.
      Produto: landing Nex Floor / linha Propiso
      Versao: v3 — S1 reset + hero PDP (banner img + seletor/stepper/comprar)
 ============================================================================ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Archivo+Narrow:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <div id="nxf-root">
 <style>
 
-/* ---- AmsiPro Cond — trocar os src pelos arquivos reais quando chegarem.
-        Ate la, o fallback condensado abaixo assume. ---- */
+/* ---- AmsiPro Cond — arquivos reais via jsDelivr ---- */
 @font-face {
   font-family: 'AmsiPro Cond';
   font-weight: 900;
+  font-style: normal;
   font-display: swap;
-  src: local('Oswald');
+  src: url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/amsiprocond-ultra.otf') format('opentype');
+}
+@font-face {
+  font-family: 'AmsiPro Cond';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/fonts/amsiprocond-regular.ttf') format('truetype');
 }
 
 /* ---- Tokens ---- */
@@ -42,8 +50,8 @@
   --ink:       #1f1f1f;
   --creme:     #f6f3ef;
   --verde:     #4f9d43;
-  --title: 'Oswald','AmsiPro Cond',system-ui,sans-serif;
-  --body:  'Archivo Narrow','AmsiPro Cond',system-ui,sans-serif;
+  --title: 'AmsiPro Cond','Oswald',system-ui,sans-serif;
+  --body:  'AmsiPro Cond','Archivo Narrow',system-ui,sans-serif;
 
   font-family: var(--body);
   color: var(--ink);
@@ -1869,6 +1877,18 @@
   overflow-x: hidden;
   padding-top:    clamp(48px, 7vw, 96px);
   padding-bottom: clamp(48px, 7vw, 96px);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Secao Informacoes usa Inter (nao AmsiPro) — override pontual */
+#nxf-root .nxf-info,
+#nxf-root .nxf-info *,
+#nxf-root .nxf-info__tab,
+#nxf-root .nxf-info__heading,
+#nxf-root .nxf-info__subheading,
+#nxf-root .nxf-info__body,
+#nxf-root .nxf-info__list {
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 /* Rounded panel — gradient from Figma */
