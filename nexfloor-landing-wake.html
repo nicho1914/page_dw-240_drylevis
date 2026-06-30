@@ -191,17 +191,17 @@
 }
 
 #nxf-root .nxf-hero__option[aria-checked="true"] {
-  border-color: var(--branco);
-  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
+  background: transparent;
 }
 
-/* Radio circle */
+/* Radio circle — unselected: outline ring only. Selected: solid filled dot (no ring). */
 #nxf-root .nxf-hero__radio {
   flex-shrink: 0;
   width: clamp(14px, 1.4vw, 20px);
   height: clamp(14px, 1.4vw, 20px);
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.6);
+  border: 2px solid rgba(255,255,255,0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,7 +209,8 @@
 }
 
 #nxf-root .nxf-hero__option[aria-checked="true"] .nxf-hero__radio {
-  border-color: var(--branco);
+  border-color: transparent;
+  background: rgba(255,255,255,0.85);
 }
 
 #nxf-root .nxf-hero__radio-dot {
@@ -222,7 +223,7 @@
 }
 
 #nxf-root .nxf-hero__option[aria-checked="true"] .nxf-hero__radio-dot {
-  opacity: 1;
+  opacity: 0;
 }
 
 #nxf-root .nxf-hero__option-label {
@@ -233,7 +234,7 @@
   text-transform: uppercase;
   color: var(--branco);
   flex: 1;
-  text-align: center;
+  text-align: left;
 }
 
 /* --- Stepper + Comprar row --- */
