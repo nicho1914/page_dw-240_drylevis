@@ -2647,12 +2647,20 @@
    STICKY BUY BAR
    ================================================================ */
 #nxf-root .nxf-stickybar {
-  position: static;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+  z-index: 999;
   background: var(--roxo);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-  border-radius: 0 0 45px 45px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.18);
+  border-radius: 45px 45px 0 0;
   overflow: hidden;
+}
+/* espaço no fim da pagina pra barra fixa nao cobrir o conteudo */
+#nxf-root {
+  padding-bottom: clamp(96px, 13vw, 132px);
 }
 
 #nxf-root .nxf-stickybar__inner {
