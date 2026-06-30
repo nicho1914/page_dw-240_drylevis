@@ -330,41 +330,32 @@
 }
 
 #nxf-root .nxf-hero__arrow {
-  width: clamp(32px, 3vw, 44px);
-  height: clamp(32px, 3vw, 44px);
-  border-radius: 50%;
-  background: rgba(255,255,255,0.85);
+  background: none;
   border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.18s, transform 0.18s;
-  color: #2d2d2b;
-  font-size: clamp(14px, 1.4vw, 20px);
-  font-family: var(--title);
-  font-weight: 900;
-  line-height: 1;
+  display: block;
   padding: 0;
-  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.18s;
+  line-height: 0;
 }
 
-#nxf-root .nxf-hero__arrow img {
+#nxf-root .nxf-hero__arrow--prev {
+  width: 42.741px;
+  height: 42.42px;
+}
+
+#nxf-root .nxf-hero__arrow--next {
+  width: 43.735px;
+  height: 43.406px;
+}
+
+#nxf-root .nxf-hero__arrow svg {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
-  pointer-events: none;
 }
 
-#nxf-root .nxf-hero__arrow-fallback {
-  display: none;
-}
-
-#nxf-root .nxf-hero__arrow-fallback.is-shown {
-  display: block;
-}
-
-#nxf-root .nxf-hero__arrow:hover { background: var(--branco); transform: scale(1.06); }
+#nxf-root .nxf-hero__arrow:hover { transform: scale(1.06); }
 
 /* ================================================================
    RESPONSIVE — mobile stacked layout
@@ -546,13 +537,27 @@
 
   <!-- Carousel arrows (bottom-right, single-banner hero: no-op safe) -->
   <div class="nxf-hero__arrows">
-    <button class="nxf-hero__arrow" type="button" id="nxf-hero-prev" aria-label="Banner anterior">
-      <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/arrow-left.svg" alt="" aria-hidden="true" width="18" height="18" onerror="this.style.display='none';this.nextElementSibling.classList.add('is-shown');" />
-      <span class="nxf-hero__arrow-fallback" aria-hidden="true">&#8249;</span>
+    <button class="nxf-hero__arrow nxf-hero__arrow--prev" type="button" id="nxf-hero-prev" aria-label="Banner anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+        <path d="M21.3711 0.897461C32.6844 0.897688 41.8438 9.99823 41.8438 21.21C41.8437 32.4216 32.6843 41.5222 21.3711 41.5225C10.0576 41.5225 0.897559 32.4217 0.897461 21.21C0.897461 9.99809 10.0576 0.897461 21.3711 0.897461Z" stroke="#B4C1D5" stroke-width="1.79469"/>
+        <mask id="mask0_1063_316" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="13" y="10" width="24" height="25">
+          <rect x="13" y="10.0134" width="24" height="24" fill="#D9D9D9"/>
+        </mask>
+        <g mask="url(#mask0_1063_316)">
+          <path d="M23 32.0134L13 22.0134L23 12.0134L24.775 13.7884L16.55 22.0134L24.775 30.2384L23 32.0134Z" fill="#B4C1D5"/>
+        </g>
+      </svg>
     </button>
-    <button class="nxf-hero__arrow" type="button" id="nxf-hero-next" aria-label="Pr&oacute;ximo banner">
-      <img src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/arrow-right.svg" alt="" aria-hidden="true" width="18" height="18" onerror="this.style.display='none';this.nextElementSibling.classList.add('is-shown');" />
-      <span class="nxf-hero__arrow-fallback" aria-hidden="true">&#8250;</span>
+    <button class="nxf-hero__arrow nxf-hero__arrow--next" type="button" id="nxf-hero-next" aria-label="Pr&oacute;ximo banner">
+      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <ellipse cx="21.8677" cy="21.703" rx="21.8677" ry="21.703" fill="#B4C1D5"/>
+        <mask id="mask0_1063_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="10" width="25" height="24">
+          <rect x="11.3965" y="10" width="24" height="24" fill="#D9D9D9"/>
+        </mask>
+        <g mask="url(#mask0_1063_317)">
+          <path d="M19.4215 32L17.6465 30.225L25.8715 22L17.6465 13.775L19.4215 12L29.4215 22L19.4215 32Z" fill="#005097"/>
+        </g>
+      </svg>
     </button>
   </div>
 
