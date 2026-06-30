@@ -447,6 +447,47 @@
 </style>
 
 <!-- ============================================================
+     BARRA DE TOPO — buy bar (static, rola junto com a página)
+     ============================================================ -->
+<div class="nxf-stickybar" role="complementary" aria-label="Compra rápida">
+  <div class="nxf-stickybar__inner">
+
+    <!-- LEFT: nav links (hidden <=720px) -->
+    <nav class="nxf-stickybar__nav" aria-label="Navegação rápida">
+      <a class="nxf-stickybar__navlink" href="#nxf-pdp">Sobre Nex Floor Propiso Cristal</a>
+      <a class="nxf-stickybar__navlink" href="#nxf-root">Benefícios</a>
+      <a class="nxf-stickybar__navlink" href="#nxf-root">Avalie</a>
+    </nav>
+
+    <!-- RIGHT: product + price + comprar -->
+    <div class="nxf-stickybar__right">
+
+      <div class="nxf-stickybar__product">
+        <img
+          class="nxf-stickybar__thumb"
+          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-stickybar-balde.png"
+          alt="Nex Floor Graníto Líquido"
+          loading="lazy"
+          decoding="async"
+          onerror="this.src='https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png'"
+        />
+        <div class="nxf-stickybar__info">
+          <span class="nxf-stickybar__pname">Nex Floor Granito Líquido</span>
+          <span class="nxf-stickybar__price">R$ 775,20</span>
+        </div>
+      </div>
+
+      <button class="nxf-stickybar__buy" type="button" aria-label="Comprar Nex Floor Graníto Líquido">
+        <span class="nxf-stickybar__buy-label">Comprar</span>
+        <span class="nxf-stickybar__buy-chevron" aria-hidden="true">›</span>
+      </button>
+
+    </div><!-- /right -->
+
+  </div><!-- /inner -->
+</div><!-- /nxf-stickybar -->
+
+<!-- ============================================================
      HERO — banner PDP com controles sobrepostos
      ============================================================ -->
 <section class="nxf-hero" aria-label="Nex Floor Nivela & Primer">
@@ -2609,8 +2650,8 @@
   position: static;
   width: 100%;
   background: var(--roxo);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.18);
-  border-radius: 45px 45px 0 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  border-radius: 0 0 45px 45px;
   overflow: hidden;
 }
 
@@ -2775,44 +2816,6 @@
 }
 
 </style>
-
-<div class="nxf-stickybar" role="complementary" aria-label="Compra rápida">
-  <div class="nxf-stickybar__inner">
-
-    <!-- LEFT: nav links (hidden <=720px) -->
-    <nav class="nxf-stickybar__nav" aria-label="Navegação rápida">
-      <a class="nxf-stickybar__navlink" href="#nxf-pdp">Sobre Nex Floor Propiso Cristal</a>
-      <a class="nxf-stickybar__navlink" href="#nxf-root">Benefícios</a>
-      <a class="nxf-stickybar__navlink" href="#nxf-root">Avalie</a>
-    </nav>
-
-    <!-- RIGHT: product + price + comprar -->
-    <div class="nxf-stickybar__right">
-
-      <div class="nxf-stickybar__product">
-        <img
-          class="nxf-stickybar__thumb"
-          src="https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-stickybar-balde.png"
-          alt="Nex Floor Graníto Líquido"
-          loading="lazy"
-          decoding="async"
-          onerror="this.src='https://cdn.jsdelivr.net/gh/nicho1914/page_dw-240_drylevis@main/Assets/nexfloor-balde-granito.png'"
-        />
-        <div class="nxf-stickybar__info">
-          <span class="nxf-stickybar__pname">Nex Floor Granito Líquido</span>
-          <span class="nxf-stickybar__price">R$ 775,20</span>
-        </div>
-      </div>
-
-      <button class="nxf-stickybar__buy" type="button" aria-label="Comprar Nex Floor Graníto Líquido">
-        <span class="nxf-stickybar__buy-label">Comprar</span>
-        <span class="nxf-stickybar__buy-chevron" aria-hidden="true">›</span>
-      </button>
-
-    </div><!-- /right -->
-
-  </div><!-- /inner -->
-</div><!-- /nxf-stickybar -->
 
 <!-- ============================================================
      PDP CAROUSEL JS — nxfInitPdpCarousel()
