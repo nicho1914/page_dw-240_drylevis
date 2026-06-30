@@ -594,19 +594,31 @@
 
 #nxf-root .nxf-benfind__inner {
   display: flex;
-  gap: clamp(24px, 3vw, 48px);
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: flex-start;
+  gap: clamp(24px, 3vw, 48px) clamp(32px, 6vw, 96px);
 }
 
-/* Left col ~58%, Right col ~42% */
-#nxf-root .nxf-benfind__col--left  { flex: 0 0 58%; min-width: 0; }
-#nxf-root .nxf-benfind__col--right { flex: 0 0 calc(42% - clamp(24px,3vw,48px)); min-width: 0; }
+/* Columns size to their content (chip grids have fixed/capped widths below);
+   they do NOT stretch to fill the row — Figma leaves empty space between them. */
+#nxf-root .nxf-benfind__col--left,
+#nxf-root .nxf-benfind__col--right {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+#nxf-root .nxf-benfind__col--right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* right-align heading + chip row, per Figma */
+}
 
 /* ---- Section headings (BENEFÍCIOS / INDICAÇÃO) ---- */
 #nxf-root .nxf-benfind__heading {
   font-family: var(--title);
   font-weight: 900;
-  font-size: clamp(34px, 4.2vw, 64px);
+  font-size: clamp(28px, 4.2vw, 64px);
   line-height: 1;
   text-transform: uppercase;
   color: var(--branco);
@@ -614,34 +626,44 @@
 }
 
 /* ---- Chip grids ---- */
-#nxf-root .nxf-benfind__chips {
-  display: grid;
-  gap: clamp(10px, 1.2vw, 16px);
-}
-
+/* Benefit grid: 3 cols x 2 rows, each chip fixed 205x144 at desktop (Figma exact) */
 #nxf-root .nxf-benfind__chips--benefit {
-  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 205px);
+  gap: 13px 25px;
 }
 
+/* Indication row: wide chip (315px) + narrow chip (205px), Figma exact */
 #nxf-root .nxf-benfind__chips--indication {
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  gap: 29px;
+}
+
+#nxf-root .nxf-benfind__chips--indication .nxf-benfind__chip:first-child {
+  width: 315px;
+}
+
+#nxf-root .nxf-benfind__chips--indication .nxf-benfind__chip:last-child {
+  width: 205px;
 }
 
 /* ---- Single chip ---- */
 #nxf-root .nxf-benfind__chip {
   background: var(--chip-bg);   /* #f1f1f1 */
   border-radius: 15px;
-  padding: clamp(28px, 3.3vw, 48px) clamp(14px, 1.7vw, 24px);
+  padding: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(100px, 10vw, 144px);
+  width: 205px;
+  height: 144px;
+  box-sizing: border-box;
 }
 
 #nxf-root .nxf-benfind__chip-text {
   font-family: var(--title);
   font-weight: 900;
-  font-size: clamp(14px, 1.6vw, 24px);
+  font-size: 24px;
   line-height: 1.1;
   color: var(--chip-ink);       /* #858585 */
   text-align: center;
@@ -649,33 +671,47 @@
 }
 
 /* ================================================================
-   RESPONSIVE — stack cols ≤860px; chip grids narrow
+   RESPONSIVE — graceful reflow only; chips never exceed Figma size
    ================================================================ */
-@media (max-width: 860px) {
+@media (max-width: 960px) {
 
   #nxf-root .nxf-benfind__inner {
     flex-direction: column;
   }
 
-  #nxf-root .nxf-benfind__col--left,
   #nxf-root .nxf-benfind__col--right {
-    flex: none;
-    width: 100%;
-  }
-
-  #nxf-root .nxf-benfind__chips--benefit {
-    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 720px) {
 
   #nxf-root .nxf-benfind__chips--benefit {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(140px, 205px));
+  }
+
+  #nxf-root .nxf-benfind__chip {
+    width: 100%;
+    max-width: 205px;
+    height: auto;
+    min-height: 110px;
   }
 
   #nxf-root .nxf-benfind__chips--indication {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+
+  #nxf-root .nxf-benfind__chips--indication .nxf-benfind__chip:first-child,
+  #nxf-root .nxf-benfind__chips--indication .nxf-benfind__chip:last-child {
+    width: 100%;
+    max-width: 315px;
+  }
+}
+
+@media (max-width: 420px) {
+
+  #nxf-root .nxf-benfind__chips--benefit {
+    grid-template-columns: minmax(0, 205px);
   }
 }
 
