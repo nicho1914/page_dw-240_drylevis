@@ -2654,13 +2654,12 @@
   width: 100%;
   z-index: 999;
   background: var(--roxo);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.18);
   border-radius: 45px 45px 0 0;
   overflow: hidden;
 }
 /* espaço no fim da pagina pra barra fixa nao cobrir o conteudo */
 #nxf-root {
-  padding-bottom: clamp(96px, 13vw, 132px);
+  padding-bottom: clamp(70px, 8vw, 92px);
   /* full-bleed: fura o container centralizado da Wake e ocupa a largura toda (sem laterais brancas) */
   width: 100vw;
   max-width: 100vw;
@@ -2673,7 +2672,7 @@
   align-items: center;
   justify-content: space-between;
   gap: clamp(12px, 2vw, 24px);
-  padding: clamp(14px, 2vw, 24px) clamp(20px, 3.5vw, 48px);
+  padding: clamp(7px, 1vw, 11px) clamp(20px, 3.5vw, 48px);
 }
 
 /* ---- LEFT: nav links ---- */
@@ -2690,7 +2689,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(9px, 0.95vw, 13px) clamp(16px, 1.6vw, 26px);
+  padding: clamp(6px, 0.6vw, 8px) clamp(13px, 1.2vw, 18px);
   border: 1.5px solid color-mix(in srgb, var(--branco) 70%, transparent);
   border-radius: 100px;
   font-family: var(--body);
@@ -2726,8 +2725,8 @@
 }
 
 #nxf-root .nxf-stickybar__thumb {
-  width: clamp(52px, 5.5vw, 74px);
-  height: clamp(52px, 5.5vw, 74px);
+  width: clamp(36px, 3.4vw, 48px);
+  height: clamp(36px, 3.4vw, 48px);
   object-fit: contain;
   display: block;
   flex-shrink: 0;
@@ -2745,7 +2744,7 @@
 #nxf-root .nxf-stickybar__pname {
   font-family: var(--title);
   font-weight: 800;
-  font-size: clamp(14px, 1.35vw, 21px);
+  font-size: clamp(13px, 1.05vw, 16px);
   color: var(--branco);
   line-height: 1.1;
   text-align: left;
@@ -2770,7 +2769,7 @@
   background: var(--verde);
   border: none;
   border-radius: 12px;
-  padding: clamp(14px, 1.5vw, 22px) clamp(20px, 2vw, 32px);
+  padding: clamp(8px, 0.9vw, 12px) clamp(16px, 1.6vw, 24px);
   cursor: pointer;
   transition: filter 0.18s;
   flex-shrink: 0;
@@ -2781,7 +2780,7 @@
 #nxf-root .nxf-stickybar__buy-label {
   font-family: var(--title);
   font-weight: 800;
-  font-size: clamp(15px, 1.4vw, 21px);
+  font-size: clamp(13px, 1.05vw, 16px);
   color: var(--branco);
   text-transform: uppercase;
   letter-spacing: 0.02em;
