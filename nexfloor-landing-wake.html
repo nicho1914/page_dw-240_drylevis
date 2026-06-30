@@ -2661,6 +2661,11 @@
 /* espaço no fim da pagina pra barra fixa nao cobrir o conteudo */
 #nxf-root {
   padding-bottom: clamp(96px, 13vw, 132px);
+  /* full-bleed: fura o container centralizado da Wake e ocupa a largura toda (sem laterais brancas) */
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 #nxf-root .nxf-stickybar__inner {
